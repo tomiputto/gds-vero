@@ -8,6 +8,7 @@
     "lint": "pnpm -r lint",
     "test": "pnpm -r test",
     "gds:tokens:sync": "node scripts/figma-mcp-to-tokens-raw.mjs",
+    "gds:tokens:sync:from-mcp": "node scripts/figma-sync-with-mcp.mjs .tmp/figma.mcp_latest.json",
     "gds:icons:generate": "node scripts/svg-to-gds-icons.mjs"
   },
   "devDependencies": {

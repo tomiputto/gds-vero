@@ -10,19 +10,9 @@ When the user writes:
 
 Do the following steps automatically:
 
-1. Use the Figma MCP tool `get_variable_defs` for the current selection.
-2. Save the full JSON output to:
-   .tmp/figma.variable_defs.json
-   (overwrite if exists)
-3. Run:
-   pnpm gds:tokens:sync
-4. Confirm that:
-   packages/tokens/figma/tokens.raw.json
-   has been updated.
-5. Show a summary:
-   - number of tokens
-   - which top-level groups were affected (colors, typography, spacing, effects)
+1. Use the Figma MCP tool **get_variable_defs** (no nodeId = current Figma selection).
+2. Save the full JSON output to **.tmp/figma.mcp_latest.json** (overwrite if exists).
+3. Run **pnpm gds:tokens:sync:from-mcp** — this merges the MCP result into existing tokens (so only changed variables from the selection are updated; the rest stay), writes .tmp/figma.variable_defs.json, then runs the sync to update packages/tokens/figma/tokens.raw.json.
+4. Confirm that packages/tokens/figma/tokens.raw.json has been updated and show the token count from the script output.
 
-Never modify other files.
-Always overwrite the temp file.
-Always run the build script after saving the MCP output.
+The user does not need to manually save anything; the AI writes the MCP output and runs the merge+sync. Changes are visible locally right away (restart dev server if needed for theme to pick up new values).
