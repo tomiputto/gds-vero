@@ -13,6 +13,8 @@ A design system built on **Chakra UI v3** with GDS theme and Figma tokens. Use b
 | **@gdesignsystem/tokens** | Design tokens (colors, typography, spacing). Source: `packages/tokens/figma/tokens.raw.json`. |
 | **@gdesignsystem/icons** | Icon set generated from `/icons` SVGs. Use with Figma token colors. |
 
+**Published on npm:** [@gdesignsystem/react](https://www.npmjs.com/package/@gdesignsystem/react) · [@gdesignsystem/theme](https://www.npmjs.com/package/@gdesignsystem/theme) · [@gdesignsystem/tokens](https://www.npmjs.com/package/@gdesignsystem/tokens) · [@gdesignsystem/icons](https://www.npmjs.com/package/@gdesignsystem/icons)
+
 ## Quick start
 
 ### 1. Install
