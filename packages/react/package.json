@@ -24,5 +24,15 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/renegademaster-droid/GDS.git"
-  }
+  },
+  "description": "GDS React provider and wrappers. Use GDSProvider to apply the GDS design system to your app.",
+  "keywords": [
+    "gds",
+    "gdesignsystem",
+    "react",
+    "chakra-ui",
+    "design-system",
+    "provider"
+  ],
+  "homepage": "https://renegademaster-droid.github.io/GDS/"
 }

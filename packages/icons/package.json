@@ -19,5 +19,15 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/renegademaster-droid/GDS.git"
-  }
+  },
+  "description": "GDS icon set for Chakra UI. 1500+ icons aligned with Figma, use with semantic color tokens.",
+  "keywords": [
+    "gds",
+    "gdesignsystem",
+    "icons",
+    "chakra-ui",
+    "figma",
+    "design-system"
+  ],
+  "homepage": "https://renegademaster-droid.github.io/GDS/"
 }

@@ -19,5 +19,15 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/renegademaster-droid/GDS.git"
-  }
+  },
+  "description": "Chakra UI v3 theme for GDS. Maps Figma tokens to semantic tokens (fg, bg.default, brand).",
+  "keywords": [
+    "gds",
+    "gdesignsystem",
+    "chakra-ui",
+    "theme",
+    "figma",
+    "design-system"
+  ],
+  "homepage": "https://renegademaster-droid.github.io/GDS/"
 }

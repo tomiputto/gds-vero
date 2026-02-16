@@ -18,5 +18,14 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/renegademaster-droid/GDS.git"
-  }
+  },
+  "description": "GDS design tokens (colors, typography, spacing) from Figma. Used by @gdesignsystem/theme.",
+  "keywords": [
+    "gds",
+    "gdesignsystem",
+    "design-tokens",
+    "figma",
+    "design-system"
+  ],
+  "homepage": "https://renegademaster-droid.github.io/GDS/"
 }
