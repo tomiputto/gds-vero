@@ -8,6 +8,7 @@ import { DesignSystemLayout } from "./components/DesignSystemLayout";
 import { DesignSystemOverview } from "./pages/design-system/DesignSystemOverview";
 import { TokensPage } from "./pages/design-system/TokensPage";
 import { ExternalWebsitePage } from "./pages/design-system/ExternalWebsitePage";
+import { ForAIAgentsPage } from "./pages/design-system/ForAIAgentsPage";
 import { AccessibilityPage } from "./pages/design-system/AccessibilityPage";
 import { TextPage } from "./pages/design-system/TextPage";
 import { ColorsPage } from "./pages/design-system/ColorsPage";
@@ -135,6 +136,7 @@ function App() {
           <Route index element={<DesignSystemOverview />} />
           <Route path="guides/tokens" element={<TokensPage />} />
           <Route path="guides/external-website" element={<ExternalWebsitePage />} />
+          <Route path="guides/for-ai-agents" element={<ForAIAgentsPage />} />
           <Route path="accessibility" element={<AccessibilityPage />} />
           <Route path="styles/text" element={<TextPage />} />
           <Route path="styles/colors" element={<ColorsPage />} />

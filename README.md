@@ -4,6 +4,8 @@ A design system built on **Chakra UI v3** with GDS theme and Figma tokens. Use b
 
 **MIT licensed** — you can download, use, and build websites and apps with GDS in your own projects.
 
+**Building with an AI agent (ChatGPT, Copilot, etc.)?** See [GDS for LLM agents](GDS_FOR_LLM_AGENTS.md).
+
 ## Packages
 
 | Package | Description |
