@@ -29,12 +29,12 @@ export function ForAIAgentsPage() {
         </Text>
       </Box>
 
-      <Section
-        title="When to use GDS"
-        description="Use the GDS stack when the user says they want to build something with GDS, using GDS, GDS design system, gdesignsystem, or similar. Then use only the packages and rules below for the UI layer."
-      >
-        <></>
-      </Section>
+      <Box>
+        <Heading size="lg" mb="1">When to use GDS</Heading>
+        <Text color="fg.muted" textStyle="sm">
+          Use the GDS stack when the user says they want to build something with GDS, using GDS, GDS design system, gdesignsystem, or similar. Then use only the packages and rules below for the UI layer.
+        </Text>
+      </Box>
 
       <Section
         title="Install"

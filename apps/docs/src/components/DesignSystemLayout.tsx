@@ -110,7 +110,7 @@ function NavLinks({
                 color="fg.muted"
                 textTransform="uppercase"
                 letterSpacing="wider"
-                mt={lastSection === "Styles" ? "4" : "0"}
+                mt={section === "Guides" ? "0" : "4"}
                 mb="2"
                 px="2"
               >
