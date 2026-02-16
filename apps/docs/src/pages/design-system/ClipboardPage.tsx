@@ -1,5 +1,5 @@
 import { Box, Button, Clipboard, Heading, Input, Text, VStack } from "@chakra-ui/react";
-import { CopyIcon } from "@gds/icons";
+import { CopyIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 

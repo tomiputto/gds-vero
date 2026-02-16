@@ -1,5 +1,5 @@
 import { Box, Field, Heading, RatingGroup, Text, VStack } from "@chakra-ui/react";
-import { StarIcon } from "@gds/icons";
+import { StarIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 

@@ -11,8 +11,8 @@
   "dependencies": {
     "@chakra-ui/react": "^3.33.0",
     "@emotion/react": "^11.14.0",
-    "@gds/icons": "workspace:*",
-    "@gds/react": "workspace:*",
+    "@gdesignsystem/icons": "workspace:*",
+    "@gdesignsystem/react": "workspace:*",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

@@ -22,7 +22,7 @@ export function TokensPage() {
             <strong>Source file:</strong> <Code>packages/tokens/figma/tokens.raw.json</Code>
           </Text>
           <Text color="fg.muted">
-            The GDS theme (<Code>@gds/theme</Code>) imports this file and maps flat Figma variable keys (e.g. <Code>colors/brand/primary/solid</Code>) into Chakra semantic tokens (e.g. <Code>brand.solid</Code>, <Code>fg</Code>, <Code>bg.default</Code>). Do not edit <Code>tokens.raw.json</Code> by hand; update it via the Figma sync (below).
+            The GDS theme (<Code>@gdesignsystem/theme</Code>) imports this file and maps flat Figma variable keys (e.g. <Code>colors/brand/primary/solid</Code>) into Chakra semantic tokens (e.g. <Code>brand.solid</Code>, <Code>fg</Code>, <Code>bg.default</Code>). Do not edit <Code>tokens.raw.json</Code> by hand; update it via the Figma sync (below).
           </Text>
         </VStack>
       </Section>

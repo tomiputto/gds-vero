@@ -12,7 +12,7 @@ export function SpacingPage() {
           Spacing
         </Heading>
         <Text color="fg.muted">
-          Spacing tokens from Figma, exposed in the theme via @gds/tokens. Use spacing token names (p, m, gap) for consistent layout.
+          Spacing tokens from Figma, exposed in the theme via @gdesignsystem/tokens. Use spacing token names (p, m, gap) for consistent layout.
         </Text>
       </Box>
 

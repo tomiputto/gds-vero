@@ -8,7 +8,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { XIcon } from "@gds/icons";
+import { XIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 
@@ -28,7 +28,7 @@ export function DialogPage() {
         title="Basic"
         description="Dialog with trigger, header, body, and footer"
         code={`import { Dialog, Button, IconButton, Portal } from "@chakra-ui/react";
-import { XIcon } from "@gds/icons";
+import { XIcon } from "@gdesignsystem/icons";
 
 <Dialog.Root>
   <Dialog.Trigger asChild>

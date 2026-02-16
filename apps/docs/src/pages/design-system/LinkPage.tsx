@@ -1,5 +1,5 @@
 import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react";
-import { ExternalLinkIcon } from "@gds/icons";
+import { ExternalLinkIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 

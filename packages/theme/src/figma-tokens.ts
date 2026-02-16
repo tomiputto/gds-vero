@@ -2,7 +2,7 @@
  * Typography, spacing, and radii derived from Figma tokens.raw.json.
  * In the docs app a Vite plugin resolves this import from disk so font/tokens stay fresh.
  */
-import tokensRaw from "@gds/tokens/figma/tokens.raw.json";
+import tokensRaw from "@gdesignsystem/tokens/figma/tokens.raw.json";
 
 type Raw = {
   typography?: Record<string, string>;

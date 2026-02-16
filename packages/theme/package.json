@@ -1,7 +1,7 @@
 {
-  "name": "@gds/theme",
-  "version": "0.0.0",
-  "private": true,
+  "name": "@gdesignsystem/theme",
+  "version": "0.1.0",
+  "private": false,
   "type": "module",
   "exports": {
     ".": "./src/index.ts"
@@ -9,11 +9,15 @@
   "dependencies": {
     "@chakra-ui/react": "^3.0.0",
     "@emotion/react": "^11.0.0",
-    "@gds/tokens": "workspace:*"
+    "@gdesignsystem/tokens": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renegademaster-droid/GDS.git"
+  }
 }

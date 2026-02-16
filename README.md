@@ -8,10 +8,10 @@ A design system built on **Chakra UI v3** with GDS theme and Figma tokens. Use b
 
 | Package | Description |
 |---------|-------------|
-| **@gds/react** | React provider and wrappers. Use `GDSProvider` to wrap your app and apply the GDS theme. |
-| **@gds/theme** | Chakra theme that maps Figma tokens to semantic tokens (e.g. `fg`, `bg.default`, `brand`). |
-| **@gds/tokens** | Design tokens (colors, typography, spacing). Source: `packages/tokens/figma/tokens.raw.json`. |
-| **@gds/icons** | Icon set generated from `/icons` SVGs. Use with Figma token colors. |
+| **@gdesignsystem/react** | React provider and wrappers. Use `GDSProvider` to wrap your app and apply the GDS theme. |
+| **@gdesignsystem/theme** | Chakra theme that maps Figma tokens to semantic tokens (e.g. `fg`, `bg.default`, `brand`). |
+| **@gdesignsystem/tokens** | Design tokens (colors, typography, spacing). Source: `packages/tokens/figma/tokens.raw.json`. |
+| **@gdesignsystem/icons** | Icon set generated from `/icons` SVGs. Use with Figma token colors. |
 
 ## Quick start
 
@@ -22,10 +22,10 @@ In a pnpm workspace, add the GDS packages as workspace dependencies:
 ```json
 {
   "dependencies": {
-    "@gds/react": "workspace:*",
-    "@gds/theme": "workspace:*",
-    "@gds/tokens": "workspace:*",
-    "@gds/icons": "workspace:*",
+    "@gdesignsystem/react": "workspace:*",
+    "@gdesignsystem/theme": "workspace:*",
+    "@gdesignsystem/tokens": "workspace:*",
+    "@gdesignsystem/icons": "workspace:*",
     "@chakra-ui/react": "^3.0.0",
     "@emotion/react": "^11.0.0",
     "react": ">=18",
@@ -41,7 +41,7 @@ Then run `pnpm install` from the repo root.
 Use `GDSProvider` so Chakra gets the GDS theme:
 
 ```tsx
-import { GDSProvider } from "@gds/react";
+import { GDSProvider } from "@gdesignsystem/react";
 
 function App() {
   return (
@@ -54,11 +54,11 @@ function App() {
 
 ### 3. Use components and tokens
 
-Import Chakra UI components from `@chakra-ui/react` and GDS icons from `@gds/icons`. Use semantic token props so colors come from Figma:
+Import Chakra UI components from `@chakra-ui/react` and GDS icons from `@gdesignsystem/icons`. Use semantic token props so colors come from Figma:
 
 ```tsx
 import { Button, Box, Text } from "@chakra-ui/react";
-import { CheckIcon } from "@gds/icons";
+import { CheckIcon } from "@gdesignsystem/icons";
 
 <Box bg="bg.default" color="fg" p="4">
   <Button colorPalette="brand">
@@ -79,15 +79,15 @@ import { CheckIcon } from "@gds/icons";
 In any React project (no monorepo required), install GDS and its peer dependencies:
 
 ```bash
-pnpm add @gds/react @gds/theme @gds/icons @chakra-ui/react @emotion/react react react-dom
+pnpm add @gdesignsystem/react @gdesignsystem/theme @gdesignsystem/icons @chakra-ui/react @emotion/react react react-dom
 ```
 
 Then wrap your app with `GDSProvider` and use Chakra components with GDS tokens and icons:
 
 ```tsx
-import { GDSProvider } from "@gds/react";
+import { GDSProvider } from "@gdesignsystem/react";
 import { Button, Box, Text } from "@chakra-ui/react";
-import { CheckIcon } from "@gds/icons";
+import { CheckIcon } from "@gdesignsystem/icons";
 
 function App() {
   return (
@@ -103,7 +103,7 @@ function App() {
 }
 ```
 
-You typically only need `@gds/tokens` if you use the token files directly; `@gds/react` and `@gds/theme` already include what’s needed for the theme.
+You typically only need `@gdesignsystem/tokens` if you use the token files directly; `@gdesignsystem/react` and `@gdesignsystem/theme` already include what’s needed for the theme.
 
 ## Scripts
 
@@ -130,10 +130,10 @@ Icons are in `packages/icons`, generated from SVG files in the repo-level `/icon
 pnpm gds:icons:generate
 ```
 
-Import from `@gds/icons` and use token-based colors:
+Import from `@gdesignsystem/icons` and use token-based colors:
 
 ```tsx
-import { StarIcon, XIcon } from "@gds/icons";
+import { StarIcon, XIcon } from "@gdesignsystem/icons";
 
 <StarIcon color="fg.muted" boxSize="6" />
 <XIcon color="fg" boxSize="4" />
@@ -158,7 +158,7 @@ cd apps/docs && pnpm dev
 
 ## Docs app
 
-The **docs** app (`apps/docs`) is the design system documentation and a reference implementation. It uses `GDSProvider`, Chakra components with GDS tokens, and `@gds/icons` throughout.
+The **docs** app (`apps/docs`) is the design system documentation and a reference implementation. It uses `GDSProvider`, Chakra components with GDS tokens, and `@gdesignsystem/icons` throughout.
 
 ## Monorepo layout
 
@@ -168,11 +168,11 @@ GDS/
 │   ├── docs/          # Design system documentation (reference app)
 │   └── demo/          # Optional demo app (Vite + GDS)
 ├── packages/
-│   ├── react/         # @gds/react – GDSProvider, GDSButton
-│   ├── theme/         # @gds/theme – Chakra theme + tokens
-│   ├── tokens/        # @gds/tokens – Figma tokens (tokens.raw.json)
-│   └── icons/         # @gds/icons – Icon components from /icons
-├── icons/             # SVG sources for @gds/icons (run gds:icons:generate)
+│   ├── react/         # @gdesignsystem/react – GDSProvider, GDSButton
+│   ├── theme/         # @gdesignsystem/theme – Chakra theme + tokens
+│   ├── tokens/        # @gdesignsystem/tokens – Figma tokens (tokens.raw.json)
+│   └── icons/         # @gdesignsystem/icons – Icon components from /icons
+├── icons/             # SVG sources for @gdesignsystem/icons (run gds:icons:generate)
 ├── scripts/           # Token sync and icon generation scripts
 └── pnpm-workspace.yaml
 ```
@@ -199,7 +199,7 @@ GDS/
 ### 2. Publish packages on npm
 
 1. **Create an npm account** at [npmjs.com](https://www.npmjs.com/signup) and log in in the terminal: `npm login`.
-2. **Reserve the scope** (if needed): Scoped packages like `@gds/react` require the `gds` org on npm. Create it at [npmjs.com/org/create](https://www.npmjs.com/org/create) (org name: `gds`) or use your npm username as the scope.
+2. **Reserve the scope** (if needed): Scoped packages like `@gdesignsystem/react` require the `gdesignsystem` org on npm. Create it at [npmjs.com/org/create](https://www.npmjs.com/org/create) (org name: `gdesignsystem`) or use your npm username as the scope.
 3. **Prepare packages for publish:**
    - In each package you want to publish (`packages/react`, `packages/theme`, `packages/tokens`, `packages/icons`): set `"private": false` (or remove `"private": true`) and set a real version, e.g. `"version": "0.1.0"`.
    - Add a `repository` field in each published package (or rely on the root one), e.g. `"repository": { "type": "git", "url": "https://github.com/YOUR_USERNAME/YOUR_REPO.git" }`.
@@ -213,7 +213,32 @@ GDS/
    cd ../react         && pnpm publish --no-git-checks
    ```
    Or use a publish script / `pnpm publish -r` once workspace protocol is replaced with version ranges for published packages.
-5. **After first publish:** In `package.json` files, replace `workspace:*` with the published version (e.g. `"@gds/theme": "^0.1.0"`) for the monorepo to work cleanly, or keep `workspace:*` for local development and only publish from CI with version bumps.
+**Note:** Dependencies between GDS packages stay as `workspace:*` in the repo; pnpm replaces them with the published version when you run `pnpm publish`.
+
+### 3. Publish docs on GitHub Pages
+
+The **docs** app (design system documentation) can be published to GitHub Pages so it’s available at `https://<username>.github.io/GDS/`.
+
+1. **Enable GitHub Pages** in the repo:
+   - Open your repo on GitHub → **Settings** → **Pages**.
+   - Under **Build and deployment**, set **Source** to **GitHub Actions**.
+2. **Push the workflow** (if not already committed):
+   - The workflow `.github/workflows/deploy-pages.yml` runs on every push to `main`. It builds the docs app and deploys it to GitHub Pages.
+   - Commit and push:
+     ```bash
+     git add .github apps/docs
+     git commit -m "Add GitHub Pages deployment for docs"
+     git push
+     ```
+3. **First run:** After the first push, go to **Actions** and wait for **Deploy docs to GitHub Pages** to finish. Your docs will be live at `https://renegademaster-droid.github.io/GDS/`.
+
+Local dev is unchanged: `pnpm dev` still serves the docs at the root path (`/`). The `BASE_PATH` is only set in CI for GitHub Pages.
+
+**If the workflow fails:** Open the failed run in **Actions** and check which step failed:
+
+- **Install dependencies:** Ensure `pnpm-lock.yaml` is committed. If the lockfile is missing or out of date, run `pnpm install` locally and commit the lockfile, then push again.
+- **Build docs app:** The workflow only builds the docs app (not the full workspace). If this step fails, run `BASE_PATH=/GDS/ pnpm --filter docs build` locally to reproduce.
+- **Deploy:** Ensure **Settings → Pages → Source** is set to **GitHub Actions**. The first time you enable it, re-run the workflow (Actions → run → Re-run all jobs).
 
 ## License
 

@@ -12,7 +12,7 @@ export function RadiusPage() {
           Radius
         </Heading>
         <Text color="fg.muted">
-          Border radius tokens from Figma, exposed in the theme via @gds/tokens. Use borderRadius token names for consistent corners.
+          Border radius tokens from Figma, exposed in the theme via @gdesignsystem/tokens. Use borderRadius token names for consistent corners.
         </Text>
       </Box>
 

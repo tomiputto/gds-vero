@@ -1,5 +1,5 @@
 import { Box, Heading, Text, Timeline, VStack } from "@chakra-ui/react";
-import { CheckIcon, PenIcon, UserPlusIcon } from "@gds/icons";
+import { CheckIcon, PenIcon, UserPlusIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 
@@ -40,7 +40,7 @@ export function TimelinePage() {
         title="Basic"
         description="Timeline with items"
         code={`import { Timeline } from "@chakra-ui/react";
-import { CheckIcon, PenIcon, UserPlusIcon } from "@gds/icons";
+import { CheckIcon, PenIcon, UserPlusIcon } from "@gdesignsystem/icons";
 
 <Timeline.Root colorPalette="brand">
   {events.map((event, i) => {

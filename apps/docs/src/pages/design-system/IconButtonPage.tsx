@@ -6,7 +6,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { PlusIcon, SearchIcon, TrashIcon, XIcon } from "@gds/icons";
+import { PlusIcon, SearchIcon, TrashIcon, XIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 
@@ -27,7 +27,7 @@ export function IconButtonPage() {
         title="Basic"
         description="Icon as child; always provide an accessible name with aria-label."
         code={`import { IconButton } from "@chakra-ui/react";
-import { SearchIcon } from "@gds/icons";
+import { SearchIcon } from "@gdesignsystem/icons";
 
 <IconButton aria-label="Search">
   <SearchIcon />

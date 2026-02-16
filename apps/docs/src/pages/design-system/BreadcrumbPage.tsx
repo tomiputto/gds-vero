@@ -1,5 +1,5 @@
 import { Box, Breadcrumb, Heading, Text, VStack } from "@chakra-ui/react";
-import { ChevronRightIcon } from "@gds/icons";
+import { ChevronRightIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 

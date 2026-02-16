@@ -1,5 +1,5 @@
 /**
- * Text styles use typography tokens from Figma (@gds/tokens).
+ * Text styles use typography tokens from Figma (@gdesignsystem/tokens).
  * Font family uses the literal value from tokens so it updates after sync.
  */
 import { fonts as figmaFonts } from "./figma-tokens";

@@ -1,5 +1,5 @@
 import { Box, Button, FileUpload, Heading, Text, VStack } from "@chakra-ui/react";
-import { UploadIcon } from "@gds/icons";
+import { UploadIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 

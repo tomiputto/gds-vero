@@ -1,5 +1,5 @@
 import { Box, Collapsible, Heading, Text, VStack } from "@chakra-ui/react";
-import { ChevronDownIcon } from "@gds/icons";
+import { ChevronDownIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 

@@ -12,7 +12,7 @@ export function ExternalWebsitePage() {
           How to build a website (or app) that lives outside the GDS monorepo but still uses GDS packages and stays in sync with design system updates.
         </Text>
         <Text color="fg.muted" mt="2">
-          You don’t need a parent workspace or the same directory. Publish the GDS packages to a package registry (npm, GitHub Packages, etc.) and install them in any project with <Code>pnpm add @gds/react @gds/theme</Code>—the app can live in any repo or folder. You usually don’t need <Code>@gds/tokens</Code> unless the app uses token files or raw token values directly.
+          You don’t need a parent workspace or the same directory. Publish the GDS packages to a package registry (npm, GitHub Packages, etc.) and install them in any project with <Code>pnpm add @gdesignsystem/react @gdesignsystem/theme</Code>—the app can live in any repo or folder. You usually don’t need <Code>@gdesignsystem/tokens</Code> unless the app uses token files or raw token values directly.
         </Text>
       </Box>
 
@@ -55,8 +55,8 @@ export function ExternalWebsitePage() {
             overflowX="auto"
           >
 {`"dependencies": {
-  "@gds/react": "workspace:*",
-  "@gds/icons": "workspace:*",
+  "@gdesignsystem/react": "workspace:*",
+  "@gdesignsystem/icons": "workspace:*",
   "@chakra-ui/react": "^3.33.0",
   "react": "^19.2.0",
   "react-dom": "^19.2.0"
@@ -81,8 +81,8 @@ export function ExternalWebsitePage() {
         description="Quick reference."
       >
         <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
-          <Text>• <strong>No workspace needed:</strong> Publish GDS packages to a registry and <Code>pnpm add @gds/react</Code> (etc.) in any project, any repo.</Text>
-          <Text>• <strong>With a workspace:</strong> Keep your site in a sibling folder to <Code>GDS</Code> (e.g. <Code>gds/demo</Code>), add a parent <Code>pnpm-workspace.yaml</Code>, and use <Code>workspace:*</Code> for <Code>@gds/react</Code> and <Code>@gds/icons</Code>.</Text>
+          <Text>• <strong>No workspace needed:</strong> Publish GDS packages to a registry and <Code>pnpm add @gdesignsystem/react</Code> (etc.) in any project, any repo.</Text>
+          <Text>• <strong>With a workspace:</strong> Keep your site in a sibling folder to <Code>GDS</Code> (e.g. <Code>gds/demo</Code>), add a parent <Code>pnpm-workspace.yaml</Code>, and use <Code>workspace:*</Code> for <Code>@gdesignsystem/react</Code> and <Code>@gdesignsystem/icons</Code>.</Text>
           <Text>• Run <Code>pnpm install</Code> (from parent if using workspace); run your app from its folder. With a workspace, GDS updates are picked up when the dev server is running.</Text>
         </VStack>
       </Section>

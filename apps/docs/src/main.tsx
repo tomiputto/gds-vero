@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider, useTheme } from "next-themes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { GDSProvider, GDSButton } from "@gds/react";
+import { GDSProvider, GDSButton } from "@gdesignsystem/react";
 import { Box, HStack, Text, Theme } from "@chakra-ui/react";
 import { DesignSystemLayout } from "./components/DesignSystemLayout";
 import { DesignSystemOverview } from "./pages/design-system/DesignSystemOverview";

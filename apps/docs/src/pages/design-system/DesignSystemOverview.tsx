@@ -17,7 +17,7 @@ export function DesignSystemOverview() {
           Get started
         </Heading>
         <Text color="fg.muted" mb="4">
-          GDS is a monorepo with <Code>@gds/react</Code>, <Code>@gds/theme</Code>, and <Code>@gds/tokens</Code>. In your app, use the React package and wrap the tree with the provider.
+          GDS is a monorepo with <Code>@gdesignsystem/react</Code>, <Code>@gdesignsystem/theme</Code>, and <Code>@gdesignsystem/tokens</Code>. In your app, use the React package and wrap the tree with the provider.
         </Text>
 
         <Heading size="md" mb="2" mt="6">
@@ -39,13 +39,13 @@ export function DesignSystemOverview() {
           overflowX="auto"
         >
 {`"dependencies": {
-  "@gds/react": "workspace:*",
-  "@gds/theme": "workspace:*",
-  "@gds/tokens": "workspace:*"
+  "@gdesignsystem/react": "workspace:*",
+  "@gdesignsystem/theme": "workspace:*",
+  "@gdesignsystem/tokens": "workspace:*"
 }`}
         </Box>
         <Text color="fg.muted" mt="2" textStyle="sm">
-          Or install from npm when published: <Code>pnpm add @gds/react</Code>
+          Or install from npm when published: <Code>pnpm add @gdesignsystem/react</Code>
         </Text>
 
         <Heading size="md" mb="2" mt="6">
@@ -66,7 +66,7 @@ export function DesignSystemOverview() {
           whiteSpace="pre-wrap"
           overflowX="auto"
         >
-{`import { GDSProvider } from "@gds/react";
+{`import { GDSProvider } from "@gdesignsystem/react";
 
 <GDSProvider>
   <App />
@@ -77,7 +77,7 @@ export function DesignSystemOverview() {
           3. Use components
         </Heading>
         <Text color="fg.muted" mb="2">
-          Import Chakra UI components from <Code>@chakra-ui/react</Code> and GDS wrappers (e.g. <Code>GDSButton</Code>) from <Code>@gds/react</Code>. Use GDS icons from <Code>@gds/icons</Code> with Figma token colors. The theme provides GDS tokens (e.g. <Code>color="fg"</Code>, <Code>bg="bg.subtle"</Code>, <Code>colorPalette="brand"</Code>).
+          Import Chakra UI components from <Code>@chakra-ui/react</Code> and GDS wrappers (e.g. <Code>GDSButton</Code>) from <Code>@gdesignsystem/react</Code>. Use GDS icons from <Code>@gdesignsystem/icons</Code> with Figma token colors. The theme provides GDS tokens (e.g. <Code>color="fg"</Code>, <Code>bg="bg.subtle"</Code>, <Code>colorPalette="brand"</Code>).
         </Text>
         <Box
           as="pre"

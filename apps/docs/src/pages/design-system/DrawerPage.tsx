@@ -1,5 +1,5 @@
 import { Box, Button, Drawer, Heading, IconButton, Text, VStack } from "@chakra-ui/react";
-import { XIcon } from "@gds/icons";
+import { XIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 

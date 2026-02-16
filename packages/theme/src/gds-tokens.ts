@@ -2,7 +2,7 @@
  * GDS design tokens for Chakra theme.
  * In the docs app a Vite plugin resolves this import from disk so tokens stay fresh.
  */
-import tokensRaw from "@gds/tokens/figma/tokens.raw.json";
+import tokensRaw from "@gdesignsystem/tokens/figma/tokens.raw.json";
 
 const gdsColors = (tokensRaw as { colors?: Record<string, string> }).colors ?? {};
 
