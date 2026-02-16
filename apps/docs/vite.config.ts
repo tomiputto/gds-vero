@@ -40,6 +40,7 @@ function gdsTokensPlugin() {
 }
 
 export default defineConfig({
+  base: process.env.BASE_PATH ?? "/",
   plugins: [gdsTokensPlugin(), react()],
   optimizeDeps: {
     exclude: ["@gds/react", "@gds/theme", "@gds/tokens"],
