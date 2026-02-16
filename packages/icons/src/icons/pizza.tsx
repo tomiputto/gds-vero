@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M15 11H15.01M11 15H11.01M16 16H16.01M5.71 17.11C6.52152 14.4164 7.98729 11.9657 9.97649 9.97649C11.9657 7.98729 14.4164 6.52152 17.11 5.71M2 16L22 22L16 2C12.6521 2.91789 9.60076 4.69138 7.14607 7.14607C4.69138 9.60076 2.91789 12.6521 2 16Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const PizzaIcon = createGDSIcon(
+  "PizzaIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

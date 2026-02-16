@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M9 2V8M15 2V8M12 17V22M12 17C13.5913 17 15.1174 16.3679 16.2426 15.2426C17.3679 14.1174 18 12.5913 18 11V8H6V11C6 12.5913 6.63214 14.1174 7.75736 15.2426C8.88258 16.3679 10.4087 17 12 17ZM5 8H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const Plug2Icon = createGDSIcon(
+  "Plug2Icon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

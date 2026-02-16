@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M21 12V15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H12M16 3H21M21 3V8M21 3L16 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const MessageSquareShareIcon = createGDSIcon(
+  "MessageSquareShareIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

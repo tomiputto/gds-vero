@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M21 11V5C21 4.46957 20.7893 3.96086 20.4142 3.58579C20.0391 3.21071 19.5304 3 19 3H5C4.46957 3 3.96086 3.21071 3.58579 3.58579C3.21071 3.96086 3 4.46957 3 5V19C3 19.5304 3.21071 20.0391 3.58579 20.4142C3.96086 20.7893 4.46957 21 5 21H11M12 12L16 22L17.7 17.7L22 16L12 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const SquareMousePointerIcon = createGDSIcon(
+  "SquareMousePointerIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M12 15L14 17L18 13M4 16C2.9 16 2 15.1 2 14V4C2 2.9 2.9 2 4 2H14C15.1 2 16 2.9 16 4M10 8H20C21.1046 8 22 8.89543 22 10V20C22 21.1046 21.1046 22 20 22H10C8.89543 22 8 21.1046 8 20V10C8 8.89543 8.89543 8 10 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const CopyCheckIcon = createGDSIcon(
+  "CopyCheckIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

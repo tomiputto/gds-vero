@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M22 18C22 18.5305 21.7893 19.0392 21.4142 19.4142C21.0391 19.7893 20.5304 20 20 20H3C1.9 20 1.7 19.4 2.6 18.7L20.4 4.30002C21.3 3.60002 22 3.90002 22 5.00002V18Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const TriangleRightIcon = createGDSIcon(
+  "TriangleRightIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

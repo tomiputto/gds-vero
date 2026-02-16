@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M21 5C21 6.65685 16.9706 8 12 8C7.02944 8 3 6.65685 3 5M21 5C21 3.34315 16.9706 2 12 2C7.02944 2 3 3.34315 3 5M21 5V19C21 19.7956 20.0518 20.5587 18.364 21.1213C16.6761 21.6839 14.3869 22 12 22C9.61305 22 7.32387 21.6839 5.63604 21.1213C3.94821 20.5587 3 19.7956 3 19V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const CylinderIcon = createGDSIcon(
+  "CylinderIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

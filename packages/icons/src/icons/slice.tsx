@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M8 14L2 20H11V17M8 14L18.37 3.62999C18.7678 3.23216 19.3074 3.00867 19.87 3.00867C20.4326 3.00867 20.9722 3.23216 21.37 3.62999C21.7678 4.02781 21.9913 4.56738 21.9913 5.12999C21.9913 5.6926 21.7678 6.23216 21.37 6.62999L11 17M8 14L11 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const SliceIcon = createGDSIcon(
+  "SliceIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

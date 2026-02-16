@@ -1,0 +1,27 @@
+{
+  "name": "gds",
+  "private": true,
+  "packageManager": "pnpm@10.29.3",
+  "scripts": {
+    "dev": "pnpm -r dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "gds:tokens:sync": "node scripts/figma-mcp-to-tokens-raw.mjs",
+    "gds:icons:generate": "node scripts/svg-to-gds-icons.mjs"
+  },
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "^19.2.0",
+      "react-dom": "^19.2.0"
+    }
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renegademaster-droid/GDS.git"
+  }
+}

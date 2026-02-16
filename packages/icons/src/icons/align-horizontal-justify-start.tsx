@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M2 2V22M8 5H10C11.1046 5 12 5.89543 12 7V17C12 18.1046 11.1046 19 10 19H8C6.89543 19 6 18.1046 6 17V7C6 5.89543 6.89543 5 8 5ZM18 7H20C21.1046 7 22 7.89543 22 9V15C22 16.1046 21.1046 17 20 17H18C16.8954 17 16 16.1046 16 15V9C16 7.89543 16.8954 7 18 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const AlignHorizontalJustifyStartIcon = createGDSIcon(
+  "AlignHorizontalJustifyStartIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

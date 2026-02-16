@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M22 22V2M4 4H16C17.1046 4 18 4.89543 18 6V8C18 9.10457 17.1046 10 16 10H4C2.89543 10 2 9.10457 2 8V6C2 4.89543 2.89543 4 4 4ZM11 14H16C17.1046 14 18 14.8954 18 16V18C18 19.1046 17.1046 20 16 20H11C9.89543 20 9 19.1046 9 18V16C9 14.8954 9.89543 14 11 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const AlignEndVerticalIcon = createGDSIcon(
+  "AlignEndVerticalIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

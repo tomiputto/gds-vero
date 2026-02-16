@@ -1,0 +1,63 @@
+import { useMemo } from "react";
+import { Box, Button, createToaster, Heading, Text, Toaster, VStack } from "@chakra-ui/react";
+import { Section } from "../../components/Section";
+import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
+
+export function ToastPage() {
+  const toaster = useMemo(() => createToaster({ placement: "top-end" }), []);
+  return (
+    <VStack align="stretch" gap="10">
+      <Box>
+        <Heading size="xl" mb="2">
+          Toast
+        </Heading>
+        <Text color="fg.muted">
+          Temporary notification message.
+        </Text>
+      </Box>
+
+      <Section
+        title="Basic"
+        description="Trigger a toast"
+        code={`import { Button, createToaster, Toaster } from "@chakra-ui/react";
+
+const toaster = createToaster({ placement: "top-end" });
+<>
+  <Toaster toaster={toaster} />
+  <Button onClick={() => toaster.create({ title: "Saved", description: "Your changes have been saved." })}>
+    Show toast
+  </Button>
+</>`}
+      >
+        <VStack align="stretch" gap="2">
+          <Toaster toaster={toaster}>
+            {(toast) => (
+              <>
+                {toast.title && <Box fontWeight="medium">{toast.title}</Box>}
+                {toast.description && <Text fontSize="sm" color="fg.muted">{toast.description}</Text>}
+              </>
+            )}
+          </Toaster>
+          <Button
+            size="sm"
+            onClick={() =>
+              toaster.create({
+                title: "Saved",
+                description: "Your changes have been saved.",
+              })
+            }
+          >
+            Show toast
+          </Button>
+        </VStack>
+      </Section>
+
+      <AccessibilityGuidance
+        items={[
+          { text: "Toasts should be announced to screen readers (aria-live region).", rule: "4.1.3" },
+          { text: "Provide a way to dismiss and avoid stacking too many toasts.", rule: "2.1.1" },
+        ]}
+      />
+    </VStack>
+  );
+}

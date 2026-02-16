@@ -1,0 +1,19 @@
+{
+  "name": "@gds/theme",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^3.0.0",
+    "@emotion/react": "^11.0.0",
+    "@gds/tokens": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3"
+  },
+  "license": "MIT"
+}

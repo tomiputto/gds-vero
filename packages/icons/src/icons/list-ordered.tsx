@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M10 6H21M10 12H21M10 18H21M4 6H5V10M4 10H6M6 18H4C4 17 6 16 6 15C6 14 5 13.5 4 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const ListOrderedIcon = createGDSIcon(
+  "ListOrderedIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

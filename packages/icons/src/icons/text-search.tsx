@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M21 6H3M10 12H3M10 18H3M21 19L19.1 17.1M20 15C20 16.6569 18.6569 18 17 18C15.3431 18 14 16.6569 14 15C14 13.3431 15.3431 12 17 12C18.6569 12 20 13.3431 20 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const TextSearchIcon = createGDSIcon(
+  "TextSearchIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

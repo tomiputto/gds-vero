@@ -1,0 +1,9 @@
+import { createGDSIcon } from "../create-icon";
+
+const inner = `<path d="M12 20H12.01M8.5 16.429C9.43464 15.5129 10.6912 14.9998 12 14.9998C13.3088 14.9998 14.5654 15.5129 15.5 16.429" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>`;
+
+export const WifiLowIcon = createGDSIcon(
+  "WifiLowIcon",
+  <g dangerouslySetInnerHTML={{ __html: inner }} />,
+  { viewBox: "0 0 24 24", fill: "none", stroke: "currentColor" }
+);

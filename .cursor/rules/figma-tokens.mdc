@@ -1,0 +1,28 @@
+---
+alwaysApply: true
+---
+# GDS Figma → tokens.raw.json sync
+
+When the user writes:
+- "sync figma tokens"
+- "sync tokens"
+- "update tokens from figma"
+
+Do the following steps automatically:
+
+1. Use the Figma MCP tool `get_variable_defs` for the current selection.
+2. Save the full JSON output to:
+   .tmp/figma.variable_defs.json
+   (overwrite if exists)
+3. Run:
+   pnpm gds:tokens:sync
+4. Confirm that:
+   packages/tokens/figma/tokens.raw.json
+   has been updated.
+5. Show a summary:
+   - number of tokens
+   - which top-level groups were affected (colors, typography, spacing, effects)
+
+Never modify other files.
+Always overwrite the temp file.
+Always run the build script after saving the MCP output.
