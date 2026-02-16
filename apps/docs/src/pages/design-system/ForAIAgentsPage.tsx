@@ -23,7 +23,7 @@ export function ForAIAgentsPage() {
         </Text>
         <Text color="fg.muted" mt="2">
           <strong>Full guide (for agents and context):</strong>{" "}
-          <Link href={GITHUB_GUIDE_URL} color="brand.solid" isExternal>
+          <Link href={GITHUB_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
             GDS_FOR_LLM_AGENTS.md on GitHub
           </Link>
         </Text>
@@ -32,7 +32,9 @@ export function ForAIAgentsPage() {
       <Section
         title="When to use GDS"
         description="Use the GDS stack when the user says they want to build something with GDS, using GDS, GDS design system, gdesignsystem, or similar. Then use only the packages and rules below for the UI layer."
-      />
+      >
+        <></>
+      </Section>
 
       <Section
         title="Install"
@@ -103,11 +105,11 @@ function App() {
 
       <Section title="Links" description="Repository, npm packages, and docs.">
         <VStack align="stretch" gap="1" textStyle="sm">
-          <Link href="https://github.com/renegademaster-droid/GDS" color="brand.solid" isExternal>Repository (GitHub)</Link>
-          <Link href="https://www.npmjs.com/package/@gdesignsystem/react" color="brand.solid" isExternal>@gdesignsystem/react</Link>
-          <Link href="https://www.npmjs.com/package/@gdesignsystem/theme" color="brand.solid" isExternal>@gdesignsystem/theme</Link>
-          <Link href="https://www.npmjs.com/package/@gdesignsystem/icons" color="brand.solid" isExternal>@gdesignsystem/icons</Link>
-          <Link href="https://renegademaster-droid.github.io/GDS/" color="brand.solid" isExternal>Docs (this site)</Link>
+          <Link href="https://github.com/renegademaster-droid/GDS" color="brand.solid" target="_blank" rel="noopener noreferrer">Repository (GitHub)</Link>
+          <Link href="https://www.npmjs.com/package/@gdesignsystem/react" color="brand.solid" target="_blank" rel="noopener noreferrer">@gdesignsystem/react</Link>
+          <Link href="https://www.npmjs.com/package/@gdesignsystem/theme" color="brand.solid" target="_blank" rel="noopener noreferrer">@gdesignsystem/theme</Link>
+          <Link href="https://www.npmjs.com/package/@gdesignsystem/icons" color="brand.solid" target="_blank" rel="noopener noreferrer">@gdesignsystem/icons</Link>
+          <Link href="https://renegademaster-droid.github.io/GDS/" color="brand.solid" target="_blank" rel="noopener noreferrer">Docs (this site)</Link>
         </VStack>
       </Section>
     </VStack>
