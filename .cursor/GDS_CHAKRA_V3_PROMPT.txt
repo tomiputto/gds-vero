@@ -1,0 +1,11 @@
+GDS uses Chakra UI v3 only. When generating React/JSX code for GDS, use these component names (never the Chakra v2 names or you will get "doesn't provide an export named X" errors):
+
+Forms: Field.Root, Field.Label, Field.HelperText, Field.ErrorText — NOT FormControl, FormLabel, FormErrorMessage, FormHelperText
+Cards: Card.Root, Card.Header, Card.Body, Card.Footer, Card.Title, Card.Description — NOT Card, CardHeader, CardBody, CardFooter
+Dividers: Separator — NOT Divider
+Tables: Table.Root, Table.Header, Table.Row, Table.ColumnHeader, Table.Body, Table.Cell — NOT Table, Thead, Tbody, Tr, Th, Td
+Modals: Dialog.Root, Dialog.Backdrop, Dialog.Content, Dialog.Header, Dialog.Body, Dialog.Footer, Dialog.CloseTrigger — NOT Modal, ModalOverlay, ModalContent, etc.
+Tabs: Tabs.Trigger, Tabs.List, Tabs.Content — NOT Tab, TabList, TabPanel, TabPanels
+Props: colorPalette (not colorScheme), invalid (not isInvalid on fields), open/onOpenChange (not isOpen/onClose for Dialog), textAlign="end" (not isNumeric)
+
+Full mapping: see GDS_FOR_LLM_AGENTS.md section "Chakra v3 API — do not use these names".

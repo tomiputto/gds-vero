@@ -11,6 +11,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const RENAMES: Array<{ old: string; new: string }> = [
   { old: "FormControl, FormLabel, FormHelperText, FormErrorMessage", new: "Field.Root, Field.Label, Field.HelperText, Field.ErrorText" },
+  { old: "Card, CardHeader, CardBody, CardFooter", new: "Card.Root, Card.Header, Card.Body, Card.Footer (+ Card.Title, Card.Description)" },
   { old: "Table, Thead, Tbody, Tr, Th, Td, TableContainer", new: "Table.Root, Table.Header, Table.Body, Table.Row, Table.ColumnHeader, Table.Cell, Table.ScrollArea" },
   { old: "Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton", new: "Dialog.Root, Dialog.Backdrop, Dialog.Positioner, Dialog.Content, Dialog.Header, Dialog.Title, Dialog.Body, Dialog.Footer, Dialog.CloseTrigger" },
   { old: "Divider", new: "Separator" },

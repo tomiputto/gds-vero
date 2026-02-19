@@ -4,6 +4,21 @@ This document is the canonical reference for AI agents (e.g. ChatGPT, Copilot) w
 
 ---
 
+## CRITICAL: Chakra v3 only (for MCP / context injection)
+
+**When generating any React UI code for GDS, you MUST use Chakra UI v3 component names only.** Do **not** use Chakra v2 names; they are not exported by `@chakra-ui/react` v3 and will cause "doesn't provide an export named X" errors.
+
+**Always use these (v3):**
+
+- **Forms:** `Field.Root`, `Field.Label`, `Field.HelperText`, `Field.ErrorText` (never `FormControl`, `FormLabel`, `FormErrorMessage`, `FormHelperText`)
+- **Cards:** `Card.Root`, `Card.Header`, `Card.Body`, `Card.Footer`, `Card.Title`, `Card.Description` (never standalone `Card`, `CardHeader`, `CardBody`, `CardFooter`)
+- **Dividers:** `Separator` (never `Divider`)
+- **Tables:** `Table.Root`, `Table.Header`, `Table.Row`, `Table.ColumnHeader`, `Table.Body`, `Table.Cell` (never `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`)
+
+**If you deliver this file via MCP or as context to an LLM:** Include the section **"Chakra v3 API — do not use these names"** (below) early in the context so the model sees the full mapping before generating code.
+
+---
+
 ## What GDS is
 
 - **GDS** (GDS Design System) is a React design system built on **Chakra UI v3** with a custom theme and Figma-derived tokens.
@@ -70,6 +85,8 @@ function App() {
 - The root of the React tree must be wrapped in **`GDSProvider`** from `@gdesignsystem/react`.
 - **Forms:** Use Chakra v3 **Field** API from `@chakra-ui/react`: `Field.Root`, `Field.Label`, `Field.HelperText`, `Field.ErrorText`. Do **not** use `FormControl`, `FormLabel`, `FormHelperText`, or `FormErrorMessage` — they are not exported in Chakra v3 and will cause runtime errors.
 - **Tables:** Use Chakra v3 **Table** compound component: `Table.Root`, `Table.Header`, `Table.Row`, `Table.ColumnHeader`, `Table.Body`, `Table.Cell`. Do **not** use `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`, or `TableContainer` — they are not exported in Chakra v3 and will cause runtime errors. Use `Table.ScrollArea` for scrollable tables; use `textAlign="end"` instead of `isNumeric`.
+- **Cards:** Use `Card.Root`, `Card.Header`, `Card.Body`, `Card.Footer`, `Card.Title`, `Card.Description`. Do **not** use standalone `Card`, `CardHeader`, `CardBody`, or `CardFooter` — they are not exported in Chakra v3.
+- **Dividers:** Use `Separator`. Do **not** use `Divider` — it is not exported in Chakra v3.
 
 ---
 
@@ -131,6 +148,8 @@ Chakra UI v3 removed or renamed many v2 components. Importing the old names from
 | `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`, `TableContainer` | `Table.Root`, `Table.Header`, `Table.Body`, `Table.Row`, `Table.ColumnHeader`, `Table.Cell`, `Table.ScrollArea` |
 | **Overlays** | |
 | `Modal`, `ModalOverlay`, `ModalContent`, `ModalHeader`, `ModalBody`, `ModalFooter`, `ModalCloseButton` | `Dialog.Root`, `Dialog.Backdrop`, `Dialog.Positioner`, `Dialog.Content`, `Dialog.Header`, `Dialog.Title`, `Dialog.Body`, `Dialog.Footer`, `Dialog.CloseTrigger` |
+| **Cards** | |
+| `Card`, `CardHeader`, `CardBody`, `CardFooter` | `Card.Root`, `Card.Header`, `Card.Body`, `Card.Footer` (and `Card.Title`, `Card.Description`) |
 | **Layout / display** | |
 | `Divider` | `Separator` |
 | `Collapse` | `Collapsible.Root`, `Collapsible.Content` (prop `open` not `in`) |
@@ -151,6 +170,18 @@ Chakra UI v3 removed or renamed many v2 components. Importing the old names from
 | `isNumeric` (table cell) | `textAlign="end"` |
 
 When in doubt, check the [Chakra UI v3 docs](https://chakra-ui.com/docs) or the GDS docs site component pages.
+
+---
+
+## For MCP servers that deliver GDS to LLMs
+
+If your MCP server provides GDS (e.g. from GitHub) as context to ChatGPT or other agents:
+
+1. **Include the "CRITICAL: Chakra v3 only" block and the "Chakra v3 API — do not use these names" table early** in the context you send (e.g. first or right after the user request). Models tend to follow the most salient instructions; v2 examples in training data often win if the v3 rules appear only later.
+2. **Prefer sending this file (`GDS_FOR_LLM_AGENTS.md`) or its Chakra v3 sections** when the user asks to build UI with GDS, so the agent has the exact "do not use X, use Y" mapping.
+3. **Optionally prepend a system-style line** when returning GDS context, e.g.: "When generating React/JSX for GDS: use only Chakra UI v3 APIs (Field.*, Card.Root/Card.Header/Card.Body/Card.Footer, Separator, Table.*). Do not use FormControl, FormLabel, FormErrorMessage, Divider, Card, CardHeader, CardBody, CardFooter, or other Chakra v2 names."
+
+That way the agent is nudged to output v3-compatible code even when it would otherwise default to v2 patterns (e.g. for login cards, forms, and tables).
 
 ---
 
