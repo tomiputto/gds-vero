@@ -29,7 +29,32 @@ function flatToNestedTokens(flat: FlatColors): Record<string, unknown> {
 /**
  * Raw GDS color tokens as Chakra theme.tokens.colors (nested, with value wrapper).
  */
-export const gdsColorTokens = flatToNestedTokens(gdsColors as FlatColors);
+const nested = flatToNestedTokens(gdsColors as FlatColors) as any;
+
+/**
+ * Chakra v3 `colorPalette="brand"` requires a palette scale at:
+ * theme.tokens.colors.brand.{50..900} (plus optional focusRing).
+ *
+ * Our Figma export currently provides brand tokens under:
+ * colors.brand.primary.(base|hover|active|muted|subtle|focusRing|onPrimary)
+ * but not a 50..900 scale. We create one here as an adapter.
+ */
+nested.brand ??= {};
+nested.brand["50"] = { value: "{colors.brand.primary.subtle}" };
+nested.brand["100"] = { value: "{colors.brand.primary.muted}" };
+nested.brand["200"] = { value: "{colors.brand.primary.muted}" };
+nested.brand["300"] = { value: "{colors.brand.primary.base}" };
+nested.brand["400"] = { value: "{colors.brand.primary.base}" };
+nested.brand["500"] = { value: "{colors.brand.primary.base}" };
+nested.brand["600"] = { value: "{colors.brand.primary.hover}" };
+nested.brand["700"] = { value: "{colors.brand.primary.active}" };
+nested.brand["800"] = { value: "{colors.brand.primary.active}" };
+nested.brand["900"] = { value: "{colors.brand.primary.active}" };
+
+// Helps recipes that read colors.colorPalette.focusRing
+nested.brand["focusRing"] = { value: "{colors.brand.primary.focusRing}" };
+
+export const gdsColorTokens = nested as never;
 
 /**
  * Semantic color tokens that reference GDS raw tokens (nested for Chakra).
