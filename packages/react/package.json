@@ -13,8 +13,8 @@
   "dependencies": {
     "@chakra-ui/react": "^3.0.0",
     "@emotion/react": "^11.0.0",
-    "@gdesignsystem/theme": "^0.1.4",
-    "@gdesignsystem/tokens": "^0.1.0"
+    "@gdesignsystem/theme": "workspace:*",
+    "@gdesignsystem/tokens": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
