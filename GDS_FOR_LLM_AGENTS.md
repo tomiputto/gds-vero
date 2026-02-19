@@ -68,6 +68,26 @@ function App() {
 - Use **semantic tokens** for colors and backgrounds: `fg`, `fg.muted`, `bg.default`, `bg.subtle`, `border.muted`, `colorPalette="brand"`, etc.
 - Use **`@gdesignsystem/icons`** for icons (e.g. `CheckIcon`, `StarIcon`, `XIcon`). Do not use `react-icons` or other icon sets for UI when building with GDS unless the user explicitly asks.
 - The root of the React tree must be wrapped in **`GDSProvider`** from `@gdesignsystem/react`.
+- **Forms:** Use Chakra v3 **Field** API from `@chakra-ui/react`: `Field.Root`, `Field.Label`, `Field.HelperText`, `Field.ErrorText`. Do **not** use `FormControl`, `FormLabel`, `FormHelperText`, or `FormErrorMessage` — they are not exported in Chakra v3 and will cause runtime errors.
+
+---
+
+## Forms (Field API)
+
+For inputs with labels, help text, and errors use **Field** from `@chakra-ui/react`:
+
+```tsx
+import { Field, Input, Button } from "@chakra-ui/react";
+
+<Field.Root invalid={!!error}>
+  <Field.Label>Email</Field.Label>
+  <Input type="email" />
+  <Field.HelperText>We'll never share your email.</Field.HelperText>
+  <Field.ErrorText>{error}</Field.ErrorText>
+</Field.Root>
+```
+
+Do not import `FormControl`, `FormLabel`, `FormHelperText`, or `FormErrorMessage` — they do not exist in Chakra v3.
 
 ---
 

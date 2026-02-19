@@ -38,7 +38,9 @@ export const gdsColorTokens = flatToNestedTokens(gdsColors as FlatColors);
  */
 export const gdsSemanticColors = {
   fg: {
-    DEFAULT: { value: { _light: "{colors.text.fg}", _dark: "{colors.text.fg_inverted}" } },
+    // Light theme: use dark text (gray.fg) so readable on white. Dark theme: use light text (text.fg_inverted).
+    // Raw text.fg from Figma is often light (#fafafa); we need dark for light mode.
+    DEFAULT: { value: { _light: "{colors.gray.fg}", _dark: "{colors.text.fg_inverted}" } },
     muted: { value: { _light: "{colors.text.fg_muted}", _dark: "{colors.text.fg_subtle}" } },
     subtle: { value: { _light: "{colors.text.fg_subtle}", _dark: "{colors.gray.400}" } },
     inverted: { value: "{colors.text.fg_inverted}" },

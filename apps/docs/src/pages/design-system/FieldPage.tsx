@@ -1,4 +1,4 @@
-import { Box, Field, Heading, Input, Text, VStack } from "@chakra-ui/react";
+import { Box, Code, Field, Heading, Input, Text, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 
@@ -12,6 +12,20 @@ export function FieldPage() {
         <Text color="fg.muted">
           Wrapper for form controls with label, helper text, and error state.
         </Text>
+        <Box
+          mt="4"
+          p="4"
+          borderRadius="md"
+          bg="bg.subtle"
+          borderWidth="1px"
+          borderColor="border.muted"
+        >
+          <Text fontSize="sm" color="fg.muted">
+            <strong>Chakra v3:</strong> Use the Field API below. Do not use{" "}
+            <Code>FormControl</Code>, <Code>FormLabel</Code>, <Code>FormHelperText</Code>, or{" "}
+            <Code>FormErrorMessage</Code> — they are not in @chakra-ui/react v3 and will cause runtime errors.
+          </Text>
+        </Box>
       </Box>
 
       <Section

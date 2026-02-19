@@ -78,6 +78,8 @@ import { CheckIcon } from "@gdesignsystem/icons";
 - **Brand:** `colorPalette="brand"` on Button, Badge, etc.
 - **Semantic:** `color="fg.success"`, `color="fg.error"`, `bg="bg.success"`
 
+**Forms (Chakra v3)** — Use the **Field** API from `@chakra-ui/react`. Do **not** use `FormControl`, `FormLabel`, `FormHelperText`, or `FormErrorMessage` (they are not in Chakra v3). Use `Field.Root`, `Field.Label`, `Field.HelperText`, and `Field.ErrorText` instead; use the `invalid` prop on `Field.Root` for error state.
+
 ## Using GDS from npm
 
 In any React project (no monorepo required), install GDS and its peer dependencies:
