@@ -1,6 +1,6 @@
 {
   "name": "@gdesignsystem/theme",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "type": "module",
   "exports": {
@@ -9,7 +9,7 @@
   "dependencies": {
     "@chakra-ui/react": "^3.0.0",
     "@emotion/react": "^11.0.0",
-    "@gdesignsystem/tokens": "workspace:*"
+    "@gdesignsystem/tokens": "^0.1.0"
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
