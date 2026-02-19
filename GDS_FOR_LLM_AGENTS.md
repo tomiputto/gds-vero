@@ -57,6 +57,8 @@ pnpm add @gdesignsystem/react @gdesignsystem/theme @gdesignsystem/icons @chakra-
 3. Use semantic token props: `color="fg"`, `color="fg.muted"`, `bg="bg.default"`, `bg="bg.subtle"`, `colorPalette="brand"` on components that support it (Button, Badge, etc.).
 4. Use icons from `@gdesignsystem/icons` (e.g. `CheckIcon`, `XIcon`) with `color` set to a token (e.g. `color="fg.muted"`) or let them inherit.
 
+**Import rule:** Only `GDSProvider` and `GDSButton` come from `@gdesignsystem/react`. All Chakra UI components (`Field`, `Card`, `Input`, `Button`, `Separator`, `Box`, `Text`, etc.) must be imported from `@chakra-ui/react`. Importing `Field` or other Chakra components from `@gdesignsystem/react` will cause "doesn't provide an export named X" errors.
+
 **Minimal example:**
 
 ```tsx

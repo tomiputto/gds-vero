@@ -58,7 +58,7 @@ function App() {
 
 ### 3. Use components and tokens
 
-Import Chakra UI components from `@chakra-ui/react` and GDS icons from `@gdesignsystem/icons`. Use semantic token props so colors come from Figma:
+Import **only** `GDSProvider` (and optionally `GDSButton`) from `@gdesignsystem/react`. Import all Chakra UI components (`Field`, `Card`, `Input`, `Button`, `Box`, `Text`, etc.) from `@chakra-ui/react`. Import GDS icons from `@gdesignsystem/icons`. Use semantic token props so colors come from Figma:
 
 ```tsx
 import { Button, Box, Text } from "@chakra-ui/react";
