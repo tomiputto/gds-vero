@@ -1,11 +1,57 @@
-GDS uses Chakra UI v3 only. When generating React/JSX code for GDS, use these component names (never the Chakra v2 names or you will get "doesn't provide an export named X" errors):
+GDS uses Chakra UI v3 only. You MUST NOT import these from @chakra-ui/react (they do not exist in v3 and cause "doesn't provide an export named X"):
+  Divider, Card, CardHeader, CardBody, CardFooter, FormControl, FormLabel, FormErrorMessage, FormHelperText, Table, Thead, Tbody, Tr, Th, Td, TableContainer, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Tab, TabList, TabPanel, TabPanels, Select, Alert, AlertIcon, AlertTitle, AlertDescription, Collapse
 
-Forms: Field.Root, Field.Label, Field.HelperText, Field.ErrorText — NOT FormControl, FormLabel, FormErrorMessage, FormHelperText
-Cards: Card.Root, Card.Header, Card.Body, Card.Footer, Card.Title, Card.Description — NOT Card, CardHeader, CardBody, CardFooter
-Dividers: Separator — NOT Divider
-Tables: Table.Root, Table.Header, Table.Row, Table.ColumnHeader, Table.Body, Table.Cell — NOT Table, Thead, Tbody, Tr, Th, Td
-Modals: Dialog.Root, Dialog.Backdrop, Dialog.Content, Dialog.Header, Dialog.Body, Dialog.Footer, Dialog.CloseTrigger — NOT Modal, ModalOverlay, ModalContent, etc.
-Tabs: Tabs.Trigger, Tabs.List, Tabs.Content — NOT Tab, TabList, TabPanel, TabPanels
-Props: colorPalette (not colorScheme), invalid (not isInvalid on fields), open/onOpenChange (not isOpen/onClose for Dialog), textAlign="end" (not isNumeric)
+USE THESE INSTEAD (Chakra v3):
+  Divider → Separator
+  Card, CardHeader, CardBody, CardFooter → Card.Root, Card.Header, Card.Body, Card.Footer (and Card.Title, Card.Description)
+  FormControl, FormLabel, FormErrorMessage, FormHelperText → Field.Root, Field.Label, Field.ErrorText, Field.HelperText
+  Table, Thead, Tbody, Tr, Th, Td → Table.Root, Table.Header, Table.Body, Table.Row, Table.ColumnHeader, Table.Cell
+  Modal* → Dialog.Root, Dialog.Backdrop, Dialog.Content, Dialog.Header, Dialog.Body, Dialog.Footer, Dialog.CloseTrigger
+  Tab, TabList, TabPanel → Tabs.Trigger, Tabs.List, Tabs.Content
+  Props: colorPalette (not colorScheme), invalid (not isInvalid), open/onOpenChange (not isOpen/onClose), textAlign="end" (not isNumeric)
 
-Full mapping: see GDS_FOR_LLM_AGENTS.md section "Chakra v3 API — do not use these names".
+--- Example: Login card (Chakra v3, copy this pattern) ---
+
+import * as React from "react";
+import {
+  Box,
+  Button,
+  Card,
+  Field,
+  Heading,
+  Input,
+  Separator,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+
+export function LoginCard() {
+  return (
+    <Card.Root maxW="md">
+      <Card.Header>
+        <Card.Title>Sign in</Card.Title>
+        <Card.Description>Enter your credentials</Card.Description>
+      </Card.Header>
+      <Card.Body>
+        <VStack gap="4" align="stretch">
+          <Field.Root>
+            <Field.Label>Email</Field.Label>
+            <Input type="email" placeholder="you@example.com" />
+            <Field.ErrorText>Invalid email</Field.ErrorText>
+          </Field.Root>
+          <Field.Root>
+            <Field.Label>Password</Field.Label>
+            <Input type="password" placeholder="••••••••" />
+            <Field.ErrorText>Required</Field.ErrorText>
+          </Field.Root>
+        </VStack>
+      </Card.Body>
+      <Card.Footer>
+        <Button colorPalette="brand" width="full">Sign in</Button>
+      </Card.Footer>
+    </Card.Root>
+  );
+}
+
+--- For any login/form card: import Card, Field, Input, Button, Separator (not Divider), Stack/VStack/Box/Text/Heading from @chakra-ui/react. Use Card.Root, Card.Header, Card.Body, Card.Footer, Field.Root, Field.Label, Field.ErrorText. Never import FormControl, FormLabel, FormErrorMessage, Divider, CardHeader, CardBody, CardFooter.

@@ -8,6 +8,9 @@ This document is the canonical reference for AI agents (e.g. ChatGPT, Copilot) w
 
 **When generating any React UI code for GDS, you MUST use Chakra UI v3 component names only.** Do **not** use Chakra v2 names; they are not exported by `@chakra-ui/react` v3 and will cause "doesn't provide an export named X" errors.
 
+**NEVER import these from `@chakra-ui/react` (they do not exist in v3):**  
+`Divider`, `Card`, `CardHeader`, `CardBody`, `CardFooter`, `FormControl`, `FormLabel`, `FormErrorMessage`, `FormHelperText`, `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`, `TableContainer`, `Modal`, `ModalOverlay`, `ModalContent`, `ModalHeader`, `ModalBody`, `ModalFooter`, `ModalCloseButton`, `Tab`, `TabList`, `TabPanel`, `TabPanels`, `Select`, `Alert`, `AlertIcon`, `AlertTitle`, `AlertDescription`, `Collapse`
+
 **Always use these (v3):**
 
 - **Forms:** `Field.Root`, `Field.Label`, `Field.HelperText`, `Field.ErrorText` (never `FormControl`, `FormLabel`, `FormErrorMessage`, `FormHelperText`)
@@ -106,6 +109,56 @@ import { Field, Input, Button } from "@chakra-ui/react";
 ```
 
 Do not import `FormControl`, `FormLabel`, `FormHelperText`, or `FormErrorMessage` — they do not exist in Chakra v3.
+
+---
+
+## Example: Login card (Chakra v3)
+
+Use this pattern for login cards or any form-in-card. **Imports must be** `Card`, `Field`, `Input`, `Button`, `Separator` (not `Divider`), `Stack`/`VStack`/`Box`/`Text`/`Heading` from `@chakra-ui/react`. **Never** import `FormControl`, `FormLabel`, `FormErrorMessage`, `Divider`, `CardHeader`, `CardBody`, `CardFooter`.
+
+```tsx
+import * as React from "react";
+import {
+  Box,
+  Button,
+  Card,
+  Field,
+  Heading,
+  Input,
+  Separator,
+  Stack,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+
+export function LoginCard() {
+  return (
+    <Card.Root maxW="md">
+      <Card.Header>
+        <Card.Title>Sign in</Card.Title>
+        <Card.Description>Enter your credentials</Card.Description>
+      </Card.Header>
+      <Card.Body>
+        <VStack gap="4" align="stretch">
+          <Field.Root>
+            <Field.Label>Email</Field.Label>
+            <Input type="email" placeholder="you@example.com" />
+            <Field.ErrorText>Invalid email</Field.ErrorText>
+          </Field.Root>
+          <Field.Root>
+            <Field.Label>Password</Field.Label>
+            <Input type="password" placeholder="••••••••" />
+            <Field.ErrorText>Required</Field.ErrorText>
+          </Field.Root>
+        </VStack>
+      </Card.Body>
+      <Card.Footer>
+        <Button colorPalette="brand" width="full">Sign in</Button>
+      </Card.Footer>
+    </Card.Root>
+  );
+}
+```
 
 ---
 
