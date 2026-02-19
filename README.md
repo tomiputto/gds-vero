@@ -80,6 +80,10 @@ import { CheckIcon } from "@gdesignsystem/icons";
 
 **Forms (Chakra v3)** — Use the **Field** API from `@chakra-ui/react`. Do **not** use `FormControl`, `FormLabel`, `FormHelperText`, or `FormErrorMessage` (they are not in Chakra v3). Use `Field.Root`, `Field.Label`, `Field.HelperText`, and `Field.ErrorText` instead; use the `invalid` prop on `Field.Root` for error state.
 
+**Tables (Chakra v3)** — Use the **Table** compound component: `Table.Root`, `Table.Header`, `Table.Row`, `Table.ColumnHeader`, `Table.Body`, `Table.Cell`. Do **not** use `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`, or `TableContainer` — they are not in Chakra v3. For scrollable tables use `Table.ScrollArea`. Use `textAlign="end"` instead of `isNumeric` on cells.
+
+**Other Chakra v3 renames** — Many v2 components were renamed or replaced. Using old names (e.g. `Modal`, `Divider`, `Collapse`, `Tab`, `Select`, `Alert`, `Avatar`) will cause "doesn't provide an export named X" errors. Use the v3 APIs instead: `Dialog` (not Modal), `Separator` (not Divider), `Collapsible` (not Collapse), `Tabs.Trigger` / `Tabs.List` / `Tabs.Content` (not Tab/TabList/TabPanel), `NativeSelect` (not Select), `Alert.Root` + `Alert.Indicator` + `Alert.Title` / `Alert.Description`, `Avatar.Root` + `Avatar.Image` + `Avatar.Fallback`. For a full list see the [Chakra v3 API](GDS_FOR_LLM_AGENTS.md#chakra-v3-api--do-not-use-these-names) section in [GDS for LLM agents](GDS_FOR_LLM_AGENTS.md), or the **Chakra v3 API** guide in the [published docs](https://renegademaster-droid.github.io/GDS/).
+
 ## Using GDS from npm
 
 In any React project (no monorepo required), install GDS and its peer dependencies:

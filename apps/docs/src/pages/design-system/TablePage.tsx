@@ -1,4 +1,4 @@
-import { Box, Heading, Table, Text, VStack } from "@chakra-ui/react";
+import { Box, Code, Heading, Table, Text, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 
@@ -18,6 +18,20 @@ export function TablePage() {
         <Text color="fg.muted">
           Tabular data with header, body, and optional caption.
         </Text>
+        <Box
+          mt="4"
+          p="4"
+          borderRadius="md"
+          bg="bg.subtle"
+          borderWidth="1px"
+          borderColor="border.muted"
+        >
+          <Text fontSize="sm" color="fg.muted">
+            <strong>Chakra v3:</strong> Use the Table compound component below. Do not use{" "}
+            <Code>Table</Code>, <Code>Thead</Code>, <Code>Tbody</Code>, <Code>Tr</Code>,{" "}
+            <Code>Th</Code>, <Code>Td</Code>, or <Code>TableContainer</Code> — they are not in @chakra-ui/react v3 and will cause runtime errors. Use <Code>Table.ScrollArea</Code> for scrollable tables; use <Code>textAlign="end"</Code> instead of <Code>isNumeric</Code>.
+          </Text>
+        </Box>
       </Box>
 
       <Section
