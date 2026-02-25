@@ -172,7 +172,7 @@ export function DesignSystemLayout() {
   }, [location.pathname]);
 
   return (
-    <Flex minH="100vh" bg="bg.default" color="fg" direction="column">
+    <Flex h="100%" minH="0" bg="bg.default" color="fg" direction="column">
       {/* Mobile: hamburger bar */}
       <Flex
         display={{ base: "flex", md: "none" }}
@@ -215,16 +215,20 @@ export function DesignSystemLayout() {
       </Flex>
 
       <Flex flex="1" minH="0">
-        {/* Desktop: sidebar */}
+        {/* Desktop: sidebar — oma scrollaus, ei liiku contentin mukana */}
         <Box
           as="nav"
           display={{ base: "none", md: "block" }}
           w="56"
           flexShrink={0}
+          h="full"
+          minH="0"
           borderRightWidth="1px"
           borderColor="border.muted"
           py="6"
           px="3"
+          overflowY="auto"
+          overflowX="hidden"
         >
           <NavLinks location={location} />
         </Box>

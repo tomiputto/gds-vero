@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { ThemeProvider, useTheme } from "next-themes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GDSProvider, GDSButton } from "@gdesignsystem/react";
-import { Box, HStack, Text, Theme } from "@chakra-ui/react";
+import { Box, Flex, HStack, Text, Theme } from "@chakra-ui/react";
 import { DesignSystemLayout } from "./components/DesignSystemLayout";
 import { DesignSystemOverview } from "./pages/design-system/DesignSystemOverview";
 import { TokensPage } from "./pages/design-system/TokensPage";
@@ -116,23 +116,26 @@ function App() {
     <>
       <ThemeClassSync />
       <Theme appearance={appearance} minH="100vh" bg="bg.default" color="fg">
-        <Box
-          as="header"
-        position="sticky"
-        top="0"
-        zIndex="10"
-        bg="bg.default"
-        borderBottomWidth="1px"
-        borderColor="border.muted"
-        px="6"
-        py="3"
-      >
-        <HStack justify="space-between" w="full">
-          <Text fontWeight="semibold">GDS Docs</Text>
-          <ColorModeToggle />
-        </HStack>
-      </Box>
-      <Routes>
+        <Flex direction="column" h="100vh" overflow="hidden">
+          <Box
+            as="header"
+            position="sticky"
+            top="0"
+            zIndex="10"
+            flexShrink={0}
+            bg="bg.default"
+            borderBottomWidth="1px"
+            borderColor="border.muted"
+            px="6"
+            py="3"
+          >
+            <HStack justify="space-between" w="full">
+              <Text fontWeight="semibold">GDS Docs</Text>
+              <ColorModeToggle />
+            </HStack>
+          </Box>
+          <Box flex="1" minH="0" overflow="hidden">
+            <Routes>
         <Route path="/" element={<DesignSystemLayout />}>
           <Route index element={<DesignSystemOverview />} />
           <Route path="guides/tokens" element={<TokensPage />} />
@@ -209,7 +212,9 @@ function App() {
           <Route path="stat" element={<StatPage />} />
           <Route path="timeline" element={<TimelinePage />} />
         </Route>
-      </Routes>
+            </Routes>
+          </Box>
+        </Flex>
       </Theme>
     </>
   );
