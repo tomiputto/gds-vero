@@ -35,7 +35,7 @@ export function TooltipPage() {
   </Tooltip.Positioner>
 </Tooltip.Root>`}
       >
-        <Tooltip.Root portalled={false}>
+        <Tooltip.Root>
           <Tooltip.Trigger asChild>
             <Button variant="outline" size="sm" colorPalette="brand">
               Hover me

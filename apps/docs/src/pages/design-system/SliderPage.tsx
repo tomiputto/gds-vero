@@ -26,7 +26,7 @@ export function SliderPage() {
     <Slider.Track>
       <Slider.Range />
     </Slider.Track>
-    <Slider.Thumb />
+    <Slider.Thumb index={0} />
   </Slider.Control>
 </Slider.Root>`}
       >
@@ -37,7 +37,7 @@ export function SliderPage() {
             <Slider.Track>
               <Slider.Range />
             </Slider.Track>
-            <Slider.Thumb />
+            <Slider.Thumb index={0} />
           </Slider.Control>
         </Slider.Root>
       </Section>
@@ -55,7 +55,7 @@ export function SliderPage() {
         ))}
       </Slider.MarkerGroup>
     </Slider.Track>
-    <Slider.Thumb />
+    <Slider.Thumb index={0} />
   </Slider.Control>
 </Slider.Root>`}
       >
@@ -69,7 +69,7 @@ export function SliderPage() {
                 ))}
               </Slider.MarkerGroup>
             </Slider.Track>
-            <Slider.Thumb />
+            <Slider.Thumb index={0} />
           </Slider.Control>
         </Slider.Root>
       </Section>
@@ -118,7 +118,7 @@ export function SliderPage() {
       <Slider.Track>
         <Slider.Range />
       </Slider.Track>
-      <Slider.Thumb />
+      <Slider.Thumb index={0} />
     </Slider.Control>
   </Slider.Root>
   <Field.HelperText>Drag the thumb or use arrow keys.</Field.HelperText>
@@ -132,7 +132,7 @@ export function SliderPage() {
               <Slider.Track>
                 <Slider.Range />
               </Slider.Track>
-              <Slider.Thumb />
+              <Slider.Thumb index={0} />
             </Slider.Control>
           </Slider.Root>
           <Field.HelperText>Drag the thumb or use arrow keys.</Field.HelperText>

@@ -1,3 +1,4 @@
+import type { ComponentType } from "react";
 import { Box, Heading, SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import * as GdsIcons from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
@@ -36,29 +37,28 @@ export function IconsPage() {
         <SimpleGrid columns={{ base: 3, md: 6, lg: 8 }} gap="4">
           {Object.entries(GdsIcons)
             .filter(([, value]) => typeof value === "function")
-            .map(([name, Icon]) => (
-              <VStack
-                key={name}
-                spacing="1"
-                align="center"
-                fontSize="xs"
-                minW={0}
-              >
-                <Box
-                  bg="bg.panel"
-                  borderWidth="1px"
-                  borderColor="border.muted"
-                  borderRadius="md"
-                  p="3"
-                >
-                  {/* eslint-disable-next-line react/jsx-pascal-case */}
-                  <Icon color="fg" boxSize="6" />
-                </Box>
-                <Text color="fg.muted" noOfLines={1} wordBreak="break-all">
-                  {name}
-                </Text>
-              </VStack>
-            ))}
+            .map(([name, IconComponent]) => {
+              const Icon = IconComponent as ComponentType<{
+                color?: string;
+                boxSize?: string;
+              }>;
+              return (
+                <VStack key={name} gap="1" align="center" fontSize="xs" minW={0}>
+                  <Box
+                    bg="bg.panel"
+                    borderWidth="1px"
+                    borderColor="border.muted"
+                    borderRadius="md"
+                    p="3"
+                  >
+                    <Icon color="fg" boxSize="6" />
+                  </Box>
+                  <Text color="fg.muted" lineClamp={1} wordBreak="break-all">
+                    {name}
+                  </Text>
+                </VStack>
+              );
+            })}
         </SimpleGrid>
       </Section>
     </VStack>

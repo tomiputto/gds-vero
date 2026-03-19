@@ -6,6 +6,9 @@ A design system built on **Chakra UI v3** with GDS theme and Figma tokens. Use b
 
 **Building with an AI agent (ChatGPT, Copilot, etc.)?** See [GDS for LLM agents](GDS_FOR_LLM_AGENTS.md).
 
+**Arkkitehtuurikuvaus (suomeksi):** [GDS:n arkkitehtuuri](GDS_ARKKITEHTUURI.md).  
+**Architecture (English):** [GDS architecture](GDS_ARCHITECTURE.md).
+
 ## Packages
 
 | Package | Description |
