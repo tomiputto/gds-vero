@@ -1,7 +1,7 @@
-import { Box, Field, Heading, Text, Textarea, VStack } from "@chakra-ui/react";
+import { Box, Field, Heading, Textarea, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function TextareaPage() {
   return (
     <VStack align="stretch" gap="10">

@@ -1,7 +1,7 @@
-import { Box, Code, Heading, Table, Text, VStack } from "@chakra-ui/react";
+import { Box, Code, Heading, Table, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const items = [
   { id: 1, name: "Laptop", category: "Electronics", price: "999.99" },
   { id: 2, name: "Coffee Maker", category: "Home", price: "49.99" },

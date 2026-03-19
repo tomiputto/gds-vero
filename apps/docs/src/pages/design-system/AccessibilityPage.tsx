@@ -1,6 +1,6 @@
-import { Box, Code, Heading, List, Text, VStack } from "@chakra-ui/react";
+import { Box, Code, Heading, List, VStack } from "@chakra-ui/react";
 import { CodeBlock } from "../../components/CodeBlock";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function AccessibilityPage() {
   return (
     <VStack align="stretch" gap="10">

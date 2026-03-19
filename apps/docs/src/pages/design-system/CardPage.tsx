@@ -1,21 +1,7 @@
-import {
-  Avatar,
-  Badge,
-  Box,
-  Button,
-  Card,
-  Heading,
-  HStack,
-  Image,
-  SimpleGrid,
-  Spacer,
-  Stack,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Avatar, Badge, Box, Button, Card, Heading, HStack, Image, SimpleGrid, Spacer, Stack, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function CardPage() {
   return (
     <VStack align="stretch" gap="10">

@@ -1,8 +1,8 @@
 import { useMemo } from "react";
-import { Box, Button, createToaster, Heading, Text, Toaster, VStack } from "@chakra-ui/react";
+import { Box, Button, createToaster, Heading, Toaster, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function ToastPage() {
   const toaster = useMemo(() => createToaster({ placement: "top-end" }), []);
   return (

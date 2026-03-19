@@ -1,8 +1,8 @@
-import { Box, Field, Heading, RatingGroup, Text, VStack } from "@chakra-ui/react";
+import { Box, Field, Heading, RatingGroup, VStack } from "@chakra-ui/react";
 import { StarIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function RatingPage() {
   return (
     <VStack align="stretch" gap="10">

@@ -1,7 +1,7 @@
-import { Box, createListCollection, Heading, Listbox, Text, VStack } from "@chakra-ui/react";
+import { Box, createListCollection, Heading, Listbox, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const options = [
   { label: "React", value: "react" },
   { label: "Vue", value: "vue" },

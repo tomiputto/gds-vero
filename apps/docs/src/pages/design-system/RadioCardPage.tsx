@@ -1,7 +1,7 @@
-import { Box, Flex, Heading, RadioCard, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, RadioCard, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const plans = [
   { value: "starter", title: "Starter", description: "For small projects" },
   { value: "pro", title: "Pro", description: "For teams" },

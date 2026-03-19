@@ -1,8 +1,8 @@
-import { Box, Carousel, Heading, IconButton, Text, VStack } from "@chakra-ui/react";
+import { Box, Carousel, Heading, IconButton, VStack } from "@chakra-ui/react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const items = Array.from({ length: 5 }, (_, i) => i + 1);
 
 export function CarouselPage() {

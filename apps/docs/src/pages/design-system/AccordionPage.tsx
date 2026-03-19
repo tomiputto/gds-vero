@@ -1,15 +1,8 @@
-import {
-  Accordion,
-  Box,
-  Heading,
-  Span,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Accordion, Box, Heading, Span, VStack } from "@chakra-ui/react";
 import { ChevronDownIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const items = [
   { value: "a", title: "First item", text: "Content for the first section." },
   { value: "b", title: "Second item", text: "Content for the second section." },

@@ -1,6 +1,6 @@
-import { Box, Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, HStack, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const semanticColors = [
   { token: "fg", label: "Foreground" },
   { token: "fg.muted", label: "Foreground muted" },

@@ -1,7 +1,8 @@
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 
+import { GDSText as Text } from "@gdesignsystem/react";
 const textStyleSpecs = [
   { key: "display", label: "Display", fontSize: "4xl" as const, fontWeight: "700" as const, lineHeight: "1.1" },
   { key: "headline", label: "Headline", fontSize: "3xl" as const, fontWeight: "600" as const, lineHeight: "1.2" },
@@ -28,13 +29,13 @@ export function TextPage() {
       <Section
         title="Text styles (from Figma)"
         description="Named text styles are defined in Figma and provided by the GDS theme. Font sizes and weights come from Figma typography tokens."
-        code={`import { Text } from "@chakra-ui/react";
+        code={`import { GDSText as Text } from "@gdesignsystem/react";
 
-<Text textStyle="display">Display style</Text>
-<Text textStyle="headline">Headline style</Text>
-<Text textStyle="title">Title style</Text>
-<Text textStyle="body">Body style</Text>
-<Text textStyle="caption">Caption style</Text>`}
+<GDSText textStyle="display">Display style</GDSText>
+<GDSText textStyle="headline">Headline style</GDSText>
+<GDSText textStyle="title">Title style</GDSText>
+<GDSText textStyle="body">Body style</GDSText>
+<GDSText textStyle="caption">Caption style</GDSText>`}
       >
         <VStack align="stretch" gap="3">
           {textStyleSpecs.map(({ key, label, fontSize, fontWeight, lineHeight }) => (
@@ -54,16 +55,16 @@ export function TextPage() {
       <Section
         title="Figma type scale"
         description="Font size scale from Figma typography tokens. Theme exposes these so fontSize uses Figma values."
-        code={`import { Text } from "@chakra-ui/react";
+        code={`import { GDSText } from "@gdesignsystem/react";
 
-<Text fontSize="xs">Type size xs</Text>
-<Text fontSize="sm">Type size sm</Text>
-<Text fontSize="md">Type size md</Text>
-<Text fontSize="lg">Type size lg</Text>
-<Text fontSize="xl">Type size xl</Text>
-<Text fontSize="2xl">Type size 2xl</Text>
-<Text fontSize="3xl">Type size 3xl</Text>
-<Text fontSize="4xl">Type size 4xl</Text>`}
+<GDSText fontSize="xs">Type size xs</GDSText>
+<GDSText fontSize="sm">Type size sm</GDSText>
+<GDSText fontSize="md">Type size md</GDSText>
+<GDSText fontSize="lg">Type size lg</GDSText>
+<GDSText fontSize="xl">Type size xl</GDSText>
+<GDSText fontSize="2xl">Type size 2xl</GDSText>
+<GDSText fontSize="3xl">Type size 3xl</GDSText>
+<GDSText fontSize="4xl">Type size 4xl</GDSText>`}
       >
         <VStack align="stretch" gap="3">
           {figmaScaleSizes.map((size) => (

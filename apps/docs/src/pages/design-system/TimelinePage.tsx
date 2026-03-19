@@ -1,8 +1,8 @@
-import { Box, Heading, Text, Timeline, VStack } from "@chakra-ui/react";
+import { Box, Heading, Timeline, VStack } from "@chakra-ui/react";
 import { CheckIcon, PenIcon, UserPlusIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const events = [
   {
     title: "Created",
@@ -41,6 +41,7 @@ export function TimelinePage() {
         description="Timeline with items"
         code={`import { Timeline } from "@chakra-ui/react";
 import { CheckIcon, PenIcon, UserPlusIcon } from "@gdesignsystem/icons";
+import { GDSText as Text } from "@gdesignsystem/react";
 
 <Timeline.Root colorPalette="brand">
   {events.map((event, i) => {

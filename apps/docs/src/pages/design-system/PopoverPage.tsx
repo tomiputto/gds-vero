@@ -1,7 +1,7 @@
-import { Box, Button, Heading, Popover, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Heading, Popover, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function PopoverPage() {
   return (
     <VStack align="stretch" gap="10">

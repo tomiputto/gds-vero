@@ -1,7 +1,7 @@
-import { Box, Heading, NativeSelect, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, NativeSelect, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function SelectPage() {
   return (
     <VStack align="stretch" gap="10">

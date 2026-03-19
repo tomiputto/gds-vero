@@ -1,15 +1,8 @@
-import {
-  Box,
-  Button,
-  HStack,
-  Heading,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Button, HStack, Heading, VStack } from "@chakra-ui/react";
 import { CheckIcon, PlusIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function ButtonPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -79,6 +72,7 @@ export function ButtonPage() {
         description="Use GDS icons from @gdesignsystem/icons; color inherits from the button (Figma tokens)."
         code={`import { Button } from "@chakra-ui/react";
 import { CheckIcon, PlusIcon } from "@gdesignsystem/icons";
+import { GDSText as Text } from "@gdesignsystem/react";
 
 <Button colorPalette="brand"><CheckIcon /> Confirm</Button>
 <Button colorPalette="brand" variant="outline"><PlusIcon /> Add</Button>`}

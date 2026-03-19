@@ -1,7 +1,7 @@
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function StatusPage() {
   return (
     <VStack align="stretch" gap="10">

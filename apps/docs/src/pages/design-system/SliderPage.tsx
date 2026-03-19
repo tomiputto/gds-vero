@@ -1,7 +1,7 @@
-import { Box, Field, Heading, Slider, Text, VStack } from "@chakra-ui/react";
+import { Box, Field, Heading, Slider, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function SliderPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -158,4 +158,3 @@ export function SliderPage() {
     </VStack>
   );
 }
-

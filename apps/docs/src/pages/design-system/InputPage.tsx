@@ -1,16 +1,7 @@
-import {
-  Box,
-  Field,
-  Heading,
-  Input,
-  Stack,
-  Text,
-  VStack,
-  HStack,
-} from "@chakra-ui/react";
+import { Box, Field, Heading, Input, Stack, VStack, HStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function InputPage() {
   return (
     <VStack align="stretch" gap="10">

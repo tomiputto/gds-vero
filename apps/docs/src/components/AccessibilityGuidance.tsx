@@ -1,6 +1,6 @@
-import { Box, Heading, Link, List, Text } from "@chakra-ui/react";
+import { Box, Heading, Link, List } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export type AccessibilityItem =
   | string
   | { text: string; rule: string };

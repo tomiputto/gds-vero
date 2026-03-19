@@ -1,25 +1,7 @@
-import {
-  AbsoluteCenter,
-  AspectRatio,
-  Bleed,
-  Box,
-  Center,
-  Container,
-  Flex,
-  Heading,
-  HStack,
-  SimpleGrid,
-  Spacer,
-  Square,
-  Stack,
-  Sticky,
-  Text,
-  VStack,
-  Wrap,
-} from "@chakra-ui/react";
+import { AbsoluteCenter, AspectRatio, Bleed, Box, Center, Container, Flex, Heading, HStack, SimpleGrid, Spacer, Square, Stack, Sticky, VStack, Wrap } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function LayoutPage() {
   return (
     <VStack align="stretch" gap="10">

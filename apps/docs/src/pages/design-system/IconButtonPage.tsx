@@ -1,15 +1,8 @@
-import {
-  Box,
-  Heading,
-  HStack,
-  IconButton,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Heading, HStack, IconButton, VStack } from "@chakra-ui/react";
 import { PlusIcon, SearchIcon, TrashIcon, XIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function IconButtonPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -28,6 +21,7 @@ export function IconButtonPage() {
         description="Icon as child; always provide an accessible name with aria-label."
         code={`import { IconButton } from "@chakra-ui/react";
 import { SearchIcon } from "@gdesignsystem/icons";
+import { GDSText as Text } from "@gdesignsystem/react";
 
 <IconButton aria-label="Search">
   <SearchIcon />

@@ -1,13 +1,6 @@
-import {
-  Box,
-  Code,
-  Heading,
-  Link,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Code, Heading, Link, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const GITHUB_GUIDE_URL =
   "https://github.com/renegademaster-droid/GDS/blob/main/GDS_FOR_LLM_AGENTS.md";
 
@@ -72,10 +65,11 @@ export function ForAIAgentsPage() {
           whiteSpace="pre-wrap"
           overflowX="auto"
         >
-{`import { GDSProvider } from "@gdesignsystem/react";
-import { Button, Box, Text } from "@chakra-ui/react";
+{`import { GDSProvider, GDSText as Text } from "@gdesignsystem/react";
+import { Button, Box } from "@chakra-ui/react";
 import { CheckIcon } from "@gdesignsystem/icons";
 
+import { GDSText as Text } from "@gdesignsystem/react";
 function App() {
   return (
     <GDSProvider>

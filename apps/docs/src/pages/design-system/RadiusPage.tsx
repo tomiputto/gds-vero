@@ -1,6 +1,6 @@
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 /** Border radius scale (align with Figma Radii when synced) */
 const radiusSizes = ["none", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "full"] as const;
 

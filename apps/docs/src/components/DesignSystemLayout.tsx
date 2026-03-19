@@ -1,16 +1,8 @@
 import { useState, useEffect } from "react";
-import {
-  Box,
-  CloseButton,
-  Drawer,
-  Flex,
-  IconButton,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, CloseButton, Drawer, Flex, IconButton, VStack } from "@chakra-ui/react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-
-const NAV_ITEMS: Array<{ path: string; label: string; section?: string }> = [
+import { GDSText as Text } from "@gdesignsystem/react";
+const NAV_ITEMS: Array<{ path: string; label: string; section?: string; group?: string }> = [
   { path: "/", label: "Overview", section: "Guides" },
   { path: "/guides/start-using-gds", label: "Start using GDS", section: "Guides" },
   { path: "/guides/tokens", label: "Tokens", section: "Guides" },
@@ -18,72 +10,72 @@ const NAV_ITEMS: Array<{ path: string; label: string; section?: string }> = [
   { path: "/guides/for-ai-agents", label: "For AI agents", section: "Guides" },
   { path: "/guides/chakra-v3-api", label: "Chakra v3 API", section: "Guides" },
   { path: "/accessibility", label: "Accessibility", section: "Guides" },
-  { path: "/accordion", label: "Accordion", section: "Components" },
-  { path: "/action-bar", label: "Action Bar", section: "Components" },
-  { path: "/alert", label: "Alert", section: "Components" },
-  { path: "/avatar", label: "Avatar", section: "Components" },
-  { path: "/badge", label: "Badge", section: "Components" },
-  { path: "/box", label: "Box", section: "Components" },
-  { path: "/breadcrumb", label: "Breadcrumb", section: "Components" },
-  { path: "/button", label: "Button", section: "Components" },
-  { path: "/card", label: "Card", section: "Components" },
-  { path: "/carousel", label: "Carousel", section: "Components" },
-  { path: "/checkbox", label: "Checkbox", section: "Components" },
-  { path: "/checkbox-card", label: "Checkbox Card", section: "Components" },
-  { path: "/clipboard", label: "Clipboard", section: "Components" },
-  { path: "/collapsible", label: "Collapsible", section: "Components" },
-  { path: "/combobox", label: "Combobox", section: "Components" },
-  { path: "/data-list", label: "Data List", section: "Components" },
-  { path: "/dialog", label: "Dialog", section: "Components" },
-  { path: "/drawer", label: "Drawer", section: "Components" },
-  { path: "/empty-state", label: "Empty State", section: "Components" },
-  { path: "/field", label: "Field", section: "Components" },
-  { path: "/fieldset", label: "Fieldset", section: "Components" },
-  { path: "/file-upload", label: "File Upload", section: "Components" },
-  { path: "/flex", label: "Flex", section: "Components" },
-  { path: "/grid", label: "Grid", section: "Components" },
-  { path: "/hover-card", label: "Hover Card", section: "Components" },
-  { path: "/icon", label: "Icon", section: "Components" },
-  { path: "/icon-button", label: "Icon Button", section: "Components" },
-  { path: "/image", label: "Image", section: "Components" },
-  { path: "/input", label: "Input", section: "Components" },
-  { path: "/layout", label: "Layout", section: "Components" },
-  { path: "/link", label: "Link", section: "Components" },
-  { path: "/listbox", label: "Listbox", section: "Components" },
-  { path: "/marquee", label: "Marquee", section: "Components" },
-  { path: "/menu", label: "Menu", section: "Components" },
-  { path: "/number-input", label: "Number Input", section: "Components" },
-  { path: "/pagination", label: "Pagination", section: "Components" },
-  { path: "/password-input", label: "Password Input", section: "Components" },
-  { path: "/popover", label: "Popover", section: "Components" },
-  { path: "/progress", label: "Progress", section: "Components" },
-  { path: "/progress-circle", label: "Progress Circle", section: "Components" },
-  { path: "/qr-code", label: "QR Code", section: "Components" },
-  { path: "/radio", label: "Radio", section: "Components" },
-  { path: "/radio-card", label: "Radio Card", section: "Components" },
-  { path: "/rating", label: "Rating", section: "Components" },
-  { path: "/slider", label: "Slider", section: "Components" },
-  { path: "/pin-input", label: "Pin Input", section: "Components" },
-  { path: "/input-group", label: "Input Group", section: "Components" },
-  { path: "/scroll-area", label: "Scroll Area", section: "Components" },
-  { path: "/segment-group", label: "Segment Group", section: "Components" },
-  { path: "/select", label: "Select", section: "Components" },
-  { path: "/separator", label: "Separator", section: "Components" },
-  { path: "/skeleton", label: "Skeleton", section: "Components" },
-  { path: "/spinner", label: "Spinner", section: "Components" },
-  { path: "/splitter", label: "Splitter", section: "Components" },
-  { path: "/stat", label: "Stat", section: "Components" },
-  { path: "/status", label: "Status", section: "Components" },
-  { path: "/steps", label: "Steps", section: "Components" },
-  { path: "/switch", label: "Switch", section: "Components" },
-  { path: "/table", label: "Table", section: "Components" },
-  { path: "/tags-input", label: "Tags Input", section: "Components" },
-  { path: "/tabs", label: "Tabs", section: "Components" },
-  { path: "/textarea", label: "Textarea", section: "Components" },
-  { path: "/timeline", label: "Timeline", section: "Components" },
-  { path: "/toast", label: "Toast", section: "Components" },
-  { path: "/tooltip", label: "Tooltip", section: "Components" },
-  { path: "/tree-view", label: "Tree View", section: "Components" },
+  { path: "/box", label: "Box", section: "Components", group: "Layout" },
+  { path: "/flex", label: "Flex", section: "Components", group: "Layout" },
+  { path: "/grid", label: "Grid", section: "Components", group: "Layout" },
+  { path: "/layout", label: "Layout", section: "Components", group: "Layout" },
+  { path: "/scroll-area", label: "Scroll Area", section: "Components", group: "Layout" },
+  { path: "/separator", label: "Separator", section: "Components", group: "Layout" },
+  { path: "/splitter", label: "Splitter", section: "Components", group: "Layout" },
+  { path: "/link", label: "Link", section: "Components", group: "Typography" },
+  { path: "/button", label: "Button", section: "Components", group: "Buttons" },
+  { path: "/icon-button", label: "Icon Button", section: "Components", group: "Buttons" },
+  { path: "/checkbox", label: "Checkbox", section: "Components", group: "Forms" },
+  { path: "/checkbox-card", label: "Checkbox Card", section: "Components", group: "Forms" },
+  { path: "/field", label: "Field", section: "Components", group: "Forms" },
+  { path: "/fieldset", label: "Fieldset", section: "Components", group: "Forms" },
+  { path: "/file-upload", label: "File Upload", section: "Components", group: "Forms" },
+  { path: "/input", label: "Input", section: "Components", group: "Forms" },
+  { path: "/input-group", label: "Input Group", section: "Components", group: "Forms" },
+  { path: "/number-input", label: "Number Input", section: "Components", group: "Forms" },
+  { path: "/password-input", label: "Password Input", section: "Components", group: "Forms" },
+  { path: "/pin-input", label: "Pin Input", section: "Components", group: "Forms" },
+  { path: "/radio", label: "Radio", section: "Components", group: "Forms" },
+  { path: "/radio-card", label: "Radio Card", section: "Components", group: "Forms" },
+  { path: "/rating", label: "Rating", section: "Components", group: "Forms" },
+  { path: "/segment-group", label: "Segment Group", section: "Components", group: "Forms" },
+  { path: "/select", label: "Select", section: "Components", group: "Forms" },
+  { path: "/slider", label: "Slider", section: "Components", group: "Forms" },
+  { path: "/switch", label: "Switch", section: "Components", group: "Forms" },
+  { path: "/tags-input", label: "Tags Input", section: "Components", group: "Forms" },
+  { path: "/textarea", label: "Textarea", section: "Components", group: "Forms" },
+  { path: "/combobox", label: "Combobox", section: "Components", group: "Collections" },
+  { path: "/listbox", label: "Listbox", section: "Components", group: "Collections" },
+  { path: "/tree-view", label: "Tree View", section: "Components", group: "Collections" },
+  { path: "/action-bar", label: "Action Bar", section: "Components", group: "Overlays" },
+  { path: "/dialog", label: "Dialog", section: "Components", group: "Overlays" },
+  { path: "/drawer", label: "Drawer", section: "Components", group: "Overlays" },
+  { path: "/hover-card", label: "Hover Card", section: "Components", group: "Overlays" },
+  { path: "/menu", label: "Menu", section: "Components", group: "Overlays" },
+  { path: "/popover", label: "Popover", section: "Components", group: "Overlays" },
+  { path: "/tooltip", label: "Tooltip", section: "Components", group: "Overlays" },
+  { path: "/toast", label: "Toast", section: "Components", group: "Overlays" },
+  { path: "/accordion", label: "Accordion", section: "Components", group: "Disclosure" },
+  { path: "/breadcrumb", label: "Breadcrumb", section: "Components", group: "Disclosure" },
+  { path: "/carousel", label: "Carousel", section: "Components", group: "Disclosure" },
+  { path: "/collapsible", label: "Collapsible", section: "Components", group: "Disclosure" },
+  { path: "/pagination", label: "Pagination", section: "Components", group: "Disclosure" },
+  { path: "/steps", label: "Steps", section: "Components", group: "Disclosure" },
+  { path: "/tabs", label: "Tabs", section: "Components", group: "Disclosure" },
+  { path: "/alert", label: "Alert", section: "Components", group: "Feedback" },
+  { path: "/empty-state", label: "Empty State", section: "Components", group: "Feedback" },
+  { path: "/progress", label: "Progress", section: "Components", group: "Feedback" },
+  { path: "/progress-circle", label: "Progress Circle", section: "Components", group: "Feedback" },
+  { path: "/skeleton", label: "Skeleton", section: "Components", group: "Feedback" },
+  { path: "/spinner", label: "Spinner", section: "Components", group: "Feedback" },
+  { path: "/status", label: "Status", section: "Components", group: "Feedback" },
+  { path: "/avatar", label: "Avatar", section: "Components", group: "Data Display" },
+  { path: "/badge", label: "Badge", section: "Components", group: "Data Display" },
+  { path: "/card", label: "Card", section: "Components", group: "Data Display" },
+  { path: "/clipboard", label: "Clipboard", section: "Components", group: "Data Display" },
+  { path: "/data-list", label: "Data List", section: "Components", group: "Data Display" },
+  { path: "/icon", label: "Icon", section: "Components", group: "Data Display" },
+  { path: "/image", label: "Image", section: "Components", group: "Data Display" },
+  { path: "/marquee", label: "Marquee", section: "Components", group: "Data Display" },
+  { path: "/qr-code", label: "QR Code", section: "Components", group: "Data Display" },
+  { path: "/stat", label: "Stat", section: "Components", group: "Data Display" },
+  { path: "/table", label: "Table", section: "Components", group: "Data Display" },
+  { path: "/timeline", label: "Timeline", section: "Components", group: "Data Display" },
   { path: "/styles/text", label: "Text", section: "Styles" },
   { path: "/styles/colors", label: "Colors", section: "Styles" },
   { path: "/styles/icons", label: "Icons", section: "Styles" },
@@ -99,27 +91,50 @@ function NavLinks({
   onNavigate?: () => void;
 }) {
   let lastSection: string | undefined;
+  let lastGroup: string | undefined;
   return (
     <VStack align="stretch" gap="0">
-      {NAV_ITEMS.map(({ path, label, section }) => {
+      {NAV_ITEMS.map(({ path, label, section, group }) => {
         const showSection = section != null && section !== lastSection;
         if (showSection) lastSection = section;
+        if (showSection) lastGroup = undefined;
+        const previousGroup = lastGroup;
+        const showGroup =
+          section === "Components" &&
+          group != null &&
+          (group !== previousGroup || showSection);
+        if (showGroup) lastGroup = group;
         const isActive =
           path === "/" ? location.pathname === "/" : location.pathname === path;
         return (
           <Box key={path}>
             {showSection && (
               <Text
-                fontWeight="semibold"
+                fontWeight="bold"
                 fontSize="xs"
-                color="fg.muted"
+                color="black"
                 textTransform="uppercase"
-                letterSpacing="wider"
+                letterSpacing="widest"
                 mt={section === "Guides" ? "0" : "4"}
                 mb="2"
-                px="2"
+                px="2.5"
+                py="1"
+                bg="bg.subtle"
+                borderRadius="md"
               >
                 {section}
+              </Text>
+            )}
+            {showGroup && (
+              <Text
+                fontWeight="semibold"
+                fontSize="xs"
+                color="black"
+                mt={previousGroup == null ? "2" : "4"}
+                mb="1"
+                px="2"
+              >
+                {group}
               </Text>
             )}
             <Link

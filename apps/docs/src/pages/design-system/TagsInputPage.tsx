@@ -1,7 +1,7 @@
-import { Box, Field, Heading, TagsInput, Text, VStack } from "@chakra-ui/react";
+import { Box, Field, Heading, TagsInput, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function TagsInputPage() {
   return (
     <VStack align="stretch" gap="10">

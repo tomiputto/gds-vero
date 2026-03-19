@@ -1,8 +1,8 @@
-import { Box, Button, Clipboard, Heading, Input, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Clipboard, Heading, Input, VStack } from "@chakra-ui/react";
 import { CopyIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function ClipboardPage() {
   return (
     <VStack align="stretch" gap="10">

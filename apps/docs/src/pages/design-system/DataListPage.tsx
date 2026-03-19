@@ -1,7 +1,7 @@
-import { Box, DataList, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, DataList, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function DataListPage() {
   return (
     <VStack align="stretch" gap="10">

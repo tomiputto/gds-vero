@@ -1,17 +1,8 @@
 import { useState } from "react";
-import {
-  Box,
-  Combobox,
-  createListCollection,
-  Field,
-  Heading,
-  Input,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Combobox, createListCollection, Field, Heading, Input, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const options = [
   { label: "React", value: "react" },
   { label: "Vue", value: "vue" },

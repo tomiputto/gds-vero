@@ -1,7 +1,7 @@
-import { Box, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, Image, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function ImagePage() {
   return (
     <VStack align="stretch" gap="10">

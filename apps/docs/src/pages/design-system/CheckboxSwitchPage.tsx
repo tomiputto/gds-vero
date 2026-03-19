@@ -1,7 +1,7 @@
-import { Box, Checkbox, Heading, Stack, Text, VStack } from "@chakra-ui/react";
+import { Box, Checkbox, Heading, Stack, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function CheckboxSwitchPage() {
   return (
     <VStack align="stretch" gap="10">

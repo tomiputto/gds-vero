@@ -1,6 +1,6 @@
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 /** Common spacing scale (align with Figma Size/Spacing tokens when synced) */
 const spacingSizes = ["1", "2", "3", "4", "5", "6", "8", "10", "12", "16", "20", "24"] as const;
 

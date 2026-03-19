@@ -1,8 +1,8 @@
-import { Box, Button, EmptyState, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, EmptyState, Heading, VStack } from "@chakra-ui/react";
 import { InboxIcon, PlusIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function EmptyStatePage() {
   return (
     <VStack align="stretch" gap="10">

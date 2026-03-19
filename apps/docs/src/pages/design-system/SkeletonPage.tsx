@@ -1,7 +1,7 @@
-import { Box, Heading, Skeleton, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, Skeleton, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function SkeletonPage() {
   return (
     <VStack align="stretch" gap="10">

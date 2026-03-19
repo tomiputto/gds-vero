@@ -1,7 +1,7 @@
-import { Box, Heading, Progress, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, Progress, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function ProgressPage() {
   return (
     <VStack align="stretch" gap="10">

@@ -1,8 +1,8 @@
-import { Box, Heading, Link, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, Link, VStack } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function LinkPage() {
   return (
     <VStack align="stretch" gap="10">

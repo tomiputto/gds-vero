@@ -1,18 +1,8 @@
-import {
-  Box,
-  Heading,
-  Icon,
-  Input,
-  InputAddon,
-  InputElement,
-  InputGroup,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Heading, Icon, Input, InputAddon, InputElement, InputGroup, VStack } from "@chakra-ui/react";
 import { MailIcon, SearchIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function InputGroupPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -69,6 +59,7 @@ import { SearchIcon } from "@gdesignsystem/icons";
         description="Combine addons and layout primitives to simulate grouped inputs."
         code={`import { Box, Icon, Input, InputAddon, Text, VStack } from "@chakra-ui/react";
 import { MailIcon } from "@gdesignsystem/icons";
+import { GDSText as Text } from "@gdesignsystem/react";
 
 <VStack align="stretch" gap="3" maxW="sm">
   <Box display="flex">
@@ -148,4 +139,3 @@ import { MailIcon } from "@gdesignsystem/icons";
     </VStack>
   );
 }
-

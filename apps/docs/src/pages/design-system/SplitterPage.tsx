@@ -1,15 +1,7 @@
-import {
-  Box,
-  Center,
-  Heading,
-  Splitter,
-  Text,
-  useSplitter,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Center, Heading, Splitter, useSplitter, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 function BasicSplitter() {
   const splitter = useSplitter({
     defaultSize: [50, 50],

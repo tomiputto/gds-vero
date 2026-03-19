@@ -1,5 +1,6 @@
-import { Box, Code, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Code, Heading, VStack } from "@chakra-ui/react";
 
+import { GDSText as Text } from "@gdesignsystem/react";
 export function DesignSystemOverview() {
   return (
     <VStack align="stretch" gap="10">
@@ -8,7 +9,8 @@ export function DesignSystemOverview() {
           GDS Design System
         </Heading>
         <Text color="fg.muted" fontSize="lg">
-          A design system built on Chakra UI v3 with GDS theme and tokens. Use brand primary colors and semantic tokens out of the box.
+          GDS is a React-based design system built on Chakra UI v3 with GDS theme and
+          tokens. Use brand primary colors and semantic tokens out of the box.
         </Text>
       </Box>
 
@@ -66,7 +68,7 @@ export function DesignSystemOverview() {
           whiteSpace="pre-wrap"
           overflowX="auto"
         >
-{`import { GDSProvider } from "@gdesignsystem/react";
+{`import { GDSProvider, GDSText as Text } from "@gdesignsystem/react";
 
 <GDSProvider>
   <App />

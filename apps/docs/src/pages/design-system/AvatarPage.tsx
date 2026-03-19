@@ -1,7 +1,7 @@
-import { Avatar, Box, Heading, HStack, Text, VStack } from "@chakra-ui/react";
+import { Avatar, Box, Heading, HStack, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function AvatarPage() {
   return (
     <VStack align="stretch" gap="10">

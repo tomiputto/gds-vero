@@ -1,7 +1,7 @@
-import { Box, Heading, HStack, RadioGroup, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, HStack, RadioGroup, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function RadioGroupPage() {
   return (
     <VStack align="stretch" gap="10">

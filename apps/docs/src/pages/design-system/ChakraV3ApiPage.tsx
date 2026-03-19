@@ -1,14 +1,6 @@
-import {
-  Box,
-  Code,
-  Heading,
-  Link as ChakraLink,
-  Table,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Code, Heading, Link as ChakraLink, Table, VStack } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 const RENAMES: Array<{ old: string; new: string }> = [
   { old: "FormControl, FormLabel, FormHelperText, FormErrorMessage", new: "Field.Root, Field.Label, Field.HelperText, Field.ErrorText" },
   { old: "Card, CardHeader, CardBody, CardFooter", new: "Card.Root, Card.Header, Card.Body, Card.Footer (+ Card.Title, Card.Description)" },

@@ -1,15 +1,6 @@
 import { useState } from "react";
-import {
-  Box,
-  Button,
-  Flex,
-  Grid,
-  Heading,
-  Icon,
-  Input,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Grid, Heading, Icon, Input, VStack } from "@chakra-ui/react";
+import { GDSText as Text } from "@gdesignsystem/react";
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -101,6 +92,7 @@ import { CheckIcon } from "@gdesignsystem/icons";
         description="Use GDS icons in buttons; color inherits from the button (Figma tokens)."
         code={`import { Button } from "@chakra-ui/react";
 import { CheckIcon } from "@gdesignsystem/icons";
+import { GDSText as Text } from "@gdesignsystem/react";
 
 <Button colorPalette="brand">
   <CheckIcon /> Confirm

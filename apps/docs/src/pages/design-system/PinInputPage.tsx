@@ -1,14 +1,7 @@
-import {
-  Box,
-  Field,
-  Heading,
-  PinInput,
-  Text,
-  VStack,
-} from "@chakra-ui/react";
+import { Box, Field, Heading, PinInput, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function PinInputPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -124,4 +117,3 @@ export function PinInputPage() {
     </VStack>
   );
 }
-

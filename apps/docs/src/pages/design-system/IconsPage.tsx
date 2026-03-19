@@ -1,8 +1,8 @@
 import type { ComponentType } from "react";
-import { Box, Heading, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
 import * as GdsIcons from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function IconsPage() {
   return (
     <VStack align="stretch" gap="10">

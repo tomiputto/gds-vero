@@ -1,6 +1,6 @@
-import { Box, Code, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Code, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-
+import { GDSText as Text } from "@gdesignsystem/react";
 export function StartUsingGdsPage() {
   return (
     <VStack align="stretch" gap="10">
