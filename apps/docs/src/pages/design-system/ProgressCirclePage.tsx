@@ -20,15 +20,26 @@ export function ProgressCirclePage() {
         code={`import { ProgressCircle } from "@chakra-ui/react";
 
 <ProgressCircle.Root value={60} size="xl" colorPalette="brand">
-  <ProgressCircle.Track />
-  <ProgressCircle.Range />
-  <ProgressCircle.ValueText />
+  <ProgressCircle.Circle>
+    <ProgressCircle.Track />
+    <ProgressCircle.Range />
+  </ProgressCircle.Circle>
+  <ProgressCircle.ValueText mt="3" textAlign="center" />
 </ProgressCircle.Root>`}
       >
-        <ProgressCircle.Root value={60} size="xl" colorPalette="brand">
-          <ProgressCircle.Track />
-          <ProgressCircle.Range />
-          <ProgressCircle.ValueText />
+        <ProgressCircle.Root
+          value={60}
+          size="xl"
+          colorPalette="brand"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+        >
+          <ProgressCircle.Circle>
+            <ProgressCircle.Track />
+            <ProgressCircle.Range />
+          </ProgressCircle.Circle>
+          <ProgressCircle.ValueText mt="3" textAlign="center" />
         </ProgressCircle.Root>
       </Section>
 

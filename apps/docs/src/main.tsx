@@ -79,6 +79,9 @@ import { MarqueePage } from "./pages/design-system/MarqueePage";
 import { QrCodePage } from "./pages/design-system/QrCodePage";
 import { StatPage } from "./pages/design-system/StatPage";
 import { TimelinePage } from "./pages/design-system/TimelinePage";
+import { SliderPage } from "./pages/design-system/SliderPage";
+import { PinInputPage } from "./pages/design-system/PinInputPage";
+import { InputGroupPage } from "./pages/design-system/InputGroupPage";
 
 function ColorModeToggle() {
   const { theme, setTheme } = useTheme();
@@ -211,6 +214,9 @@ function App() {
           <Route path="qr-code" element={<QrCodePage />} />
           <Route path="stat" element={<StatPage />} />
           <Route path="timeline" element={<TimelinePage />} />
+          <Route path="slider" element={<SliderPage />} />
+          <Route path="pin-input" element={<PinInputPage />} />
+          <Route path="input-group" element={<InputGroupPage />} />
         </Route>
             </Routes>
           </Box>

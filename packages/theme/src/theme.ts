@@ -44,11 +44,24 @@ export const gdsTheme = defineConfig({
               borderWidth: "1px",
               borderColor: "border",
               focusVisibleRing: "inside",
-              focusRingColor: "var(--focus-color)",
+              focusRingColor: "focusRing",
             },
           },
         },
       },
+      textarea: {
+        variants: {
+          variant: {
+            outline: {
+              bg: "bg.default",
+              borderWidth: "1px",
+              borderColor: "border",
+              focusVisibleRing: "inside",
+              focusRingColor: "focusRing",
+            },
+          },
+        },
+      } as never,
       nativeSelect: {
         variants: {
           variant: {
@@ -58,7 +71,7 @@ export const gdsTheme = defineConfig({
                 borderWidth: "1px",
                 borderColor: "border",
                 focusVisibleRing: "inside",
-                "--focus-color": "colors.colorPalette.focusRing",
+                "--focus-color": "focusRing",
               },
             },
           },

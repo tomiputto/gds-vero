@@ -1,11 +1,21 @@
 import {
+  AbsoluteCenter,
+  AspectRatio,
+  Bleed,
   Box,
+  Center,
+  Container,
   Flex,
   Heading,
   HStack,
   SimpleGrid,
+  Spacer,
+  Square,
+  Stack,
+  Sticky,
   Text,
   VStack,
+  Wrap,
 } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
@@ -87,6 +97,210 @@ export function LayoutPage() {
             </Flex>
           ))}
         </SimpleGrid>
+      </Section>
+
+      <Section
+        title="Center & AbsoluteCenter"
+        description="Center content in its container or both vertically and horizontally."
+        code={`import { Box, Center, AbsoluteCenter, Text } from "@chakra-ui/react";
+
+// Center within a box
+<Center h="40" bg="bg.muted" borderRadius="md">
+  <Text>Centered content</Text>
+</Center>
+
+// AbsoluteCenter within a relative container
+<Box position="relative" h="40" bg="bg.muted" borderRadius="md">
+  <AbsoluteCenter>
+    <Text>AbsoluteCenter</Text>
+  </AbsoluteCenter>
+</Box>`}
+      >
+        <Stack gap="4">
+          <Center h="40" bg="bg.muted" borderRadius="md">
+            <Text>Centered content</Text>
+          </Center>
+          <Box position="relative" h="40" bg="bg.muted" borderRadius="md">
+            <AbsoluteCenter>
+              <Text>AbsoluteCenter</Text>
+            </AbsoluteCenter>
+          </Box>
+        </Stack>
+      </Section>
+
+      <Section
+        title="Container"
+        description="Constrain content to a readable width and center it on the page."
+        code={`import { Box, Container, Heading, Text } from "@chakra-ui/react";
+
+<Box bg="bg.muted" py="8">
+  <Container maxW="2xl">
+    <Heading size="lg" mb="2">
+      Page section title
+    </Heading>
+    <Text color="fg.muted">
+      Use Container to keep long-form content at a comfortable line length.
+    </Text>
+  </Container>
+</Box>`}
+      >
+        <Box bg="bg.muted" py="8" borderRadius="md">
+          <Container maxW="2xl">
+            <Heading size="lg" mb="2">
+              Page section title
+            </Heading>
+            <Text color="fg.muted">
+              Use Container to keep long-form content at a comfortable line length.
+            </Text>
+          </Container>
+        </Box>
+      </Section>
+
+      <Section
+        title="Stack"
+        description="One-dimensional stack with responsive direction."
+        code={`import { Box, Stack, Text } from "@chakra-ui/react";
+
+<Stack
+  direction={{ base: "column", md: "row" }}
+  gap="4"
+  align="stretch"
+>
+  <Box flex="1" bg="bg.muted" borderRadius="md" p="4">
+    <Text>Column 1</Text>
+  </Box>
+  <Box flex="1" bg="bg.muted" borderRadius="md" p="4">
+    <Text>Column 2</Text>
+  </Box>
+</Stack>`}
+      >
+        <Stack
+          direction={{ base: "column", md: "row" }}
+          gap="4"
+          align="stretch"
+        >
+          <Box flex="1" bg="bg.muted" borderRadius="md" p="4">
+            <Text>Column 1</Text>
+          </Box>
+          <Box flex="1" bg="bg.muted" borderRadius="md" p="4">
+            <Text>Column 2</Text>
+          </Box>
+        </Stack>
+      </Section>
+
+      <Section
+        title="Wrap & Square"
+        description="Wrap items automatically to the next line and keep them square."
+        code={`import { Square, Text, Wrap } from "@chakra-ui/react";
+
+<Wrap gap="3">
+  {["A", "B", "C", "D", "E", "F"].map((label) => (
+    <Square
+      key={label}
+      size="16"
+      bg="bg.muted"
+      borderRadius="lg"
+    >
+      <Text>{label}</Text>
+    </Square>
+  ))}
+</Wrap>`}
+      >
+        <Wrap gap="3">
+          {["A", "B", "C", "D", "E", "F"].map((label) => (
+            <Square
+              key={label}
+              size="16"
+              bg="bg.muted"
+              borderRadius="lg"
+            >
+              <Text>{label}</Text>
+            </Square>
+          ))}
+        </Wrap>
+      </Section>
+
+      <Section
+        title="Spacer"
+        description="Distribute remaining space between elements."
+        code={`import { Box, HStack, Spacer, Text } from "@chakra-ui/react";
+
+<Box bg="bg.muted" p="4" borderRadius="md">
+  <HStack>
+    <Text>Brand</Text>
+    <Spacer />
+    <Text>Docs</Text>
+    <Text>Blog</Text>
+    <Text>Contact</Text>
+  </HStack>
+</Box>`}
+      >
+        <Box bg="bg.muted" p="4" borderRadius="md">
+          <HStack>
+            <Text>Brand</Text>
+            <Spacer />
+            <Text>Docs</Text>
+            <Text>Blog</Text>
+            <Text>Contact</Text>
+          </HStack>
+        </Box>
+      </Section>
+
+      <Section
+        title="AspectRatio"
+        description="Maintain a fixed aspect ratio for media and embeds."
+        code={`import { AspectRatio, Box } from "@chakra-ui/react";
+
+<AspectRatio ratio={16 / 9} maxW="xl">
+  <Box bg="bg.muted" borderRadius="md" />
+</AspectRatio>`}
+      >
+        <AspectRatio ratio={16 / 9} maxW="xl">
+          <Box bg="bg.muted" borderRadius="md" />
+        </AspectRatio>
+      </Section>
+
+      <Section
+        title="Bleed & Sticky"
+        description="Let content extend outside its padding or stick to the viewport while scrolling."
+        code={`import { Bleed, Box, Sticky, Text } from "@chakra-ui/react";
+
+// Bleed a section edge-to-edge inside a padded container
+<Box px="6" py="4" bg="bg.muted" borderRadius="md">
+  <Bleed mx="-6">
+    <Box bg="bg.emphasized" p="4">
+      <Text>Bleed section</Text>
+    </Box>
+  </Bleed>
+</Box>
+
+// Sticky sidebar
+<Box display="flex" gap="6" alignItems="flex-start">
+  <Sticky top="20">
+    <Box w="56" p="4" bg="bg.muted" borderRadius="md">
+      <Text>Sticky sidebar</Text>
+    </Box>
+  </Sticky>
+  <Box flex="1" h="64" bg="bg.subtle" borderRadius="md" />
+</Box>`}
+      >
+        <Stack gap="6">
+          <Box px="6" py="4" bg="bg.muted" borderRadius="md">
+            <Bleed mx="-6">
+              <Box bg="bg.emphasized" p="4">
+                <Text>Bleed section</Text>
+              </Box>
+            </Bleed>
+          </Box>
+          <Box display="flex" gap="6" alignItems="flex-start">
+            <Sticky top="20">
+              <Box w="56" p="4" bg="bg.muted" borderRadius="md">
+                <Text>Sticky sidebar</Text>
+              </Box>
+            </Sticky>
+            <Box flex="1" h="64" bg="bg.subtle" borderRadius="md" />
+          </Box>
+        </Stack>
       </Section>
 
       <AccessibilityGuidance

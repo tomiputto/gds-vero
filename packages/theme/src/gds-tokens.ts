@@ -31,6 +31,18 @@ function flatToNestedTokens(flat: FlatColors): Record<string, unknown> {
  */
 const nested = flatToNestedTokens(gdsColors as FlatColors) as any;
 
+function ensureColorToken(path: string, valueRef: string) {
+  const parts = path.split(".");
+  let current = nested;
+  for (let i = 0; i < parts.length - 1; i++) {
+    const part = parts[i];
+    current[part] ??= {};
+    current = current[part];
+  }
+  const last = parts[parts.length - 1];
+  current[last] ??= { value: valueRef };
+}
+
 /**
  * Chakra v3 `colorPalette="brand"` requires a palette scale at:
  * theme.tokens.colors.brand.{50..900} (plus optional focusRing).
@@ -40,19 +52,30 @@ const nested = flatToNestedTokens(gdsColors as FlatColors) as any;
  * but not a 50..900 scale. We create one here as an adapter.
  */
 nested.brand ??= {};
-nested.brand["50"] = { value: "{colors.brand.primary.subtle}" };
-nested.brand["100"] = { value: "{colors.brand.primary.muted}" };
-nested.brand["200"] = { value: "{colors.brand.primary.muted}" };
-nested.brand["300"] = { value: "{colors.brand.primary.base}" };
-nested.brand["400"] = { value: "{colors.brand.primary.base}" };
-nested.brand["500"] = { value: "{colors.brand.primary.base}" };
-nested.brand["600"] = { value: "{colors.brand.primary.hover}" };
-nested.brand["700"] = { value: "{colors.brand.primary.active}" };
-nested.brand["800"] = { value: "{colors.brand.primary.active}" };
-nested.brand["900"] = { value: "{colors.brand.primary.active}" };
+// If dark-mode brand tokens are not provided, fall back to light tokens.
+ensureColorToken("brand.primary.base_dark", "{colors.brand.primary.base}");
+ensureColorToken("brand.primary.hover_dark", "{colors.brand.primary.hover}");
+ensureColorToken("brand.primary.active_dark", "{colors.brand.primary.active}");
+ensureColorToken("brand.primary.subtle_dark", "{colors.brand.primary.subtle}");
+ensureColorToken("brand.primary.muted_dark", "{colors.brand.primary.muted}");
+ensureColorToken("brand.primary.onPrimary_dark", "{colors.brand.primary.onPrimary}");
+ensureColorToken("brand.primary.bg_dark", "{colors.brand.primary.bg}");
+ensureColorToken("brand.primary.focusRing_dark", "{colors.brand.primary.focusRing}");
+
+// Palette scale uses light/dark variants when available.
+nested.brand["50"] = { value: { _light: "{colors.brand.primary.subtle}", _dark: "{colors.brand.primary.subtle_dark}" } };
+nested.brand["100"] = { value: { _light: "{colors.brand.primary.muted}", _dark: "{colors.brand.primary.muted_dark}" } };
+nested.brand["200"] = { value: { _light: "{colors.brand.primary.muted}", _dark: "{colors.brand.primary.muted_dark}" } };
+nested.brand["300"] = { value: { _light: "{colors.brand.primary.base}", _dark: "{colors.brand.primary.base_dark}" } };
+nested.brand["400"] = { value: { _light: "{colors.brand.primary.base}", _dark: "{colors.brand.primary.base_dark}" } };
+nested.brand["500"] = { value: { _light: "{colors.brand.primary.base}", _dark: "{colors.brand.primary.base_dark}" } };
+nested.brand["600"] = { value: { _light: "{colors.brand.primary.hover}", _dark: "{colors.brand.primary.hover_dark}" } };
+nested.brand["700"] = { value: { _light: "{colors.brand.primary.active}", _dark: "{colors.brand.primary.active_dark}" } };
+nested.brand["800"] = { value: { _light: "{colors.brand.primary.active}", _dark: "{colors.brand.primary.active_dark}" } };
+nested.brand["900"] = { value: { _light: "{colors.brand.primary.active}", _dark: "{colors.brand.primary.active_dark}" } };
 
 // Helps recipes that read colors.colorPalette.focusRing
-nested.brand["focusRing"] = { value: "{colors.brand.primary.focusRing}" };
+nested.brand["focusRing"] = { value: { _light: "{colors.brand.primary.focusRing}", _dark: "{colors.brand.primary.focusRing_dark}" } };
 
 export const gdsColorTokens = nested as never;
 
@@ -102,17 +125,17 @@ export const gdsSemanticColors = {
     info: { value: "{colors.border.info}" },
   },
   focusRing: {
-    value: "{colors.brand.primary.focusRing}",
+    value: { _light: "{colors.brand.primary.focusRing}", _dark: "{colors.brand.primary.focusRing_dark}" },
   },
   // Brand palette for components (Button, Badge, etc.) — maps to GDS brand/primary
   brand: {
-    solid: { value: "{colors.brand.primary.base}" },
-    contrast: { value: "{colors.brand.primary.onPrimary}" },
-    fg: { value: "{colors.brand.primary.base}" },
-    muted: { value: "{colors.brand.primary.muted}" },
-    subtle: { value: "{colors.brand.primary.subtle}" },
-    emphasized: { value: "{colors.brand.primary.hover}" },
-    focusRing: { value: "{colors.brand.primary.focusRing}" },
-    border: { value: "{colors.brand.primary.base}" },
+    solid: { value: { _light: "{colors.brand.primary.base}", _dark: "{colors.brand.primary.base_dark}" } },
+    contrast: { value: { _light: "{colors.brand.primary.onPrimary}", _dark: "{colors.brand.primary.onPrimary_dark}" } },
+    fg: { value: { _light: "{colors.brand.primary.base}", _dark: "{colors.brand.primary.base_dark}" } },
+    muted: { value: { _light: "{colors.brand.primary.muted}", _dark: "{colors.brand.primary.muted_dark}" } },
+    subtle: { value: { _light: "{colors.brand.primary.subtle}", _dark: "{colors.brand.primary.subtle_dark}" } },
+    emphasized: { value: { _light: "{colors.brand.primary.hover}", _dark: "{colors.brand.primary.hover_dark}" } },
+    focusRing: { value: { _light: "{colors.brand.primary.focusRing}", _dark: "{colors.brand.primary.focusRing_dark}" } },
+    border: { value: { _light: "{colors.brand.primary.base}", _dark: "{colors.brand.primary.base_dark}" } },
   },
 } as const;

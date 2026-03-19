@@ -35,23 +35,35 @@ export function TooltipPage() {
   </Tooltip.Positioner>
 </Tooltip.Root>`}
       >
-        <Tooltip.Root>
+        <Tooltip.Root portalled={false}>
           <Tooltip.Trigger asChild>
             <Button variant="outline" size="sm" colorPalette="brand">
               Hover me
             </Button>
           </Tooltip.Trigger>
           <Tooltip.Positioner>
-            <Tooltip.Content
-              bg="bg.inverted"
-              color="fg.inverted"
-              px="2"
-              py="1.5"
-              borderRadius="md"
-              fontSize="sm"
-              boxShadow="md"
-            >
-              Helpful hint here.
+            <Tooltip.Content asChild>
+              <Box
+                px="2"
+                py="1.5"
+                borderRadius="md"
+                fontSize="sm"
+                boxShadow="md"
+                zIndex="tooltip"
+                style={{
+                  backgroundColor: "var(--chakra-colors-bg-inverted, #111111)",
+                  color: "var(--chakra-colors-fg-inverted, #ffffff)",
+                }}
+              >
+                <Tooltip.Arrow>
+                  <Tooltip.ArrowTip
+                    style={{
+                      fill: "var(--chakra-colors-bg-inverted, #111111)",
+                    }}
+                  />
+                </Tooltip.Arrow>
+                Helpful hint here.
+              </Box>
             </Tooltip.Content>
           </Tooltip.Positioner>
         </Tooltip.Root>

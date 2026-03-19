@@ -1,4 +1,5 @@
 import { Box, Carousel, Heading, IconButton, Text, VStack } from "@chakra-ui/react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 
@@ -33,11 +34,15 @@ export function CarouselPage() {
   </Carousel.ItemGroup>
   <Carousel.Control justifyContent="center" gap="4">
     <Carousel.PrevTrigger asChild>
-      <IconButton size="sm" variant="outline" aria-label="Previous" colorPalette="brand" bg="bg.panel" borderColor="border.emphasized" />
+      <IconButton size="sm" variant="outline" aria-label="Previous" colorPalette="brand" bg="bg.panel" borderColor="border.emphasized">
+        <ChevronLeftIcon />
+      </IconButton>
     </Carousel.PrevTrigger>
     <Carousel.Indicators />
     <Carousel.NextTrigger asChild>
-      <IconButton size="sm" variant="outline" aria-label="Next" colorPalette="brand" bg="bg.panel" borderColor="border.emphasized" />
+      <IconButton size="sm" variant="outline" aria-label="Next" colorPalette="brand" bg="bg.panel" borderColor="border.emphasized">
+        <ChevronRightIcon />
+      </IconButton>
     </Carousel.NextTrigger>
   </Carousel.Control>
 </Carousel.Root>`}
@@ -63,11 +68,15 @@ export function CarouselPage() {
           </Carousel.ItemGroup>
           <Carousel.Control justifyContent="center" gap="4" mt="2">
             <Carousel.PrevTrigger asChild>
-              <IconButton size="sm" variant="outline" aria-label="Previous" colorPalette="brand" bg="bg.panel" borderColor="border.emphasized" />
+              <IconButton size="sm" variant="outline" aria-label="Previous" colorPalette="brand" bg="bg.panel" borderColor="border.emphasized">
+                <ChevronLeftIcon />
+              </IconButton>
             </Carousel.PrevTrigger>
             <Carousel.Indicators />
             <Carousel.NextTrigger asChild>
-              <IconButton size="sm" variant="outline" aria-label="Next" colorPalette="brand" bg="bg.panel" borderColor="border.emphasized" />
+              <IconButton size="sm" variant="outline" aria-label="Next" colorPalette="brand" bg="bg.panel" borderColor="border.emphasized">
+                <ChevronRightIcon />
+              </IconButton>
             </Carousel.NextTrigger>
           </Carousel.Control>
         </Carousel.Root>

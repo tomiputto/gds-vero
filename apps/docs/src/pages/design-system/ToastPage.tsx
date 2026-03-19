@@ -32,10 +32,22 @@ const toaster = createToaster({ placement: "top-end" });
         <VStack align="stretch" gap="2">
           <Toaster toaster={toaster}>
             {(toast) => (
-              <>
+              <Box
+                bg="bg.panel"
+                borderWidth="1px"
+                borderColor="border.emphasized"
+                borderRadius="lg"
+                px="4"
+                py="3"
+                boxShadow="md"
+              >
                 {toast.title && <Box fontWeight="medium">{toast.title}</Box>}
-                {toast.description && <Text fontSize="sm" color="fg.muted">{toast.description}</Text>}
-              </>
+                {toast.description && (
+                  <Text fontSize="sm" color="fg.muted" mt={toast.title ? 1 : 0}>
+                    {toast.description}
+                  </Text>
+                )}
+              </Box>
             )}
           </Toaster>
           <Button

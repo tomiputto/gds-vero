@@ -1,4 +1,5 @@
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import * as GdsIcons from "@gdesignsystem/icons";
 import { Section } from "../../components/Section";
 
 export function IconsPage() {
@@ -17,20 +18,48 @@ export function IconsPage() {
 
       <Section
         title="Icon usage"
-        description="Use @gdesignsystem/icons with Figma color tokens. Sizes: sm (4), md (5), lg (6)."
-        code={`import { CheckIcon, StarIcon } from "@gdesignsystem/icons";
+        description="All icons from @gdesignsystem/icons. Use Figma token colors for styling."
+        code={`import * as Icons from "@gdesignsystem/icons";
 
-<CheckIcon color="fg" boxSize="6" />
-<StarIcon color="fg.muted" boxSize="5" />
-<CheckIcon color="brand.fg" boxSize="4" />`}
+<SimpleGrid columns={{ base: 3, md: 6, lg: 8 }} gap="4">
+  {Object.entries(Icons).map(([name, Icon]) => (
+    <Icon key={name} boxSize="6" />
+  ))}
+</SimpleGrid>`}
       >
-        <Text color="fg.muted" fontSize="sm">
+        <Text color="fg.muted" fontSize="sm" mb="4">
           Use <code>@gdesignsystem/icons</code> in components; set <code>color</code> to
           Figma tokens (e.g. <code>fg</code>, <code>fg.muted</code>,{" "}
           <code>brand.fg</code>, <code>fg.success</code>) so icon colors match
-          the design system. See the Icon component page for live examples and
-          Button usage.
+          the design system.
         </Text>
+        <SimpleGrid columns={{ base: 3, md: 6, lg: 8 }} gap="4">
+          {Object.entries(GdsIcons)
+            .filter(([, value]) => typeof value === "function")
+            .map(([name, Icon]) => (
+              <VStack
+                key={name}
+                spacing="1"
+                align="center"
+                fontSize="xs"
+                minW={0}
+              >
+                <Box
+                  bg="bg.panel"
+                  borderWidth="1px"
+                  borderColor="border.muted"
+                  borderRadius="md"
+                  p="3"
+                >
+                  {/* eslint-disable-next-line react/jsx-pascal-case */}
+                  <Icon color="fg" boxSize="6" />
+                </Box>
+                <Text color="fg.muted" noOfLines={1} wordBreak="break-all">
+                  {name}
+                </Text>
+              </VStack>
+            ))}
+        </SimpleGrid>
       </Section>
     </VStack>
   );
