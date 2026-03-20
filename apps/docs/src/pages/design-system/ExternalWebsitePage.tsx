@@ -5,7 +5,7 @@ export function ExternalWebsitePage() {
   return (
     <VStack align="stretch" gap="10">
       <Box>
-        <Heading size="xl" mb="2">
+        <Heading size="3xl" mb="2">
           Using GDS outside the repo
         </Heading>
         <Text color="fg.muted">

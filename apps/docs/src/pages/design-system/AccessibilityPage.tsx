@@ -5,7 +5,7 @@ export function AccessibilityPage() {
   return (
     <VStack align="stretch" gap="10">
       <Box>
-        <Heading size="2xl" mb="2">
+        <Heading size="3xl" mb="2">
           Accessibility
         </Heading>
         <Text color="fg.muted" fontSize="lg">

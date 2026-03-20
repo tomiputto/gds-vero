@@ -8,7 +8,7 @@ export function RadiusPage() {
   return (
     <VStack align="stretch" gap="10">
       <Box>
-        <Heading size="xl" mb="2">
+        <Heading size="3xl" mb="2">
           Radius
         </Heading>
         <Text color="fg.muted">

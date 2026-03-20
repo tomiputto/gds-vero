@@ -6,7 +6,7 @@ export function SegmentGroupPage() {
   return (
     <VStack align="stretch" gap="10">
       <Box>
-        <Heading size="xl" mb="2">
+        <Heading size="3xl" mb="2">
           Segment Group
         </Heading>
         <Text color="fg.muted">

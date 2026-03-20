@@ -27,7 +27,7 @@ export function ChakraV3ApiPage() {
   return (
     <VStack align="stretch" gap="10">
       <Box>
-        <Heading size="xl" mb="2">
+        <Heading size="3xl" mb="2">
           Chakra v3 API
         </Heading>
         <Text color="fg.muted">

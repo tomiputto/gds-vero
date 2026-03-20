@@ -112,7 +112,7 @@ function NavLinks({
               <Text
                 fontWeight="bold"
                 fontSize="xs"
-                color="black"
+                color={{ _light: "black", _dark: "white" }}
                 textTransform="uppercase"
                 letterSpacing="widest"
                 mt={section === "Guides" ? "0" : "4"}
@@ -129,7 +129,7 @@ function NavLinks({
               <Text
                 fontWeight="semibold"
                 fontSize="xs"
-                color="black"
+                color={{ _light: "black", _dark: "white" }}
                 mt={previousGroup == null ? "2" : "4"}
                 mb="1"
                 px="2"

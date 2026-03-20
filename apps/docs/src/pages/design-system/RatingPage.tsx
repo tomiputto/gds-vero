@@ -7,7 +7,7 @@ export function RatingPage() {
   return (
     <VStack align="stretch" gap="10">
       <Box>
-        <Heading size="xl" mb="2">
+        <Heading size="3xl" mb="2">
           Rating
         </Heading>
         <Text color="fg.muted">

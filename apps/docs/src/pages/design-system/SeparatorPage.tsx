@@ -6,7 +6,7 @@ export function SeparatorPage() {
   return (
     <VStack align="stretch" gap="10">
       <Box>
-        <Heading size="xl" mb="2">
+        <Heading size="3xl" mb="2">
           Separator
         </Heading>
         <Text color="fg.muted">

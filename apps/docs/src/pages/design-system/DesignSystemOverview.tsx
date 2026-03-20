@@ -5,12 +5,13 @@ export function DesignSystemOverview() {
   return (
     <VStack align="stretch" gap="10">
       <Box>
-        <Heading size="2xl" mb="2">
+        <Heading size="3xl" mb="2">
           GDS Design System
         </Heading>
         <Text color="fg.muted" fontSize="lg">
           GDS is a React-based design system built on Chakra UI v3 with GDS theme and
-          tokens. Use brand primary colors and semantic tokens out of the box.
+          tokens controlled in Figma. Use brand primary colors and semantic tokens out of
+          the box.
         </Text>
       </Box>
 
@@ -19,7 +20,8 @@ export function DesignSystemOverview() {
           Get started
         </Heading>
         <Text color="fg.muted" mb="4">
-          GDS is a monorepo with <Code>@gdesignsystem/react</Code>, <Code>@gdesignsystem/theme</Code>, and <Code>@gdesignsystem/tokens</Code>. In your app, use the React package and wrap the tree with the provider.
+          GDS is a React-based design system monorepo with <Code>@gdesignsystem/react</Code>, <Code>@gdesignsystem/theme</Code>, and{" "}
+          <Code>@gdesignsystem/tokens</Code>. Optionally install <Code>@gdesignsystem/icons</Code> when you need GDS icon components.
         </Text>
 
         <Heading size="md" mb="2" mt="6">
@@ -42,12 +44,14 @@ export function DesignSystemOverview() {
         >
 {`"dependencies": {
   "@gdesignsystem/react": "workspace:*",
+  "@gdesignsystem/icons": "workspace:*",
   "@gdesignsystem/theme": "workspace:*",
   "@gdesignsystem/tokens": "workspace:*"
 }`}
         </Box>
         <Text color="fg.muted" mt="2" textStyle="sm">
-          Or install from npm when published: <Code>pnpm add @gdesignsystem/react</Code>
+          Or install from npm when published:{" "}
+          <Code>pnpm add @gdesignsystem/react @gdesignsystem/icons</Code>
         </Text>
 
         <Heading size="md" mb="2" mt="6">
