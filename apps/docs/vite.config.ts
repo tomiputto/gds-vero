@@ -15,7 +15,6 @@ function gdsTokensPlugin() {
     enforce: "pre" as const,
     resolveId(id: string) {
       if (id === TOKENS_PKG_ID) {
-        console.log("[gds-tokens] resolveId intercepted:", id);
         return TOKENS_VIRTUAL_ID;
       }
       return null;
@@ -24,8 +23,6 @@ function gdsTokensPlugin() {
       if (id !== TOKENS_VIRTUAL_ID) return null;
       const raw = readFileSync(tokensPath, "utf-8");
       const json = JSON.parse(raw) as { typography?: { "fonts/body"?: string } };
-      const bodyFont = json.typography?.["fonts/body"];
-      console.log("[gds-tokens] loaded tokens.raw.json → fonts/body:", bodyFont ?? "(none)");
       return `export default ${JSON.stringify(json)}`;
     },
     configureServer(server: import("vite").ViteDevServer) {
