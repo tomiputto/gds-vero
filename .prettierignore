@@ -1,0 +1,17 @@
+node_modules
+dist
+.tmp
+.vite
+.turbo
+.next
+.svelte-kit
+
+# Locks (avoid churn)
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Generated/build outputs
+**/dist
+**/.vite
+

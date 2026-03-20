@@ -8,11 +8,16 @@
     "lint": "pnpm -r lint",
     "test": "vitest run",
     "test:unit": "vitest run",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "gds:tokens:sync": "node scripts/figma-mcp-to-tokens-raw.mjs",
     "gds:tokens:sync:from-mcp": "node scripts/figma-sync-with-mcp.mjs .tmp/figma.mcp_latest.json",
     "gds:icons:generate": "node scripts/svg-to-gds-icons.mjs"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
+    "prettier": "^3.8.1",
     "tsx": "^4.21.0",
     "vitest": "^4.1.0"
   },
@@ -22,6 +27,12 @@
       "react-dom": "^19.2.0"
     }
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md,css,scss,yml,yaml}": [
+      "prettier --write"
+    ]
+  },
+  "prepare": "husky install",
   "license": "MIT",
   "repository": {
     "type": "git",
