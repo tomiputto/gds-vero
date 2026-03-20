@@ -1,0 +1,30 @@
+{
+  "name": "@gdesignsystem/create-app",
+  "version": "0.1.0",
+  "description": "Create a new React app and add GDS (Gofore Design System) with one command",
+  "type": "module",
+  "bin": {
+    "create-gds-app": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "template"
+  ],
+  "keywords": [
+    "gds",
+    "gdesignsystem",
+    "create-app",
+    "scaffold",
+    "react",
+    "vite",
+    "design-system"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renegademaster-droid/GDS.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

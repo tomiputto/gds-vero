@@ -135,6 +135,10 @@ importers:
         specifier: ^7.3.1
         version: 7.3.1(@types/node@24.10.13)(tsx@4.21.0)(yaml@2.8.2)
 
+  packages/create-app: {}
+
+  packages/create-gds-app: {}
+
   packages/icons:
     dependencies:
       '@chakra-ui/react':
