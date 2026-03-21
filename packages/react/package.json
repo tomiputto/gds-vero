@@ -34,5 +34,9 @@
     "design-system",
     "provider"
   ],
-  "homepage": "https://renegademaster-droid.github.io/GDS/"
+  "homepage": "https://renegademaster-droid.github.io/GDS/",
+  "files": [
+    "src",
+    "GDS_FOR_LLM_AGENTS.md"
+  ]
 }
