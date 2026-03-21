@@ -4,7 +4,7 @@ A design system built on **Chakra UI v3** with GDS theme and Figma tokens. Use b
 
 **MIT licensed** — you can download, use, and build websites and apps with GDS in your own projects.
 
-**Building with an AI agent (Cursor, Claude, Copilot, ChatGPT, etc.)?** Follow [GDS for LLM agents](GDS_FOR_LLM_AGENTS.md) — also see [AGENTS.md](AGENTS.md) for how assistants should load those rules in this repo.
+**Building with an AI agent (Cursor, Claude, Copilot, ChatGPT, etc.)?** Follow [GDS for LLM agents](GDS_FOR_LLM_AGENTS.md) — also see [AGENTS.md](AGENTS.md). If you use GDS **from npm**, the same guide ships in the package at `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`; add a project rule that points your agent at that file (copy-paste example in the doc).
 
 **Arkkitehtuurikuvaus (suomeksi):** [GDS:n arkkitehtuuri](GDS_ARKKITEHTUURI.md).  
 **Architecture (English):** [GDS architecture](GDS_ARCHITECTURE.md).

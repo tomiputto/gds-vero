@@ -50,6 +50,18 @@ pnpm add @gdesignsystem/react @gdesignsystem/theme @gdesignsystem/icons @chakra-
 
 (Use `npm` or `yarn` if the user’s project uses those; the package names stay the same.)
 
+### After install: make agents follow this file (npm / pnpm / yarn)
+
+The same guide is **published inside** `@gdesignsystem/react`. After install you have:
+
+`node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`
+
+Agents do **not** read it automatically. Add a **project rule** (Cursor, Claude Code, or your editor’s equivalent) so every UI task uses it. Example text to paste:
+
+> **GDS / Chakra UI:** For any React UI in this project, follow the canonical rules in **`node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`** (Chakra v3 only, correct imports from `@gdesignsystem/react` vs `@chakra-ui/react` vs `@gdesignsystem/icons`, semantic tokens). If that path is missing, run install and ensure `@gdesignsystem/react` is a dependency.
+
+You can copy that file into your repo (e.g. `docs/GDS_FOR_LLM_AGENTS.md`) and point the rule there instead, if you prefer a stable path without `node_modules`.
+
 ---
 
 ## Minimal app setup

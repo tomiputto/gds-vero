@@ -13,6 +13,14 @@ That file is the **single source of truth** for:
 
 **Before** generating or editing React/UI code here, use `GDS_FOR_LLM_AGENTS.md` as mandatory context. Shorter summaries in `CLAUDE.md`, `.cursor/GDS_CHAKRA_V3_PROMPT.txt`, or other snippets **do not** replace it.
 
+## Projects that install GDS from npm (not this monorepo)
+
+The guide is bundled with **`@gdesignsystem/react`** at:
+
+`node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`
+
+Configure your assistant with a rule that **requires** following that file for all GDS UI work (see the copy-paste block under **“After install: make agents follow this file”** in `GDS_FOR_LLM_AGENTS.md`).
+
 ## Repo-specific pointers
 
 - **`CLAUDE.md`** — monorepo layout and package roles (supplementary only).
