@@ -90,20 +90,20 @@ function NavLinks({
   location: ReturnType<typeof useLocation>;
   onNavigate?: () => void;
 }) {
-  let lastSection: string | undefined;
-  let lastGroup: string | undefined;
   return (
     <VStack align="stretch" gap="0">
-      {NAV_ITEMS.map(({ path, label, section, group }) => {
-        const showSection = section != null && section !== lastSection;
-        if (showSection) lastSection = section;
-        if (showSection) lastGroup = undefined;
-        const previousGroup = lastGroup;
+      {NAV_ITEMS.map(({ path, label, section, group }, idx) => {
+        const prev = NAV_ITEMS[idx - 1];
+
+        const showSection = section != null && section !== prev?.section;
+
+        const previousGroup =
+          section === "Components" && prev?.section === "Components" ? prev?.group : undefined;
+
         const showGroup =
           section === "Components" &&
           group != null &&
-          (group !== previousGroup || showSection);
-        if (showGroup) lastGroup = group;
+          group !== previousGroup;
         const isActive =
           path === "/" ? location.pathname === "/" : location.pathname === path;
         return (
@@ -187,6 +187,7 @@ export function DesignSystemLayout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setDrawerOpen(false);
   }, [location.pathname]);
 
