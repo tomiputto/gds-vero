@@ -1,3 +1,4 @@
+import React from "react";
 import { Heading, type HeadingProps } from "@chakra-ui/react";
 
 export type GDSHeadingProps = HeadingProps;
