@@ -21,6 +21,63 @@ export function AccessibilityPage() {
           This design system is built to support WCAG 2.1 Level AA. GDS components provide keyboard support, focus management, and ARIA where needed. Apply the guidance below so your implementation stays accessible.
         </Text>
 
+        <Heading size="md" mb="2">
+          WCAG AA targets (verify these)
+        </Heading>
+        <List.Root as="ul" gap="2" color="fg.muted" textStyle="sm" mb="6">
+          <List.Item>Contrast: normal text ≥ 4.5:1 and large text ≥ 3:1.</List.Item>
+          <List.Item>Non-text content: icons/images that convey meaning have a text alternative.</List.Item>
+          <List.Item>Keyboard: all actions work with Tab / Shift+Tab / Enter / Space.</List.Item>
+          <List.Item>Focus visible: focus indicator must be clearly visible (≥ 3:1).</List.Item>
+          <List.Item>Forms: inputs have labels and errors are announced clearly.</List.Item>
+        </List.Root>
+
+        <Heading size="md" mb="2" mt="8">
+          Icons (WCAG 1.1.1, 1.4.11)
+        </Heading>
+        <Text color="fg.muted" mb="4">
+          Use icons accessibly:
+          <br />
+          • Informative icons need an accessible name (e.g. button label, aria-label, or accompanying text).
+          <br />
+          • Decorative icons should be hidden from assistive tech: use <Code>aria-hidden="true"</Code>.
+        </Text>
+        <CodeBlock
+          code={`// Informative icon: keep an accessible name on the button
+import { Button } from "@chakra-ui/react";
+import { InfoIcon } from "@gdesignsystem/icons";
+
+<Button colorPalette="brand" aria-label="More info">
+  <InfoIcon aria-hidden="true" />
+</Button>
+
+// Decorative icon: hide from assistive tech
+<InfoIcon aria-hidden="true" />`}
+        />
+
+        <Heading size="md" mb="2" mt="8">
+          Forms (WCAG 3.3.1, 3.3.2, 2.4.7)
+        </Heading>
+        <Text color="fg.muted" mb="4">
+          For form accessibility:
+          <br />
+          • Always provide a visible label with <Code>Field.Label</Code> (placeholder is not the only label).
+          <br />
+          • Link validation messages to the field via <Code>Field.ErrorText</Code>.
+          <br />
+          • Ensure focus rings are not removed and remain clearly visible.
+        </Text>
+        <CodeBlock
+          code={`import { Field, Input } from "@chakra-ui/react";
+
+<Field.Root>
+  <Field.Label>Email</Field.Label>
+  <Input type="email" placeholder="you@example.com" />
+  <Field.HelperText>We’ll never share your email.</Field.HelperText>
+  <Field.ErrorText>Enter a valid email address.</Field.ErrorText>
+</Field.Root>`}
+        />
+
         <Heading size="lg" mb="3">
           1. Perceivable
         </Heading>
