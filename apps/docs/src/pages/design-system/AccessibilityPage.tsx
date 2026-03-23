@@ -189,17 +189,26 @@ import { InfoIcon } from "@gdesignsystem/icons";
           Code example
         </Heading>
         <CodeBlock
-          code={`// Accessible form: label + error linked to input
-<Input label="Email" error="Enter a valid email" />
+          code={`import { Alert, Button, Field, Input } from "@chakra-ui/react";
 
-// Accessible button: visible label
-<Button label="Submit" />
+// Accessible form: visible label + helper/error text
+<Field.Root>
+  <Field.Label>Email</Field.Label>
+  <Input type="email" placeholder="you@example.com" />
+  <Field.ErrorText>Enter a valid email.</Field.ErrorText>
+</Field.Root>
 
-// Alert as status message (use role="alert" for critical)
-<Alert status="error" role="alert">
-  <AlertTitle>Error</AlertTitle>
-  <AlertDescription>Please fix the errors below.</AlertDescription>
-</Alert>`}
+// Accessible button: visible text label
+<Button>Submit</Button>
+
+// Alert as status message (critical update)
+<Alert.Root status="error" role="alert">
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title>Error</Alert.Title>
+    <Alert.Description>Please fix the errors below.</Alert.Description>
+  </Alert.Content>
+</Alert.Root>`}
         />
 
         <Heading size="lg" mb="3" mt="8">
