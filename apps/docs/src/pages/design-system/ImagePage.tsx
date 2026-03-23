@@ -20,14 +20,14 @@ export function ImagePage() {
         code={`import { Image } from "@chakra-ui/react";
 
 <Image
-  src="https://renegademaster-droid.github.io/GDS/image"
+  src="https://renegademaster-droid.github.io/GDS/image.svg"
   alt="Placeholder"
   width="200px"
   borderRadius="md"
 />`}
       >
         <Image
-          src="https://renegademaster-droid.github.io/GDS/image"
+          src="https://renegademaster-droid.github.io/GDS/image.svg"
           alt="Placeholder 200x200"
           width="200px"
           borderRadius="md"
