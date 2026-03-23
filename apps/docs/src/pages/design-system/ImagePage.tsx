@@ -3,6 +3,8 @@ import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 import { GDSText as Text } from "@gdesignsystem/react";
 export function ImagePage() {
+  const placeholderSrc = `${import.meta.env.BASE_URL}image.svg`;
+
   return (
     <VStack align="stretch" gap="10">
       <Box>
@@ -20,14 +22,14 @@ export function ImagePage() {
         code={`import { Image } from "@chakra-ui/react";
 
 <Image
-  src="https://renegademaster-droid.github.io/GDS/image.svg"
+  src="${placeholderSrc}"
   alt="Placeholder"
   width="200px"
   borderRadius="md"
 />`}
       >
         <Image
-          src="https://renegademaster-droid.github.io/GDS/image.svg"
+          src={placeholderSrc}
           alt="Placeholder 200x200"
           width="200px"
           borderRadius="md"
