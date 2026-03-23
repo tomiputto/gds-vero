@@ -42,9 +42,22 @@ export function TablePage() {
 <Table.Root size="sm">
   <Table.Header>
     <Table.Row>
-      <Table.ColumnHeader>Product</Table.ColumnHeader>
-      <Table.ColumnHeader>Category</Table.ColumnHeader>
-      <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
+      <Table.ColumnHeader bg="bg.subtle" fontWeight="semibold" color="fg" borderBottomWidth="1px" borderBottomColor="border.muted">
+        Product
+      </Table.ColumnHeader>
+      <Table.ColumnHeader bg="bg.subtle" fontWeight="semibold" color="fg" borderBottomWidth="1px" borderBottomColor="border.muted">
+        Category
+      </Table.ColumnHeader>
+      <Table.ColumnHeader
+        textAlign="end"
+        bg="bg.subtle"
+        fontWeight="semibold"
+        color="fg"
+        borderBottomWidth="1px"
+        borderBottomColor="border.muted"
+      >
+        Price
+      </Table.ColumnHeader>
     </Table.Row>
   </Table.Header>
   <Table.Body>
@@ -61,9 +74,22 @@ export function TablePage() {
         <Table.Root size="sm">
           <Table.Header>
             <Table.Row>
-              <Table.ColumnHeader>Product</Table.ColumnHeader>
-              <Table.ColumnHeader>Category</Table.ColumnHeader>
-              <Table.ColumnHeader textAlign="end">Price</Table.ColumnHeader>
+              <Table.ColumnHeader bg="bg.subtle" fontWeight="semibold" color="fg" borderBottomWidth="1px" borderBottomColor="border.muted">
+                Product
+              </Table.ColumnHeader>
+              <Table.ColumnHeader bg="bg.subtle" fontWeight="semibold" color="fg" borderBottomWidth="1px" borderBottomColor="border.muted">
+                Category
+              </Table.ColumnHeader>
+              <Table.ColumnHeader
+                textAlign="end"
+                bg="bg.subtle"
+                fontWeight="semibold"
+                color="fg"
+                borderBottomWidth="1px"
+                borderBottomColor="border.muted"
+              >
+                Price
+              </Table.ColumnHeader>
             </Table.Row>
           </Table.Header>
           <Table.Body>
