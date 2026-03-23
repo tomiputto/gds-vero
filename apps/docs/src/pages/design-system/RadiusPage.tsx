@@ -31,9 +31,10 @@ export function RadiusPage() {
               <Box
                 w="16"
                 h="10"
-                bg="bg.muted"
+                bg="brand.solid"
+                opacity={0.12}
                 borderWidth="1px"
-                borderColor="border.default"
+                borderColor="border.muted"
                 borderRadius={size === "none" ? "0" : size}
               />
               <Text fontSize="sm" color="fg.muted" fontFamily="mono">
@@ -53,7 +54,7 @@ export function RadiusPage() {
       >
         <Box
           p="6"
-          bg="bg.muted"
+          bg="bg.subtle"
           borderRadius="lg"
           borderWidth="1px"
           borderColor="border.muted"
