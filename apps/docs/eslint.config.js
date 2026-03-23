@@ -5,6 +5,8 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 import { defineConfig, globalIgnores } from 'eslint/config'
 
+import gdsChakraV3Imports from './eslint-rules/gds-chakra-v3-imports.js'
+
 export default defineConfig([
   globalIgnores(['dist']),
   {
@@ -15,6 +17,12 @@ export default defineConfig([
       reactHooks.configs.flat.recommended,
       reactRefresh.configs.vite,
     ],
+    plugins: {
+      gds: gdsChakraV3Imports,
+    },
+    rules: {
+      'gds/gds-chakra-v3-imports': 'error',
+    },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
