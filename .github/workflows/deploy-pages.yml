@@ -39,6 +39,12 @@ jobs:
       - name: "Security: pnpm audit (critical)"
         run: pnpm audit --prod --audit-level=critical
 
+      - name: "Lint: docs (ESLint)"
+        run: pnpm --filter docs lint
+
+      - name: "Test: unit (Vitest)"
+        run: pnpm test:unit
+
       - name: Build docs app
         run: pnpm --filter docs build
         env:
