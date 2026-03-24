@@ -125,7 +125,8 @@ export function DesignSystemOverview() {
           pnpm gds:tokens:sync
         </Box>
         <Text color="fg.muted" mt="2">
-          Note: this script is not available in apps that only install GDS from npm.
+          In projects created with <Code>create @gdesignsystem/app</Code>, the same command syncs into local
+          files under <Code>src/</Code>.
         </Text>
       </Box>
     </VStack>

@@ -1,0 +1,28 @@
+{
+  "name": "@gdesignsystem/cli",
+  "version": "0.1.0",
+  "private": false,
+  "type": "module",
+  "bin": {
+    "gds": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/renegademaster-droid/GDS.git"
+  },
+  "description": "CLI tools for GDS projects (token sync, codegen).",
+  "keywords": [
+    "gds",
+    "gdesignsystem",
+    "cli",
+    "figma",
+    "tokens"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

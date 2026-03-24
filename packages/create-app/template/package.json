@@ -5,11 +5,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gds:tokens:sync": "gds tokens sync"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.0.0",
     "@emotion/react": "^11.0.0",
+    "@gdesignsystem/cli": "^0.1.0",
     "@gdesignsystem/icons": "^0.1.1",
     "@gdesignsystem/react": "^0.1.6",
     "@gdesignsystem/theme": "^0.1.6",

@@ -35,8 +35,8 @@ export function TokensPage() {
           <Text as="ol" listStyleType="decimal" pl="4" gap="2">
             <Text as="li">Change tokens in Figma (e.g. set brand/primary/base to a new color).</Text>
             <Text as="li">Export variable defs from Figma using the Figma MCP: run <Code>get_variable_defs</Code> with the file/frame that has your variables selected, and save the JSON to <Code>.tmp/figma.variable_defs.json</Code> in the repo root.</Text>
-            <Text as="li">Run sync from the <strong>GDS monorepo root</strong>: <Code>pnpm gds:tokens:sync</Code>. This script exists only in this repository and writes <Code>packages/tokens/figma/tokens.raw.json</Code>.</Text>
-            <Text as="li">If you installed GDS from npm in your own app, this script will not exist there. Use the published tokens/theme as-is, or fork/clone the GDS repo and sync tokens there.</Text>
+            <Text as="li">In the <strong>GDS monorepo</strong>, run <Code>pnpm gds:tokens:sync</Code>. This writes <Code>packages/tokens/figma/tokens.raw.json</Code>.</Text>
+            <Text as="li">In a project created with <Code>pnpm create @gdesignsystem/app</Code>, run <Code>pnpm gds:tokens:sync</Code>. This writes <Code>src/gds-tokens.raw.json</Code> and updates <Code>src/gds-theme-sync.generated.ts</Code>.</Text>
             <Text as="li">Restart the dev server so the theme picks up the new tokens. If needed, clear Vite cache: <Code>rm -rf node_modules/.vite</Code> then <Code>pnpm dev</Code>.</Text>
           </Text>
         </VStack>

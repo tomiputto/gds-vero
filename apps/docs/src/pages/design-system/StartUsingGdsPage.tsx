@@ -210,6 +210,28 @@ export function StartUsingGdsPage() {
               your dev server).
             </Text>
           </Section>
+          <Section
+            title="3. Sync Figma tokens in your new app (optional)"
+            description="After exporting get_variable_defs JSON to .tmp/figma.variable_defs.json, run:"
+          >
+            <Box
+              as="pre"
+              p="4"
+              borderRadius="md"
+              bg="bg.subtle"
+              borderWidth="1px"
+              borderColor="border.muted"
+              fontSize="xs"
+              fontFamily="mono"
+              whiteSpace="pre-wrap"
+              overflowX="auto"
+            >
+              {`pnpm gds:tokens:sync`}
+            </Box>
+            <Text mt="3" color="fg.muted" textStyle="sm">
+              This generates local sync files at <Code>src/gds-tokens.raw.json</Code> and <Code>src/gds-theme-sync.generated.ts</Code>.
+            </Text>
+          </Section>
         </>
       )}
     </VStack>
