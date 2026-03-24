@@ -109,7 +109,7 @@ export function DesignSystemOverview() {
           Tokens
         </Heading>
         <Text color="fg.muted" mb="2">
-          Design tokens live in <Code>packages/tokens/figma/tokens.raw.json</Code>. The theme reads colors from that file and exposes semantic tokens (fg, bg, border, brand). To sync from Figma, run:
+          Design tokens live in <Code>packages/tokens/figma/tokens.raw.json</Code>. The theme reads colors from that file and exposes semantic tokens (fg, bg, border, brand). To sync from Figma in the <strong>GDS monorepo</strong>, run:
         </Text>
         <Box
           as="pre"
@@ -124,6 +124,9 @@ export function DesignSystemOverview() {
         >
           pnpm gds:tokens:sync
         </Box>
+        <Text color="fg.muted" mt="2">
+          Note: this script is not available in apps that only install GDS from npm.
+        </Text>
       </Box>
     </VStack>
   );
