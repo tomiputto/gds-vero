@@ -5,6 +5,7 @@ import { GDSText as Text } from "@gdesignsystem/react";
 const NAV_ITEMS: Array<{ path: string; label: string; section?: string; group?: string }> = [
   { path: "/", label: "Overview", section: "Guides" },
   { path: "/guides/start-using-gds", label: "Start using GDS", section: "Guides" },
+  { path: "/guides/sync-design-tokens", label: "Sync design tokens", section: "Guides" },
   { path: "/guides/tokens", label: "Tokens", section: "Guides" },
   { path: "/guides/external-website", label: "Using GDS outside the repo", section: "Guides" },
   { path: "/guides/for-ai-agents", label: "For AI agents", section: "Guides" },

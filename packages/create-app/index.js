@@ -5,6 +5,9 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const createAppPkg = JSON.parse(
+  readFileSync(join(__dirname, "package.json"), "utf-8")
+);
 
 // ── Parse arguments ───────────────────────────────────────────────────────────
 
@@ -58,6 +61,7 @@ const pm = detectPackageManager();
 
 const templateDir = join(__dirname, "template");
 
+console.log(`\n@gdesignsystem/create-app v${createAppPkg.version}`);
 console.log(`\nCreating project "${projectName}"…`);
 mkdirSync(targetDir, { recursive: true });
 cpSync(templateDir, targetDir, { recursive: true });

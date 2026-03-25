@@ -8,6 +8,7 @@ import { Box, Flex, HStack, Theme } from "@chakra-ui/react";
 import { DesignSystemLayout } from "./components/DesignSystemLayout";
 import { DesignSystemOverview } from "./pages/design-system/DesignSystemOverview";
 import { TokensPage } from "./pages/design-system/TokensPage";
+import { SyncDesignTokensPage } from "./pages/design-system/SyncDesignTokensPage";
 import { StartUsingGdsPage } from "./pages/design-system/StartUsingGdsPage";
 import { ExternalWebsitePage } from "./pages/design-system/ExternalWebsitePage";
 import { ChakraV3ApiPage } from "./pages/design-system/ChakraV3ApiPage";
@@ -144,6 +145,7 @@ function App() {
         <Route path="/" element={<DesignSystemLayout />}>
           <Route index element={<DesignSystemOverview />} />
           <Route path="guides/start-using-gds" element={<StartUsingGdsPage />} />
+          <Route path="guides/sync-design-tokens" element={<SyncDesignTokensPage />} />
           <Route path="guides/tokens" element={<TokensPage />} />
           <Route path="guides/external-website" element={<ExternalWebsitePage />} />
           <Route path="guides/for-ai-agents" element={<ForAIAgentsPage />} />

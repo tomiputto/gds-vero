@@ -90,8 +90,6 @@ export function ForAIAgentsPage() {
 {`import { GDSProvider, GDSText as Text } from "@gdesignsystem/react";
 import { Button, Box } from "@chakra-ui/react";
 import { CheckIcon } from "@gdesignsystem/icons";
-
-import { GDSText as Text } from "@gdesignsystem/react";
 function App() {
   return (
     <GDSProvider>

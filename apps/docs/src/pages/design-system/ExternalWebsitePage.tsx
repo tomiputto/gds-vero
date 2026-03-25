@@ -1,6 +1,7 @@
 import { Box, Code, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { GDSText as Text } from "@gdesignsystem/react";
+import { Link } from "react-router-dom";
 export function ExternalWebsitePage() {
   return (
     <VStack align="stretch" gap="10">
@@ -14,7 +15,35 @@ export function ExternalWebsitePage() {
         <Text color="fg.muted" mt="2">
           You don’t need a parent workspace or the same directory. Publish the GDS packages to a package registry (npm, GitHub Packages, etc.) and install them in any project with <Code>pnpm add @gdesignsystem/react @gdesignsystem/theme</Code>—the app can live in any repo or folder. You usually don’t need <Code>@gdesignsystem/tokens</Code> unless the app uses token files or raw token values directly.
         </Text>
+        <Text color="fg.muted" mt="2">
+          If your project was created with <Code>pnpm create @gdesignsystem/app</Code>, you can sync
+          Figma token updates locally with <Code>pnpm gds:tokens:sync</Code>. See{" "}
+          <Link to="/guides/sync-design-tokens">
+            <Code>Sync design tokens</Code>
+          </Link>{" "}
+          for the step-by-step guide.
+        </Text>
       </Box>
+
+      <Section
+        title="Recommended path (outside the monorepo)"
+        description="Use create-app for the easiest setup and token sync workflow."
+      >
+        <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+          <Text>
+            1. Create your app: <Code>pnpm create @gdesignsystem/app my-project</Code>
+          </Text>
+          <Text>
+            2. Export Figma MCP variable defs to <Code>.tmp/figma.variable_defs.json</Code>
+          </Text>
+          <Text>
+            3. Sync tokens: <Code>pnpm gds:tokens:sync</Code>
+          </Text>
+          <Text>
+            4. Start or restart app: <Code>pnpm dev</Code>
+          </Text>
+        </VStack>
+      </Section>
 
       <Section
         title="Option: Parent workspace"
@@ -81,9 +110,9 @@ export function ExternalWebsitePage() {
         description="Quick reference."
       >
         <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
-          <Text>• <strong>No workspace needed:</strong> Publish GDS packages to a registry and <Code>pnpm add @gdesignsystem/react</Code> (etc.) in any project, any repo.</Text>
-          <Text>• <strong>With a workspace:</strong> Keep your site in a sibling folder to <Code>GDS</Code> (e.g. <Code>gds/demo</Code>), add a parent <Code>pnpm-workspace.yaml</Code>, and use <Code>workspace:*</Code> for <Code>@gdesignsystem/react</Code> and <Code>@gdesignsystem/icons</Code>.</Text>
-          <Text>• Run <Code>pnpm install</Code> (from parent if using workspace); run your app from its folder. With a workspace, GDS updates are picked up when the dev server is running.</Text>
+          <Text>• <strong>Best default:</strong> create app with <Code>create @gdesignsystem/app</Code> and use <Code>pnpm gds:tokens:sync</Code> for local token sync.</Text>
+          <Text>• <strong>No workspace needed:</strong> You can still install published GDS packages directly in any project.</Text>
+          <Text>• <strong>With a workspace:</strong> Use <Code>workspace:*</Code> dependencies for live local package development against the GDS repo.</Text>
         </VStack>
       </Section>
     </VStack>

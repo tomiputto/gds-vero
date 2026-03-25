@@ -183,7 +183,7 @@ export function StartUsingGdsPage() {
                 whiteSpace="pre-wrap"
                 overflowX="auto"
               >
-                {`npm create @gdesignsystem/app my-project`}
+                {`npm create @gdesignsystem/app@latest my-project`}
               </Box>
 
               <Text fontWeight="semibold" color="fg">
@@ -201,13 +201,17 @@ export function StartUsingGdsPage() {
                 whiteSpace="pre-wrap"
                 overflowX="auto"
               >
-                {`pnpm create @gdesignsystem/app my-project`}
+                {`pnpm create @gdesignsystem/app@latest my-project`}
               </Box>
             </VStack>
 
             <Text mt="3" color="fg.muted" textStyle="sm">
               After the command finishes, follow the printed “Next steps” (including how to start
               your dev server).
+            </Text>
+            <Text mt="2" color="fg.muted" textStyle="sm">
+              Tip: adding <Code>@latest</Code> helps avoid cached older versions when using{" "}
+              <Code>npm create</Code> / <Code>pnpm create</Code>.
             </Text>
           </Section>
           <Section
