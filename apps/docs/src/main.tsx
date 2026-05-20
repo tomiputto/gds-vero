@@ -85,6 +85,7 @@ import { TimelinePage } from "./pages/design-system/TimelinePage";
 import { SliderPage } from "./pages/design-system/SliderPage";
 import { PinInputPage } from "./pages/design-system/PinInputPage";
 import { InputGroupPage } from "./pages/design-system/InputGroupPage";
+import { LoginPage } from "./pages/design-system/LoginPage";
 
 function ColorModeToggle() {
   const { theme, setTheme } = useTheme();
@@ -222,6 +223,7 @@ function App() {
           <Route path="slider" element={<SliderPage />} />
           <Route path="pin-input" element={<PinInputPage />} />
           <Route path="input-group" element={<InputGroupPage />} />
+          <Route path="examples/login" element={<LoginPage />} />
         </Route>
             </Routes>
           </Box>

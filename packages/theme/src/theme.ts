@@ -97,8 +97,8 @@ export const gdsTheme = defineConfig({
   },
   globalCss: {
     html: {
+      // Brand palette on html; semantic text still uses color="fg" (not colorPalette.fg).
       colorPalette: "brand",
-      // Use literal value from tokens so font always updates after sync (no token resolution)
       fontFamily: figmaFonts.body ?? "system-ui, sans-serif",
     },
   },

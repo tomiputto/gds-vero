@@ -202,11 +202,37 @@ function buildSyncedThemeTokens(tokensRaw) {
   nested.brand["900"] = { value: { _light: "{colors.brand.primary.active}", _dark: "{colors.brand.primary.active_dark}" } };
   nested.brand.focusRing = { value: { _light: "{colors.brand.primary.focusRing}", _dark: "{colors.brand.primary.focusRing_dark}" } };
 
+  nested.gray ??= {};
+  nested.gray.fg = {
+    value: {
+      _light: "#27272a",
+      _dark: "{colors.text.fg_inverted}",
+    },
+  };
+
   const semanticColors = {
     fg: {
-      DEFAULT: { value: { _light: "{colors.gray.fg}", _dark: "{colors.text.fg_inverted}" } },
-      muted: { value: { _light: "{colors.text.fg_muted}", _dark: "{colors.text.fg_subtle}" } },
-      subtle: { value: { _light: "{colors.text.fg_subtle}", _dark: "{colors.gray.400}" } },
+      DEFAULT: {
+        value: {
+          base: "#27272a",
+          _light: "{colors.gray.800}",
+          _dark: "{colors.text.fg_inverted}",
+        },
+      },
+      muted: {
+        value: {
+          base: "#52525b",
+          _light: "{colors.text.fg_muted}",
+          _dark: "{colors.text.fg_subtle}",
+        },
+      },
+      subtle: {
+        value: {
+          base: "#a1a1aa",
+          _light: "{colors.text.fg_subtle}",
+          _dark: "{colors.gray.400}",
+        },
+      },
       inverted: { value: "{colors.text.fg_inverted}" },
       error: { value: "{colors.text.fg_error}" },
       warning: { value: "{colors.text.fg_warning}" },

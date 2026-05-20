@@ -84,13 +84,40 @@ export const gdsColorTokens = nested as never;
  * Use in theme as semanticTokens.colors so components can use color="fg", bg="bg.subtle", etc.
  * Option A dark mode: _light / _dark using existing inverted/gray tokens.
  */
+/** Align Chakra gray palette fg with GDS (avoid default gray.fg → gray.200 in light mode). */
+nested.gray ??= {};
+nested.gray.fg = {
+  value: {
+    _light: "#27272a",
+    _dark: "{colors.text.fg_inverted}",
+  },
+};
+
 export const gdsSemanticColors = {
   fg: {
-    // Light theme: use dark text (gray.fg) so readable on white. Dark theme: use light text (text.fg_inverted).
-    // Raw text.fg from Figma is often light (#fafafa); we need dark for light mode.
-    DEFAULT: { value: { _light: "{colors.gray.fg}", _dark: "{colors.text.fg_inverted}" } },
-    muted: { value: { _light: "{colors.text.fg_muted}", _dark: "{colors.text.fg_subtle}" } },
-    subtle: { value: { _light: "{colors.text.fg_subtle}", _dark: "{colors.gray.400}" } },
+    // Do not use {colors.gray.fg}: it collides with Chakra's semantic gray.fg (gray.200 in light mode).
+    // gray.800 matches Figma gray/fg (#27272a).
+    DEFAULT: {
+      value: {
+        base: "#27272a",
+        _light: "{colors.gray.800}",
+        _dark: "{colors.text.fg_inverted}",
+      },
+    },
+    muted: {
+      value: {
+        base: "#52525b",
+        _light: "{colors.text.fg_muted}",
+        _dark: "{colors.text.fg_subtle}",
+      },
+    },
+    subtle: {
+      value: {
+        base: "#a1a1aa",
+        _light: "{colors.text.fg_subtle}",
+        _dark: "{colors.gray.400}",
+      },
+    },
     inverted: { value: "{colors.text.fg_inverted}" },
     error: { value: "{colors.text.fg_error}" },
     warning: { value: "{colors.text.fg_warning}" },

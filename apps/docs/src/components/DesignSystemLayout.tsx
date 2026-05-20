@@ -11,6 +11,7 @@ const NAV_ITEMS: Array<{ path: string; label: string; section?: string; group?: 
   { path: "/guides/for-ai-agents", label: "For AI agents", section: "Guides" },
   { path: "/guides/chakra-v3-api", label: "Chakra v3 API", section: "Guides" },
   { path: "/accessibility", label: "Accessibility", section: "Guides" },
+  { path: "/examples/login", label: "Login screen", section: "Examples" },
   { path: "/box", label: "Box", section: "Components", group: "Layout" },
   { path: "/flex", label: "Flex", section: "Components", group: "Layout" },
   { path: "/grid", label: "Grid", section: "Components", group: "Layout" },

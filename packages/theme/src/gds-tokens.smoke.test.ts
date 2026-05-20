@@ -12,8 +12,20 @@ describe("@gdesignsystem/theme gds-tokens smoke", () => {
     expect(brand.focusRing, "missing brand.focusRing").toBeTruthy();
   });
 
+  it("overrides gray.fg palette to match GDS (not Chakra default gray.200 in light)", () => {
+    const grayFg = (gdsColorTokens as any).gray?.fg?.value;
+    expect(grayFg?._light).toBe("#27272a");
+    expect(grayFg?._dark).toBe("{colors.text.fg_inverted}");
+  });
+
   it("exposes expected semantic color token routes", () => {
     const { fg, bg, border, focusRing } = gdsSemanticColors as any;
+
+    expect(JSON.stringify(fg.DEFAULT?.value)).not.toContain("colors.gray.fg");
+    expect(fg.DEFAULT?.value?.base).toBe("#27272a");
+    expect(fg.DEFAULT?.value?._light).toBe("{colors.gray.800}");
+    expect(fg.muted?.value?.base).toBe("#52525b");
+    expect(fg.subtle?.value?.base).toBe("#a1a1aa");
 
     expect(fg.DEFAULT, "missing fg.DEFAULT").toBeTruthy();
     expect(fg.muted, "missing fg.muted").toBeTruthy();
