@@ -183,7 +183,7 @@ export function StartUsingGdsPage() {
                 whiteSpace="pre-wrap"
                 overflowX="auto"
               >
-                {`npm create @gdesignsystem/create-app@latest my-project`}
+                {`npm create @gdesignsystem/app@latest my-project`}
               </Box>
 
               <Text fontWeight="semibold" color="fg">
@@ -201,13 +201,19 @@ export function StartUsingGdsPage() {
                 whiteSpace="pre-wrap"
                 overflowX="auto"
               >
-                {`pnpm create @gdesignsystem/create-app@latest my-project`}
+                {`pnpm create @gdesignsystem/app@latest my-project`}
               </Box>
             </VStack>
 
             <Text mt="3" color="fg.muted" textStyle="sm">
               After the command finishes, follow the printed “Next steps” (including how to start
               your dev server).
+            </Text>
+            <Text mt="2" color="fg.muted" textStyle="sm">
+              Use <Code>@gdesignsystem/app</Code>, not <Code>@gdesignsystem/create-app</Code>: npm
+              prepends <Code>create-</Code> and would look for a non-existent{" "}
+              <Code>create-create-app</Code> package. Alternative:{" "}
+              <Code>npx create-gds-app my-project</Code>.
             </Text>
             <Text mt="2" color="fg.muted" textStyle="sm">
               Tip: adding <Code>@latest</Code> helps avoid cached older versions when using{" "}

@@ -75,7 +75,7 @@ In practice: wrap the tree with `GDSProvider`, use Chakra compound APIs + GDS ic
 ### 2.5 @gdesignsystem/create-app
 
 - **Role:** Scaffold new React + Vite apps with GDS pre-wired (`create-gds-app` bin).
-- **Usage:** `pnpm create @gdesignsystem/create-app@latest my-project`
+- **Usage:** `pnpm create @gdesignsystem/app@latest my-project` (npm package is `@gdesignsystem/create-app`; do **not** use `create …/create-app` — npm resolves that to `create-create-app` and 404s)
 - **Contents:** Copies `template/` (Vite app with `ChakraProvider` + `gdsTheme` + optional `gds-theme-sync.generated.ts` from `gds:tokens:sync`, example card using `GDSButton` / `GDSHeading` / `GDSText`). Template pins `@gdesignsystem/theme`, `@gdesignsystem/react`, etc. For new apps that only use published packages, wrap with `GDSProvider` from `@gdesignsystem/react` instead.
 - **Note:** Example UI in the template should use GDS text styles (`textStyle="body"`, `GDSHeading size="xl" as="h2"`) — not Chakra font-size names as `textStyle`.
 
@@ -157,7 +157,7 @@ Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges se
 | theme | tokens | `@gdesignsystem/theme@0.1.8` |
 | react | theme, tokens | `@gdesignsystem/react@0.1.8` |
 | icons | — | `@gdesignsystem/icons` |
-| create-app | — (template lists deps) | `@gdesignsystem/create-app@0.1.5` |
+| create-app | — (template lists deps) | `@gdesignsystem/create-app@0.1.6` |
 | cli | — | `@gdesignsystem/cli` |
 
 - **Publishing:** Packages are published to npm separately (`pnpm publish --access public`). `workspace:*` is replaced with published versions at publish time.
@@ -180,4 +180,4 @@ Canonical agent/UI rules: **`GDS_FOR_LLM_AGENTS.md`** (also bundled in `@gdesign
 
 **Token flow:** Figma → MCP → `tokens.raw.json` → theme → `system` → provider → app.
 
-**New app flow:** `pnpm create @gdesignsystem/create-app@latest` → install → dev server (template uses `ChakraProvider` + GDS wrappers; npm-only apps can use `GDSProvider`).
+**New app flow:** `pnpm create @gdesignsystem/app@latest` → install → dev server (template uses `ChakraProvider` + GDS wrappers; npm-only apps can use `GDSProvider`). Alternative: `npx create-gds-app my-project`.

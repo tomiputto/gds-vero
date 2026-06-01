@@ -136,7 +136,7 @@ Design tokens live in `packages/tokens/figma/tokens.raw.json`. The theme reads c
 pnpm gds:tokens:sync:from-mcp
 ```
 
-If you already have `.tmp/figma.variable_defs.json`, you can run `pnpm gds:tokens:sync` instead. Scaffolded apps from `pnpm create @gdesignsystem/create-app@latest` use their own `pnpm gds:tokens:sync` script (writes under `src/`).
+If you already have `.tmp/figma.variable_defs.json`, you can run `pnpm gds:tokens:sync` instead. Scaffolded apps from `pnpm create @gdesignsystem/app@latest` use their own `pnpm gds:tokens:sync` script (writes under `src/`). See `packages/create-app/README.md` — do not use `create …/create-app` (npm 404).
 
 ## Icons
 

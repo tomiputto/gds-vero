@@ -75,7 +75,7 @@ Käytännössä: puu `GDSProvider`:lla, Chakra compound API + GDS-ikonit; värit
 ### 2.5 @gdesignsystem/create-app
 
 - **Rooli:** Luo uusia React + Vite -sovelluksia GDS valmiiksi kytkettynä (`create-gds-app` -bin).
-- **Käyttö:** `pnpm create @gdesignsystem/create-app@latest my-project`
+- **Käyttö:** `pnpm create @gdesignsystem/app@latest my-project` (npm-paketti: `@gdesignsystem/create-app`; älä käytä `create …/create-app` → npm hakee `create-create-app` ja 404)
 - **Sisältö:** Kopioi `template/`-kansion (Vite, `ChakraProvider` + `gdsTheme` + valinnainen `gds-theme-sync.generated.ts` synkin jälkeen, esimerkkikortti `GDSButton` / `GDSHeading` / `GDSText`). Template viittaa `@gdesignsystem/theme`, `@gdesignsystem/react` jne. Julkaistuja paketteja käyttävissä sovelluksissa käytä `GDSProvider`-ia `@gdesignsystem/react`:stä.
 - **Huom:** Esimerkin typografiassa käytä GDS-tyylejä (`textStyle="body"`, `GDSHeading size="xl" as="h2"`) — älä käytä fonttikoko-tokenien nimiä `textStyle`-propina.
 
@@ -157,7 +157,7 @@ Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; m
 | theme | tokens | `@gdesignsystem/theme@0.1.8` |
 | react | theme, tokens | `@gdesignsystem/react@0.1.8` |
 | icons | — | `@gdesignsystem/icons` |
-| create-app | — (template listaa deps) | `@gdesignsystem/create-app@0.1.5` |
+| create-app | — (template listaa deps) | `@gdesignsystem/create-app@0.1.6` |
 | cli | — | `@gdesignsystem/cli` |
 
 - **Julkaisu:** Paketit julkaistaan npm:ään erikseen (`pnpm publish --access public`). `workspace:*` korvautuu julkaistuilla versioilla.
@@ -180,4 +180,4 @@ Agentti- ja UI-säännöt: **`GDS_FOR_LLM_AGENTS.md`** (mukana myös `@gdesignsy
 
 **Token-virta:** Figma → MCP → `tokens.raw.json` → theme → `system` → provider → sovellus.
 
-**Uusi sovellus:** `pnpm create @gdesignsystem/create-app@latest` → asennus → dev (template: `ChakraProvider` + GDS-wrapperit; npm-sovelluksissa `GDSProvider`).
+**Uusi sovellus:** `pnpm create @gdesignsystem/app@latest` → asennus → dev. Vaihtoehto: `npx create-gds-app my-project`.

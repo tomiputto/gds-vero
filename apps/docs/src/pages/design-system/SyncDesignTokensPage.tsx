@@ -46,7 +46,7 @@ export function SyncDesignTokensPage() {
         <Text color="fg.muted">
           Sync Figma variable updates into your project. The command and output paths depend on
           whether you work in the <strong>GDS monorepo</strong> or in an app created with{" "}
-          <Code>pnpm create @gdesignsystem/create-app@latest</Code>. Use the GDS Figma file that
+          <Code>pnpm create @gdesignsystem/app@latest</Code> (npm package <Code>@gdesignsystem/create-app</Code>; see Start using GDS). Use the GDS Figma file that
           contains the required styles (GDS — Gofore Design System — For Designers).
         </Text>
       </Box>

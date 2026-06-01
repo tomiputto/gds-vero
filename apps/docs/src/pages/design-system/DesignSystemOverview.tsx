@@ -132,7 +132,7 @@ import { GDSButton, GDSText as Text } from "@gdesignsystem/react";
         <Text color="fg.muted" mt="2">
           That merges the selection into existing tokens and updates <Code>tokens.raw.json</Code>. See{" "}
           <strong>Sync design tokens</strong> for the full flow. In projects created with{" "}
-          <Code>pnpm create @gdesignsystem/create-app@latest</Code>, use <Code>pnpm gds:tokens:sync</Code> instead — it writes <Code>src/gds-tokens.raw.json</Code> and{" "}
+          <Code>pnpm create @gdesignsystem/app@latest</Code> (not <Code>…/create-app</Code> — npm adds an extra <Code>create-</Code> prefix), use <Code>pnpm gds:tokens:sync</Code> — writes <Code>src/gds-tokens.raw.json</Code> and{" "}
           <Code>src/gds-theme-sync.generated.ts</Code>.
         </Text>
       </Box>
