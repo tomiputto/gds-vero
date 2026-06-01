@@ -2,6 +2,40 @@ import { Box, Code, Heading, VStack } from "@chakra-ui/react";
 import { GDSText as Text } from "@gdesignsystem/react";
 import { Section } from "../../components/Section";
 
+const MONOREPO_CURSOR_RULE = `---
+alwaysApply: true
+---
+# GDS Figma → tokens.raw.json sync
+
+When the user writes:
+- "sync figma tokens"
+- "sync tokens"
+- "update tokens from figma"
+
+Do the following steps automatically:
+
+1. Use the Figma MCP tool **get_variable_defs** (no nodeId = current Figma selection).
+2. Save the full JSON output to **.tmp/figma.mcp_latest.json** (overwrite if exists).
+3. Run **pnpm gds:tokens:sync:from-mcp** — merges MCP result into existing tokens, writes .tmp/figma.variable_defs.json, updates packages/tokens/figma/tokens.raw.json.
+4. Confirm packages/tokens/figma/tokens.raw.json was updated and show the token count from the script output.`;
+
+const SCAFFOLD_CURSOR_RULE = `---
+alwaysApply: true
+---
+# GDS Figma → local token sync (scaffolded app)
+
+When the user writes:
+- "sync figma tokens"
+- "sync tokens"
+- "update tokens from figma"
+
+Do the following steps automatically:
+
+1. Use the Figma MCP tool **get_variable_defs** (no nodeId = current Figma selection).
+2. Save the full JSON output to **.tmp/figma.variable_defs.json** (create .tmp if missing).
+3. Run **pnpm gds:tokens:sync**.
+4. Confirm src/gds-tokens.raw.json and src/gds-theme-sync.generated.ts were updated.`;
+
 export function SyncDesignTokensPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -10,68 +44,83 @@ export function SyncDesignTokensPage() {
           Sync design tokens
         </Heading>
         <Text color="fg.muted">
-          Step-by-step guide for syncing Figma token updates into a project created with{" "}
-          <Code>create @gdesignsystem/app</Code>. Use the GDS Figma file that contains the required
-          styles. You can find the file in the project: GDS - Gofore Design System - For Designers
+          Sync Figma variable updates into your project. The command and output paths depend on
+          whether you work in the <strong>GDS monorepo</strong> or in an app created with{" "}
+          <Code>pnpm create @gdesignsystem/create-app@latest</Code>. Use the GDS Figma file that
+          contains the required styles (GDS — Gofore Design System — For Designers).
         </Text>
       </Box>
 
       <Section
-        title="1. Open your project root"
-        description="Run all commands in the root of your app."
+        title="GDS monorepo"
+        description="Updates packages/tokens/figma/tokens.raw.json for @gdesignsystem/theme."
       >
-        <Text color="fg.muted" textStyle="sm" mb="3">
-          Open the project either in a terminal or in your preferred development tool (e.g.
-          Cursor, Claude).
-        </Text>
-        <Box
-          as="pre"
-          p="4"
-          borderRadius="md"
-          bg="bg.subtle"
-          borderWidth="1px"
-          borderColor="border.muted"
-          fontSize="xs"
-          fontFamily="mono"
-          whiteSpace="pre-wrap"
-          overflowX="auto"
-        >
-          {`cd my-project`}
-        </Box>
-      </Section>
-
-      <Section
-        title="2. Export variable defs from Figma"
-        description="Use Figma MCP get_variable_defs and save output JSON."
-      >
-        <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="4" textStyle="sm" color="fg.muted">
           <Text>
-            In the Figma file, select one frame at a time that contains the modified variables
-            (color, typography, etc.) you want to import.
+            1. In Figma, select a frame that contains the variables you want to import (colors,
+            typography, spacing, etc.).
           </Text>
           <Text>
-            Save the MCP JSON output to <Code>.tmp/figma.variable_defs.json</Code> in your project
-            root by just giving a prompt Save.
+            2. Export with Figma MCP <Code>get_variable_defs</Code> and save to{" "}
+            <Code>.tmp/figma.mcp_latest.json</Code>, or ask your agent: “sync tokens”.
+          </Text>
+          <Text>3. From the repo root, run:</Text>
+          <Box
+            as="pre"
+            p="4"
+            borderRadius="md"
+            bg="bg.subtle"
+            borderWidth="1px"
+            borderColor="border.muted"
+            fontSize="xs"
+            fontFamily="mono"
+            whiteSpace="pre-wrap"
+            overflowX="auto"
+          >
+            pnpm gds:tokens:sync:from-mcp
+          </Box>
+          <Text>
+            This merges the selection into existing <Code>tokens.raw.json</Code> (unchanged keys
+            stay). Restart the dev server if the theme does not pick up new values immediately.
+          </Text>
+          <Text fontWeight="semibold" color="fg">
+            Optional: Cursor rule (monorepo)
           </Text>
           <Text>
-            <strong>
-              Exporting the full relevant token set is recommended so local token files stay
-              complete.
-            </strong>
+            Copy into <Code>.cursor/rules/figma-tokens.mdc</Code> (the GDS repo already ships this
+            rule):
           </Text>
+          <Box
+            as="pre"
+            p="4"
+            borderRadius="md"
+            bg="bg.subtle"
+            borderWidth="1px"
+            borderColor="border.muted"
+            fontSize="xs"
+            fontFamily="mono"
+            whiteSpace="pre-wrap"
+            overflowX="auto"
+          >
+            {MONOREPO_CURSOR_RULE}
+          </Box>
         </VStack>
       </Section>
 
       <Section
-        title="3. Automatic save (Cursor / Claude)"
-        description="Have your agent write the MCP output directly to the expected file."
+        title="Scaffolded app (create-app)"
+        description="Updates src/gds-tokens.raw.json and src/gds-theme-sync.generated.ts."
       >
-        <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="4" textStyle="sm" color="fg.muted">
           <Text>
-            If you run the sync from Cursor or Claude, you can ask the agent to save the{" "}
-            <Code>get_variable_defs</Code> output directly to{" "}
-            <Code>.tmp/figma.variable_defs.json</Code> (and create the <Code>.tmp</Code> folder if
-            it doesn&apos;t exist).
+            1. Open your project root (<Code>cd my-project</Code>).
+          </Text>
+          <Text>
+            2. In Figma, select a frame with the variables to import. Save MCP{" "}
+            <Code>get_variable_defs</Code> output to <Code>.tmp/figma.variable_defs.json</Code>.
+          </Text>
+          <Text>
+            Example agent prompt:
           </Text>
           <Box
             as="pre"
@@ -87,33 +136,33 @@ export function SyncDesignTokensPage() {
           >
             {`Run Figma MCP get_variable_defs for my current selection and save the full JSON output to .tmp/figma.variable_defs.json (create .tmp if missing). Then run: pnpm gds:tokens:sync`}
           </Box>
-        </VStack>
-      </Section>
-
-      <Section
-        title="4. One-command shortcut (project rule)"
-        description="Make the phrase “sync figma tokens” run the full flow."
-      >
-        <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
-          <Text>
-            You can create a persistent project rule so that when you type{" "}
-            <Code>sync figma tokens</Code>, your agent automatically:
-          </Text>
+          <Text>3. Run token sync:</Text>
+          <Box
+            as="pre"
+            p="4"
+            borderRadius="md"
+            bg="bg.subtle"
+            borderWidth="1px"
+            borderColor="border.muted"
+            fontSize="xs"
+            fontFamily="mono"
+            whiteSpace="pre-wrap"
+            overflowX="auto"
+          >
+            pnpm gds:tokens:sync
+          </Box>
+          <Text>4. Verify these files were updated:</Text>
           <Text as="ul" pl="4" style={{ listStyleType: "disc" }}>
             <Text as="li">
-              runs Figma MCP <Code>get_variable_defs</Code> for the current selection
+              <Code>src/gds-tokens.raw.json</Code>
             </Text>
             <Text as="li">
-              saves the full JSON to <Code>.tmp/figma.variable_defs.json</Code> (creates{" "}
-              <Code>.tmp</Code> if missing)
-            </Text>
-            <Text as="li">
-              runs <Code>pnpm gds:tokens:sync</Code>
+              <Code>src/gds-theme-sync.generated.ts</Code>
             </Text>
           </Text>
-
-          <Text>
-            In Cursor, add a rule file at <Code>.cursor/rules/figma-tokens.mdc</Code> with:
+          <Text>5. Restart the dev server: <Code>pnpm dev</Code></Text>
+          <Text fontWeight="semibold" color="fg">
+            Optional: Cursor rule (scaffolded app)
           </Text>
           <Box
             as="pre"
@@ -127,86 +176,30 @@ export function SyncDesignTokensPage() {
             whiteSpace="pre-wrap"
             overflowX="auto"
           >
-            {`---
-alwaysApply: true
----
-
-When the user writes:
-- "sync figma tokens"
-- "sync tokens"
-- "update tokens from figma"
-
-Do the following automatically:
-1) Run Figma MCP get_variable_defs (no nodeId = current selection).
-2) Save the full JSON output to .tmp/figma.variable_defs.json (overwrite if exists).
-3) Run: pnpm gds:tokens:sync
-4) Confirm that src/gds-tokens.raw.json and src/gds-theme-sync.generated.ts were updated.`}
+            {SCAFFOLD_CURSOR_RULE}
           </Box>
         </VStack>
       </Section>
 
       <Section
-        title="5. Run token sync"
-        description="Generate local token + theme override files from the exported JSON."
-      >
-        <Box
-          as="pre"
-          p="4"
-          borderRadius="md"
-          bg="bg.subtle"
-          borderWidth="1px"
-          borderColor="border.muted"
-          fontSize="xs"
-          fontFamily="mono"
-          whiteSpace="pre-wrap"
-          overflowX="auto"
-        >
-          {`pnpm gds:tokens:sync`}
-        </Box>
-      </Section>
-
-      <Section
-        title="6. Verify generated files"
-        description="After sync, these files should be updated."
+        title="Troubleshooting"
+        description="Most common sync issues."
       >
         <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
           <Text>
-            <Code>src/gds-tokens.raw.json</Code> (local raw token output)
+            <strong>Monorepo:</strong> if sync fails, ensure <Code>.tmp/figma.mcp_latest.json</Code>{" "}
+            exists (or pass a path:{" "}
+            <Code>pnpm gds:tokens:sync:from-mcp path/to/mcp.json</Code>).
           </Text>
           <Text>
-            <Code>src/gds-theme-sync.generated.ts</Code> (local Chakra theme override)
+            <strong>Scaffolded app:</strong> ensure <Code>.tmp/figma.variable_defs.json</Code>{" "}
+            exists before running <Code>pnpm gds:tokens:sync</Code>.
+          </Text>
+          <Text>
+            Exporting the full relevant token set from Figma is recommended so local files stay
+            complete.
           </Text>
         </VStack>
-      </Section>
-
-      <Section
-        title="7. Restart dev server"
-        description="Restart to ensure Vite picks up all changes."
-      >
-        <Box
-          as="pre"
-          p="4"
-          borderRadius="md"
-          bg="bg.subtle"
-          borderWidth="1px"
-          borderColor="border.muted"
-          fontSize="xs"
-          fontFamily="mono"
-          whiteSpace="pre-wrap"
-          overflowX="auto"
-        >
-          {`pnpm dev`}
-        </Box>
-      </Section>
-
-      <Section
-        title="Troubleshooting"
-        description="Most common sync issue and fix."
-      >
-        <Text color="fg.muted" textStyle="sm">
-          If sync fails with missing input file, ensure this exact path exists:{" "}
-          <Code>.tmp/figma.variable_defs.json</Code>.
-        </Text>
       </Section>
     </VStack>
   );

@@ -1,6 +1,6 @@
 # GDS architecture
 
-This document describes the architecture of the GDS (GDS Design System) project: monorepo structure, package roles, the token flow from Figma to the theme, and the build and publish pipeline.
+This document describes the architecture of the GDS (GDS Design System) project: monorepo structure, package roles, the token flow from Figma to the theme, scaffolding new apps, and the build and publish pipeline.
 
 ---
 
@@ -16,7 +16,9 @@ GDS/
 │   ├── react/            # @gdesignsystem/react
 │   ├── theme/            # @gdesignsystem/theme
 │   ├── tokens/           # @gdesignsystem/tokens
-│   └── icons/            # @gdesignsystem/icons
+│   ├── icons/            # @gdesignsystem/icons
+│   ├── create-app/       # @gdesignsystem/create-app (scaffold CLI)
+│   └── cli/              # @gdesignsystem/cli (optional tooling)
 ├── apps/                 # Applications (not published to npm)
 │   ├── docs/             # Documentation site (Vite, GitHub Pages)
 │   └── demo/             # Demo app
@@ -25,7 +27,7 @@ GDS/
 ```
 
 - **Root package.json:** Shared scripts (`pnpm dev`, `pnpm build`, `pnpm gds:tokens:sync:from-mcp`, etc.); no app logic.
-- **packages/** contains four publishable packages; inter-package dependencies use `workspace:*`.
+- **packages/** contains six publishable packages; inter-package dependencies use `workspace:*`.
 - **apps/** contains the documentation and demo; they depend on packages via the workspace.
 
 ---
@@ -36,105 +38,146 @@ GDS/
 
 - **Role:** Source of design tokens. Contains **tokens.raw.json** synced from Figma (colors, typography, spacing, radii, effects).
 - **Location:** `packages/tokens/figma/tokens.raw.json`.
-- **Exports:** Raw JSON (colors, typography, spacing, effects) and optional built output.
-- **Consumers:** Theme reads tokens.raw.json; the token-sync script writes to it.
+- **Exports:** Raw JSON (`colors`, `typography`, `spacing`, `effects`) and optional built output.
+- **Consumers:** Theme reads `tokens.raw.json`; the token-sync script writes to it.
 
-Tokens are grouped into: `colors`, `typography`, `spacing`, `effects`. Keys use path format (e.g. `text/fg`, `brand/primary/base`, `fonts/body`, `fontSizes/xs`).
+Keys use path format (e.g. `text/fg`, `brand/primary/base`, `fonts/body`, `fontSizes/md`).
 
 ### 2.2 @gdesignsystem/theme
 
-- **Role:** Chakra UI v3 theme definition. Reads tokens and maps them into Chakra format (tokens + semanticTokens).
-- **Dependencies:** `@gdesignsystem/tokens` (tokens.raw.json), `@chakra-ui/react`.
+- **Role:** Chakra UI v3 theme definition. Reads tokens and maps them into Chakra format (`tokens` + `semanticTokens` + `textStyles` + `recipes`).
+- **Dependencies:** `@gdesignsystem/tokens`, `@chakra-ui/react`.
 - **Key files:**
-  - **gds-tokens.ts:** Reads `tokens.raw.json` → colors in nested form; defines **semanticTokens.colors** (fg, bg, border, brand, _light/_dark).
-  - **figma-tokens.ts:** Reads tokens.raw.json → fonts, font sizes, font weights, radii, spacing (from typography & effects groups).
-  - **theme.ts:** `defineConfig` combines tokens, textStyles, and recipes into a Chakra theme.
-  - **system.ts:** `createSystem(defaultConfig, gdsTheme)` — GDS theme extends Chakra’s default.
+  - **gds-tokens.ts:** Reads `tokens.raw.json` → nested `tokens.colors`; defines **semanticTokens.colors** (`fg`, `bg`, `border`, `brand`) with `base` / `_light` / `_dark`; builds brand palette 50–950; overrides `gray.fg` to avoid Chakra palette collision.
+  - **figma-tokens.ts:** Typography → fonts, font sizes, font weights; spacing; effects → radii.
+  - **textStyles.ts:** Named styles `display`, `headline`, `title`, `body`, `caption` (use on `GDSText` via `textStyle="body"`, not `textStyle="md"`).
+  - **theme.ts:** `defineConfig` combines tokens, text styles, and recipes.
+  - **system.ts:** `createSystem(defaultConfig, gdsTheme)`.
 - **Exports:** `gdsTheme`, `system`, `textStyles`.
+- **Tests:** e.g. `fg-tokens.test.ts`, `gds-tokens.smoke.test.ts` (semantic `fg` resolves correctly in light/dark).
 
-The theme does not replace the full Chakra theme but extends it: custom color palette, semantic colors (fg, bg.default, brand), typography and spacing from Figma.
+The theme extends Chakra’s default config; it does not replace all Chakra tokens.
 
 ### 2.3 @gdesignsystem/react
 
-- **Role:** Entry point for React apps: provider and optional wrappers (e.g. GDSButton).
-- **Dependencies:** `@chakra-ui/react`, `@gdesignsystem/theme`.
-- **GDSProvider:** Wraps the app with `ChakraProvider` and passes `system` (GDS theme) to Chakra. Does not export Field, Card, or other Chakra components — those come from `@chakra-ui/react`.
-- **Exports:** `GDSProvider`, `GDSButton` (and any other wrappers).
+- **Role:** React entry point: provider and thin wrappers around Chakra primitives.
+- **Dependencies:** `@chakra-ui/react`, `@gdesignsystem/theme`, `@gdesignsystem/tokens`.
+- **GDSProvider:** Wraps the app with `ChakraProvider` and passes `system` (GDS theme). Does **not** export `Field`, `Card`, `Input`, etc. — those come from `@chakra-ui/react`.
+- **Exports:** `GDSProvider`, `GDSButton`, `GDSHeading`, `GDSText` (+ prop types). Ships **`GDS_FOR_LLM_AGENTS.md`** for AI/agent rules.
 
-In practice: the app wraps the tree with `GDSProvider` and uses Chakra components + GDS icons; colors and typography come from the theme.
+In practice: wrap the tree with `GDSProvider`, use Chakra compound APIs + GDS icons; colors and typography come from the theme.
 
 ### 2.4 @gdesignsystem/icons
 
 - **Role:** SVG-based icon library. Icons are generated by `scripts/svg-to-gds-icons.mjs` and exported as React components.
-- **Usage:** Same style as Figma tokens (colors via semantic tokens). Does not depend on theme or tokens packages.
+- **Usage:** Import from `@gdesignsystem/icons` (e.g. `CheckIcon`). Independent of theme/tokens packages.
+
+### 2.5 @gdesignsystem/create-app
+
+- **Role:** Scaffold new React + Vite apps with GDS pre-wired (`create-gds-app` bin).
+- **Usage:** `pnpm create @gdesignsystem/create-app@latest my-project`
+- **Contents:** Copies `template/` (Vite app with `ChakraProvider` + `gdsTheme` + optional `gds-theme-sync.generated.ts` from `gds:tokens:sync`, example card using `GDSButton` / `GDSHeading` / `GDSText`). Template pins `@gdesignsystem/theme`, `@gdesignsystem/react`, etc. For new apps that only use published packages, wrap with `GDSProvider` from `@gdesignsystem/react` instead.
+- **Note:** Example UI in the template should use GDS text styles (`textStyle="body"`, `GDSHeading size="xl" as="h2"`) — not Chakra font-size names as `textStyle`.
+
+### 2.6 @gdesignsystem/cli
+
+- **Role:** Optional CLI (`gds` bin) for token sync and theme-related helpers used outside the monorepo.
+- **Relationship:** Overlaps with root `scripts/` and `create-app` template sync; mainly for advanced or standalone workflows.
 
 ---
 
 ## 3. Token flow: Figma → theme
 
-Design tokens originate in Figma and end up in **tokens.raw.json**, which the theme consumes. The flow:
+Design tokens originate in Figma and end up in **tokens.raw.json**, which the theme consumes.
 
-1. **Figma (source):** Variables (colors, typography, spacing, etc.) are defined in Figma.
-2. **Figma MCP:** Cursor/agent calls Figma MCP’s `get_variable_defs` and receives a JSON (flat key–value).
-3. **.tmp/figma.mcp_latest.json:** The agent or user saves the MCP response here (or passes it directly to the merge script).
-4. **figma-sync-with-mcp.mjs:** Reads the current `tokens.raw.json`, flattens it; reads the MCP JSON; merges (MCP overrides); writes the result to `.tmp/figma.variable_defs.json`; then invokes figma-mcp-to-tokens-raw.mjs.
-5. **figma-mcp-to-tokens-raw.mjs:** Reads the flat key–value file, identifies groups (colors, typography, spacing, effects), normalizes values (hex colors, px spacing, etc.) and writes **packages/tokens/figma/tokens.raw.json** grouped (colors, typography, spacing, effects).
-6. **Theme consumes tokens.raw.json:**  
-   - **gds-tokens.ts** reads the `colors` section and builds Chakra tokens + semantic colors (fg, bg, border, brand, _light/_dark).  
-   - **figma-tokens.ts** reads typography/spacing/effects and builds fonts, font sizes, spacing, radii.
+1. **Figma (source):** Variables (colors, typography, spacing, etc.).
+2. **Figma MCP:** Agent calls `get_variable_defs` (current Figma selection) → flat JSON.
+3. **`.tmp/figma.mcp_latest.json`:** MCP output saved here (or passed directly to the merge script).
+4. **`figma-sync-with-mcp.mjs`:** Merges MCP JSON into existing `tokens.raw.json` (only changed keys from selection); writes `.tmp/figma.variable_defs.json`; runs `figma-mcp-to-tokens-raw.mjs`.
+5. **`figma-mcp-to-tokens-raw.mjs`:** Normalizes flat defs → grouped **`packages/tokens/figma/tokens.raw.json`**.
+6. **Theme consumes `tokens.raw.json`:**
+   - **gds-tokens.ts** → `tokens.colors` + `semanticTokens.colors`
+   - **figma-tokens.ts** → fonts, font sizes, spacing, radii
 
-Summary: **Figma → MCP → merge + figma-mcp-to-tokens-raw → tokens.raw.json → theme (gds-tokens + figma-tokens) → Chakra system.**
+**Command (monorepo):** `pnpm gds:tokens:sync:from-mcp`
+
+Summary: **Figma → MCP → merge + figma-mcp-to-tokens-raw → tokens.raw.json → theme → Chakra `system` → `GDSProvider` → app.**
 
 ---
 
 ## 4. Theme structure (theme package)
 
-- **tokens.raw.json** contains groups: `colors`, `typography`, `spacing`, `effects`.
-- **gds-tokens.ts:**  
-  - Colors (flat keys, e.g. `text/fg`) are converted to nested form (Chakra tokens.colors).  
-  - Semantic colors are defined by referencing these (e.g. `fg` → _light: `colors.text.fg`, _dark: `colors.text.fg_inverted`).  
-  - Brand palette (50–950) is built from brand/primary keys (Chakra colorPalette requires a scale).
-- **figma-tokens.ts:** Typography → fonts, font sizes, font weights; spacing → spacing tokens; effects → radii.
-- **theme.ts:** Combines tokens, textStyles, and recipes into a Chakra `defineConfig` object.
-- **system.ts:** `createSystem(defaultConfig, gdsTheme)` produces the final Chakra system, passed in GDSProvider.
+### Semantic colors (`gdsSemanticColors`)
 
-The app uses semantic tokens (e.g. `color="fg"`, `bg="bg.default"`, `colorPalette="brand"`); Chakra resolves them to tokens.raw.json values via the theme.
+- **`fg`:** Do **not** reference `{colors.gray.fg}` — it collides with Chakra’s built-in `gray.fg` (light mode could resolve to `gray.200`). Use `base: "#27272a"`, `_light: "{colors.gray.800}"`, `_dark: "{colors.text.fg_inverted}"`. Same pattern for `fg.muted` / `fg.subtle` with `base` fallbacks.
+- **`bg`:** Explicit `base` + `_light` / `_dark` (e.g. white surfaces in light mode).
+- **`border`:** Direct hex / token refs for light and dark.
+- **`brand`:** Semantic aliases + `tokens.colors.brand` scale (50–950) from `brand/primary/*` for `colorPalette="brand"`.
+
+### Typography
+
+- **Figma tokens:** `fontSizes/*`, `fontWeights/*`, `fonts/body` in `tokens.raw.json`.
+- **Theme `textStyles`:** `display`, `headline`, `title`, `body`, `caption` — use these names on `GDSText`.
+- **`GDSHeading`:** Chakra `Heading` `size` scale (`xs`–`4xl`), separate from `textStyle` names.
+
+### Runtime
+
+- **theme.ts** → `defineConfig({ theme: { tokens, semanticTokens, textStyles, recipes }, globalCss })`
+- **system.ts** → `createSystem(defaultConfig, gdsTheme)`
+- Apps use `color="fg"`, `bg="bg.default"`, `colorPalette="brand"`; Chakra resolves CSS variables from `system`.
 
 ---
 
 ## 5. Applications (apps)
 
-- **apps/docs:** Vite app for GDS documentation (components, tokens, Chakra v3 guide). Built and deployed to GitHub Pages. Uses workspace packages.
-- **apps/demo:** Small demo app for GDS. Also Vite.
+- **apps/docs:** Vite documentation (components, tokens, Chakra v3 guide, examples e.g. login screen). Deployed to GitHub Pages. Uses workspace packages; Vite can load `tokens.raw.json` from disk for live token previews.
+- **apps/demo:** Small GDS demo (Vite).
 
-Both depend on `@gdesignsystem/react`, `@gdesignsystem/theme`, `@gdesignsystem/icons` (and Chakra + Emotion). Docs can load tokens.raw.json directly from disk (Vite plugin) so token updates appear without rebuilding the theme package.
+Both depend on `@gdesignsystem/react`, `@gdesignsystem/theme`, `@gdesignsystem/icons`, Chakra, and Emotion.
 
 ---
 
 ## 6. Scripts
 
-- **figma-sync-with-mcp.mjs:** Merges MCP JSON with existing tokens → .tmp/figma.variable_defs.json, then calls figma-mcp-to-tokens-raw.mjs. Usage: `pnpm gds:tokens:sync:from-mcp [.tmp/figma.mcp_latest.json]`.
-- **figma-mcp-to-tokens-raw.mjs:** Reads flat variable defs file, groups (colors, typography, spacing, effects), normalizes values, writes tokens.raw.json.
-- **svg-to-gds-icons.mjs:** Generates icon components from SVGs (`pnpm gds:icons:generate`).
+| Script | Purpose |
+|--------|---------|
+| `figma-sync-with-mcp.mjs` | Merge MCP JSON → `tokens.raw.json` via `figma-mcp-to-tokens-raw.mjs` |
+| `figma-mcp-to-tokens-raw.mjs` | Flat variable defs → grouped `tokens.raw.json` |
+| `svg-to-gds-icons.mjs` | Generate icon components (`pnpm gds:icons:generate`) |
+
+Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges selection). `pnpm gds:tokens:sync` reads `.tmp/figma.variable_defs.json` only (no merge).
 
 ---
 
 ## 7. Dependencies and publishing
 
-- **Workspace packages:** theme depends on tokens (`workspace:*`), react depends on theme and tokens (`workspace:*`). Icons is independent.
-- **Publishing:** Packages are published to npm separately (pnpm publish). `workspace:*` is replaced with the actual version at publish time.
-- **External dependencies:** Chakra UI v3, Emotion, React. GDS does not ship a component library but the theme and provider; UI components come from `@chakra-ui/react`.
+| Package | Depends on | npm (examples) |
+|---------|------------|----------------|
+| tokens | — | `@gdesignsystem/tokens@0.1.3` |
+| theme | tokens | `@gdesignsystem/theme@0.1.8` |
+| react | theme, tokens | `@gdesignsystem/react@0.1.8` |
+| icons | — | `@gdesignsystem/icons` |
+| create-app | — (template lists deps) | `@gdesignsystem/create-app@0.1.5` |
+| cli | — | `@gdesignsystem/cli` |
+
+- **Publishing:** Packages are published to npm separately (`pnpm publish --access public`). `workspace:*` is replaced with published versions at publish time.
+- **External stack:** React 18+, Chakra UI v3, Emotion. GDS ships theme + provider + thin wrappers; most UI is `@chakra-ui/react`.
+
+Canonical agent/UI rules: **`GDS_FOR_LLM_AGENTS.md`** (also bundled in `@gdesignsystem/react`).
 
 ---
 
 ## 8. Summary
 
-| Layer       | Responsibility |
-|------------|----------------|
-| **Figma**  | Source of design tokens (colors, typography, spacing, etc.) |
-| **tokens** | tokens.raw.json (synced from Figma MCP) |
-| **theme**  | Reads tokens.raw.json → Chakra theme (tokens + semanticTokens + recipes) |
-| **react**  | GDSProvider (ChakraProvider + system) |
-| **App**    | GDSProvider + Chakra components + @gdesignsystem/icons |
+| Layer | Responsibility |
+|-------|----------------|
+| **Figma** | Source of design tokens |
+| **tokens** | `tokens.raw.json` (synced via MCP) |
+| **theme** | Tokens → Chakra `system` (colors, semantic tokens, text styles, recipes) |
+| **react** | `GDSProvider` + optional wrappers + agent docs |
+| **create-app** | Scaffold `my-project` with GDS + example |
+| **App** | `GDSProvider` (or scaffold: `ChakraProvider` + `gdsTheme`) + Chakra + `@gdesignsystem/icons` |
 
-Token flow: **Figma → MCP → figma-sync-with-mcp + figma-mcp-to-tokens-raw → tokens.raw.json → theme (gds-tokens, figma-tokens) → system → GDSProvider → app.**
+**Token flow:** Figma → MCP → `tokens.raw.json` → theme → `system` → provider → app.
+
+**New app flow:** `pnpm create @gdesignsystem/create-app@latest` → install → dev server (template uses `ChakraProvider` + GDS wrappers; npm-only apps can use `GDSProvider`).

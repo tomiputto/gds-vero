@@ -1,6 +1,6 @@
 {
   "name": "@gdesignsystem/theme",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "private": false,
   "type": "module",
   "exports": {
@@ -29,5 +29,11 @@
     "figma",
     "design-system"
   ],
-  "homepage": "https://renegademaster-droid.github.io/GDS/"
+  "homepage": "https://renegademaster-droid.github.io/GDS/",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src"
+  ]
 }

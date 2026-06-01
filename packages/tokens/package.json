@@ -1,6 +1,6 @@
 {
   "name": "@gdesignsystem/tokens",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "type": "module",
   "exports": {
@@ -27,5 +27,13 @@
     "figma",
     "design-system"
   ],
-  "homepage": "https://renegademaster-droid.github.io/GDS/"
+  "homepage": "https://renegademaster-droid.github.io/GDS/",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "src",
+    "figma",
+    "dist"
+  ]
 }

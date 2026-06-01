@@ -12,13 +12,15 @@ export default function App() {
       <Box p="6" maxW="xl">
         <Card.Root borderColor="border.muted" borderWidth="1px" bg="bg.muted">
           <Card.Header>
-            <GDSHeading size="sm">Welcome to GDS</GDSHeading>
+            <GDSHeading size="xl" as="h2">
+              Welcome to GDS
+            </GDSHeading>
           </Card.Header>
           <Card.Body gap="4">
-            <GDSText textStyle="md">
+            <GDSText textStyle="body">
               This app uses the GDS design system built on Chakra UI v3 and Figma design tokens.
             </GDSText>
-            <GDSText color="fg.muted" textStyle="sm">
+            <GDSText color="fg.muted" textStyle="caption">
               Semantic tokens like <code>fg</code>, <code>bg.default</code>, and{" "}
               <code>brand</code> keep your styles consistent with your Figma design.
             </GDSText>

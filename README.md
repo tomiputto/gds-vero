@@ -122,18 +122,21 @@ You typically only need `@gdesignsystem/tokens` if you use the token files direc
 
 | Command | Description |
 |---------|-------------|
-| `pnpm gds:tokens:sync` | Sync design tokens from Figma (MCP). Writes to `packages/tokens/figma/tokens.raw.json`. |
+| `pnpm gds:tokens:sync:from-mcp` | **Monorepo (recommended with Figma MCP):** merge `.tmp/figma.mcp_latest.json` into `packages/tokens/figma/tokens.raw.json`. |
+| `pnpm gds:tokens:sync` | Read `.tmp/figma.variable_defs.json` and write `packages/tokens/figma/tokens.raw.json` (no MCP merge). |
 | `pnpm gds:icons:generate` | Generate icon components from `/icons` SVGs into `packages/icons`. |
 | `pnpm dev` | Run all workspace dev scripts (e.g. docs app). |
 | `pnpm build` | Build all workspace packages and apps. |
 
 ## Tokens
 
-Design tokens live in `packages/tokens/figma/tokens.raw.json`. The theme reads colors from that file and exposes semantic tokens. To sync from Figma (when the Figma MCP is connected), run:
+Design tokens live in `packages/tokens/figma/tokens.raw.json`. The theme reads colors from that file and exposes semantic tokens. To sync from Figma with the MCP (current selection → merge into existing tokens), save MCP output to `.tmp/figma.mcp_latest.json` (or ask an agent to “sync tokens”) and run:
 
 ```bash
-pnpm gds:tokens:sync
+pnpm gds:tokens:sync:from-mcp
 ```
+
+If you already have `.tmp/figma.variable_defs.json`, you can run `pnpm gds:tokens:sync` instead. Scaffolded apps from `pnpm create @gdesignsystem/create-app@latest` use their own `pnpm gds:tokens:sync` script (writes under `src/`).
 
 ## Icons
 
@@ -181,10 +184,12 @@ GDS/
 │   ├── docs/          # Design system documentation (reference app)
 │   └── demo/          # Optional demo app (Vite + GDS)
 ├── packages/
-│   ├── react/         # @gdesignsystem/react – GDSProvider, GDSButton
+│   ├── react/         # @gdesignsystem/react – GDSProvider, GDSButton, GDSText, GDSHeading
 │   ├── theme/         # @gdesignsystem/theme – Chakra theme + tokens
 │   ├── tokens/        # @gdesignsystem/tokens – Figma tokens (tokens.raw.json)
-│   └── icons/         # @gdesignsystem/icons – Icon components from /icons
+│   ├── icons/         # @gdesignsystem/icons – Icon components from /icons
+│   ├── create-app/    # @gdesignsystem/create-app – scaffold CLI
+│   └── cli/           # @gdesignsystem/cli – optional tooling
 ├── icons/             # SVG sources for @gdesignsystem/icons (run gds:icons:generate)
 ├── scripts/           # Token sync and icon generation scripts
 └── pnpm-workspace.yaml

@@ -16,7 +16,7 @@ export function ExternalWebsitePage() {
           You don’t need a parent workspace or the same directory. Publish the GDS packages to a package registry (npm, GitHub Packages, etc.) and install them in any project with <Code>pnpm add @gdesignsystem/react @gdesignsystem/theme</Code>—the app can live in any repo or folder. You usually don’t need <Code>@gdesignsystem/tokens</Code> unless the app uses token files or raw token values directly.
         </Text>
         <Text color="fg.muted" mt="2">
-          If your project was created with <Code>pnpm create @gdesignsystem/app</Code>, you can sync
+          If your project was created with <Code>pnpm create @gdesignsystem/create-app@latest</Code>, you can sync
           Figma token updates locally with <Code>pnpm gds:tokens:sync</Code>. See{" "}
           <Link to="/guides/sync-design-tokens">
             <Code>Sync design tokens</Code>
@@ -31,7 +31,7 @@ export function ExternalWebsitePage() {
       >
         <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
           <Text>
-            1. Create your app: <Code>pnpm create @gdesignsystem/app my-project</Code>
+            1. Create your app: <Code>pnpm create @gdesignsystem/create-app@latest my-project</Code>
           </Text>
           <Text>
             2. Export Figma MCP variable defs to <Code>.tmp/figma.variable_defs.json</Code>
@@ -85,10 +85,12 @@ export function ExternalWebsitePage() {
           >
 {`"dependencies": {
   "@gdesignsystem/react": "workspace:*",
+  "@gdesignsystem/theme": "workspace:*",
   "@gdesignsystem/icons": "workspace:*",
-  "@chakra-ui/react": "^3.33.0",
-  "react": "^19.2.0",
-  "react-dom": "^19.2.0"
+  "@chakra-ui/react": "^3.0.0",
+  "@emotion/react": "^11.0.0",
+  "react": ">=18",
+  "react-dom": ">=18"
 }`}
           </Box>
           <Text fontWeight="semibold" color="fg" mt="2">3. Install and run</Text>
@@ -110,7 +112,7 @@ export function ExternalWebsitePage() {
         description="Quick reference."
       >
         <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
-          <Text>• <strong>Best default:</strong> create app with <Code>create @gdesignsystem/app</Code> and use <Code>pnpm gds:tokens:sync</Code> for local token sync.</Text>
+          <Text>• <strong>Best default:</strong> create app with <Code>pnpm create @gdesignsystem/create-app@latest</Code> and use <Code>pnpm gds:tokens:sync</Code> for local token sync.</Text>
           <Text>• <strong>No workspace needed:</strong> You can still install published GDS packages directly in any project.</Text>
           <Text>• <strong>With a workspace:</strong> Use <Code>workspace:*</Code> dependencies for live local package development against the GDS repo.</Text>
         </VStack>

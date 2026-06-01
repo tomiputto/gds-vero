@@ -46,12 +46,16 @@ export function DesignSystemOverview() {
   "@gdesignsystem/react": "workspace:*",
   "@gdesignsystem/icons": "workspace:*",
   "@gdesignsystem/theme": "workspace:*",
-  "@gdesignsystem/tokens": "workspace:*"
+  "@gdesignsystem/tokens": "workspace:*",
+  "@chakra-ui/react": "^3.0.0",
+  "@emotion/react": "^11.0.0",
+  "react": ">=18",
+  "react-dom": ">=18"
 }`}
         </Box>
         <Text color="fg.muted" mt="2" textStyle="sm">
           Or install from npm when published:{" "}
-          <Code>pnpm add @gdesignsystem/react @gdesignsystem/icons</Code>
+          <Code>pnpm add @gdesignsystem/react @gdesignsystem/theme @gdesignsystem/icons @chakra-ui/react @emotion/react react react-dom</Code>
         </Text>
 
         <Heading size="md" mb="2" mt="6">
@@ -97,10 +101,11 @@ export function DesignSystemOverview() {
           whiteSpace="pre-wrap"
           overflowX="auto"
         >
-{`import { Button, Box, Text } from "@chakra-ui/react";
+{`import { Box } from "@chakra-ui/react";
+import { GDSButton, GDSText as Text } from "@gdesignsystem/react";
 
 <Box bg="bg.default" color="fg" p="4">
-  <Button colorPalette="brand">Primary action</Button>
+  <GDSButton colorPalette="brand">Primary action</GDSButton>
   <Text color="fg.muted">Muted text</Text>
 </Box>`}
         </Box>
@@ -109,7 +114,7 @@ export function DesignSystemOverview() {
           Tokens
         </Heading>
         <Text color="fg.muted" mb="2">
-          Design tokens live in <Code>packages/tokens/figma/tokens.raw.json</Code>. The theme reads colors from that file and exposes semantic tokens (fg, bg, border, brand). To sync from Figma in the <strong>GDS monorepo</strong>, run:
+          Design tokens live in <Code>packages/tokens/figma/tokens.raw.json</Code>. The theme reads colors from that file and exposes semantic tokens (fg, bg, border, brand). In the <strong>GDS monorepo</strong>, after exporting Figma MCP <Code>get_variable_defs</Code> to <Code>.tmp/figma.mcp_latest.json</Code> (or ask an agent to “sync tokens”), run:
         </Text>
         <Box
           as="pre"
@@ -122,11 +127,13 @@ export function DesignSystemOverview() {
           fontFamily="mono"
           whiteSpace="pre-wrap"
         >
-          pnpm gds:tokens:sync
+          pnpm gds:tokens:sync:from-mcp
         </Box>
         <Text color="fg.muted" mt="2">
-          In projects created with <Code>create @gdesignsystem/app</Code>, the same command syncs into local
-          files under <Code>src/</Code>.
+          That merges the selection into existing tokens and updates <Code>tokens.raw.json</Code>. See{" "}
+          <strong>Sync design tokens</strong> for the full flow. In projects created with{" "}
+          <Code>pnpm create @gdesignsystem/create-app@latest</Code>, use <Code>pnpm gds:tokens:sync</Code> instead — it writes <Code>src/gds-tokens.raw.json</Code> and{" "}
+          <Code>src/gds-theme-sync.generated.ts</Code>.
         </Text>
       </Box>
     </VStack>

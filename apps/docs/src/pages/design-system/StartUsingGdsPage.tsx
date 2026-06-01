@@ -183,7 +183,7 @@ export function StartUsingGdsPage() {
                 whiteSpace="pre-wrap"
                 overflowX="auto"
               >
-                {`npm create @gdesignsystem/app@latest my-project`}
+                {`npm create @gdesignsystem/create-app@latest my-project`}
               </Box>
 
               <Text fontWeight="semibold" color="fg">
@@ -201,7 +201,7 @@ export function StartUsingGdsPage() {
                 whiteSpace="pre-wrap"
                 overflowX="auto"
               >
-                {`pnpm create @gdesignsystem/app@latest my-project`}
+                {`pnpm create @gdesignsystem/create-app@latest my-project`}
               </Box>
             </VStack>
 

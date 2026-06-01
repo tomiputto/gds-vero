@@ -109,6 +109,17 @@ function App() {
 
 ---
 
+## Typography
+
+GDS defines **named text styles** in the theme (`@gdesignsystem/theme`): `display`, `headline`, `title`, `body`, `caption`. Use them on **`GDSText`** via `textStyle="body"` etc.
+
+- **Do not** use `textStyle="md"` or `textStyle="sm"` on `GDSText` — those are **font size token names**, not GDS text styles, and sizing will look inconsistent.
+- **`GDSHeading`** wraps Chakra `Heading`. Its `size` prop is Chakra’s **heading scale** (`xs`–`4xl`), not the GDS text-style names. For a card title / `h2`, use e.g. `size="xl"` or `size="2xl"` with `as="h2"`. **`size="sm"` is a small heading**, not “semantic h2”.
+- Hierarchy example: card title `GDSHeading size="xl" as="h2"`; lead copy `GDSText textStyle="body"`; secondary copy `GDSText textStyle="caption" color="fg.muted"`.
+- Optional: `fontSize="md"` on `GDSText` uses the Figma **type scale** (`xs`–`4xl`) when you need a specific step, separate from `textStyle`.
+
+---
+
 ## Forms (Field API)
 
 For inputs with labels, help text, and errors use **Field** from `@chakra-ui/react`:
