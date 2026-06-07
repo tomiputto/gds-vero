@@ -1,0 +1,39 @@
+---
+alwaysApply: true
+---
+# GDS architecture docs — keep in sync
+
+**Canonical pair:** `GDS_ARCHITECTURE.md` (English) and `GDS_ARKKITEHTUURI.md` (Finnish). They must describe the same architecture; update **both** in the same change when content diverges.
+
+## When to update (same session / commit as the code change)
+
+Update the architecture docs when you add or materially change any of:
+
+- **Monorepo layout** — new/removed `packages/*`, `apps/*`, root folders (`code-connect/`, `scripts/`, `.tmp/`)
+- **Package roles** — what a package exports, dependencies, or its place in the stack
+- **Token flow** — Figma MCP scripts, `tokens.raw.json` path, sync commands (`gds:tokens:sync`, `gds:tokens:sync:from-mcp`)
+- **Theme / react model** — `GDSProvider`, semantic tokens, wrapper exports, Chakra v3 usage patterns
+- **create-app** — template stack, scaffolded files, agent rule files, CLI output, `npm create` usage
+- **Code Connect** — `code-connect/*.figma.tsx`, `figma.config.json`, publish commands, Figma file key
+- **AI agent docs** — `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `.cursor/rules/`, create-app template agent files
+- **Scripts table** — root `package.json` scripts relevant to GDS workflows
+- **npm publish** — bump version examples in section 7 from `packages/*/package.json` or `npm view @gdesignsystem/<pkg> version`
+
+## What to update in the docs
+
+1. **Section 1** tree — folder list matches repo.
+2. **Section 2** — per-package bullets reflect current behavior.
+3. **Sections 3–6** — token flow, theme, apps, scripts unchanged unless you changed those systems.
+4. **Section 7** — published version examples after any npm publish.
+5. **Sections 8–9** — Code Connect and agent documentation when those areas change.
+6. **Summary table** — layer responsibilities and end-to-end flows.
+
+## Do not
+
+- Edit only one language file — always pair EN + FI.
+- Duplicate full `GDS_FOR_LLM_AGENTS.md` content — link and summarize.
+- Let version numbers drift for months — sync on publish or when user asks.
+
+## If unsure
+
+After a structural change, skim both architecture files; if anything you changed is missing or wrong, fix both before finishing the task.

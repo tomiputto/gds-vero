@@ -4,6 +4,10 @@ This is the GDS (GDS Design System) monorepo — a React design system built on 
 
 **All agents (Claude, Cursor, Copilot, etc.):** the binding UI/stack rules live in **`GDS_FOR_LLM_AGENTS.md`**. Read that file before generating or editing UI code. This file (`CLAUDE.md`) is only a short monorepo overview; **`AGENTS.md`** at the repo root points every assistant to the same canonical doc.
 
+## Architecture docs
+
+- **`GDS_ARCHITECTURE.md`** / **`GDS_ARKKITEHTUURI.md`** — full monorepo architecture (keep both in sync; see `.cursor/rules/architecture-docs.mdc`).
+
 ## Packages
 
 - `packages/react` — `@gdesignsystem/react`: GDSProvider, GDSButton, GDSText, GDSHeading

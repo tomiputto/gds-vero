@@ -23,6 +23,8 @@ Configure your assistant with a rule that **requires** following that file for a
 
 ## Repo-specific pointers
 
+- **`GDS_ARCHITECTURE.md`** / **`GDS_ARKKITEHTUURI.md`** — monorepo architecture (EN/FI pair).
 - **`CLAUDE.md`** — monorepo layout and package roles (supplementary only).
 - **`.cursor/rules/gds-llm-agents.mdc`** — Cursor: always apply GDS agent rules.
 - **`.cursor/rules/figma-tokens.mdc`** — only the Figma → `tokens.raw.json` sync workflow.
+- **`.cursor/rules/architecture-docs.mdc`** — keep architecture docs in sync when structure, packages, Code Connect, create-app, or publish workflow changes.

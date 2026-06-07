@@ -1,6 +1,8 @@
 # GDS architecture
 
-This document describes the architecture of the GDS (GDS Design System) project: monorepo structure, package roles, the token flow from Figma to the theme, scaffolding new apps, and the build and publish pipeline.
+This document describes the architecture of the GDS (GDS Design System) project: monorepo structure, package roles, the token flow from Figma to the theme, scaffolding new apps, Figma Code Connect, AI agent documentation, and the build and publish pipeline.
+
+**Maintenance:** Agents keep this file and **`GDS_ARKKITEHTUURI.md`** in sync when architecture-relevant code changes (see **`.cursor/rules/architecture-docs.mdc`**).
 
 ---
 
@@ -10,8 +12,10 @@ GDS is a **pnpm workspace** monorepo:
 
 ```
 GDS/
-├── package.json          # Root: scripts (dev, build, gds:tokens:sync, gds:icons:generate)
+├── package.json          # Root: scripts (dev, build, gds:tokens:sync, gds:icons:generate, figma:connect:*)
 ├── pnpm-workspace.yaml   # Workspace packages: packages/*, apps/*
+├── figma.config.json     # Figma Code Connect (parser, include paths)
+├── code-connect/         # Code Connect mappings (*.figma.tsx) — not an npm package
 ├── packages/             # Published npm packages
 │   ├── react/            # @gdesignsystem/react
 │   ├── theme/            # @gdesignsystem/theme
@@ -77,6 +81,7 @@ In practice: wrap the tree with `GDSProvider`, use Chakra compound APIs + GDS ic
 - **Role:** Scaffold new React + Vite apps with GDS pre-wired (`create-gds-app` bin).
 - **Usage:** `pnpm create @gdesignsystem/app@latest my-project` (npm package is `@gdesignsystem/create-app`; do **not** use `create …/create-app` — npm resolves that to `create-create-app` and 404s)
 - **Contents:** Copies `template/` (Vite app with `ChakraProvider` + `gdsTheme` + optional `gds-theme-sync.generated.ts` from `gds:tokens:sync`, example card using `GDSButton` / `GDSHeading` / `GDSText`). Template pins `@gdesignsystem/theme`, `@gdesignsystem/react`, etc. For new apps that only use published packages, wrap with `GDSProvider` from `@gdesignsystem/react` instead.
+- **AI agent rules (automatic):** Each scaffold includes `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, and `.github/copilot-instructions.md` — all pointing to `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md` after install.
 - **Note:** Example UI in the template should use GDS text styles (`textStyle="body"`, `GDSHeading size="xl" as="h2"`) — not Chakra font-size names as `textStyle`.
 
 ### 2.6 @gdesignsystem/cli
@@ -147,6 +152,8 @@ Both depend on `@gdesignsystem/react`, `@gdesignsystem/theme`, `@gdesignsystem/i
 
 Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges selection). `pnpm gds:tokens:sync` reads `.tmp/figma.variable_defs.json` only (no merge).
 
+**Figma Code Connect (root):** `pnpm figma:connect:publish` / `pnpm figma:connect:unpublish` (requires `FIGMA_ACCESS_TOKEN`). See `code-connect/README.md`.
+
 ---
 
 ## 7. Dependencies and publishing
@@ -157,17 +164,43 @@ Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges se
 | theme | tokens | `@gdesignsystem/theme@0.1.8` |
 | react | theme, tokens | `@gdesignsystem/react@0.1.8` |
 | icons | — | `@gdesignsystem/icons` |
-| create-app | — (template lists deps) | `@gdesignsystem/create-app@0.1.6` |
-| cli | — | `@gdesignsystem/cli` |
+| create-app | — (template lists deps) | `@gdesignsystem/create-app@0.1.7` |
+| cli | — | `@gdesignsystem/cli@0.1.0` |
 
-- **Publishing:** Packages are published to npm separately (`pnpm publish --access public`). `workspace:*` is replaced with published versions at publish time.
+- **Publishing:** Packages are published to npm separately (`pnpm publish --access public`). `workspace:*` is replaced with published versions at publish time. Keep version examples in this table aligned with `packages/*/package.json` or npm after each publish.
 - **External stack:** React 18+, Chakra UI v3, Emotion. GDS ships theme + provider + thin wrappers; most UI is `@chakra-ui/react`.
-
-Canonical agent/UI rules: **`GDS_FOR_LLM_AGENTS.md`** (also bundled in `@gdesignsystem/react`).
 
 ---
 
-## 8. Summary
+## 8. Figma Code Connect
+
+Code Connect links Figma components to GDS/React code snippets in Dev Mode. Lives at repo root (not published as its own npm package).
+
+- **Config:** `figma.config.json` — React parser; includes `code-connect/**/*.figma.tsx` and `packages/react/src/**/*.tsx`.
+- **Mappings:** `code-connect/*.figma.tsx` — P0 components mapped to Chakra v3 + GDS patterns (Button, Badge, Field, Card, Dialog).
+- **Figma file:** GDS-1.0 PROD — file key `vtiyOtk3Ro41iNAH9l3yhp`.
+- **Publish:** `FIGMA_ACCESS_TOKEN=<token> pnpm figma:connect:publish` (dry-run: `pnpm figma connect publish --dry-run`).
+- **Docs:** `code-connect/README.md` (node IDs, adding new mappings).
+
+Designers see the mapped React example when inspecting components in Figma Dev Mode.
+
+---
+
+## 9. AI agent documentation
+
+GDS documents stack rules so coding assistants use Chakra v3 + correct imports consistently.
+
+| Context | Files | Canonical guide |
+|---------|-------|-----------------|
+| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc` | `GDS_FOR_LLM_AGENTS.md` (repo root) |
+| **npm consumers** | Bundled in `@gdesignsystem/react` | `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md` |
+| **create-app scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md` | Points to bundled guide after install |
+
+When expanding agent rules or UI patterns, update **`GDS_FOR_LLM_AGENTS.md`** and sync the copy in **`packages/react/GDS_FOR_LLM_AGENTS.md`** before publishing `@gdesignsystem/react`.
+
+---
+
+## 10. Summary
 
 | Layer | Responsibility |
 |-------|----------------|
@@ -175,9 +208,12 @@ Canonical agent/UI rules: **`GDS_FOR_LLM_AGENTS.md`** (also bundled in `@gdesign
 | **tokens** | `tokens.raw.json` (synced via MCP) |
 | **theme** | Tokens → Chakra `system` (colors, semantic tokens, text styles, recipes) |
 | **react** | `GDSProvider` + optional wrappers + agent docs |
-| **create-app** | Scaffold `my-project` with GDS + example |
+| **create-app** | Scaffold `my-project` with GDS, example UI, and agent rules |
+| **code-connect** | Figma Dev Mode ↔ React/GDS code snippets |
 | **App** | `GDSProvider` (or scaffold: `ChakraProvider` + `gdsTheme`) + Chakra + `@gdesignsystem/icons` |
 
 **Token flow:** Figma → MCP → `tokens.raw.json` → theme → `system` → provider → app.
 
-**New app flow:** `pnpm create @gdesignsystem/app@latest` → install → dev server (template uses `ChakraProvider` + GDS wrappers; npm-only apps can use `GDSProvider`). Alternative: `npx create-gds-app my-project`.
+**New app flow:** `pnpm create @gdesignsystem/app@latest` → install → dev server (template uses `ChakraProvider` + GDS wrappers + agent rules; npm-only apps can use `GDSProvider`). Alternative: `npx create-gds-app my-project`.
+
+**Code Connect flow:** Edit `code-connect/*.figma.tsx` → `pnpm figma:connect:publish` → designers see snippets in Figma Dev Mode.
