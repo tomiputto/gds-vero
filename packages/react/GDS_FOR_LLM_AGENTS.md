@@ -100,7 +100,7 @@ function App() {
 
 - Use **only** Chakra UI + GDS packages (`@gdesignsystem/react`, `@gdesignsystem/theme`, `@gdesignsystem/icons`) for the UI. Do not add Material UI, Ant Design, Tailwind UI, or other component libraries.
 - Use **semantic tokens** for colors and backgrounds: `fg`, `fg.muted`, `bg.default`, `bg.subtle`, `border.muted`, `colorPalette="brand"`, etc.
-- Use **`@gdesignsystem/icons`** for icons (e.g. `CheckIcon`, `StarIcon`, `XIcon`). Do not use `react-icons` or other icon sets for UI when building with GDS unless the user explicitly asks.
+- Use **`@gdesignsystem/icons`** for icons (e.g. `CheckIcon`, `StarIcon`, `XIcon`, `SearchIcon`, `MenuIcon`, `UserIcon`, `ArrowRightIcon`, `ChevronDownIcon`, `PencilIcon`, `TrashIcon`, `PlusIcon`, `InfoIcon`, `TriangleAlertIcon`, `LogOutIcon`). Over 1500 icons available — full list at [GDS Icons docs](https://renegademaster-droid.github.io/GDS/styles/icons). Do not use `react-icons` or other icon sets for UI when building with GDS unless the user explicitly asks. Icon names are PascalCase with `Icon` suffix matching Lucide icon names (e.g. Lucide `arrow-right` → `ArrowRightIcon`).
 - The root of the React tree must be wrapped in **`GDSProvider`** from `@gdesignsystem/react`.
 - **Forms:** Use Chakra v3 **Field** API from `@chakra-ui/react`: `Field.Root`, `Field.Label`, `Field.HelperText`, `Field.ErrorText`. Do **not** use `FormControl`, `FormLabel`, `FormHelperText`, or `FormErrorMessage` — they are not exported in Chakra v3 and will cause runtime errors.
 - **Tables:** Use Chakra v3 **Table** compound component: `Table.Root`, `Table.Header`, `Table.Row`, `Table.ColumnHeader`, `Table.Body`, `Table.Cell`. Do **not** use `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`, or `TableContainer` — they are not exported in Chakra v3 and will cause runtime errors. Use `Table.ScrollArea` for scrollable tables; use `textAlign="end"` instead of `isNumeric`.
@@ -189,6 +189,137 @@ export function LoginCard() {
 
 ---
 
+## Dialogs (Dialog API)
+
+Use **Dialog** compound component from `@chakra-ui/react`. Always wrap content in `<Portal>`. Use `XIcon` from `@gdesignsystem/icons` for the close trigger.
+
+```tsx
+import { Dialog, Button, IconButton, Portal } from "@chakra-ui/react";
+import { XIcon } from "@gdesignsystem/icons";
+
+<Dialog.Root>
+  <Dialog.Trigger asChild>
+    <Button variant="outline">Open Dialog</Button>
+  </Dialog.Trigger>
+  <Portal>
+    <Dialog.Backdrop />
+    <Dialog.Positioner>
+      <Dialog.Content>
+        <Dialog.Header>
+          <Dialog.Title>Dialog Title</Dialog.Title>
+        </Dialog.Header>
+        <Dialog.Body>Content here.</Dialog.Body>
+        <Dialog.Footer>
+          <Dialog.ActionTrigger asChild>
+            <Button variant="outline">Cancel</Button>
+          </Dialog.ActionTrigger>
+          <Button colorPalette="brand">Save</Button>
+        </Dialog.Footer>
+        <Dialog.CloseTrigger asChild>
+          <IconButton size="sm" variant="ghost" aria-label="Close dialog">
+            <XIcon />
+          </IconButton>
+        </Dialog.CloseTrigger>
+      </Dialog.Content>
+    </Dialog.Positioner>
+  </Portal>
+</Dialog.Root>
+```
+
+Do **not** use `Modal`, `ModalOverlay`, `ModalContent`, `ModalHeader`, `ModalBody`, `ModalFooter`, `ModalCloseButton` — they do not exist in Chakra v3.
+
+---
+
+## Alerts (Alert API)
+
+Use **Alert** compound component from `@chakra-ui/react`. Status variants: `success`, `error`, `warning`, `info`.
+
+```tsx
+import { Alert } from "@chakra-ui/react";
+
+// Success
+<Alert.Root status="success">
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title>Success</Alert.Title>
+    <Alert.Description>Your changes have been saved.</Alert.Description>
+  </Alert.Content>
+</Alert.Root>
+
+// Error
+<Alert.Root status="error">
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title>Error</Alert.Title>
+    <Alert.Description>Something went wrong. Please try again.</Alert.Description>
+  </Alert.Content>
+</Alert.Root>
+
+// Warning (title only)
+<Alert.Root status="warning">
+  <Alert.Indicator />
+  <Alert.Title>Your session is about to expire</Alert.Title>
+</Alert.Root>
+
+// Info (title only)
+<Alert.Root status="info">
+  <Alert.Indicator />
+  <Alert.Title>New feature available</Alert.Title>
+</Alert.Root>
+```
+
+Do **not** use `Alert`, `AlertIcon`, `AlertTitle`, `AlertDescription` (flat imports) — use the compound `Alert.Root` / `Alert.Indicator` / `Alert.Content` / `Alert.Title` / `Alert.Description` API.
+
+---
+
+## Navigation / App shell
+
+GDS does not ship a nav component. Build navigation with Chakra primitives + semantic tokens:
+
+```tsx
+import { Box, HStack, Link, Separator } from "@chakra-ui/react";
+import { GDSHeading } from "@gdesignsystem/react";
+
+function AppHeader() {
+  return (
+    <Box as="header" bg="bg.default" borderBottomWidth="1px" borderColor="border.muted">
+      <HStack px="6" py="3" justify="space-between">
+        <GDSHeading size="md" as="span">My App</GDSHeading>
+        <HStack as="nav" gap="4">
+          <Link href="/" color="fg">Home</Link>
+          <Link href="/about" color="fg.muted">About</Link>
+        </HStack>
+      </HStack>
+    </Box>
+  );
+}
+```
+
+---
+
+## Component selection guide
+
+When generating code for common UI tasks, use these patterns:
+
+| Task | Use |
+|------|-----|
+| App root | `GDSProvider` from `@gdesignsystem/react` |
+| Body text | `GDSText` (`textStyle="body"` / `"caption"`) from `@gdesignsystem/react` |
+| Headings | `GDSHeading` (`size="xl"` etc.) from `@gdesignsystem/react` |
+| Primary button | `Button colorPalette="brand"` from `@chakra-ui/react` |
+| Form field with label | `Field.Root` + `Field.Label` + `Input` from `@chakra-ui/react` |
+| Card layout | `Card.Root` + `Card.Header` + `Card.Body` + `Card.Footer` from `@chakra-ui/react` |
+| Modal / dialog | `Dialog.Root` (+ Portal, Backdrop, Positioner, Content) from `@chakra-ui/react` |
+| Feedback banner | `Alert.Root` + `Alert.Indicator` + `Alert.Content` from `@chakra-ui/react` |
+| Data table | `Table.Root` + `Table.Header` + `Table.Body` + `Table.Row` + `Table.Cell` from `@chakra-ui/react` |
+| Horizontal rule | `Separator` from `@chakra-ui/react` |
+| Icons | `<CheckIcon />`, `<XIcon />` etc. from `@gdesignsystem/icons` |
+| Tabs | `Tabs.Root` + `Tabs.List` + `Tabs.Trigger` + `Tabs.Content` from `@chakra-ui/react` |
+| Dropdown menu | `Menu.Root` + `Menu.Trigger` + `Menu.Positioner` + `Menu.Content` + `Menu.Item` from `@chakra-ui/react` |
+| Toast notifications | `Toaster` + `createToaster` from `@chakra-ui/react` |
+
+---
+
 ## Tables (Table API)
 
 Use the **Table** compound component from `@chakra-ui/react`:
@@ -269,4 +400,5 @@ That way the agent is nudged to output v3-compatible code even when it would oth
 
 - **Repository:** https://github.com/renegademaster-droid/GDS  
 - **npm:** [@gdesignsystem/react](https://www.npmjs.com/package/@gdesignsystem/react) · [@gdesignsystem/theme](https://www.npmjs.com/package/@gdesignsystem/theme) · [@gdesignsystem/tokens](https://www.npmjs.com/package/@gdesignsystem/tokens) · [@gdesignsystem/icons](https://www.npmjs.com/package/@gdesignsystem/icons)  
-- **Docs (component reference):** https://renegademaster-droid.github.io/GDS/
+- **Docs (component reference):** https://renegademaster-droid.github.io/GDS/  
+- **Icons (full list, 1500+):** https://renegademaster-droid.github.io/GDS/styles/icons
