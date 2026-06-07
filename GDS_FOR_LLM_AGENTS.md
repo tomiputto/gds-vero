@@ -56,7 +56,9 @@ The same guide is **published inside** `@gdesignsystem/react`. After install you
 
 `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`
 
-Agents do **not** read it automatically. Add a **project rule** (Cursor, Claude Code, or your editor’s equivalent) so every UI task uses it. Example text to paste:
+**`npm create @gdesignsystem/app@latest`** scaffolds `AGENTS.md`, `.cursor/rules/gds-llm-agents.mdc`, `CLAUDE.md`, and `.github/copilot-instructions.md` so Cursor, Claude Code, and Copilot pick up GDS rules automatically.
+
+For other projects, agents do **not** read `node_modules` automatically. Add a **project rule** (Cursor, Claude Code, or your editor’s equivalent) so every UI task uses it. Example text to paste:
 
 > **GDS / Chakra UI:** For any React UI in this project, follow the canonical rules in **`node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`** (Chakra v3 only, correct imports from `@gdesignsystem/react` vs `@chakra-ui/react` vs `@gdesignsystem/icons`, semantic tokens). If that path is missing, run install and ensure `@gdesignsystem/react` is a dependency.
 

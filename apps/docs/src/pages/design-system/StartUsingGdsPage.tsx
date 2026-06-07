@@ -207,7 +207,9 @@ export function StartUsingGdsPage() {
 
             <Text mt="3" color="fg.muted" textStyle="sm">
               After the command finishes, follow the printed “Next steps” (including how to start
-              your dev server).
+              your dev server). The scaffold also includes <Code>AGENTS.md</Code>,{" "}
+              <Code>CLAUDE.md</Code>, <Code>.cursor/rules/</Code>, and{" "}
+              <Code>.github/copilot-instructions.md</Code> so AI assistants follow GDS automatically.
             </Text>
             <Text mt="2" color="fg.muted" textStyle="sm">
               Use <Code>@gdesignsystem/app</Code>, not <Code>@gdesignsystem/create-app</Code>: npm

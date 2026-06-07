@@ -93,6 +93,8 @@ const runCmd = pm === "pnpm" ? "pnpm dev" : "npm run dev";
 console.log(`
 ✓ Project "${projectName}" created!
 
+Agent rules (Cursor, Claude Code, Copilot): AGENTS.md, CLAUDE.md, .cursor/rules/
+
 Next steps:
   cd ${projectName}
   ${runCmd}

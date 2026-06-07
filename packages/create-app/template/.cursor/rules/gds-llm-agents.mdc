@@ -1,0 +1,15 @@
+---
+alwaysApply: true
+---
+
+# GDS — all agents must follow the bundled agent guide
+
+For **any** task that adds or changes **React UI**, **styling with Chakra**, **GDS packages**, or **icons**:
+
+1. **Treat `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md` as canonical and mandatory.** Open or reason from it before writing UI code (also see project `AGENTS.md`).
+2. Use **Chakra UI v3** compound APIs and names only; never Chakra v2 names that are not exported in v3.
+3. Import **`GDSProvider`** and GDS wrappers (`GDSButton`, `GDSText`, `GDSHeading`, …) from **`@gdesignsystem/react`**. Import **Chakra** components from **`@chakra-ui/react`**. Import **icons** from **`@gdesignsystem/icons`**.
+4. Use **semantic tokens** (`fg`, `bg.default`, `colorPalette="brand"`, etc.), not ad-hoc hex colors, unless the user explicitly asks otherwise.
+5. Do **not** replace GDS with MUI, Ant Design, Tailwind UI kits, or other design systems when the user wants GDS.
+
+`CLAUDE.md` and `.github/copilot-instructions.md` are **short supplements** only; they do **not** override `GDS_FOR_LLM_AGENTS.md`.

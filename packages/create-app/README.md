@@ -25,3 +25,14 @@ npx create-gds-app my-project
 ```
 
 Published package name on npm: `@gdesignsystem/create-app`.
+
+## AI agent rules (automatic)
+
+Each scaffolded project includes:
+
+- `AGENTS.md` — canonical pointer for Claude Code and other agents
+- `.cursor/rules/gds-llm-agents.mdc` — always-on Cursor rule
+- `CLAUDE.md` — Claude Code supplement
+- `.github/copilot-instructions.md` — GitHub Copilot
+
+All rules point agents to `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md` after install.
