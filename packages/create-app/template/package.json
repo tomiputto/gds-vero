@@ -13,7 +13,7 @@
     "@chakra-ui/react": "^3.0.0",
     "@emotion/react": "^11.0.0",
     "@gdesignsystem/icons": "^0.1.1",
-    "@gdesignsystem/react": "^0.1.8",
+    "@gdesignsystem/react": "^0.1.10",
     "@gdesignsystem/theme": "^0.1.8",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"

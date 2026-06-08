@@ -1,8 +1,11 @@
 {
   "name": "@gdesignsystem/react",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": false,
   "type": "module",
+  "scripts": {
+    "prepublishOnly": "node ../../scripts/assert-pnpm-publish.mjs"
+  },
   "exports": {
     ".": "./src/index.ts"
   },

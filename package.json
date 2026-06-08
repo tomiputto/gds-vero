@@ -14,7 +14,10 @@
     "gds:tokens:sync:from-mcp": "node scripts/figma-sync-with-mcp.mjs .tmp/figma.mcp_latest.json",
     "gds:icons:generate": "node scripts/svg-to-gds-icons.mjs",
     "figma:connect:publish": "figma connect publish",
-    "figma:connect:unpublish": "figma connect unpublish"
+    "figma:connect:unpublish": "figma connect unpublish",
+    "gds:publish:react": "pnpm --filter @gdesignsystem/react publish --access public",
+    "gds:publish:theme": "pnpm --filter @gdesignsystem/theme publish --access public",
+    "gds:publish:create-app": "pnpm --filter @gdesignsystem/create-app publish --access public"
   },
   "devDependencies": {
     "@figma/code-connect": "^1",

@@ -162,12 +162,12 @@ Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges se
 |---------|------------|----------------|
 | tokens | — | `@gdesignsystem/tokens@0.1.3` |
 | theme | tokens | `@gdesignsystem/theme@0.1.8` |
-| react | theme, tokens | `@gdesignsystem/react@0.1.9` |
+| react | theme, tokens | `@gdesignsystem/react@0.1.10` |
 | icons | — | `@gdesignsystem/icons` |
-| create-app | — (template lists deps) | `@gdesignsystem/create-app@0.1.7` |
+| create-app | — (template lists deps) | `@gdesignsystem/create-app@0.1.9` |
 | cli | — | `@gdesignsystem/cli@0.1.0` |
 
-- **Publishing:** Packages are published to npm separately (`pnpm publish --access public`). `workspace:*` is replaced with published versions at publish time. Keep version examples in this table aligned with `packages/*/package.json` or npm after each publish.
+- **Publishing:** Use **pnpm** from the monorepo root — **not** `npm publish` inside `packages/*` (npm leaves `workspace:*` in dependencies and breaks consumers). Examples: `pnpm gds:publish:react`, `pnpm gds:publish:theme`, `pnpm gds:publish:create-app`. `workspace:*` is resolved to semver when packing with pnpm. Keep version examples in this table aligned with `packages/*/package.json` or npm after each publish.
 - **External stack:** React 18+, Chakra UI v3, Emotion. GDS ships theme + provider + thin wrappers; most UI is `@chakra-ui/react`.
 
 ---

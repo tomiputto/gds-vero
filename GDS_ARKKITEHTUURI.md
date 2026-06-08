@@ -162,12 +162,12 @@ Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; m
 |---------|---------|-----------------|
 | tokens | — | `@gdesignsystem/tokens@0.1.3` |
 | theme | tokens | `@gdesignsystem/theme@0.1.8` |
-| react | theme, tokens | `@gdesignsystem/react@0.1.9` |
+| react | theme, tokens | `@gdesignsystem/react@0.1.10` |
 | icons | — | `@gdesignsystem/icons` |
-| create-app | — (template listaa deps) | `@gdesignsystem/create-app@0.1.7` |
+| create-app | — (template listaa deps) | `@gdesignsystem/create-app@0.1.9` |
 | cli | — | `@gdesignsystem/cli@0.1.0` |
 
-- **Julkaisu:** Paketit julkaistaan npm:ään erikseen (`pnpm publish --access public`). `workspace:*` korvautuu julkaistuilla versioilla. Pidä versionumerot tässä taulukossa linjassa `packages/*/package.json`:n tai npm:n kanssa jokaisen julkaisun jälkeen.
+- **Julkaisu:** Käytä **pnpm**:ää monorepon juuresta — **älä** `npm publish` hakemistossa `packages/*` (npm jättää `workspace:*` riippuvuuksiin ja asennus hajoaa). Esim. `pnpm gds:publish:react`, `pnpm gds:publish:theme`, `pnpm gds:publish:create-app`. `workspace:*` resolvautuu semveriksi pnpm-packauksessa. Pidä versionumerot linjassa julkaisun jälkeen.
 - **Ulkoiset:** React 18+, Chakra UI v3, Emotion. GDS toimittaa teeman, providerin ja ohuet wrapperit; suurin osa UI:sta on `@chakra-ui/react`.
 
 ---
