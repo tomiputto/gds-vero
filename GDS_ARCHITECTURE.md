@@ -162,7 +162,7 @@ Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges se
 |---------|------------|----------------|
 | tokens | — | `@gdesignsystem/tokens@0.1.3` |
 | theme | tokens | `@gdesignsystem/theme@0.1.8` |
-| react | theme, tokens | `@gdesignsystem/react@0.1.8` |
+| react | theme, tokens | `@gdesignsystem/react@0.1.9` |
 | icons | — | `@gdesignsystem/icons` |
 | create-app | — (template lists deps) | `@gdesignsystem/create-app@0.1.7` |
 | cli | — | `@gdesignsystem/cli@0.1.0` |

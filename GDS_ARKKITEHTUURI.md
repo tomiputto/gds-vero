@@ -162,7 +162,7 @@ Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; m
 |---------|---------|-----------------|
 | tokens | — | `@gdesignsystem/tokens@0.1.3` |
 | theme | tokens | `@gdesignsystem/theme@0.1.8` |
-| react | theme, tokens | `@gdesignsystem/react@0.1.8` |
+| react | theme, tokens | `@gdesignsystem/react@0.1.9` |
 | icons | — | `@gdesignsystem/icons` |
 | create-app | — (template listaa deps) | `@gdesignsystem/create-app@0.1.7` |
 | cli | — | `@gdesignsystem/cli@0.1.0` |
