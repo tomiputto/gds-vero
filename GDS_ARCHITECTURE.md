@@ -192,11 +192,11 @@ GDS documents stack rules so coding assistants use Chakra v3 + correct imports c
 
 | Context | Files | Canonical guide |
 |---------|-------|-----------------|
-| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc` | `GDS_FOR_LLM_AGENTS.md` (repo root) |
+| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (repo root; includes **Accessibility** + mandatory agent review checklist) |
 | **npm consumers** | Bundled in `@gdesignsystem/react` | `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md` |
-| **create-app scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md` | Points to bundled guide after install |
+| **create-app scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, `eslint` + `jsx-a11y` | Points to bundled guide after install; `npm run lint` for automated JSX a11y |
 
-When expanding agent rules or UI patterns, update **`GDS_FOR_LLM_AGENTS.md`** and sync the copy in **`packages/react/GDS_FOR_LLM_AGENTS.md`** before publishing `@gdesignsystem/react`.
+When expanding agent rules, accessibility patterns, or UI guidance, update **`GDS_FOR_LLM_AGENTS.md`** and sync the copy in **`packages/react/GDS_FOR_LLM_AGENTS.md`** before publishing `@gdesignsystem/react`.
 
 ---
 

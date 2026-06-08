@@ -13,6 +13,7 @@ import { StartUsingGdsPage } from "./pages/design-system/StartUsingGdsPage";
 import { ExternalWebsitePage } from "./pages/design-system/ExternalWebsitePage";
 import { ChakraV3ApiPage } from "./pages/design-system/ChakraV3ApiPage";
 import { ForAIAgentsPage } from "./pages/design-system/ForAIAgentsPage";
+import { CodeConnectPage } from "./pages/design-system/CodeConnectPage";
 import { AccessibilityPage } from "./pages/design-system/AccessibilityPage";
 import { TextPage } from "./pages/design-system/TextPage";
 import { ColorsPage } from "./pages/design-system/ColorsPage";
@@ -151,6 +152,7 @@ function App() {
           <Route path="guides/external-website" element={<ExternalWebsitePage />} />
           <Route path="guides/for-ai-agents" element={<ForAIAgentsPage />} />
           <Route path="guides/chakra-v3-api" element={<ChakraV3ApiPage />} />
+          <Route path="guides/code-connect" element={<CodeConnectPage />} />
           <Route path="accessibility" element={<AccessibilityPage />} />
           <Route path="styles/text" element={<TextPage />} />
           <Route path="styles/colors" element={<ColorsPage />} />

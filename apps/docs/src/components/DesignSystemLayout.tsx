@@ -10,6 +10,7 @@ const NAV_ITEMS: Array<{ path: string; label: string; section?: string; group?: 
   { path: "/guides/external-website", label: "Using GDS outside the repo", section: "Guides" },
   { path: "/guides/for-ai-agents", label: "For AI agents", section: "Guides" },
   { path: "/guides/chakra-v3-api", label: "Chakra v3 API", section: "Guides" },
+  { path: "/guides/code-connect", label: "Figma Code Connect", section: "Guides" },
   { path: "/accessibility", label: "Accessibility", section: "Guides" },
   { path: "/examples/login", label: "Login screen", section: "Examples" },
   { path: "/box", label: "Box", section: "Components", group: "Layout" },

@@ -192,11 +192,11 @@ GDS dokumentoi pinon säännöt, jotta koodausavustajat käyttävät Chakra v3:t
 
 | Konteksti | Tiedostot | Kanoninen ohje |
 |-----------|-----------|----------------|
-| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc` | `GDS_FOR_LLM_AGENTS.md` (repojuuri) |
+| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (repojuuri; sisältää **Accessibility**-osion ja pakollisen tarkistuslistan) |
 | **npm-kuluttajat** | Bundlattu `@gdesignsystem/react`:iin | `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md` |
-| **create-app -scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md` | Viittaa bundlattuun ohjeeseen asennuksen jälkeen |
+| **create-app -scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, `eslint` + `jsx-a11y` | Viittaa bundlattuun ohjeeseen; `npm run lint` JSX-a11y-tarkistukseen |
 
-Laajentaessasi agenttisääntöjä tai UI-malleja päivitä **`GDS_FOR_LLM_AGENTS.md`** ja synkkaa kopio **`packages/react/GDS_FOR_LLM_AGENTS.md`**:ään ennen `@gdesignsystem/react` -julkaisua.
+Laajentaessasi agenttisääntöjä, saavutettavuusmalleja tai UI-ohjeita päivitä **`GDS_FOR_LLM_AGENTS.md`** ja synkkaa kopio **`packages/react/GDS_FOR_LLM_AGENTS.md`**:ään ennen `@gdesignsystem/react` -julkaisua.
 
 ---
 

@@ -56,7 +56,7 @@ The same guide is **published inside** `@gdesignsystem/react`. After install you
 
 `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`
 
-**`npm create @gdesignsystem/app@latest`** scaffolds `AGENTS.md`, `.cursor/rules/gds-llm-agents.mdc`, `CLAUDE.md`, and `.github/copilot-instructions.md` so Cursor, Claude Code, and Copilot pick up GDS rules automatically.
+**`npm create @gdesignsystem/app@latest`** scaffolds `AGENTS.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-accessibility.mdc`, `CLAUDE.md`, `.github/copilot-instructions.md`, and ESLint + `jsx-a11y` (`npm run lint`) so agents follow GDS rules and catch common accessibility issues automatically.
 
 For other projects, agents do **not** read `node_modules` automatically. Add a **project rule** (Cursor, Claude Code, or your editor’s equivalent) so every UI task uses it. Example text to paste:
 
@@ -319,6 +319,152 @@ When generating code for common UI tasks, use these patterns:
 | Tabs | `Tabs.Root` + `Tabs.List` + `Tabs.Trigger` + `Tabs.Content` from `@chakra-ui/react` |
 | Dropdown menu | `Menu.Root` + `Menu.Trigger` + `Menu.Positioner` + `Menu.Content` + `Menu.Item` from `@chakra-ui/react` |
 | Toast notifications | `Toaster` + `createToaster` from `@chakra-ui/react` |
+
+---
+
+## Accessibility (WCAG 2.1 Level AA)
+
+GDS targets **WCAG 2.1 Level AA**. Chakra v3 components provide keyboard support, focus management, and ARIA for many patterns — **you must still wire labels, names, landmarks, and status messages correctly** in the UI you generate.
+
+**Full human docs:** https://renegademaster-droid.github.io/GDS/accessibility — component pages also include per-component accessibility notes.
+
+### Global rules (always apply)
+
+| Area | Rule | WCAG |
+|------|------|------|
+| **Contrast** | Normal text ≥ 4.5:1; large text (18px+ or 14px+ bold) ≥ 3:1. Prefer semantic tokens (`color="fg"`, `bg="bg.default"`) — avoid ad-hoc hex pairs. | 1.4.3 |
+| **Non-text contrast** | Buttons, inputs, icons, focus rings ≥ 3:1 against adjacent colors. | 1.4.11 |
+| **Keyboard** | All actions via Tab / Shift+Tab / Enter / Space. Do not remove focusability without an accessible alternative. | 2.1.1 |
+| **Focus visible** | Never remove focus outlines (`outline: none` without replacement). Chakra focus rings must stay visible. | 2.4.7 |
+| **Focus order** | Tab order follows visual/logical reading order. Avoid positive `tabIndex` except custom widgets. | 2.4.3 |
+| **Page language** | Set `lang` on `<html>` (e.g. `lang="en"` or `lang="fi"`). | 3.1.1 |
+| **Headings** | Use `GDSHeading` with correct `as` (`h1`–`h6`) — one `h1` per view; don’t skip levels. | 1.3.1 |
+| **Landmarks** | Use `as="header"`, `as="nav"`, `as="main"`, `as="footer"` on layout regions. | 1.3.1 |
+| **Links** | Descriptive link text — not “click here” / “read more” without context. External links: indicate if needed. | 2.4.4 |
+
+### Icons and images
+
+- **Icon-only controls:** always `aria-label` on `IconButton` (e.g. `aria-label="Close"`, `aria-label="Search"`).
+- **Icon + text button:** visible text is enough; hide decorative icon with `aria-hidden` on the icon if redundant.
+- **Decorative icons/images:** `aria-hidden="true"` or `alt=""` on images.
+- **Informative images:** meaningful `alt` text; Avatar fallback should reflect the person’s name/initials.
+
+```tsx
+<IconButton aria-label="Close dialog" variant="ghost">
+  <XIcon aria-hidden="true" />
+</IconButton>
+```
+
+### Forms
+
+- Always **`Field.Label`** — placeholder alone is not a label.
+- **`Field.HelperText`** for hints; **`Field.ErrorText`** for errors.
+- Set **`invalid`** on `Field.Root` when validation fails so assistive tech announces errors.
+- Mark required fields (`required` on input or “(required)” in label).
+- Password show/hide toggle needs its own accessible name.
+
+```tsx
+<Field.Root invalid={!!error}>
+  <Field.Label>Email</Field.Label>
+  <Input type="email" required />
+  <Field.ErrorText>{error}</Field.ErrorText>
+</Field.Root>
+```
+
+### Dialogs and overlays
+
+- Use Chakra **`Dialog`** compound API (not Modal v2).
+- **`Dialog.Title`** must describe the dialog purpose.
+- Close control: **`IconButton` with `aria-label`** (e.g. `"Close dialog"`).
+- Focus is trapped inside open dialogs (Chakra default) — don’t break with custom portals without testing.
+
+### Alerts, toasts, and dynamic status
+
+- Errors that appear after submit: use **`Alert.Root`** with `role="alert"` or `status="error"`.
+- Non-critical updates: `aria-live="polite"` (Chakra Alert/Toaster patterns).
+- Loading buttons: consider `aria-busy="true"` and don’t rely on color alone.
+
+```tsx
+<Alert.Root status="error" role="alert">
+  <Alert.Indicator />
+  <Alert.Content>
+    <Alert.Title>Error</Alert.Title>
+    <Alert.Description>Fix the fields below.</Alert.Description>
+  </Alert.Content>
+</Alert.Root>
+```
+
+### Navigation and structure
+
+- App header: `Box as="header"`; primary nav: `HStack as="nav"` or `<nav>`.
+- Breadcrumbs: `nav` with `aria-label="Breadcrumb"`.
+- Pagination: `aria-label` on prev/next (`"Previous page"`, `"Next page"`).
+
+### Data tables
+
+- Use **`Table.Caption`** when the table needs a short description.
+- Column headers in `Table.ColumnHeader` — not styled `Table.Cell` for headers.
+- For sortable/filterable tables, expose sort state to assistive tech (Chakra patterns or `aria-sort`).
+
+### Tabs, menus, accordion
+
+- **Tabs:** Chakra `Tabs` exposes tablist/tab/tabpanel roles — keep `Tabs.Trigger` text meaningful; keyboard: arrows + Enter/Space.
+- **Menu:** `Menu.Trigger` must have visible text or `aria-label`.
+- **Accordion:** `Accordion.Trigger` text describes the panel; expanded state is announced by Chakra.
+
+### Switches, checkboxes, radio groups
+
+- Every control has a **visible label** (wrapping label or `aria-labelledby`).
+- **Switch:** `role="switch"` + `aria-checked` (Chakra default).
+- **RadioGroup:** use `RadioGroup.Label` for the group name.
+
+### What not to do
+
+- Don’t use `div`/`Box` with `onClick` instead of `Button`/`Link`.
+- Don’t use color alone for errors/success (add text + `Alert` / `Field.ErrorText`).
+- Don’t remove focus styles globally.
+- Don’t leave `IconButton` without `aria-label`.
+- Don’t use `h1`–`h6` via raw `Text` for page structure — use `GDSHeading as="h1"` etc.
+
+---
+
+## Accessibility review (mandatory for agents)
+
+**After creating or materially changing any React UI** (pages, forms, dialogs, nav, cards, tables), you **must** complete this review before considering the task done.
+
+### 1. Self-review checklist
+
+Verify every item; fix violations in code:
+
+- [ ] All form fields have visible `Field.Label` (or equivalent accessible name)
+- [ ] Validation errors use `Field.ErrorText` + `invalid` on `Field.Root`
+- [ ] All `IconButton`s have `aria-label`
+- [ ] Decorative icons use `aria-hidden="true"`
+- [ ] Heading hierarchy is logical (`GDSHeading` with correct `as`)
+- [ ] Layout uses landmarks (`header`, `nav`, `main`, `footer`) where appropriate
+- [ ] Dialogs have `Dialog.Title` and labeled close control
+- [ ] Dynamic errors/success use `Alert` or live region — not color alone
+- [ ] Interactive elements are keyboard reachable; focus ring not removed
+- [ ] Text uses semantic tokens (`fg`, `bg.default`) — no low-contrast custom hex
+- [ ] Link text is descriptive
+- [ ] Images that convey meaning have `alt` text
+
+### 2. Run lint (automated JSX a11y)
+
+If the project has ESLint with `eslint-plugin-jsx-a11y`, run lint on touched files and **fix all a11y errors**:
+
+```bash
+# Monorepo docs app
+pnpm --filter docs lint
+
+# Scaffolded GDS app (after create-app template with lint)
+npm run lint
+# or: pnpm lint
+```
+
+### 3. Report to the user
+
+Briefly state accessibility review outcome, e.g. “A11y review: labels, dialog close button, and alert role added; lint clean.” If something was skipped (no lint in project), say what you verified manually.
 
 ---
 

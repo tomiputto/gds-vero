@@ -1,4 +1,5 @@
 import { Box, Code, Heading, Link, VStack, HStack } from "@chakra-ui/react";
+import { Link as RouterLink } from "react-router-dom";
 import { Section } from "../../components/Section";
 import { GDSText as Text } from "@gdesignsystem/react";
 import { InfoIcon } from "@gdesignsystem/icons";
@@ -110,10 +111,57 @@ function App() {
         description="Must follow when generating code for a GDS-based app."
       >
         <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
-          <Text>• Use <strong>only</strong> Chakra UI + <Code>@gdesignsystem/react</Code>, <Code>@gdesignsystem/theme</Code>, <Code>@gdesignsystem/icons</Code> for UI. Do not add MUI, Ant Design, Tailwind UI, or other component libraries.</Text>
+          <Text>• Use <strong>only</strong> Chakra UI v3 + <Code>@gdesignsystem/react</Code>, <Code>@gdesignsystem/theme</Code>, <Code>@gdesignsystem/icons</Code> for UI. Do not add MUI, Ant Design, Tailwind UI, or other component libraries.</Text>
+          <Text>• <strong>Chakra v3 only</strong> — never import v2 names (<Code>FormControl</Code>, <Code>Modal</Code>, <Code>Divider</Code>, etc.). See <RouterLink to="/guides/chakra-v3-api">Chakra v3 API</RouterLink>.</Text>
+          <Text>• <strong>Imports:</strong> <Code>GDSProvider</Code>, <Code>GDSButton</Code>, <Code>GDSText</Code>, <Code>GDSHeading</Code> from <Code>@gdesignsystem/react</Code>. <Code>Field</Code>, <Code>Card</Code>, <Code>Dialog</Code>, <Code>Button</Code>, etc. from <Code>@chakra-ui/react</Code>.</Text>
           <Text>• Use <strong>semantic tokens</strong>: <Code>fg</Code>, <Code>fg.muted</Code>, <Code>bg.default</Code>, <Code>bg.subtle</Code>, <Code>colorPalette="brand"</Code>, etc.</Text>
-          <Text>• Use <Code>@gdesignsystem/icons</Code> for icons (e.g. CheckIcon, StarIcon, XIcon). Do not use react-icons or other sets for UI when building with GDS.</Text>
+          <Text>• Use <Code>@gdesignsystem/icons</Code> for icons (e.g. CheckIcon, StarIcon, XIcon). Do not use react-icons for GDS UI.</Text>
           <Text>• Wrap the React root in <Code>GDSProvider</Code> from <Code>@gdesignsystem/react</Code>.</Text>
+          <Text>• Use <Code>GDSHeading size="xl" as="h2"</Code> for page/section titles; <Code>GDSText textStyle="body"</Code> for body copy.</Text>
+        </VStack>
+      </Section>
+
+      <Section
+        title="Scaffold with agent rules (recommended)"
+        description="create-app ships Cursor, Claude, and Copilot configuration automatically."
+      >
+        <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
+          <Text>
+            <Code>npm create @gdesignsystem/app@latest my-project</Code> (or pnpm equivalent) copies{" "}
+            <Code>AGENTS.md</Code>, <Code>CLAUDE.md</Code>, <Code>.cursor/rules/gds-llm-agents.mdc</Code>,{" "}
+            <Code>.cursor/rules/gds-accessibility.mdc</Code>, and <Code>.github/copilot-instructions.md</Code>.
+          </Text>
+          <Text>
+            After install, the canonical guide is at{" "}
+            <Code>node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md</Code>.
+          </Text>
+          <Text>
+            Scaffold includes ESLint + <Code>eslint-plugin-jsx-a11y</Code> — run <Code>npm run lint</Code> or{" "}
+            <Code>pnpm lint</Code> after UI changes.
+          </Text>
+          <Text>
+            See <RouterLink to="/guides/start-using-gds">Start using GDS</RouterLink> for the full flow.
+          </Text>
+        </VStack>
+      </Section>
+
+      <Section
+        title="Accessibility (mandatory for agents)"
+        description="WCAG 2.1 Level AA — complete the checklist after every UI change."
+      >
+        <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
+          <Text>
+            The full guide includes <strong>Accessibility</strong> and{" "}
+            <strong>Accessibility review (mandatory for agents)</strong> sections with a checklist,
+            component patterns, and lint instructions.
+          </Text>
+          <Text>
+            Human reference: <RouterLink to="/accessibility">Accessibility</RouterLink> on this site.
+          </Text>
+          <Text>
+            After UI work: complete the checklist in <Code>GDS_FOR_LLM_AGENTS.md</Code>, run lint if
+            available, fix all <Code>jsx-a11y/*</Code> errors, and report the outcome briefly.
+          </Text>
         </VStack>
       </Section>
 
@@ -155,11 +203,16 @@ Provide complete React + TSX code (no pseudocode) for the page.`}
 
       <Section title="Links" description="Repository, npm packages, and docs.">
         <VStack align="stretch" gap="1" textStyle="sm">
+          <Link href={GITHUB_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_FOR_LLM_AGENTS.md (GitHub)</Link>
           <Link href="https://github.com/renegademaster-droid/GDS" color="brand.solid" target="_blank" rel="noopener noreferrer">Repository (GitHub)</Link>
           <Link href="https://www.npmjs.com/package/@gdesignsystem/react" color="brand.solid" target="_blank" rel="noopener noreferrer">@gdesignsystem/react</Link>
           <Link href="https://www.npmjs.com/package/@gdesignsystem/theme" color="brand.solid" target="_blank" rel="noopener noreferrer">@gdesignsystem/theme</Link>
           <Link href="https://www.npmjs.com/package/@gdesignsystem/icons" color="brand.solid" target="_blank" rel="noopener noreferrer">@gdesignsystem/icons</Link>
-          <Link href="https://renegademaster-droid.github.io/GDS/" color="brand.solid" target="_blank" rel="noopener noreferrer">Docs (this site)</Link>
+          <RouterLink to="/guides/start-using-gds">Start using GDS</RouterLink>
+          <RouterLink to="/accessibility">Accessibility</RouterLink>
+          <RouterLink to="/guides/chakra-v3-api">Chakra v3 API</RouterLink>
+          <RouterLink to="/guides/code-connect">Figma Code Connect</RouterLink>
+          <RouterLink to="/guides/sync-design-tokens">Sync design tokens</RouterLink>
         </VStack>
       </Section>
     </VStack>

@@ -11,5 +11,6 @@ For **any** task that adds or changes **React UI**, **styling with Chakra**, **G
 3. Import **`GDSProvider`** and GDS wrappers (`GDSButton`, `GDSText`, `GDSHeading`, …) from **`@gdesignsystem/react`**. Import **Chakra** components from **`@chakra-ui/react`**. Import **icons** from **`@gdesignsystem/icons`**.
 4. Use **semantic tokens** (`fg`, `bg.default`, `colorPalette="brand"`, etc.), not ad-hoc hex colors, unless the user explicitly asks otherwise.
 5. Do **not** replace GDS with MUI, Ant Design, Tailwind UI kits, or other design systems when the user wants GDS.
+6. **Accessibility:** follow the **Accessibility** and **Accessibility review** sections in `GDS_FOR_LLM_AGENTS.md`; complete the checklist after UI changes (see `.cursor/rules/gds-accessibility.mdc`).
 
 `CLAUDE.md` and `.github/copilot-instructions.md` are **short supplements** only; they do **not** override `GDS_FOR_LLM_AGENTS.md`.

@@ -94,6 +94,7 @@ console.log(`
 ✓ Project "${projectName}" created!
 
 Agent rules (Cursor, Claude Code, Copilot): AGENTS.md, CLAUDE.md, .cursor/rules/
+After UI changes: run \`npm run lint\` (jsx-a11y) and follow the a11y checklist in GDS_FOR_LLM_AGENTS.md
 
 Next steps:
   cd ${projectName}

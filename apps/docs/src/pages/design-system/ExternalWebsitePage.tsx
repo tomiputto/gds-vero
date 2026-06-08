@@ -16,7 +16,8 @@ export function ExternalWebsitePage() {
           You don’t need a parent workspace or the same directory. Publish the GDS packages to a package registry (npm, GitHub Packages, etc.) and install them in any project with <Code>pnpm add @gdesignsystem/react @gdesignsystem/theme</Code>—the app can live in any repo or folder. You usually don’t need <Code>@gdesignsystem/tokens</Code> unless the app uses token files or raw token values directly.
         </Text>
         <Text color="fg.muted" mt="2">
-          If your project was created with <Code>pnpm create @gdesignsystem/app@latest</Code>, you can sync
+          If your project was created with <Code>npm create @gdesignsystem/app@latest</Code> or{" "}
+          <Code>pnpm create @gdesignsystem/app@latest</Code>, you can sync
           Figma token updates locally with <Code>pnpm gds:tokens:sync</Code>. See{" "}
           <Link to="/guides/sync-design-tokens">
             <Code>Sync design tokens</Code>
@@ -31,7 +32,8 @@ export function ExternalWebsitePage() {
       >
         <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
           <Text>
-            1. Create your app: <Code>pnpm create @gdesignsystem/app@latest my-project</Code>
+            1. Create your app: <Code>npm create @gdesignsystem/app@latest my-project</Code> or{" "}
+            <Code>pnpm create @gdesignsystem/app@latest my-project</Code> (includes agent rules and a11y lint)
           </Text>
           <Text>
             2. Export Figma MCP variable defs to <Code>.tmp/figma.variable_defs.json</Code>

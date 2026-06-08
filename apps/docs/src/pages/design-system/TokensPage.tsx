@@ -1,4 +1,5 @@
 import { Box, Code, Heading, VStack } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 import { Section } from "../../components/Section";
 import { GDSText as Text } from "@gdesignsystem/react";
 export function TokensPage() {
@@ -45,6 +46,18 @@ export function TokensPage() {
             Using these token names keeps your app consistent with Figma and ensures light/dark and future theme updates apply automatically.
           </Text>
         </VStack>
+      </Section>
+
+      <Section
+        title="Sync from Figma"
+        description="Update tokens.raw.json from Figma variables."
+      >
+        <Text color="fg.muted" textStyle="sm">
+          In the <strong>GDS monorepo</strong>, run <Code>pnpm gds:tokens:sync:from-mcp</Code> after
+          exporting Figma MCP output. In apps created with{" "}
+          <Code>npm create @gdesignsystem/app@latest</Code>, run <Code>pnpm gds:tokens:sync</Code>.
+          See <Link to="/guides/sync-design-tokens">Sync design tokens</Link> for the full workflow.
+        </Text>
       </Section>
     </VStack>
   );

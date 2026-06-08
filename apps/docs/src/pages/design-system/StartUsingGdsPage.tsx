@@ -147,7 +147,13 @@ export function StartUsingGdsPage() {
             <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
               <Text>
                 In this repository, add a persistent AI/project rule so future tasks always use
-                GDS components and styles for UI implementation.
+                GDS components and styles for UI implementation. Point agents to{" "}
+                <Code>GDS_FOR_LLM_AGENTS.md</Code> in the repo root (or{" "}
+                <Code>node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md</Code> in npm projects).
+              </Text>
+              <Text>
+                For npm apps, prefer <Code>npm create @gdesignsystem/app@latest</Code> — agent rules
+                and accessibility lint are pre-configured.
               </Text>
             </VStack>
           </Section>
@@ -208,8 +214,14 @@ export function StartUsingGdsPage() {
             <Text mt="3" color="fg.muted" textStyle="sm">
               After the command finishes, follow the printed “Next steps” (including how to start
               your dev server). The scaffold also includes <Code>AGENTS.md</Code>,{" "}
-              <Code>CLAUDE.md</Code>, <Code>.cursor/rules/</Code>, and{" "}
+              <Code>CLAUDE.md</Code>, <Code>.cursor/rules/gds-llm-agents.mdc</Code>,{" "}
+              <Code>.cursor/rules/gds-accessibility.mdc</Code>, and{" "}
               <Code>.github/copilot-instructions.md</Code> so AI assistants follow GDS automatically.
+            </Text>
+            <Text mt="2" color="fg.muted" textStyle="sm">
+              ESLint with <Code>eslint-plugin-jsx-a11y</Code> is included — run <Code>npm run lint</Code> or{" "}
+              <Code>pnpm lint</Code> after UI changes. See <Code>For AI agents</Code> and{" "}
+              <Code>Accessibility</Code> in the docs sidebar.
             </Text>
             <Text mt="2" color="fg.muted" textStyle="sm">
               Use <Code>@gdesignsystem/app</Code>, not <Code>@gdesignsystem/create-app</Code>: npm
@@ -242,6 +254,10 @@ export function StartUsingGdsPage() {
             </Box>
             <Text mt="3" color="fg.muted" textStyle="sm">
               This generates local sync files at <Code>src/gds-tokens.raw.json</Code> and <Code>src/gds-theme-sync.generated.ts</Code>.
+            </Text>
+            <Text mt="2" color="fg.muted" textStyle="sm">
+              In Cursor, you can ask an agent to “sync tokens” — it uses Figma MCP and runs the sync
+              script. See <Code>Sync design tokens</Code> in the docs sidebar for the full flow.
             </Text>
           </Section>
         </>

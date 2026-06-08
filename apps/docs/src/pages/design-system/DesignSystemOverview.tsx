@@ -1,5 +1,5 @@
 import { Box, Code, Heading, VStack } from "@chakra-ui/react";
-
+import { Link } from "react-router-dom";
 import { GDSText as Text } from "@gdesignsystem/react";
 export function DesignSystemOverview() {
   return (
@@ -20,9 +20,26 @@ export function DesignSystemOverview() {
           Get started
         </Heading>
         <Text color="fg.muted" mb="4">
+          Fastest path for a new app:{" "}
+          <Code>npm create @gdesignsystem/app@latest my-project</Code> — GDS pre-wired, agent
+          rules, and local token sync. See <Link to="/guides/start-using-gds">Start using GDS</Link>.
+        </Text>
+        <Text color="fg.muted" mb="4">
           GDS is a React-based design system monorepo with <Code>@gdesignsystem/react</Code>, <Code>@gdesignsystem/theme</Code>, and{" "}
           <Code>@gdesignsystem/tokens</Code>. Optionally install <Code>@gdesignsystem/icons</Code> when you need GDS icon components.
         </Text>
+
+        <Heading size="md" mb="2">
+          Guides
+        </Heading>
+        <VStack align="stretch" gap="1" textStyle="sm" mb="4">
+          <Link to="/guides/start-using-gds">Start using GDS</Link>
+          <Link to="/guides/for-ai-agents">For AI agents</Link>
+          <Link to="/accessibility">Accessibility</Link>
+          <Link to="/guides/sync-design-tokens">Sync design tokens</Link>
+          <Link to="/guides/chakra-v3-api">Chakra v3 API</Link>
+          <Link to="/guides/code-connect">Figma Code Connect</Link>
+        </VStack>
 
         <Heading size="md" mb="2" mt="6">
           1. Install

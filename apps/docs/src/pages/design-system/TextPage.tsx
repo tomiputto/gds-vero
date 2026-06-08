@@ -1,8 +1,7 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSHeading, GDSText as Text } from "@gdesignsystem/react";
 const textStyleSpecs = [
   { key: "display", label: "Display", fontSize: "4xl" as const, fontWeight: "700" as const, lineHeight: "1.1" },
   { key: "headline", label: "Headline", fontSize: "3xl" as const, fontWeight: "600" as const, lineHeight: "1.2" },
@@ -49,6 +48,28 @@ export function TextPage() {
               {label} style
             </Text>
           ))}
+        </VStack>
+      </Section>
+
+      <Section
+        title="Headings (GDSHeading)"
+        description="Use GDSHeading for document outline — separate from GDSText textStyle names."
+        code={`import { GDSHeading, GDSText as Text } from "@gdesignsystem/react";
+
+<GDSHeading size="2xl" as="h1">Page title</GDSHeading>
+<GDSHeading size="xl" as="h2">Section title</GDSHeading>
+<GDSText textStyle="body">Body copy uses textStyle, not heading levels.</GDSText>`}
+      >
+        <VStack align="stretch" gap="2">
+          <GDSHeading size="2xl" as="h2">
+            Page title (GDSHeading size=&quot;2xl&quot;)
+          </GDSHeading>
+          <GDSHeading size="xl" as="h3">
+            Section title (size=&quot;xl&quot;)
+          </GDSHeading>
+          <Text textStyle="body" color="fg.muted">
+            Body copy — use GDSText textStyle=&quot;body&quot;, not GDSHeading for paragraphs.
+          </Text>
         </VStack>
       </Section>
 

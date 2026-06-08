@@ -32,7 +32,9 @@ Each scaffolded project includes:
 
 - `AGENTS.md` — canonical pointer for Claude Code and other agents
 - `.cursor/rules/gds-llm-agents.mdc` — always-on Cursor rule
+- `.cursor/rules/gds-accessibility.mdc` — WCAG review + lint after UI changes
 - `CLAUDE.md` — Claude Code supplement
 - `.github/copilot-instructions.md` — GitHub Copilot
+- `eslint` + `eslint-plugin-jsx-a11y` — `npm run lint` catches common a11y issues in JSX
 
 All rules point agents to `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md` after install.

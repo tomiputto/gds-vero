@@ -1,6 +1,6 @@
 {
   "name": "@gdesignsystem/create-app",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Create a new React app and add GDS (Gofore Design System) with one command",
   "type": "module",
   "bin": {

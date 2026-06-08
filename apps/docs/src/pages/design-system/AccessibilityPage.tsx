@@ -93,7 +93,7 @@ import { InfoIcon } from "@gdesignsystem/icons";
           1.3.1 Info and Relationships (Level A)
         </Heading>
         <Text color="fg.muted" mb="4">
-          Use semantic structure: Heading for titles, Input with label, FormControl for label–input association. Use lists for lists and Breadcrumb for navigation trails.
+          Use semantic structure: <Code>GDSHeading</Code> for titles (with correct <Code>as="h1"</Code>–<Code>h6</Code>), <Code>Field.Label</Code> with inputs for label–input association. Use lists for lists and <Code>Breadcrumb</Code> for navigation trails.
         </Text>
 
         <Heading size="md" mb="2" mt="6" id="1.4.3">
@@ -219,7 +219,7 @@ import { InfoIcon } from "@gdesignsystem/icons";
           <List.Item>Ensure text contrast ≥ 4.5:1 (normal) or ≥ 3:1 (large).</List.Item>
           <List.Item>Don’t remove or hide focus indicators.</List.Item>
           <List.Item>Associate error messages with the relevant field.</List.Item>
-          <List.Item>Use semantic headings (Heading) and landmarks where appropriate.</List.Item>
+          <List.Item>Use semantic headings (<Code>GDSHeading</Code> with correct <Code>as</Code>) and landmarks where appropriate.</List.Item>
           <List.Item>Give links descriptive text (avoid “click here”).</List.Item>
           <List.Item>Provide text alternatives for images and icons that convey information.</List.Item>
         </List.Root>

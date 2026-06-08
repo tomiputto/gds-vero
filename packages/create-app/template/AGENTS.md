@@ -19,6 +19,7 @@ This app was scaffolded with `@gdesignsystem/create-app` and includes:
 
 - **`AGENTS.md`** (this file) — read by Claude Code and other tools
 - **`.cursor/rules/gds-llm-agents.mdc`** — always-on rule for Cursor
+- **`.cursor/rules/gds-accessibility.mdc`** — mandatory WCAG review after UI changes
 - **`CLAUDE.md`** — short pointer for Claude Code
 - **`.github/copilot-instructions.md`** — GitHub Copilot in this repo
 
