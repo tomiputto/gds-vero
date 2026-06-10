@@ -14,7 +14,7 @@
     "@emotion/react": "^11.0.0",
     "@gds-vero/icons": "^0.1.1",
     "@gds-vero/react": "^0.1.10",
-    "@gds-vero/theme": "^0.1.8",
+    "@gds-vero/theme": "^0.1.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

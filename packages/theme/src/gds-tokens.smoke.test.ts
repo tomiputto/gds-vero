@@ -37,6 +37,8 @@ describe("@gds-vero/theme gds-tokens smoke", () => {
     expect(fg.info, "missing fg.info").toBeTruthy();
 
     expect(bg.DEFAULT, "missing bg.DEFAULT").toBeTruthy();
+    expect(bg.default?.value?.base).toBe("#ffffff");
+    expect(bg.subtle?.value?.base).toBe("#eff4f0");
     expect(bg.default, "missing bg.default").toBeTruthy();
     expect(bg.subtle, "missing bg.subtle").toBeTruthy();
     expect(bg.muted, "missing bg.muted").toBeTruthy();
@@ -49,6 +51,8 @@ describe("@gds-vero/theme gds-tokens smoke", () => {
     expect(bg.info, "missing bg.info").toBeTruthy();
 
     expect(border.DEFAULT, "missing border.DEFAULT").toBeTruthy();
+    expect(border.default?.value?.base).toBe("#c9e0ca");
+    expect(border.emphasized?.value?.base).toBe("#c9e0ca");
     expect(border.default, "missing border.default").toBeTruthy();
     expect(border.subtle, "missing border.subtle").toBeTruthy();
     expect(border.muted, "missing border.muted").toBeTruthy();

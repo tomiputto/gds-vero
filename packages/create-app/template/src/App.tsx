@@ -4,11 +4,11 @@ import { GDSButton, GDSHeading, GDSText, VeroMainHeader } from "@gds-vero/react"
 
 export default function App() {
   return (
-    <Theme appearance="light" minH="100vh" bg="bg.default" color="fg" display="flex" flexDirection="column">
+    <Theme appearance="light" minH="100vh" bg="bg.subtle" color="fg" display="flex" flexDirection="column">
       <VeroMainHeader />
 
       <Box as="main" flex="1" p="6" maxW="xl">
-        <Card.Root borderColor="border.muted" borderWidth="1px" bg="bg.muted">
+        <Card.Root variant="outline">
           <Card.Header>
             <GDSHeading size="xl" as="h2">
               Welcome to GDS-VERO

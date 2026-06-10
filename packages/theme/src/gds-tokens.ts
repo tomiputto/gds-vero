@@ -128,7 +128,7 @@ export const gdsSemanticColors = {
     // Light mode: explicit values so bg resolves (avoid white fallback). Dark: gray scale.
     DEFAULT: { value: { base: "#ffffff", _light: "#ffffff", _dark: "{colors.bg.inverted}" } },
     default: { value: { base: "#ffffff", _light: "#ffffff", _dark: "{colors.bg.inverted}" } },
-    subtle: { value: { base: "#f0f4f0", _light: "#f0f4f0", _dark: "{colors.gray.950}" } },
+    subtle: { value: { base: "#eff4f0", _light: "#eff4f0", _dark: "{colors.gray.950}" } },
     muted: { value: { base: "#e8efe8", _light: "#e8efe8", _dark: "{colors.gray.900}" } },
     emphasized: { value: { base: "#e4e4e7", _light: "#e4e4e7", _dark: "{colors.gray.800}" } },
     inverted: { value: "{colors.bg.inverted}" },
@@ -140,11 +140,11 @@ export const gdsSemanticColors = {
   },
   border: {
     // Light mode: explicit light grays so borders stay light (never black). Dark: gray scale.
-    DEFAULT: { value: { base: "#e4e4e4", _light: "#e4e4e4", _dark: "{colors.border.inverted}" } },
-    default: { value: { base: "#e4e4e4", _light: "#e4e4e4", _dark: "{colors.border.inverted}" } },
-    subtle: { value: { base: "#f0f4f0", _light: "#f0f4f0", _dark: "{colors.gray.800}" } },
+    DEFAULT: { value: { base: "#c9e0ca", _light: "#c9e0ca", _dark: "{colors.border.inverted}" } },
+    default: { value: { base: "#c9e0ca", _light: "#c9e0ca", _dark: "{colors.border.inverted}" } },
+    subtle: { value: { base: "#eff4f0", _light: "#eff4f0", _dark: "{colors.gray.800}" } },
     muted: { value: { base: "#e8efe8", _light: "#e8efe8", _dark: "{colors.gray.700}" } },
-    emphasized: { value: { base: "#ccdfcc", _light: "#ccdfcc", _dark: "{colors.gray.600}" } },
+    emphasized: { value: { base: "#c9e0ca", _light: "#c9e0ca", _dark: "{colors.gray.600}" } },
     inverted: { value: "{colors.border.inverted}" },
     error: { value: "{colors.border.error}" },
     warning: { value: "{colors.border.warning}" },
