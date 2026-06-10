@@ -80,7 +80,7 @@ Käytännössä: puu `GDSProvider`:lla, Chakra compound API + GDS-ikonit; värit
 
 - **Rooli:** Luo uusia React + Vite -sovelluksia GDS valmiiksi kytkettynä (`create-gds-vero-app` -bin).
 - **Käyttö:** `pnpm create @gds-vero/app@latest my-project` (npm-paketti: `@gds-vero/create-app`; älä käytä `create …/create-app` → npm hakee `create-create-app` ja 404)
-- **Sisältö:** Kopioi `template/`-kansion (Vite, `ChakraProvider` + `gdsTheme` + valinnainen `gds-theme-sync.generated.ts` synkin jälkeen, esimerkkikortti `GDSButton` / `GDSHeading` / `GDSText`). Template viittaa `@gds-vero/theme`, `@gds-vero/react` jne. Julkaistuja paketteja käyttävissä sovelluksissa käytä `GDSProvider`-ia `@gds-vero/react`:stä.
+- **Sisältö:** Kopioi `template/`-kansion (Vite, `ChakraProvider` + `gdsTheme` + valinnainen `gds-theme-sync.generated.ts` synkin jälkeen, **`VeroMainHeader`** sovelluskuoressa, esimerkkikortti `GDSButton` / `GDSHeading` / `GDSText`). Template viittaa `@gds-vero/theme`, `@gds-vero/react` jne. Julkaistuja paketteja käyttävissä sovelluksissa käytä `GDSProvider`-ia `@gds-vero/react`:stä.
 - **AI-agenttisäännöt (automaattisesti):** Jokainen scaffold sisältää `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc` ja `.github/copilot-instructions.md` — kaikki viittaavat asennuksen jälkeen `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md`:ään.
 - **Huom:** Esimerkin typografiassa käytä GDS-tyylejä (`textStyle="body"`, `GDSHeading size="xl" as="h2"`) — älä käytä fonttikoko-tokenien nimiä `textStyle`-propina.
 
@@ -164,7 +164,7 @@ Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; m
 | theme | tokens | `@gds-vero/theme@0.1.8` |
 | react | theme, tokens | `@gds-vero/react@0.1.10` |
 | icons | — | `@gds-vero/icons` |
-| create-app | — (template listaa deps) | `@gds-vero/create-app@0.1.9` |
+| create-app | — (template listaa deps) | `@gds-vero/create-app@0.1.10` |
 | cli | — | `@gds-vero/cli@0.1.0` |
 
 - **Julkaisu:** Käytä **pnpm**:ää monorepon juuresta — **älä** `npm publish` hakemistossa `packages/*` (npm jättää `workspace:*` riippuvuuksiin ja asennus hajoaa). Esim. `pnpm gds:publish:react`, `pnpm gds:publish:theme`, `pnpm gds:publish:create-app`. `workspace:*` resolvautuu semveriksi pnpm-packauksessa. Pidä versionumerot linjassa julkaisun jälkeen.

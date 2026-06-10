@@ -1,7 +1,7 @@
 {
   "name": "@gds-vero/create-app",
-  "version": "0.1.9",
-  "description": "Create a new React app and add GDS (Gofore Design System) with one command",
+  "version": "0.1.10",
+  "description": "Create a new React app with GDS-VERO (vero.fi design system) and VeroMainHeader",
   "type": "module",
   "bin": {
     "create-gds-vero-app": "./index.js"

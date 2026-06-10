@@ -26,6 +26,8 @@ npx create-gds-vero-app my-project
 
 Published package name on npm: `@gds-vero/create-app`.
 
+The scaffolded app includes **`VeroMainHeader`** (vero.fi site header) at the top of every page — not a generic GDS docs-style header.
+
 ## AI agent rules (automatic)
 
 Each scaffolded project includes:
