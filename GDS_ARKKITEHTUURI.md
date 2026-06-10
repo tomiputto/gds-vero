@@ -164,7 +164,7 @@ Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; m
 | theme | tokens | `@gds-vero/theme@0.1.9` |
 | react | theme, tokens | `@gds-vero/react@0.1.11` |
 | icons | — | `@gds-vero/icons` |
-| create-app | — (template listaa deps) | `@gds-vero/create-app@0.1.10` |
+| create-app | — (template listaa deps) | `@gds-vero/create-app@0.1.11` |
 | cli | — | `@gds-vero/cli@0.1.0` |
 
 - **Julkaisu:** Käytä **pnpm**:ää monorepon juuresta — **älä** `npm publish` hakemistossa `packages/*` (npm jättää `workspace:*` riippuvuuksiin ja asennus hajoaa). Esim. `pnpm gds:publish:react`, `pnpm gds:publish:theme`, `pnpm gds:publish:create-app`. `workspace:*` resolvautuu semveriksi pnpm-packauksessa. Pidä versionumerot linjassa julkaisun jälkeen.
