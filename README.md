@@ -255,7 +255,7 @@ Local dev is unchanged: `pnpm dev` still serves the docs at the root path (`/`).
 **If the workflow fails:** Open the failed run in **Actions** and check which step failed:
 
 - **Install dependencies:** Ensure `pnpm-lock.yaml` is committed. If the lockfile is missing or out of date, run `pnpm install` locally and commit the lockfile, then push again.
-- **Build docs app:** The workflow only builds the docs app (not the full workspace). If this step fails, run `BASE_PATH=/GDS/ pnpm --filter docs build` locally to reproduce.
+- **Build docs app:** The workflow only builds the docs app (not the full workspace). If this step fails, run `BASE_PATH=/gds-vero/ pnpm --filter docs build` locally to reproduce.
 - **Deploy:** Ensure **Settings → Pages → Source** is set to **GitHub Actions**. The first time you enable it, re-run the workflow (Actions → run → Re-run all jobs).
 
 ## License

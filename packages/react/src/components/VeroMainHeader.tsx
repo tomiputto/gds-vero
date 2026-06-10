@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import {
   Box,
+  chakra,
   CloseButton,
   Drawer,
   Flex,
@@ -11,6 +12,8 @@ import {
   useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
+
+const HeaderActionButton = chakra("button");
 import { ChevronDownIcon, GlobeIcon, MenuIcon, SearchIcon } from "@gds-vero/icons";
 import { GDSButton } from "./GDSButton";
 import { GDSText } from "./GDSText";
@@ -108,8 +111,7 @@ function TopUtilityLink({
 
   if (onClick) {
     return (
-      <Box
-        as="button"
+      <HeaderActionButton
         type="button"
         onClick={onClick}
         aria-label={label}
@@ -122,7 +124,7 @@ function TopUtilityLink({
         _hover={{ opacity: 0.9 }}
       >
         {content}
-      </Box>
+      </HeaderActionButton>
     );
   }
 
@@ -191,8 +193,7 @@ function BottomNavItem({ item }: { item: VeroNavItem }) {
     return (
       <Menu.Root>
         <Menu.Trigger asChild>
-          <Box
-            as="button"
+          <HeaderActionButton
             type="button"
             {...itemStyles}
             cursor="pointer"
@@ -203,7 +204,7 @@ function BottomNavItem({ item }: { item: VeroNavItem }) {
               {item.label}
             </GDSText>
             <ChevronDownIcon boxSize="3.5" aria-hidden />
-          </Box>
+          </HeaderActionButton>
         </Menu.Trigger>
         <Portal>
           <Menu.Positioner>
@@ -388,8 +389,7 @@ export function VeroMainHeader({
 
           <Menu.Root>
             <Menu.Trigger asChild>
-              <Box
-                as="button"
+              <HeaderActionButton
                 type="button"
                 display="flex"
                 alignItems="center"
@@ -409,7 +409,7 @@ export function VeroMainHeader({
                     {activeLanguage?.label ?? languageLabel}
                   </GDSText>
                 </HStack>
-              </Box>
+              </HeaderActionButton>
             </Menu.Trigger>
             <Portal>
               <Menu.Positioner>

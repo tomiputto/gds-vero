@@ -48,7 +48,7 @@ jobs:
       - name: Build docs app
         run: pnpm --filter docs build
         env:
-          BASE_PATH: "/GDS/"
+          BASE_PATH: "/gds-vero/"
 
       - name: SPA fallback for client-side routing
         run: cp apps/docs/dist/index.html apps/docs/dist/404.html
