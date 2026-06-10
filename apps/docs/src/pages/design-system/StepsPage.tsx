@@ -1,8 +1,8 @@
 import { Box, Button, ButtonGroup, Heading, Steps, VStack } from "@chakra-ui/react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@gdesignsystem/icons";
+import { ChevronLeftIcon, ChevronRightIcon } from "@gds-vero/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 const steps = [
   { title: "Step 1", description: "Step 1 description" },
   { title: "Step 2", description: "Step 2 description" },

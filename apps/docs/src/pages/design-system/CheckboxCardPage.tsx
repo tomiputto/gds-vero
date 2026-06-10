@@ -1,7 +1,7 @@
 import { Box, CheckboxCard, CheckboxGroup, Flex, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 const items = [
   { value: "next", title: "Next.js", description: "Best for apps" },
   { value: "vite", title: "Vite", description: "Best for SPAs" },

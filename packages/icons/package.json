@@ -1,5 +1,5 @@
 {
-  "name": "@gdesignsystem/icons",
+  "name": "@gds-vero/icons",
   "version": "0.1.1",
   "private": false,
   "type": "module",
@@ -18,16 +18,16 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/renegademaster-droid/GDS.git"
+    "url": "https://github.com/tomiputto/gds-vero.git"
   },
   "description": "GDS icon set for Chakra UI. 1500+ icons aligned with Figma, use with semantic color tokens.",
   "keywords": [
     "gds",
-    "gdesignsystem",
+    "gds-vero",
     "icons",
     "chakra-ui",
     "figma",
     "design-system"
   ],
-  "homepage": "https://renegademaster-droid.github.io/GDS/"
+  "homepage": "https://github.com/tomiputto/gds-vero#readme"
 }

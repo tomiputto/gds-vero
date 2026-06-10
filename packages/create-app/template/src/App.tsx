@@ -1,6 +1,6 @@
 import { Box, Card, HStack, Theme } from "@chakra-ui/react";
-import { CheckIcon } from "@gdesignsystem/icons";
-import { GDSButton, GDSHeading, GDSText } from "@gdesignsystem/react";
+import { CheckIcon } from "@gds-vero/icons";
+import { GDSButton, GDSHeading, GDSText } from "@gds-vero/react";
 
 export default function App() {
   return (

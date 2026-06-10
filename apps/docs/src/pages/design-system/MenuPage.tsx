@@ -1,8 +1,8 @@
 import { Box, Button, Heading, Menu, Portal, VStack } from "@chakra-ui/react";
-import { CopyIcon, PenIcon, TrashIcon } from "@gdesignsystem/icons";
+import { CopyIcon, PenIcon, TrashIcon } from "@gds-vero/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function MenuPage() {
   return (
     <VStack align="stretch" gap="10">

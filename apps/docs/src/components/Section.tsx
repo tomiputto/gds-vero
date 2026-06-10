@@ -1,6 +1,6 @@
 import { Box, Heading } from "@chakra-ui/react";
 import { CodeBlock } from "./CodeBlock";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function Section({
   title,
   description,

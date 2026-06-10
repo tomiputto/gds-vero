@@ -2,7 +2,7 @@
  * Typography, spacing, and radii derived from Figma tokens.raw.json.
  * In the docs app a Vite plugin resolves this import from disk so font/tokens stay fresh.
  */
-import tokensRaw from "@gdesignsystem/tokens/figma/tokens.raw.json";
+import tokensRaw from "@gds-vero/tokens/figma/tokens.raw.json";
 
 type Raw = {
   typography?: Record<string, string>;
@@ -54,6 +54,8 @@ function deriveFonts(): Record<string, string> {
   }
   // Fallback so theme always has a body font (e.g. if tokens.raw.json has no fonts/body yet)
   if (!out.body) out.body = FONT_FALLBACK;
+  // vero.fi uses the same family for headings and body (Arial)
+  if (!out.heading) out.heading = out.body;
   return out;
 }
 

@@ -1,6 +1,6 @@
 import figma from "@figma/code-connect"
 import { Button, Card, Spacer } from "@chakra-ui/react"
-import { GDSText as Text } from "@gdesignsystem/react"
+import { GDSText as Text } from "@gds-vero/react"
 
 figma.connect(
   Card.Root,

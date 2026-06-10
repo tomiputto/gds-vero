@@ -1,8 +1,8 @@
 import { Box, Button, Dialog, Heading, IconButton, Portal, VStack } from "@chakra-ui/react";
-import { XIcon } from "@gdesignsystem/icons";
+import { XIcon } from "@gds-vero/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function DialogPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -19,8 +19,8 @@ export function DialogPage() {
         title="Basic"
         description="Dialog with trigger, header, body, and footer"
         code={`import { Dialog, Button, IconButton, Portal } from "@chakra-ui/react";
-import { XIcon } from "@gdesignsystem/icons";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { XIcon } from "@gds-vero/icons";
+import { GDSText as Text } from "@gds-vero/react";
 
 <Dialog.Root>
   <Dialog.Trigger asChild>

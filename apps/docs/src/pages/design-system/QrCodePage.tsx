@@ -1,7 +1,7 @@
 import { Box, Heading, QrCode, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function QrCodePage() {
   return (
     <VStack align="stretch" gap="10">
@@ -48,13 +48,13 @@ export function QrCodePage() {
   borderColor="border.muted"
   borderRadius="xl"
 >
-  <QrCode.Root value="https://renegademaster-droid.github.io/GDS/" size="xl">
+  <QrCode.Root value="https://github.com/tomiputto/gds-vero#readme" size="xl">
     <QrCode.Frame>
       <QrCode.Pattern />
     </QrCode.Frame>
   </QrCode.Root>
   <Text textStyle="sm" color="fg.muted">
-    https://renegademaster-droid.github.io/GDS/
+    https://github.com/tomiputto/gds-vero#readme
   </Text>
 </Box>`}
       >
@@ -69,13 +69,13 @@ export function QrCodePage() {
           borderColor="border.muted"
           borderRadius="xl"
         >
-          <QrCode.Root value="https://renegademaster-droid.github.io/GDS/" size="xl">
+          <QrCode.Root value="https://github.com/tomiputto/gds-vero#readme" size="xl">
             <QrCode.Frame>
               <QrCode.Pattern />
             </QrCode.Frame>
           </QrCode.Root>
           <Text textStyle="sm" color="fg.muted">
-            https://renegademaster-droid.github.io/GDS/
+            https://github.com/tomiputto/gds-vero#readme
           </Text>
         </Box>
       </Section>

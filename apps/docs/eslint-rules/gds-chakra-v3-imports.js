@@ -36,6 +36,7 @@ const ALLOWED_GDS_REACT_IMPORTS = new Set([
   "GDSButton",
   "GDSText",
   "GDSHeading",
+  "VeroMainHeader",
 ]);
 
 export const gdsChakraV3ImportsRule = {
@@ -50,7 +51,7 @@ export const gdsChakraV3ImportsRule = {
       forbiddenChakra:
         "Do not import '{{name}}' from '@chakra-ui/react' (use Chakra v3 namespaces/compound components instead).",
       forbiddenGdsReact:
-        "Only import {{allowed}} from '@gdesignsystem/react'. Found '{{name}}'.",
+        "Only import {{allowed}} from '@gds-vero/react'. Found '{{name}}'.",
     },
   },
   create(context) {
@@ -74,7 +75,7 @@ export const gdsChakraV3ImportsRule = {
 
     function checkGdsReactImport(node) {
       const source = node.source?.value;
-      if (source !== "@gdesignsystem/react") return;
+      if (source !== "@gds-vero/react") return;
 
       for (const specifier of node.specifiers ?? []) {
         if (specifier.type !== "ImportSpecifier") continue;

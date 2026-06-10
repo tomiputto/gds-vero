@@ -1,8 +1,8 @@
 import { Box, Button, Drawer, Heading, IconButton, VStack } from "@chakra-ui/react";
-import { XIcon } from "@gdesignsystem/icons";
+import { XIcon } from "@gds-vero/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function DrawerPage() {
   return (
     <VStack align="stretch" gap="10">

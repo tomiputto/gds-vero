@@ -1,6 +1,6 @@
 import { Box, Code, Heading, List, VStack } from "@chakra-ui/react";
 import { CodeBlock } from "../../components/CodeBlock";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function AccessibilityPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -45,7 +45,7 @@ export function AccessibilityPage() {
         <CodeBlock
           code={`// Informative icon: keep an accessible name on the button
 import { Button } from "@chakra-ui/react";
-import { InfoIcon } from "@gdesignsystem/icons";
+import { InfoIcon } from "@gds-vero/icons";
 
 <Button colorPalette="brand" aria-label="More info">
   <InfoIcon aria-hidden="true" />

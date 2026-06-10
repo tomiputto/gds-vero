@@ -15,4 +15,4 @@ When you **create or materially change React UI** (`.tsx` / `.jsx`):
 
 Common fixes: `aria-label` on icon-only buttons, `Field.Label` + `Field.ErrorText`, `GDSHeading as="h*"`, `aria-hidden` on decorative icons, `role="alert"` on error banners, landmarks on layout.
 
-Human reference: https://renegademaster-droid.github.io/GDS/accessibility
+Human reference: https://github.com/tomiputto/gds-vero#readmeaccessibility

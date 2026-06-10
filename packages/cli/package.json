@@ -1,5 +1,5 @@
 {
-  "name": "@gdesignsystem/cli",
+  "name": "@gds-vero/cli",
   "version": "0.1.0",
   "private": false,
   "type": "module",
@@ -12,12 +12,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/renegademaster-droid/GDS.git"
+    "url": "https://github.com/tomiputto/gds-vero.git"
   },
   "description": "CLI tools for GDS projects (token sync, codegen).",
   "keywords": [
     "gds",
-    "gdesignsystem",
+    "gds-vero",
     "cli",
     "figma",
     "tokens"

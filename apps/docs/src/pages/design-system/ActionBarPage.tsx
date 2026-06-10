@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { ActionBar, Box, Button, Checkbox, Heading, Portal, VStack } from "@chakra-ui/react";
-import { ShareIcon, TrashIcon } from "@gdesignsystem/icons";
+import { ShareIcon, TrashIcon } from "@gds-vero/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function ActionBarPage() {
   const [open, setOpen] = useState(false);
   return (

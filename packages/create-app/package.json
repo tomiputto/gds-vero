@@ -1,10 +1,10 @@
 {
-  "name": "@gdesignsystem/create-app",
+  "name": "@gds-vero/create-app",
   "version": "0.1.9",
   "description": "Create a new React app and add GDS (Gofore Design System) with one command",
   "type": "module",
   "bin": {
-    "create-gds-app": "./index.js"
+    "create-gds-vero-app": "./index.js"
   },
   "files": [
     "index.js",
@@ -13,7 +13,7 @@
   ],
   "keywords": [
     "gds",
-    "gdesignsystem",
+    "gds-vero",
     "create-app",
     "scaffold",
     "react",
@@ -23,7 +23,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/renegademaster-droid/GDS.git"
+    "url": "https://github.com/tomiputto/gds-vero.git"
   },
   "publishConfig": {
     "access": "public"

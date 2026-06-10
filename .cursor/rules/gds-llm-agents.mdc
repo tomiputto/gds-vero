@@ -8,7 +8,7 @@ For **any** task in this repo that adds or changes **React UI**, **styling with 
 
 1. **Treat [`GDS_FOR_LLM_AGENTS.md`](../../GDS_FOR_LLM_AGENTS.md) as canonical and mandatory.** Open or reason from it before writing UI code.
 2. Use **Chakra UI v3** compound APIs and names only; never Chakra v2 names that are not exported in v3.
-3. Import **`GDSProvider`** and GDS wrappers (`GDSButton`, `GDSText`, `GDSHeading`, …) from **`@gdesignsystem/react`**. Import **Chakra** components from **`@chakra-ui/react`**. Import **icons** from **`@gdesignsystem/icons`**.
+3. Import **`GDSProvider`** and GDS wrappers (`GDSButton`, `GDSText`, `GDSHeading`, …) from **`@gds-vero/react`**. Import **Chakra** components from **`@chakra-ui/react`**. Import **icons** from **`@gds-vero/icons`**.
 4. Use **semantic tokens** (`fg`, `bg.default`, `colorPalette="brand"`, etc.), not ad-hoc hex colors, unless the user explicitly asks otherwise.
 5. Do **not** replace GDS with MUI, Ant Design, Tailwind UI kits, or other design systems when the user wants GDS.
 6. **Accessibility:** follow the **Accessibility** and **Accessibility review** sections in `GDS_FOR_LLM_AGENTS.md`; complete the checklist after UI changes (see `.cursor/rules/gds-accessibility.mdc`).

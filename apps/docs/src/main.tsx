@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider, useTheme } from "next-themes";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { GDSProvider, GDSButton, GDSText as Text } from "@gdesignsystem/react";
+import { GDSProvider, GDSButton, GDSText as Text } from "@gds-vero/react";
 import { Box, Flex, HStack, Theme } from "@chakra-ui/react";
 import { DesignSystemLayout } from "./components/DesignSystemLayout";
 import { DesignSystemOverview } from "./pages/design-system/DesignSystemOverview";
@@ -87,6 +87,7 @@ import { SliderPage } from "./pages/design-system/SliderPage";
 import { PinInputPage } from "./pages/design-system/PinInputPage";
 import { InputGroupPage } from "./pages/design-system/InputGroupPage";
 import { LoginPage } from "./pages/design-system/LoginPage";
+import { VeroMainHeaderPage } from "./pages/design-system/VeroMainHeaderPage";
 
 function ColorModeToggle() {
   const { theme, setTheme } = useTheme();
@@ -226,6 +227,7 @@ function App() {
           <Route path="pin-input" element={<PinInputPage />} />
           <Route path="input-group" element={<InputGroupPage />} />
           <Route path="examples/login" element={<LoginPage />} />
+          <Route path="examples/vero-main-header" element={<VeroMainHeaderPage />} />
         </Route>
             </Routes>
           </Box>

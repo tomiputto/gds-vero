@@ -1,10 +1,10 @@
-# GDS Design System
+# GDS-VERO
 
-A design system built on **Chakra UI v3** with GDS theme and Figma tokens. Use brand colors, semantic tokens, and 1,500+ icons out of the box to build web apps that stay consistent with your Figma design.
+Verohallinnon (vero.fi) design system — **Chakra UI v3** + GDS theme and Figma tokens. Separate fork of the upstream [GDS Design System](https://github.com/renegademaster-droid/GDS); published on npm as **`@gds-vero/*`** (not `@gdesignsystem/*`).
 
 **MIT licensed** — you can download, use, and build websites and apps with GDS in your own projects.
 
-**Building with an AI agent (Cursor, Claude, Copilot, ChatGPT, etc.)?** Follow [GDS for LLM agents](GDS_FOR_LLM_AGENTS.md) — also see [AGENTS.md](AGENTS.md). If you use GDS **from npm**, the same guide ships in the package at `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`; add a project rule that points your agent at that file (copy-paste example in the doc).
+**Building with an AI agent (Cursor, Claude, Copilot, ChatGPT, etc.)?** Follow [GDS for LLM agents](GDS_FOR_LLM_AGENTS.md) — also see [AGENTS.md](AGENTS.md). If you use GDS **from npm**, the same guide ships in the package at `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md`; add a project rule that points your agent at that file (copy-paste example in the doc).
 
 **Arkkitehtuurikuvaus (suomeksi):** [GDS:n arkkitehtuuri](GDS_ARKKITEHTUURI.md).  
 **Architecture (English):** [GDS architecture](GDS_ARCHITECTURE.md).
@@ -13,12 +13,12 @@ A design system built on **Chakra UI v3** with GDS theme and Figma tokens. Use b
 
 | Package | Description |
 |---------|-------------|
-| **@gdesignsystem/react** | React provider and wrappers. Use `GDSProvider` to wrap your app and apply the GDS theme. |
-| **@gdesignsystem/theme** | Chakra theme that maps Figma tokens to semantic tokens (e.g. `fg`, `bg.default`, `brand`). |
-| **@gdesignsystem/tokens** | Design tokens (colors, typography, spacing). Source: `packages/tokens/figma/tokens.raw.json`. |
-| **@gdesignsystem/icons** | Icon set generated from `/icons` SVGs. Use with Figma token colors. |
+| **@gds-vero/react** | React provider and wrappers. Use `GDSProvider` to wrap your app and apply the GDS theme. |
+| **@gds-vero/theme** | Chakra theme that maps Figma tokens to semantic tokens (e.g. `fg`, `bg.default`, `brand`). |
+| **@gds-vero/tokens** | Design tokens (colors, typography, spacing). Source: `packages/tokens/figma/tokens.raw.json`. |
+| **@gds-vero/icons** | Icon set generated from `/icons` SVGs. Use with Figma token colors. |
 
-**Published on npm:** [@gdesignsystem/react](https://www.npmjs.com/package/@gdesignsystem/react) · [@gdesignsystem/theme](https://www.npmjs.com/package/@gdesignsystem/theme) · [@gdesignsystem/tokens](https://www.npmjs.com/package/@gdesignsystem/tokens) · [@gdesignsystem/icons](https://www.npmjs.com/package/@gdesignsystem/icons)
+**Published on npm:** [@gds-vero/react](https://www.npmjs.com/package/@gds-vero/react) · [@gds-vero/theme](https://www.npmjs.com/package/@gds-vero/theme) · [@gds-vero/tokens](https://www.npmjs.com/package/@gds-vero/tokens) · [@gds-vero/icons](https://www.npmjs.com/package/@gds-vero/icons)
 
 ## Quick start
 
@@ -29,10 +29,10 @@ In a pnpm workspace, add the GDS packages as workspace dependencies:
 ```json
 {
   "dependencies": {
-    "@gdesignsystem/react": "workspace:*",
-    "@gdesignsystem/theme": "workspace:*",
-    "@gdesignsystem/tokens": "workspace:*",
-    "@gdesignsystem/icons": "workspace:*",
+    "@gds-vero/react": "workspace:*",
+    "@gds-vero/theme": "workspace:*",
+    "@gds-vero/tokens": "workspace:*",
+    "@gds-vero/icons": "workspace:*",
     "@chakra-ui/react": "^3.0.0",
     "@emotion/react": "^11.0.0",
     "react": ">=18",
@@ -48,7 +48,7 @@ Then run `pnpm install` from the repo root.
 Use `GDSProvider` so Chakra gets the GDS theme:
 
 ```tsx
-import { GDSProvider } from "@gdesignsystem/react";
+import { GDSProvider } from "@gds-vero/react";
 
 function App() {
   return (
@@ -61,11 +61,11 @@ function App() {
 
 ### 3. Use components and tokens
 
-Import **only** `GDSProvider` (and optionally `GDSButton`) from `@gdesignsystem/react`. Import all Chakra UI components (`Field`, `Card`, `Input`, `Button`, `Box`, `Text`, etc.) from `@chakra-ui/react`. Import GDS icons from `@gdesignsystem/icons`. Use semantic token props so colors come from Figma:
+Import **only** `GDSProvider` (and optionally `GDSButton`) from `@gds-vero/react`. Import all Chakra UI components (`Field`, `Card`, `Input`, `Button`, `Box`, `Text`, etc.) from `@chakra-ui/react`. Import GDS icons from `@gds-vero/icons`. Use semantic token props so colors come from Figma:
 
 ```tsx
 import { Button, Box, Text } from "@chakra-ui/react";
-import { CheckIcon } from "@gdesignsystem/icons";
+import { CheckIcon } from "@gds-vero/icons";
 
 <Box bg="bg.default" color="fg" p="4">
   <Button colorPalette="brand">
@@ -85,22 +85,22 @@ import { CheckIcon } from "@gdesignsystem/icons";
 
 **Tables (Chakra v3)** — Use the **Table** compound component: `Table.Root`, `Table.Header`, `Table.Row`, `Table.ColumnHeader`, `Table.Body`, `Table.Cell`. Do **not** use `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`, or `TableContainer` — they are not in Chakra v3. For scrollable tables use `Table.ScrollArea`. Use `textAlign="end"` instead of `isNumeric` on cells.
 
-**Other Chakra v3 renames** — Many v2 components were renamed or replaced. Using old names will cause "doesn't provide an export named X" errors. Examples: `Divider` → `Separator`; `Card` / `CardHeader` / `CardBody` / `CardFooter` → `Card.Root` / `Card.Header` / `Card.Body` / `Card.Footer`; `Modal` → `Dialog.*`; `Tab` / `TabList` / `TabPanel` → `Tabs.Trigger` / `Tabs.List` / `Tabs.Content`; `Select` → `NativeSelect.*`; form components → `Field.*`. For a full list see the [Chakra v3 API](GDS_FOR_LLM_AGENTS.md#chakra-v3-api--do-not-use-these-names) section in [GDS for LLM agents](GDS_FOR_LLM_AGENTS.md), or the **Chakra v3 API** guide in the [published docs](https://renegademaster-droid.github.io/GDS/).
+**Other Chakra v3 renames** — Many v2 components were renamed or replaced. Using old names will cause "doesn't provide an export named X" errors. Examples: `Divider` → `Separator`; `Card` / `CardHeader` / `CardBody` / `CardFooter` → `Card.Root` / `Card.Header` / `Card.Body` / `Card.Footer`; `Modal` → `Dialog.*`; `Tab` / `TabList` / `TabPanel` → `Tabs.Trigger` / `Tabs.List` / `Tabs.Content`; `Select` → `NativeSelect.*`; form components → `Field.*`. For a full list see the [Chakra v3 API](GDS_FOR_LLM_AGENTS.md#chakra-v3-api--do-not-use-these-names) section in [GDS for LLM agents](GDS_FOR_LLM_AGENTS.md), or the **Chakra v3 API** guide in the [published docs](https://github.com/tomiputto/gds-vero#readme).
 
 ## Using GDS from npm
 
 In any React project (no monorepo required), install GDS and its peer dependencies:
 
 ```bash
-pnpm add @gdesignsystem/react @gdesignsystem/theme @gdesignsystem/icons @chakra-ui/react @emotion/react react react-dom
+pnpm add @gds-vero/react @gds-vero/theme @gds-vero/icons @chakra-ui/react @emotion/react react react-dom
 ```
 
 Then wrap your app with `GDSProvider` and use Chakra components with GDS tokens and icons:
 
 ```tsx
-import { GDSProvider } from "@gdesignsystem/react";
+import { GDSProvider } from "@gds-vero/react";
 import { Button, Box, Text } from "@chakra-ui/react";
-import { CheckIcon } from "@gdesignsystem/icons";
+import { CheckIcon } from "@gds-vero/icons";
 
 function App() {
   return (
@@ -116,7 +116,7 @@ function App() {
 }
 ```
 
-You typically only need `@gdesignsystem/tokens` if you use the token files directly; `@gdesignsystem/react` and `@gdesignsystem/theme` already include what’s needed for the theme.
+You typically only need `@gds-vero/tokens` if you use the token files directly; `@gds-vero/react` and `@gds-vero/theme` already include what’s needed for the theme.
 
 ## Scripts
 
@@ -136,7 +136,7 @@ Design tokens live in `packages/tokens/figma/tokens.raw.json`. The theme reads c
 pnpm gds:tokens:sync:from-mcp
 ```
 
-If you already have `.tmp/figma.variable_defs.json`, you can run `pnpm gds:tokens:sync` instead. Scaffolded apps from `pnpm create @gdesignsystem/app@latest` use their own `pnpm gds:tokens:sync` script (writes under `src/`). See `packages/create-app/README.md` — do not use `create …/create-app` (npm 404).
+If you already have `.tmp/figma.variable_defs.json`, you can run `pnpm gds:tokens:sync` instead. Scaffolded apps from `pnpm create @gds-vero/app@latest` use their own `pnpm gds:tokens:sync` script (writes under `src/`). See `packages/create-app/README.md` — do not use `create …/create-app` (npm 404).
 
 ## Icons
 
@@ -146,10 +146,10 @@ Icons are in `packages/icons`, generated from SVG files in the repo-level `/icon
 pnpm gds:icons:generate
 ```
 
-Import from `@gdesignsystem/icons` and use token-based colors:
+Import from `@gds-vero/icons` and use token-based colors:
 
 ```tsx
-import { StarIcon, XIcon } from "@gdesignsystem/icons";
+import { StarIcon, XIcon } from "@gds-vero/icons";
 
 <StarIcon color="fg.muted" boxSize="6" />
 <XIcon color="fg" boxSize="4" />
@@ -174,7 +174,7 @@ cd apps/docs && pnpm dev
 
 ## Docs app
 
-The **docs** app (`apps/docs`) is the design system documentation and a reference implementation. It uses `GDSProvider`, Chakra components with GDS tokens, and `@gdesignsystem/icons` throughout.
+The **docs** app (`apps/docs`) is the design system documentation and a reference implementation. It uses `GDSProvider`, Chakra components with GDS tokens, and `@gds-vero/icons` throughout.
 
 ## Monorepo layout
 
@@ -184,13 +184,13 @@ GDS/
 │   ├── docs/          # Design system documentation (reference app)
 │   └── demo/          # Optional demo app (Vite + GDS)
 ├── packages/
-│   ├── react/         # @gdesignsystem/react – GDSProvider, GDSButton, GDSText, GDSHeading
-│   ├── theme/         # @gdesignsystem/theme – Chakra theme + tokens
-│   ├── tokens/        # @gdesignsystem/tokens – Figma tokens (tokens.raw.json)
-│   ├── icons/         # @gdesignsystem/icons – Icon components from /icons
-│   ├── create-app/    # @gdesignsystem/create-app – scaffold CLI
-│   └── cli/           # @gdesignsystem/cli – optional tooling
-├── icons/             # SVG sources for @gdesignsystem/icons (run gds:icons:generate)
+│   ├── react/         # @gds-vero/react – GDSProvider, GDSButton, GDSText, GDSHeading
+│   ├── theme/         # @gds-vero/theme – Chakra theme + tokens
+│   ├── tokens/        # @gds-vero/tokens – Figma tokens (tokens.raw.json)
+│   ├── icons/         # @gds-vero/icons – Icon components from /icons
+│   ├── create-app/    # @gds-vero/create-app – scaffold CLI
+│   └── cli/           # @gds-vero/cli – optional tooling
+├── icons/             # SVG sources for @gds-vero/icons (run gds:icons:generate)
 ├── scripts/           # Token sync and icon generation scripts
 └── pnpm-workspace.yaml
 ```
@@ -217,7 +217,7 @@ GDS/
 ### 2. Publish packages on npm
 
 1. **Create an npm account** at [npmjs.com](https://www.npmjs.com/signup) and log in in the terminal: `npm login`.
-2. **Reserve the scope** (if needed): Scoped packages like `@gdesignsystem/react` require the `gdesignsystem` org on npm. Create it at [npmjs.com/org/create](https://www.npmjs.com/org/create) (org name: `gdesignsystem`) or use your npm username as the scope.
+2. **Reserve the scope** (if needed): Create the `@gds-vero` npm org at [npmjs.com/org/create](https://www.npmjs.com/org/create) (org name: `gds-vero`). This is separate from `@gdesignsystem` and does not affect upstream GDS packages.
 3. **Prepare packages for publish:**
    - In each package you want to publish (`packages/react`, `packages/theme`, `packages/tokens`, `packages/icons`): set `"private": false` (or remove `"private": true`) and set a real version, e.g. `"version": "0.1.0"`.
    - Add a `repository` field in each published package (or rely on the root one), e.g. `"repository": { "type": "git", "url": "https://github.com/YOUR_USERNAME/YOUR_REPO.git" }`.
@@ -235,7 +235,7 @@ GDS/
 
 ### 3. Publish docs on GitHub Pages
 
-The **docs** app (design system documentation) can be published to GitHub Pages so it’s available at `https://<username>.github.io/GDS/`.
+The **docs** app (design system documentation) can be published to GitHub Pages so it’s available at `https://tomiputto.github.io/gds-vero/`.
 
 1. **Enable GitHub Pages** in the repo:
    - Open your repo on GitHub → **Settings** → **Pages**.
@@ -248,7 +248,7 @@ The **docs** app (design system documentation) can be published to GitHub Pages 
      git commit -m "Add GitHub Pages deployment for docs"
      git push
      ```
-3. **First run:** After the first push, go to **Actions** and wait for **Deploy docs to GitHub Pages** to finish. Your docs will be live at `https://renegademaster-droid.github.io/GDS/`.
+3. **First run:** After the first push, go to **Actions** and wait for **Deploy docs to GitHub Pages** to finish. Your docs will be live at `https://github.com/tomiputto/gds-vero#readme`.
 
 Local dev is unchanged: `pnpm dev` still serves the docs at the root path (`/`). The `BASE_PATH` is only set in CI for GitHub Pages.
 

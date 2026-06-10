@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Button, Flex, Grid, Heading, Icon, Input, VStack } from "@chakra-ui/react";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 import {
   CheckIcon,
   ChevronDownIcon,
@@ -17,7 +17,7 @@ import {
   TrashIcon,
   UploadIcon,
   XIcon,
-} from "@gdesignsystem/icons";
+} from "@gds-vero/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 
@@ -61,7 +61,7 @@ export function IconPage() {
       <Section
         title="GDS icons with Figma tokens"
         description="Icon color is controlled by Figma tokens (fg, fg.muted, brand.fg, fg.success)."
-        code={`import { CheckIcon, StarIcon, CopyIcon } from "@gdesignsystem/icons";
+        code={`import { CheckIcon, StarIcon, CopyIcon } from "@gds-vero/icons";
 
 <CheckIcon color="fg" boxSize="6" />
 <StarIcon color="fg.muted" boxSize="6" />
@@ -80,7 +80,7 @@ export function IconPage() {
         title="With Chakra Icon"
         description="Wrap in Icon for consistent sizing; color still uses Figma tokens."
         code={`import { Icon } from "@chakra-ui/react";
-import { CheckIcon } from "@gdesignsystem/icons";
+import { CheckIcon } from "@gds-vero/icons";
 
 <Icon as={CheckIcon} color="fg.muted" boxSize="8" />`}
       >
@@ -91,8 +91,8 @@ import { CheckIcon } from "@gdesignsystem/icons";
         title="With Button"
         description="Use GDS icons in buttons; color inherits from the button (Figma tokens)."
         code={`import { Button } from "@chakra-ui/react";
-import { CheckIcon } from "@gdesignsystem/icons";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { CheckIcon } from "@gds-vero/icons";
+import { GDSText as Text } from "@gds-vero/react";
 
 <Button colorPalette="brand">
   <CheckIcon /> Confirm
@@ -105,8 +105,8 @@ import { GDSText as Text } from "@gdesignsystem/react";
 
       <Section
         title="Icon gallery"
-        description="1,500+ GDS icons from @gdesignsystem/icons. Search a subset below; use color with Figma tokens."
-        code={`import { CheckIcon, SearchIcon, TrashIcon } from "@gdesignsystem/icons";
+        description="1,500+ GDS icons from @gds-vero/icons. Search a subset below; use color with Figma tokens."
+        code={`import { CheckIcon, SearchIcon, TrashIcon } from "@gds-vero/icons";
 
 <CheckIcon color="fg" boxSize="6" />
 <SearchIcon color="fg.muted" boxSize="6" />`}
@@ -143,7 +143,7 @@ import { GDSText as Text } from "@gdesignsystem/react";
             ))}
           </Grid>
           <Text fontSize="sm" color="fg.muted">
-            Import any icon from <code>@gdesignsystem/icons</code> (e.g. CheckIcon, XIcon,
+            Import any icon from <code>@gds-vero/icons</code> (e.g. CheckIcon, XIcon,
             CopyIcon). Run <code>pnpm gds:icons:generate</code> to regenerate
             from /icons.
           </Text>

@@ -39,10 +39,10 @@ importers:
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
-      '@gdesignsystem/icons':
+      '@gds-vero/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@gdesignsystem/react':
+      '@gds-vero/react':
         specifier: workspace:*
         version: link:../../packages/react
       next-themes:
@@ -79,10 +79,10 @@ importers:
       '@emotion/react':
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
-      '@gdesignsystem/icons':
+      '@gds-vero/icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@gdesignsystem/react':
+      '@gds-vero/react':
         specifier: workspace:*
         version: link:../../packages/react
       next-themes:
@@ -172,10 +172,13 @@ importers:
       '@emotion/react':
         specifier: ^11.0.0
         version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
-      '@gdesignsystem/theme':
+      '@gds-vero/icons':
+        specifier: workspace:*
+        version: link:../icons
+      '@gds-vero/theme':
         specifier: workspace:*
         version: link:../theme
-      '@gdesignsystem/tokens':
+      '@gds-vero/tokens':
         specifier: workspace:*
         version: link:../tokens
       react:
@@ -200,7 +203,7 @@ importers:
       '@emotion/react':
         specifier: ^11.0.0
         version: 11.14.0(@types/react@19.2.14)(react@19.2.4)
-      '@gdesignsystem/tokens':
+      '@gds-vero/tokens':
         specifier: workspace:*
         version: link:../tokens
     devDependencies:

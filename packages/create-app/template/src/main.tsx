@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { ChakraProvider, createSystem, defaultConfig } from "@chakra-ui/react";
-import { gdsTheme } from "@gdesignsystem/theme";
+import { gdsTheme } from "@gds-vero/theme";
 import { gdsSyncedTheme } from "./gds-theme-sync.generated";
 import App from "./App.tsx";
 

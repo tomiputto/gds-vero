@@ -1,5 +1,5 @@
 {
-  "name": "@gdesignsystem/tokens",
+  "name": "@gds-vero/tokens",
   "version": "0.1.3",
   "private": false,
   "type": "module",
@@ -17,17 +17,17 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/renegademaster-droid/GDS.git"
+    "url": "https://github.com/tomiputto/gds-vero.git"
   },
-  "description": "GDS design tokens (colors, typography, spacing) from Figma. Used by @gdesignsystem/theme.",
+  "description": "GDS design tokens (colors, typography, spacing) from Figma. Used by @gds-vero/theme.",
   "keywords": [
     "gds",
-    "gdesignsystem",
+    "gds-vero",
     "design-tokens",
     "figma",
     "design-system"
   ],
-  "homepage": "https://renegademaster-droid.github.io/GDS/",
+  "homepage": "https://github.com/tomiputto/gds-vero#readme",
   "publishConfig": {
     "access": "public"
   },

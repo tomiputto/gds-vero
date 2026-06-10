@@ -28,39 +28,39 @@ This document is the canonical reference for AI agents (e.g. ChatGPT, Copilot) w
 
 - **GDS** (GDS Design System) is a React design system built on **Chakra UI v3** with a custom theme and Figma-derived tokens.
 - **npm packages (use only these for UI when building with GDS):**
-  - `@gdesignsystem/react` – React provider and wrappers. Exports `GDSProvider`, `GDSButton`, etc.
-  - `@gdesignsystem/theme` – Chakra theme (semantic tokens: `fg`, `bg.default`, `brand`, etc.).
-  - `@gdesignsystem/icons` – Icon set (e.g. `CheckIcon`, `StarIcon`, `XIcon`). Use with Chakra `Icon` or as components.
-  - `@gdesignsystem/tokens` – Optional. Only add if the app needs raw token files or token values directly; most apps do not need it.
+  - `@gds-vero/react` – React provider and wrappers. Exports `GDSProvider`, `GDSButton`, etc.
+  - `@gds-vero/theme` – Chakra theme (semantic tokens: `fg`, `bg.default`, `brand`, etc.).
+  - `@gds-vero/icons` – Icon set (e.g. `CheckIcon`, `StarIcon`, `XIcon`). Use with Chakra `Icon` or as components.
+  - `@gds-vero/tokens` – Optional. Only add if the app needs raw token files or token values directly; most apps do not need it.
 - **Stack:** React 18+, Chakra UI 3.x, Emotion. Use **only** Chakra UI components + GDS packages for UI. Do **not** use MUI, Tailwind component libraries, or other design systems when the user asks for GDS.
 
 ---
 
 ## When to use GDS
 
-Use this stack when the user says they want to build something **with GDS**, **using GDS**, **GDS design system**, **gdesignsystem**, or similar. Then use **only** the packages and rules below for the UI layer.
+Use this stack when the user says they want to build something **with GDS-VERO**, **using GDS**, **GDS design system**, **gds-vero**, or similar. Then use **only** the packages and rules below for the UI layer.
 
 ---
 
 ## Install
 
 ```bash
-pnpm add @gdesignsystem/react @gdesignsystem/theme @gdesignsystem/icons @chakra-ui/react @emotion/react react react-dom
+pnpm add @gds-vero/react @gds-vero/theme @gds-vero/icons @chakra-ui/react @emotion/react react react-dom
 ```
 
 (Use `npm` or `yarn` if the user’s project uses those; the package names stay the same.)
 
 ### After install: make agents follow this file (npm / pnpm / yarn)
 
-The same guide is **published inside** `@gdesignsystem/react`. After install you have:
+The same guide is **published inside** `@gds-vero/react`. After install you have:
 
-`node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`
+`node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md`
 
-**`npm create @gdesignsystem/app@latest`** scaffolds `AGENTS.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-accessibility.mdc`, `CLAUDE.md`, `.github/copilot-instructions.md`, and ESLint + `jsx-a11y` (`npm run lint`) so agents follow GDS rules and catch common accessibility issues automatically.
+**`npm create @gds-vero/app@latest`** scaffolds `AGENTS.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-accessibility.mdc`, `CLAUDE.md`, `.github/copilot-instructions.md`, and ESLint + `jsx-a11y` (`npm run lint`) so agents follow GDS rules and catch common accessibility issues automatically.
 
 For other projects, agents do **not** read `node_modules` automatically. Add a **project rule** (Cursor, Claude Code, or your editor’s equivalent) so every UI task uses it. Example text to paste:
 
-> **GDS / Chakra UI:** For any React UI in this project, follow the canonical rules in **`node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`** (Chakra v3 only, correct imports from `@gdesignsystem/react` vs `@chakra-ui/react` vs `@gdesignsystem/icons`, semantic tokens). If that path is missing, run install and ensure `@gdesignsystem/react` is a dependency.
+> **GDS / Chakra UI:** For any React UI in this project, follow the canonical rules in **`node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md`** (Chakra v3 only, correct imports from `@gds-vero/react` vs `@chakra-ui/react` vs `@gds-vero/icons`, semantic tokens). If that path is missing, run install and ensure `@gds-vero/react` is a dependency.
 
 You can copy that file into your repo (e.g. `docs/GDS_FOR_LLM_AGENTS.md`) and point the rule there instead, if you prefer a stable path without `node_modules`.
 
@@ -68,19 +68,19 @@ You can copy that file into your repo (e.g. `docs/GDS_FOR_LLM_AGENTS.md`) and po
 
 ## Minimal app setup
 
-1. Wrap the app root with `GDSProvider` (from `@gdesignsystem/react`).
+1. Wrap the app root with `GDSProvider` (from `@gds-vero/react`).
 2. Use Chakra UI components from `@chakra-ui/react` (Box, Button, Text, Input, etc.).
 3. Use semantic token props: `color="fg"`, `color="fg.muted"`, `bg="bg.default"`, `bg="bg.subtle"`, `colorPalette="brand"` on components that support it (Button, Badge, etc.).
-4. Use icons from `@gdesignsystem/icons` (e.g. `CheckIcon`, `XIcon`) with `color` set to a token (e.g. `color="fg.muted"`) or let them inherit.
+4. Use icons from `@gds-vero/icons` (e.g. `CheckIcon`, `XIcon`) with `color` set to a token (e.g. `color="fg.muted"`) or let them inherit.
 
-**Import rule:** `GDSProvider`, `GDSButton`, `GDSText`, `GDSHeading`, and any other documented wrappers come from `@gdesignsystem/react`. All Chakra UI compound components (`Field`, `Card`, `Input`, `Button`, `Separator`, `Box`, `Text`, etc.) must be imported from `@chakra-ui/react`. Importing `Field` or other Chakra components from `@gdesignsystem/react` will cause "doesn't provide an export named X" errors.
+**Import rule:** `GDSProvider`, `GDSButton`, `GDSText`, `GDSHeading`, `VeroMainHeader`, and any other documented wrappers come from `@gds-vero/react`. All Chakra UI compound components (`Field`, `Card`, `Input`, `Button`, `Separator`, `Box`, `Text`, etc.) must be imported from `@chakra-ui/react`. Importing `Field` or other Chakra components from `@gds-vero/react` will cause "doesn't provide an export named X" errors.
 
 **Minimal example:**
 
 ```tsx
-import { GDSProvider } from "@gdesignsystem/react";
+import { GDSProvider } from "@gds-vero/react";
 import { Button, Box, Text } from "@chakra-ui/react";
-import { CheckIcon } from "@gdesignsystem/icons";
+import { CheckIcon } from "@gds-vero/icons";
 
 function App() {
   return (
@@ -100,10 +100,10 @@ function App() {
 
 ## Rules (must follow when building with GDS)
 
-- Use **only** Chakra UI + GDS packages (`@gdesignsystem/react`, `@gdesignsystem/theme`, `@gdesignsystem/icons`) for the UI. Do not add Material UI, Ant Design, Tailwind UI, or other component libraries.
+- Use **only** Chakra UI + GDS packages (`@gds-vero/react`, `@gds-vero/theme`, `@gds-vero/icons`) for the UI. Do not add Material UI, Ant Design, Tailwind UI, or other component libraries.
 - Use **semantic tokens** for colors and backgrounds: `fg`, `fg.muted`, `bg.default`, `bg.subtle`, `border.muted`, `colorPalette="brand"`, etc.
-- Use **`@gdesignsystem/icons`** for icons (e.g. `CheckIcon`, `StarIcon`, `XIcon`, `SearchIcon`, `MenuIcon`, `UserIcon`, `ArrowRightIcon`, `ChevronDownIcon`, `PencilIcon`, `TrashIcon`, `PlusIcon`, `InfoIcon`, `TriangleAlertIcon`, `LogOutIcon`). Over 1500 icons available — full list at [GDS Icons docs](https://renegademaster-droid.github.io/GDS/styles/icons). Do not use `react-icons` or other icon sets for UI when building with GDS unless the user explicitly asks. Icon names are PascalCase with `Icon` suffix matching Lucide icon names (e.g. Lucide `arrow-right` → `ArrowRightIcon`).
-- The root of the React tree must be wrapped in **`GDSProvider`** from `@gdesignsystem/react`.
+- Use **`@gds-vero/icons`** for icons (e.g. `CheckIcon`, `StarIcon`, `XIcon`, `SearchIcon`, `MenuIcon`, `UserIcon`, `ArrowRightIcon`, `ChevronDownIcon`, `PencilIcon`, `TrashIcon`, `PlusIcon`, `InfoIcon`, `TriangleAlertIcon`, `LogOutIcon`). Over 1500 icons available — full list at [GDS Icons docs](https://github.com/tomiputto/gds-vero#readmestyles/icons). Do not use `react-icons` or other icon sets for UI when building with GDS unless the user explicitly asks. Icon names are PascalCase with `Icon` suffix matching Lucide icon names (e.g. Lucide `arrow-right` → `ArrowRightIcon`).
+- The root of the React tree must be wrapped in **`GDSProvider`** from `@gds-vero/react`.
 - **Forms:** Use Chakra v3 **Field** API from `@chakra-ui/react`: `Field.Root`, `Field.Label`, `Field.HelperText`, `Field.ErrorText`. Do **not** use `FormControl`, `FormLabel`, `FormHelperText`, or `FormErrorMessage` — they are not exported in Chakra v3 and will cause runtime errors.
 - **Tables:** Use Chakra v3 **Table** compound component: `Table.Root`, `Table.Header`, `Table.Row`, `Table.ColumnHeader`, `Table.Body`, `Table.Cell`. Do **not** use `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`, or `TableContainer` — they are not exported in Chakra v3 and will cause runtime errors. Use `Table.ScrollArea` for scrollable tables; use `textAlign="end"` instead of `isNumeric`.
 - **Cards:** Use `Card.Root`, `Card.Header`, `Card.Body`, `Card.Footer`, `Card.Title`, `Card.Description`. Do **not** use standalone `Card`, `CardHeader`, `CardBody`, or `CardFooter` — they are not exported in Chakra v3.
@@ -113,7 +113,7 @@ function App() {
 
 ## Typography
 
-GDS defines **named text styles** in the theme (`@gdesignsystem/theme`): `display`, `headline`, `title`, `body`, `caption`. Use them on **`GDSText`** via `textStyle="body"` etc.
+GDS defines **named text styles** in the theme (`@gds-vero/theme`): `display`, `headline`, `title`, `body`, `caption`. Use them on **`GDSText`** via `textStyle="body"` etc.
 
 - **Do not** use `textStyle="md"` or `textStyle="sm"` on `GDSText` — those are **font size token names**, not GDS text styles, and sizing will look inconsistent.
 - **`GDSHeading`** wraps Chakra `Heading`. Its `size` prop is Chakra’s **heading scale** (`xs`–`4xl`), not the GDS text-style names. For a card title / `h2`, use e.g. `size="xl"` or `size="2xl"` with `as="h2"`. **`size="sm"` is a small heading**, not “semantic h2”.
@@ -193,11 +193,11 @@ export function LoginCard() {
 
 ## Dialogs (Dialog API)
 
-Use **Dialog** compound component from `@chakra-ui/react`. Always wrap content in `<Portal>`. Use `XIcon` from `@gdesignsystem/icons` for the close trigger.
+Use **Dialog** compound component from `@chakra-ui/react`. Always wrap content in `<Portal>`. Use `XIcon` from `@gds-vero/icons` for the close trigger.
 
 ```tsx
 import { Dialog, Button, IconButton, Portal } from "@chakra-ui/react";
-import { XIcon } from "@gdesignsystem/icons";
+import { XIcon } from "@gds-vero/icons";
 
 <Dialog.Root>
   <Dialog.Trigger asChild>
@@ -280,7 +280,7 @@ GDS does not ship a nav component. Build navigation with Chakra primitives + sem
 
 ```tsx
 import { Box, HStack, Link, Separator } from "@chakra-ui/react";
-import { GDSHeading } from "@gdesignsystem/react";
+import { GDSHeading } from "@gds-vero/react";
 
 function AppHeader() {
   return (
@@ -305,9 +305,9 @@ When generating code for common UI tasks, use these patterns:
 
 | Task | Use |
 |------|-----|
-| App root | `GDSProvider` from `@gdesignsystem/react` |
-| Body text | `GDSText` (`textStyle="body"` / `"caption"`) from `@gdesignsystem/react` |
-| Headings | `GDSHeading` (`size="xl"` etc.) from `@gdesignsystem/react` |
+| App root | `GDSProvider` from `@gds-vero/react` |
+| Body text | `GDSText` (`textStyle="body"` / `"caption"`) from `@gds-vero/react` |
+| Headings | `GDSHeading` (`size="xl"` etc.) from `@gds-vero/react` |
 | Primary button | `Button colorPalette="brand"` from `@chakra-ui/react` |
 | Form field with label | `Field.Root` + `Field.Label` + `Input` from `@chakra-ui/react` |
 | Card layout | `Card.Root` + `Card.Header` + `Card.Body` + `Card.Footer` from `@chakra-ui/react` |
@@ -315,7 +315,7 @@ When generating code for common UI tasks, use these patterns:
 | Feedback banner | `Alert.Root` + `Alert.Indicator` + `Alert.Content` from `@chakra-ui/react` |
 | Data table | `Table.Root` + `Table.Header` + `Table.Body` + `Table.Row` + `Table.Cell` from `@chakra-ui/react` |
 | Horizontal rule | `Separator` from `@chakra-ui/react` |
-| Icons | `<CheckIcon />`, `<XIcon />` etc. from `@gdesignsystem/icons` |
+| Icons | `<CheckIcon />`, `<XIcon />` etc. from `@gds-vero/icons` |
 | Tabs | `Tabs.Root` + `Tabs.List` + `Tabs.Trigger` + `Tabs.Content` from `@chakra-ui/react` |
 | Dropdown menu | `Menu.Root` + `Menu.Trigger` + `Menu.Positioner` + `Menu.Content` + `Menu.Item` from `@chakra-ui/react` |
 | Toast notifications | `Toaster` + `createToaster` from `@chakra-ui/react` |
@@ -326,7 +326,7 @@ When generating code for common UI tasks, use these patterns:
 
 GDS targets **WCAG 2.1 Level AA**. Chakra v3 components provide keyboard support, focus management, and ARIA for many patterns — **you must still wire labels, names, landmarks, and status messages correctly** in the UI you generate.
 
-**Full human docs:** https://renegademaster-droid.github.io/GDS/accessibility — component pages also include per-component accessibility notes.
+**Full human docs:** https://github.com/tomiputto/gds-vero#readmeaccessibility — component pages also include per-component accessibility notes.
 
 ### Global rules (always apply)
 
@@ -546,7 +546,7 @@ That way the agent is nudged to output v3-compatible code even when it would oth
 
 ## Links
 
-- **Repository:** https://github.com/renegademaster-droid/GDS  
-- **npm:** [@gdesignsystem/react](https://www.npmjs.com/package/@gdesignsystem/react) · [@gdesignsystem/theme](https://www.npmjs.com/package/@gdesignsystem/theme) · [@gdesignsystem/tokens](https://www.npmjs.com/package/@gdesignsystem/tokens) · [@gdesignsystem/icons](https://www.npmjs.com/package/@gdesignsystem/icons)  
-- **Docs (component reference):** https://renegademaster-droid.github.io/GDS/  
-- **Icons (full list, 1500+):** https://renegademaster-droid.github.io/GDS/styles/icons
+- **Repository:** https://github.com/tomiputto/gds-vero  
+- **npm:** [@gds-vero/react](https://www.npmjs.com/package/@gds-vero/react) · [@gds-vero/theme](https://www.npmjs.com/package/@gds-vero/theme) · [@gds-vero/tokens](https://www.npmjs.com/package/@gds-vero/tokens) · [@gds-vero/icons](https://www.npmjs.com/package/@gds-vero/icons)  
+- **Docs (component reference):** https://github.com/tomiputto/gds-vero#readme  
+- **Icons (full list, 1500+):** https://github.com/tomiputto/gds-vero#readmestyles/icons

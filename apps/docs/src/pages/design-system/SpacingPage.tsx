@@ -1,6 +1,6 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 /** Common spacing scale (align with Figma Size/Spacing tokens when synced) */
 const spacingSizes = ["1", "2", "3", "4", "5", "6", "8", "10", "12", "16", "20", "24"] as const;
 
@@ -12,7 +12,7 @@ export function SpacingPage() {
           Spacing
         </Heading>
         <Text color="fg.muted">
-          Spacing tokens from Figma, exposed in the theme via @gdesignsystem/tokens. Use spacing token names (p, m, gap) for consistent layout.
+          Spacing tokens from Figma, exposed in the theme via @gds-vero/tokens. Use spacing token names (p, m, gap) for consistent layout.
         </Text>
       </Box>
 

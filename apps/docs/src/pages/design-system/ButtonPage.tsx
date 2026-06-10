@@ -1,8 +1,8 @@
 import { Box, Button, HStack, Heading, VStack } from "@chakra-ui/react";
-import { CheckIcon, PlusIcon } from "@gdesignsystem/icons";
+import { CheckIcon, PlusIcon } from "@gds-vero/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function ButtonPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -69,10 +69,10 @@ export function ButtonPage() {
 
       <Section
         title="With icon"
-        description="Use GDS icons from @gdesignsystem/icons; color inherits from the button (Figma tokens)."
+        description="Use GDS icons from @gds-vero/icons; color inherits from the button (Figma tokens)."
         code={`import { Button } from "@chakra-ui/react";
-import { CheckIcon, PlusIcon } from "@gdesignsystem/icons";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { CheckIcon, PlusIcon } from "@gds-vero/icons";
+import { GDSText as Text } from "@gds-vero/react";
 
 <Button colorPalette="brand"><CheckIcon /> Confirm</Button>
 <Button colorPalette="brand" variant="outline"><PlusIcon /> Add</Button>`}

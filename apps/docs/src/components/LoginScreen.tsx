@@ -8,8 +8,8 @@ import {
   Link,
   VStack,
 } from "@chakra-ui/react";
-import { GDSButton, GDSHeading, GDSText as Text } from "@gdesignsystem/react";
-import { LogInIcon } from "@gdesignsystem/icons";
+import { GDSButton, GDSHeading, GDSText as Text } from "@gds-vero/react";
+import { LogInIcon } from "@gds-vero/icons";
 
 export function LoginScreen() {
   const [email, setEmail] = useState("");

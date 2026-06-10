@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { gdsColorTokens, gdsSemanticColors } from "./gds-tokens";
 
-describe("@gdesignsystem/theme gds-tokens smoke", () => {
+describe("@gds-vero/theme gds-tokens smoke", () => {
   it("has brand palette scale adapter (50..900) and focusRing", () => {
     const brand = (gdsColorTokens as any).brand;
     expect(brand).toBeTruthy();
@@ -14,7 +14,7 @@ describe("@gdesignsystem/theme gds-tokens smoke", () => {
 
   it("overrides gray.fg palette to match GDS (not Chakra default gray.200 in light)", () => {
     const grayFg = (gdsColorTokens as any).gray?.fg?.value;
-    expect(grayFg?._light).toBe("#27272a");
+    expect(grayFg?._light).toBe("#333333");
     expect(grayFg?._dark).toBe("{colors.text.fg_inverted}");
   });
 
@@ -22,9 +22,9 @@ describe("@gdesignsystem/theme gds-tokens smoke", () => {
     const { fg, bg, border, focusRing } = gdsSemanticColors as any;
 
     expect(JSON.stringify(fg.DEFAULT?.value)).not.toContain("colors.gray.fg");
-    expect(fg.DEFAULT?.value?.base).toBe("#27272a");
-    expect(fg.DEFAULT?.value?._light).toBe("{colors.gray.800}");
-    expect(fg.muted?.value?.base).toBe("#52525b");
+    expect(fg.DEFAULT?.value?.base).toBe("#333333");
+    expect(fg.DEFAULT?.value?._light).toBe("{colors.text.fg}");
+    expect(fg.muted?.value?.base).toBe("#474747");
     expect(fg.subtle?.value?.base).toBe("#a1a1aa");
 
     expect(fg.DEFAULT, "missing fg.DEFAULT").toBeTruthy();

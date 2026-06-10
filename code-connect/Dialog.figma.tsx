@@ -1,6 +1,6 @@
 import figma from "@figma/code-connect"
 import { Button, Dialog, IconButton, Portal } from "@chakra-ui/react"
-import { XIcon } from "@gdesignsystem/icons"
+import { XIcon } from "@gds-vero/icons"
 
 figma.connect(
   Dialog.Root,

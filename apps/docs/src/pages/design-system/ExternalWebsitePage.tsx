@@ -1,6 +1,6 @@
 import { Box, Code, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 import { Link } from "react-router-dom";
 export function ExternalWebsitePage() {
   return (
@@ -13,11 +13,11 @@ export function ExternalWebsitePage() {
           How to build a website (or app) that lives outside the GDS monorepo but still uses GDS packages and stays in sync with design system updates.
         </Text>
         <Text color="fg.muted" mt="2">
-          You don’t need a parent workspace or the same directory. Publish the GDS packages to a package registry (npm, GitHub Packages, etc.) and install them in any project with <Code>pnpm add @gdesignsystem/react @gdesignsystem/theme</Code>—the app can live in any repo or folder. You usually don’t need <Code>@gdesignsystem/tokens</Code> unless the app uses token files or raw token values directly.
+          You don’t need a parent workspace or the same directory. Publish the GDS packages to a package registry (npm, GitHub Packages, etc.) and install them in any project with <Code>pnpm add @gds-vero/react @gds-vero/theme</Code>—the app can live in any repo or folder. You usually don’t need <Code>@gds-vero/tokens</Code> unless the app uses token files or raw token values directly.
         </Text>
         <Text color="fg.muted" mt="2">
-          If your project was created with <Code>npm create @gdesignsystem/app@latest</Code> or{" "}
-          <Code>pnpm create @gdesignsystem/app@latest</Code>, you can sync
+          If your project was created with <Code>npm create @gds-vero/app@latest</Code> or{" "}
+          <Code>pnpm create @gds-vero/app@latest</Code>, you can sync
           Figma token updates locally with <Code>pnpm gds:tokens:sync</Code>. See{" "}
           <Link to="/guides/sync-design-tokens">
             <Code>Sync design tokens</Code>
@@ -32,8 +32,8 @@ export function ExternalWebsitePage() {
       >
         <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
           <Text>
-            1. Create your app: <Code>npm create @gdesignsystem/app@latest my-project</Code> or{" "}
-            <Code>pnpm create @gdesignsystem/app@latest my-project</Code> (includes agent rules and a11y lint)
+            1. Create your app: <Code>npm create @gds-vero/app@latest my-project</Code> or{" "}
+            <Code>pnpm create @gds-vero/app@latest my-project</Code> (includes agent rules and a11y lint)
           </Text>
           <Text>
             2. Export Figma MCP variable defs to <Code>.tmp/figma.variable_defs.json</Code>
@@ -86,9 +86,9 @@ export function ExternalWebsitePage() {
             overflowX="auto"
           >
 {`"dependencies": {
-  "@gdesignsystem/react": "workspace:*",
-  "@gdesignsystem/theme": "workspace:*",
-  "@gdesignsystem/icons": "workspace:*",
+  "@gds-vero/react": "workspace:*",
+  "@gds-vero/theme": "workspace:*",
+  "@gds-vero/icons": "workspace:*",
   "@chakra-ui/react": "^3.0.0",
   "@emotion/react": "^11.0.0",
   "react": ">=18",
@@ -114,7 +114,7 @@ export function ExternalWebsitePage() {
         description="Quick reference."
       >
         <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
-          <Text>• <strong>Best default:</strong> create app with <Code>pnpm create @gdesignsystem/app@latest</Code> and use <Code>pnpm gds:tokens:sync</Code> for local token sync.</Text>
+          <Text>• <strong>Best default:</strong> create app with <Code>pnpm create @gds-vero/app@latest</Code> and use <Code>pnpm gds:tokens:sync</Code> for local token sync.</Text>
           <Text>• <strong>No workspace needed:</strong> You can still install published GDS packages directly in any project.</Text>
           <Text>• <strong>With a workspace:</strong> Use <Code>workspace:*</Code> dependencies for live local package development against the GDS repo.</Text>
         </VStack>

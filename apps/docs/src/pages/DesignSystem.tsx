@@ -1,5 +1,5 @@
 import { Alert, Badge, Box, Button, Card, Checkbox, Field, Flex, Heading, HStack, Input, Separator, SimpleGrid, Spacer, Stack, Switch, Tabs, VStack } from "@chakra-ui/react";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 function Section({
   title,
   description,

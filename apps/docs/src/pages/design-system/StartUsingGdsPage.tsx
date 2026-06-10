@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Code, Heading, SegmentGroup, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function StartUsingGdsPage() {
   type Flow = "classic" | "createApp";
   const [flow, setFlow] = useState<Flow>("classic");
@@ -114,7 +114,7 @@ export function StartUsingGdsPage() {
   "scripts": {
     "dev": "...",
     "build": "...",
-    "setup:gds": "rm -rf node_modules package-lock.json && npm cache verify && npm install react react-dom && npm install @chakra-ui/react @emotion/react && npm install @gdesignsystem/tokens@latest && npm install @gdesignsystem/theme@latest @gdesignsystem/icons@latest @gdesignsystem/react@latest"
+    "setup:gds": "rm -rf node_modules package-lock.json && npm cache verify && npm install react react-dom && npm install @chakra-ui/react @emotion/react && npm install @gds-vero/tokens@latest && npm install @gds-vero/theme@latest @gds-vero/icons@latest @gds-vero/react@latest"
   }
 }`}
             </Box>
@@ -149,10 +149,10 @@ export function StartUsingGdsPage() {
                 In this repository, add a persistent AI/project rule so future tasks always use
                 GDS components and styles for UI implementation. Point agents to{" "}
                 <Code>GDS_FOR_LLM_AGENTS.md</Code> in the repo root (or{" "}
-                <Code>node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md</Code> in npm projects).
+                <Code>node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md</Code> in npm projects).
               </Text>
               <Text>
-                For npm apps, prefer <Code>npm create @gdesignsystem/app@latest</Code> — agent rules
+                For npm apps, prefer <Code>npm create @gds-vero/app@latest</Code> — agent rules
                 and accessibility lint are pre-configured.
               </Text>
             </VStack>
@@ -189,7 +189,7 @@ export function StartUsingGdsPage() {
                 whiteSpace="pre-wrap"
                 overflowX="auto"
               >
-                {`npm create @gdesignsystem/app@latest my-project`}
+                {`npm create @gds-vero/app@latest my-project`}
               </Box>
 
               <Text fontWeight="semibold" color="fg">
@@ -207,7 +207,7 @@ export function StartUsingGdsPage() {
                 whiteSpace="pre-wrap"
                 overflowX="auto"
               >
-                {`pnpm create @gdesignsystem/app@latest my-project`}
+                {`pnpm create @gds-vero/app@latest my-project`}
               </Box>
             </VStack>
 
@@ -224,10 +224,10 @@ export function StartUsingGdsPage() {
               <Code>Accessibility</Code> in the docs sidebar.
             </Text>
             <Text mt="2" color="fg.muted" textStyle="sm">
-              Use <Code>@gdesignsystem/app</Code>, not <Code>@gdesignsystem/create-app</Code>: npm
+              Use <Code>@gds-vero/app</Code>, not <Code>@gds-vero/create-app</Code>: npm
               prepends <Code>create-</Code> and would look for a non-existent{" "}
               <Code>create-create-app</Code> package. Alternative:{" "}
-              <Code>npx create-gds-app my-project</Code>.
+              <Code>npx create-gds-vero-app my-project</Code>.
             </Text>
             <Text mt="2" color="fg.muted" textStyle="sm">
               Tip: adding <Code>@latest</Code> helps avoid cached older versions when using{" "}

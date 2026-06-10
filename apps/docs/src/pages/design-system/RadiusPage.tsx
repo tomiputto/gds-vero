@@ -1,6 +1,6 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 /** Border radius scale (align with Figma Radii when synced) */
 const radiusSizes = ["none", "xs", "sm", "md", "lg", "xl", "2xl", "3xl", "full"] as const;
 
@@ -12,7 +12,7 @@ export function RadiusPage() {
           Radius
         </Heading>
         <Text color="fg.muted">
-          Border radius tokens from Figma, exposed in the theme via @gdesignsystem/tokens. Use borderRadius token names for consistent corners.
+          Border radius tokens from Figma, exposed in the theme via @gds-vero/tokens. Use borderRadius token names for consistent corners.
         </Text>
       </Box>
 

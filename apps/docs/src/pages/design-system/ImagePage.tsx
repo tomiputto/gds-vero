@@ -1,7 +1,7 @@
 import { Box, Heading, Image, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function ImagePage() {
   const placeholderSrc = `${import.meta.env.BASE_URL}image.svg`;
 

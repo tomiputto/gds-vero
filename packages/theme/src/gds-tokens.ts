@@ -2,7 +2,7 @@
  * GDS design tokens for Chakra theme.
  * In the docs app a Vite plugin resolves this import from disk so tokens stay fresh.
  */
-import tokensRaw from "@gdesignsystem/tokens/figma/tokens.raw.json";
+import tokensRaw from "@gds-vero/tokens/figma/tokens.raw.json";
 
 const gdsColors = (tokensRaw as { colors?: Record<string, string> }).colors ?? {};
 
@@ -88,7 +88,7 @@ export const gdsColorTokens = nested as never;
 nested.gray ??= {};
 nested.gray.fg = {
   value: {
-    _light: "#27272a",
+    _light: "#333333",
     _dark: "{colors.text.fg_inverted}",
   },
 };
@@ -99,14 +99,14 @@ export const gdsSemanticColors = {
     // gray.800 matches Figma gray/fg (#27272a).
     DEFAULT: {
       value: {
-        base: "#27272a",
-        _light: "{colors.gray.800}",
+        base: "#333333",
+        _light: "{colors.text.fg}",
         _dark: "{colors.text.fg_inverted}",
       },
     },
     muted: {
       value: {
-        base: "#52525b",
+        base: "#474747",
         _light: "{colors.text.fg_muted}",
         _dark: "{colors.text.fg_subtle}",
       },
@@ -128,8 +128,8 @@ export const gdsSemanticColors = {
     // Light mode: explicit values so bg resolves (avoid white fallback). Dark: gray scale.
     DEFAULT: { value: { base: "#ffffff", _light: "#ffffff", _dark: "{colors.bg.inverted}" } },
     default: { value: { base: "#ffffff", _light: "#ffffff", _dark: "{colors.bg.inverted}" } },
-    subtle: { value: { base: "#fafafa", _light: "#fafafa", _dark: "{colors.gray.950}" } },
-    muted: { value: { base: "#f4f4f5", _light: "#f4f4f5", _dark: "{colors.gray.900}" } },
+    subtle: { value: { base: "#f0f4f0", _light: "#f0f4f0", _dark: "{colors.gray.950}" } },
+    muted: { value: { base: "#e8efe8", _light: "#e8efe8", _dark: "{colors.gray.900}" } },
     emphasized: { value: { base: "#e4e4e7", _light: "#e4e4e7", _dark: "{colors.gray.800}" } },
     inverted: { value: "{colors.bg.inverted}" },
     panel: { value: { base: "#ffffff", _light: "#ffffff", _dark: "{colors.gray.900}" } },
@@ -140,11 +140,11 @@ export const gdsSemanticColors = {
   },
   border: {
     // Light mode: explicit light grays so borders stay light (never black). Dark: gray scale.
-    DEFAULT: { value: { base: "#e4e4e7", _light: "#e4e4e7", _dark: "{colors.border.inverted}" } },
-    default: { value: { base: "#e4e4e7", _light: "#e4e4e7", _dark: "{colors.border.inverted}" } },
-    subtle: { value: { base: "#f0f0f2", _light: "#f0f0f2", _dark: "{colors.gray.800}" } },
-    muted: { value: { base: "#e8e8ec", _light: "#e8e8ec", _dark: "{colors.gray.700}" } },
-    emphasized: { value: { base: "#d4d4d8", _light: "#d4d4d8", _dark: "{colors.gray.600}" } },
+    DEFAULT: { value: { base: "#e4e4e4", _light: "#e4e4e4", _dark: "{colors.border.inverted}" } },
+    default: { value: { base: "#e4e4e4", _light: "#e4e4e4", _dark: "{colors.border.inverted}" } },
+    subtle: { value: { base: "#f0f4f0", _light: "#f0f4f0", _dark: "{colors.gray.800}" } },
+    muted: { value: { base: "#e8efe8", _light: "#e8efe8", _dark: "{colors.gray.700}" } },
+    emphasized: { value: { base: "#ccdfcc", _light: "#ccdfcc", _dark: "{colors.gray.600}" } },
     inverted: { value: "{colors.border.inverted}" },
     error: { value: "{colors.border.error}" },
     warning: { value: "{colors.border.warning}" },

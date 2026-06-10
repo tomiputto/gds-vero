@@ -1,4 +1,4 @@
-Imports: GDSProvider (and optionally GDSButton) from @gdesignsystem/react. All other UI (Field, Card, Input, Button, Separator, Box, Text, etc.) from @chakra-ui/react. Never import Field or other Chakra components from @gdesignsystem/react.
+Imports: GDSProvider (and optionally GDSButton) from @gds-vero/react. All other UI (Field, Card, Input, Button, Separator, Box, Text, etc.) from @chakra-ui/react. Never import Field or other Chakra components from @gds-vero/react.
 
 GDS uses Chakra UI v3 only. You MUST NOT import these from @chakra-ui/react (they do not exist in v3 and cause "doesn't provide an export named X"):
   Divider, Card, CardHeader, CardBody, CardFooter, FormControl, FormLabel, FormErrorMessage, FormHelperText, Table, Thead, Tbody, Tr, Th, Td, TableContainer, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Tab, TabList, TabPanel, TabPanels, Select, Alert, AlertIcon, AlertTitle, AlertDescription, Collapse

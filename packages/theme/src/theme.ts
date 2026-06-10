@@ -3,6 +3,7 @@ import { defineConfig } from "@chakra-ui/react";
 import { fontSizes as figmaFontSizes, fontWeights as figmaFontWeights, fonts as figmaFonts, radii as figmaRadii, spacing as figmaSpacing } from "./figma-tokens";
 import { textStyles } from "./textStyles";
 import { gdsColorTokens, gdsSemanticColors } from "./gds-tokens";
+import { veroRecipes, veroSlotRecipes } from "./vero-recipes";
 
 const fontSizesTokens = Object.fromEntries(
   Object.entries(figmaFontSizes).map(([k, v]) => [k, { value: v }])
@@ -35,71 +36,32 @@ export const gdsTheme = defineConfig({
     semanticTokens: {
       colors: gdsSemanticColors,
     },
-    recipes: {
-      input: {
-        variants: {
-          variant: {
-            outline: {
-              bg: "bg.default",
-              borderWidth: "1px",
-              borderColor: "border",
-              focusVisibleRing: "inside",
-              focusRingColor: "focusRing",
-            },
-          },
-        },
-      },
-      textarea: {
-        variants: {
-          variant: {
-            outline: {
-              bg: "bg.default",
-              borderWidth: "1px",
-              borderColor: "border",
-              focusVisibleRing: "inside",
-              focusRingColor: "focusRing",
-            },
-          },
-        },
-      } as never,
-      nativeSelect: {
-        variants: {
-          variant: {
-            outline: {
-              field: {
-                bg: "bg.default",
-                borderWidth: "1px",
-                borderColor: "border",
-                focusVisibleRing: "inside",
-                "--focus-color": "focusRing",
-              },
-            },
-          },
-        },
-      } as never,
-      checkboxCard: {
-        base: {
-          root: {
-            bg: "bg.default",
-          },
-        },
-        variants: {
-          variant: {
-            outline: {
-              root: {
-                bg: "bg.default",
-              },
-            },
-          },
-        },
-      } as never,
-    },
+    recipes: veroRecipes as never,
+    slotRecipes: veroSlotRecipes as never,
   },
   globalCss: {
     html: {
-      // Brand palette on html; semantic text still uses color="fg" (not colorPalette.fg).
       colorPalette: "brand",
-      fontFamily: figmaFonts.body ?? "system-ui, sans-serif",
+      fontFamily: figmaFonts.body ?? "Arial, Helvetica, sans-serif",
+      fontSize: "md",
+      lineHeight: "1.5",
+      color: "fg",
+      bg: "bg.subtle",
+    },
+    body: {
+      bg: "bg.subtle",
+      color: "fg",
+      fontFamily: figmaFonts.body ?? "Arial, Helvetica, sans-serif",
+      fontSize: "md",
+      lineHeight: "1.5",
+    },
+    a: {
+      color: "brand.solid",
+      textDecoration: "underline",
+      textUnderlineOffset: "2px",
+      _hover: {
+        color: "brand.emphasized",
+      },
     },
   },
 });

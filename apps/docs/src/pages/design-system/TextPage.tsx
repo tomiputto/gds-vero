@@ -1,7 +1,7 @@
 import { Box, Heading, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSHeading, GDSText as Text } from "@gdesignsystem/react";
+import { GDSHeading, GDSText as Text } from "@gds-vero/react";
 const textStyleSpecs = [
   { key: "display", label: "Display", fontSize: "4xl" as const, fontWeight: "700" as const, lineHeight: "1.1" },
   { key: "headline", label: "Headline", fontSize: "3xl" as const, fontWeight: "600" as const, lineHeight: "1.2" },
@@ -28,7 +28,7 @@ export function TextPage() {
       <Section
         title="Text styles (from Figma)"
         description="Named text styles are defined in Figma and provided by the GDS theme. Font sizes and weights come from Figma typography tokens."
-        code={`import { GDSText as Text } from "@gdesignsystem/react";
+        code={`import { GDSText as Text } from "@gds-vero/react";
 
 <GDSText textStyle="display">Display style</GDSText>
 <GDSText textStyle="headline">Headline style</GDSText>
@@ -54,7 +54,7 @@ export function TextPage() {
       <Section
         title="Headings (GDSHeading)"
         description="Use GDSHeading for document outline — separate from GDSText textStyle names."
-        code={`import { GDSHeading, GDSText as Text } from "@gdesignsystem/react";
+        code={`import { GDSHeading, GDSText as Text } from "@gds-vero/react";
 
 <GDSHeading size="2xl" as="h1">Page title</GDSHeading>
 <GDSHeading size="xl" as="h2">Section title</GDSHeading>
@@ -76,7 +76,7 @@ export function TextPage() {
       <Section
         title="Figma type scale"
         description="Font size scale from Figma typography tokens. Theme exposes these so fontSize uses Figma values."
-        code={`import { GDSText } from "@gdesignsystem/react";
+        code={`import { GDSText } from "@gds-vero/react";
 
 <GDSText fontSize="xs">Type size xs</GDSText>
 <GDSText fontSize="sm">Type size sm</GDSText>

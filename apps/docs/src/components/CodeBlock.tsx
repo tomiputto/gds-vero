@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function CodeBlock({ code }: { code: string }) {
   return (
     <Box mt="4">

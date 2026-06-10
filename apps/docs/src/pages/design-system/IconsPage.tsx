@@ -1,8 +1,8 @@
 import type { ComponentType } from "react";
 import { Box, Heading, SimpleGrid, VStack } from "@chakra-ui/react";
-import * as GdsIcons from "@gdesignsystem/icons";
+import * as GdsIcons from "@gds-vero/icons";
 import { Section } from "../../components/Section";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function IconsPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -12,15 +12,15 @@ export function IconsPage() {
         </Heading>
         <Text color="fg.muted">
           GDS icon set and usage guidelines. Icons come from the{" "}
-          <code>@gdesignsystem/icons</code> package (aligned with Figma) and use Figma
+          <code>@gds-vero/icons</code> package (aligned with Figma) and use Figma
           color tokens for consistent styling.
         </Text>
       </Box>
 
       <Section
         title="Icon usage"
-        description="All icons from @gdesignsystem/icons. Use Figma token colors for styling."
-        code={`import * as Icons from "@gdesignsystem/icons";
+        description="All icons from @gds-vero/icons. Use Figma token colors for styling."
+        code={`import * as Icons from "@gds-vero/icons";
 
 <SimpleGrid columns={{ base: 3, md: 6, lg: 8 }} gap="4">
   {Object.entries(Icons).map(([name, Icon]) => (
@@ -29,7 +29,7 @@ export function IconsPage() {
 </SimpleGrid>`}
       >
         <Text color="fg.muted" fontSize="sm" mb="4">
-          Use <code>@gdesignsystem/icons</code> in components; set <code>color</code> to
+          Use <code>@gds-vero/icons</code> in components; set <code>color</code> to
           Figma tokens (e.g. <code>fg</code>, <code>fg.muted</code>,{" "}
           <code>brand.fg</code>, <code>fg.success</code>) so icon colors match
           the design system.

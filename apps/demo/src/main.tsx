@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import { ThemeProvider, useTheme } from "next-themes";
-import { GDSProvider } from "@gdesignsystem/react";
+import { GDSProvider } from "@gds-vero/react";
 import { Box, Button, HStack, Text, Theme } from "@chakra-ui/react";
-import { CheckIcon } from "@gdesignsystem/icons";
+import { CheckIcon } from "@gds-vero/icons";
 
 function ThemeClassSync() {
   const { resolvedTheme } = useTheme();

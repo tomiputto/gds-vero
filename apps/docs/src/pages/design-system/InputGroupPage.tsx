@@ -1,8 +1,8 @@
 import { Box, Heading, Icon, Input, InputAddon, InputElement, InputGroup, VStack } from "@chakra-ui/react";
-import { MailIcon, SearchIcon } from "@gdesignsystem/icons";
+import { MailIcon, SearchIcon } from "@gds-vero/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function InputGroupPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -33,7 +33,7 @@ export function InputGroupPage() {
         title="With icon element"
         description="Use InputElement to place icons inside the input."
         code={`import { Box, Icon, Input, InputElement } from "@chakra-ui/react";
-import { SearchIcon } from "@gdesignsystem/icons";
+import { SearchIcon } from "@gds-vero/icons";
 
 <Box maxW="sm">
   <Box position="relative">
@@ -58,8 +58,8 @@ import { SearchIcon } from "@gdesignsystem/icons";
         title="Icon on both sides"
         description="Combine addons and layout primitives to simulate grouped inputs."
         code={`import { Box, Icon, Input, InputAddon, Text, VStack } from "@chakra-ui/react";
-import { MailIcon } from "@gdesignsystem/icons";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { MailIcon } from "@gds-vero/icons";
+import { GDSText as Text } from "@gds-vero/react";
 
 <VStack align="stretch" gap="3" maxW="sm">
   <Box display="flex">

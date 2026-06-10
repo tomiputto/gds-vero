@@ -22,11 +22,11 @@ for (const arg of args) {
 }
 
 if (!projectName) {
-  console.error("Usage: create-gds-app <project-name> [--npm | --pnpm]");
+  console.error("Usage: create-gds-vero-app <project-name> [--npm | --pnpm]");
   console.error("");
-  console.error("Or with npm/pnpm create (note: use @gdesignsystem/app, not create-app):");
-  console.error("  npm create @gdesignsystem/app@latest <project-name>");
-  console.error("  pnpm create @gdesignsystem/app@latest <project-name>");
+  console.error("Or with npm/pnpm create (note: use @gds-vero/app, not create-app):");
+  console.error("  npm create @gds-vero/app@latest <project-name>");
+  console.error("  pnpm create @gds-vero/app@latest <project-name>");
   process.exit(1);
 }
 
@@ -65,8 +65,8 @@ const pm = detectPackageManager();
 
 const templateDir = join(__dirname, "template");
 
-console.log(`\n@gdesignsystem/create-app v${createAppPkg.version}`);
-console.log(`(installed via: npm create @gdesignsystem/app@latest)\n`);
+console.log(`\n@gds-vero/create-app v${createAppPkg.version}`);
+console.log(`(installed via: npm create @gds-vero/app@latest)\n`);
 console.log(`\nCreating project "${projectName}"…`);
 mkdirSync(targetDir, { recursive: true });
 cpSync(templateDir, targetDir, { recursive: true });

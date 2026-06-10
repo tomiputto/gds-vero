@@ -1,7 +1,7 @@
 import { Box, Code, Heading, VStack } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { Section } from "../../components/Section";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function TokensPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -23,7 +23,7 @@ export function TokensPage() {
             <strong>Source file:</strong> <Code>packages/tokens/figma/tokens.raw.json</Code>
           </Text>
           <Text color="fg.muted">
-            The GDS theme (<Code>@gdesignsystem/theme</Code>) imports this file and maps flat Figma variable keys (e.g. <Code>colors/brand/primary/solid</Code>) into Chakra semantic tokens (e.g. <Code>brand.solid</Code>, <Code>fg</Code>, <Code>bg.default</Code>). Do not edit <Code>tokens.raw.json</Code> by hand; update it via the Figma sync flow.
+            The GDS theme (<Code>@gds-vero/theme</Code>) imports this file and maps flat Figma variable keys (e.g. <Code>colors/brand/primary/solid</Code>) into Chakra semantic tokens (e.g. <Code>brand.solid</Code>, <Code>fg</Code>, <Code>bg.default</Code>). Do not edit <Code>tokens.raw.json</Code> by hand; update it via the Figma sync flow.
           </Text>
         </VStack>
       </Section>
@@ -55,7 +55,7 @@ export function TokensPage() {
         <Text color="fg.muted" textStyle="sm">
           In the <strong>GDS monorepo</strong>, run <Code>pnpm gds:tokens:sync:from-mcp</Code> after
           exporting Figma MCP output. In apps created with{" "}
-          <Code>npm create @gdesignsystem/app@latest</Code>, run <Code>pnpm gds:tokens:sync</Code>.
+          <Code>npm create @gds-vero/app@latest</Code>, run <Code>pnpm gds:tokens:sync</Code>.
           See <Link to="/guides/sync-design-tokens">Sync design tokens</Link> for the full workflow.
         </Text>
       </Section>

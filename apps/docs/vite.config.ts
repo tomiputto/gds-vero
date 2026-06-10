@@ -5,7 +5,7 @@ import { resolve, normalize } from "node:path";
 
 const repoRoot = resolve(__dirname, "../..");
 const tokensPath = resolve(repoRoot, "packages/tokens/figma/tokens.raw.json");
-const TOKENS_PKG_ID = "@gdesignsystem/tokens/figma/tokens.raw.json";
+const TOKENS_PKG_ID = "@gds-vero/tokens/figma/tokens.raw.json";
 const TOKENS_VIRTUAL_ID = "\0gds-tokens-raw";
 
 /** Plugin: load tokens.raw.json from disk at transform time; full-reload when file changes. */
@@ -40,7 +40,7 @@ export default defineConfig({
   base: process.env.BASE_PATH ?? "/",
   plugins: [gdsTokensPlugin(), react()],
   optimizeDeps: {
-    exclude: ["@gdesignsystem/react", "@gdesignsystem/theme", "@gdesignsystem/tokens"],
+    exclude: ["@gds-vero/react", "@gds-vero/theme", "@gds-vero/tokens"],
   },
   server: {
     fs: {

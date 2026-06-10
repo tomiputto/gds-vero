@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { gdsSemanticColors } from "./gds-tokens";
 import { system } from "./system";
 
-const FG_LIGHT = "#27272a";
+const FG_LIGHT = "#333333";
 const FG_DARK = "#fafafa";
-const FG_MUTED_LIGHT = "#52525b";
+const FG_MUTED_LIGHT = "#474747";
 const FG_MUTED_DARK = "#a1a1aa";
 const FG_SUBTLE_LIGHT = "#a1a1aa";
 const FG_SUBTLE_DARK = "#a1a1aa";
@@ -15,10 +15,10 @@ describe("fg semantic tokens", () => {
     expect(serialized).not.toContain("colors.gray.fg");
   });
 
-  it("fg.DEFAULT uses base + gray.800 for light and fg_inverted for dark", () => {
+  it("fg.DEFAULT uses base + text.fg for light and fg_inverted for dark", () => {
     const def = gdsSemanticColors.fg.DEFAULT.value as Record<string, string>;
     expect(def.base).toBe(FG_LIGHT);
-    expect(def._light).toBe("{colors.gray.800}");
+    expect(def._light).toBe("{colors.text.fg}");
     expect(def._dark).toBe("{colors.text.fg_inverted}");
   });
 
@@ -49,7 +49,7 @@ describe("fg semantic tokens", () => {
     >;
     expect(css?.DEFAULT?.value).toMatchObject({
       base: FG_LIGHT,
-      _light: "{colors.gray.800}",
+      _light: "{colors.text.fg}",
       _dark: "{colors.text.fg_inverted}",
     });
     expect(css?.muted?.value).toMatchObject({

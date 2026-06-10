@@ -1,5 +1,5 @@
 import { Box, Code, Heading, VStack } from "@chakra-ui/react";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 import { Section } from "../../components/Section";
 
 const MONOREPO_CURSOR_RULE = `---
@@ -46,14 +46,14 @@ export function SyncDesignTokensPage() {
         <Text color="fg.muted">
           Sync Figma variable updates into your project. The command and output paths depend on
           whether you work in the <strong>GDS monorepo</strong> or in an app created with{" "}
-          <Code>pnpm create @gdesignsystem/app@latest</Code> (npm package <Code>@gdesignsystem/create-app</Code>; see Start using GDS). Use the GDS Figma file that
+          <Code>pnpm create @gds-vero/app@latest</Code> (npm package <Code>@gds-vero/create-app</Code>; see Start using GDS). Use the GDS Figma file that
           contains the required styles (GDS — Gofore Design System — For Designers).
         </Text>
       </Box>
 
       <Section
         title="GDS monorepo"
-        description="Updates packages/tokens/figma/tokens.raw.json for @gdesignsystem/theme."
+        description="Updates packages/tokens/figma/tokens.raw.json for @gds-vero/theme."
       >
         <VStack align="stretch" gap="4" textStyle="sm" color="fg.muted">
           <Text>

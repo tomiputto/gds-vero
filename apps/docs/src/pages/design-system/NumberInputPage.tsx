@@ -1,7 +1,7 @@
 import { Box, Field, Heading, NumberInput, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 export function NumberInputPage() {
   return (
     <VStack align="stretch" gap="10">

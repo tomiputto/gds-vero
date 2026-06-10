@@ -17,12 +17,12 @@ GDS/
 ├── figma.config.json     # Figma Code Connect (parser, include-polut)
 ├── code-connect/         # Code Connect -mäppäykset (*.figma.tsx) — ei npm-paketti
 ├── packages/             # Julkaistavat npm-paketit
-│   ├── react/            # @gdesignsystem/react
-│   ├── theme/            # @gdesignsystem/theme
-│   ├── tokens/           # @gdesignsystem/tokens
-│   ├── icons/            # @gdesignsystem/icons
-│   ├── create-app/       # @gdesignsystem/create-app (scaffold-CLI)
-│   └── cli/              # @gdesignsystem/cli (valinnainen työkalu)
+│   ├── react/            # @gds-vero/react
+│   ├── theme/            # @gds-vero/theme
+│   ├── tokens/           # @gds-vero/tokens
+│   ├── icons/            # @gds-vero/icons
+│   ├── create-app/       # @gds-vero/create-app (scaffold-CLI)
+│   └── cli/              # @gds-vero/cli (valinnainen työkalu)
 ├── apps/                 # Sovellukset (ei julkaista npm:ään)
 │   ├── docs/             # Dokumentaatiosivusto (Vite, GitHub Pages)
 │   └── demo/             # Demo-sovellus
@@ -38,7 +38,7 @@ GDS/
 
 ## 2. Paketit ja niiden roolit
 
-### 2.1 @gdesignsystem/tokens
+### 2.1 @gds-vero/tokens
 
 - **Rooli:** Design-tokenien lähde. Sisältää Figmasta synkronoidun **tokens.raw.json** (värit, typografia, spacing, radii, efektit).
 - **Sijainti:** `packages/tokens/figma/tokens.raw.json`.
@@ -47,10 +47,10 @@ GDS/
 
 Avaimet ovat polkumuodossa (esim. `text/fg`, `brand/primary/base`, `fonts/body`, `fontSizes/md`).
 
-### 2.2 @gdesignsystem/theme
+### 2.2 @gds-vero/theme
 
 - **Rooli:** Chakra UI v3 -teeman määrittely. Lukee tokenit ja muuntaa ne Chakra-formaattiin (`tokens` + `semanticTokens` + `textStyles` + `recipes`).
-- **Riippuvuudet:** `@gdesignsystem/tokens`, `@chakra-ui/react`.
+- **Riippuvuudet:** `@gds-vero/tokens`, `@chakra-ui/react`.
 - **Keskeiset tiedostot:**
   - **gds-tokens.ts:** Lukee `tokens.raw.json` → nested `tokens.colors`; määrittää **semanticTokens.colors** (`fg`, `bg`, `border`, `brand`) `base` / `_light` / `_dark` -arvoilla; rakentaa brand-skaalan 50–950; ylikirjoittaa `gray.fg` Chakra-törmäyksen välttämiseksi.
   - **figma-tokens.ts:** Typography → fontit, fonttikoot, fonttipainot; spacing; effects → radii.
@@ -62,29 +62,29 @@ Avaimet ovat polkumuodossa (esim. `text/fg`, `brand/primary/base`, `fonts/body`,
 
 Teema laajentaa Chakran oletuskonfiguraatiota; se ei korvaa kaikkia Chakra-tokeneita.
 
-### 2.3 @gdesignsystem/react
+### 2.3 @gds-vero/react
 
 - **Rooli:** React-sovelluksen entry: provider ja ohuet wrapperit Chakra-primitiivien päällä.
-- **Riippuvuudet:** `@chakra-ui/react`, `@gdesignsystem/theme`, `@gdesignsystem/tokens`.
+- **Riippuvuudet:** `@chakra-ui/react`, `@gds-vero/theme`, `@gds-vero/tokens`.
 - **GDSProvider:** Käärii sovelluksen `ChakraProvider`:lla ja välittää `system` (GDS-teema). Ei exporttaa `Field`-, `Card`-, `Input`- jne. komponentteja — ne tulevat `@chakra-ui/react`:istä.
-- **Exportit:** `GDSProvider`, `GDSButton`, `GDSHeading`, `GDSText` (+ prop-tyypit). Sisältää **`GDS_FOR_LLM_AGENTS.md`** agenttisäännöille.
+- **Exportit:** `GDSProvider`, `GDSButton`, `GDSHeading`, `GDSText`, `VeroMainHeader` (+ prop-tyypit). Riippuu `@gds-vero/icons`:sta header-ikoneille. Sisältää **`GDS_FOR_LLM_AGENTS.md`** agenttisäännöille.
 
 Käytännössä: puu `GDSProvider`:lla, Chakra compound API + GDS-ikonit; värit ja typografia teemasta.
 
-### 2.4 @gdesignsystem/icons
+### 2.4 @gds-vero/icons
 
 - **Rooli:** SVG-pohjainen ikonikirjasto. Ikonit generoidaan `scripts/svg-to-gds-icons.mjs`:llä React-komponentteina.
-- **Käyttö:** `@gdesignsystem/icons` (esim. `CheckIcon`). Riippumaton theme/tokens -paketeista.
+- **Käyttö:** `@gds-vero/icons` (esim. `CheckIcon`). Riippumaton theme/tokens -paketeista.
 
-### 2.5 @gdesignsystem/create-app
+### 2.5 @gds-vero/create-app
 
-- **Rooli:** Luo uusia React + Vite -sovelluksia GDS valmiiksi kytkettynä (`create-gds-app` -bin).
-- **Käyttö:** `pnpm create @gdesignsystem/app@latest my-project` (npm-paketti: `@gdesignsystem/create-app`; älä käytä `create …/create-app` → npm hakee `create-create-app` ja 404)
-- **Sisältö:** Kopioi `template/`-kansion (Vite, `ChakraProvider` + `gdsTheme` + valinnainen `gds-theme-sync.generated.ts` synkin jälkeen, esimerkkikortti `GDSButton` / `GDSHeading` / `GDSText`). Template viittaa `@gdesignsystem/theme`, `@gdesignsystem/react` jne. Julkaistuja paketteja käyttävissä sovelluksissa käytä `GDSProvider`-ia `@gdesignsystem/react`:stä.
-- **AI-agenttisäännöt (automaattisesti):** Jokainen scaffold sisältää `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc` ja `.github/copilot-instructions.md` — kaikki viittaavat asennuksen jälkeen `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`:ään.
+- **Rooli:** Luo uusia React + Vite -sovelluksia GDS valmiiksi kytkettynä (`create-gds-vero-app` -bin).
+- **Käyttö:** `pnpm create @gds-vero/app@latest my-project` (npm-paketti: `@gds-vero/create-app`; älä käytä `create …/create-app` → npm hakee `create-create-app` ja 404)
+- **Sisältö:** Kopioi `template/`-kansion (Vite, `ChakraProvider` + `gdsTheme` + valinnainen `gds-theme-sync.generated.ts` synkin jälkeen, esimerkkikortti `GDSButton` / `GDSHeading` / `GDSText`). Template viittaa `@gds-vero/theme`, `@gds-vero/react` jne. Julkaistuja paketteja käyttävissä sovelluksissa käytä `GDSProvider`-ia `@gds-vero/react`:stä.
+- **AI-agenttisäännöt (automaattisesti):** Jokainen scaffold sisältää `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc` ja `.github/copilot-instructions.md` — kaikki viittaavat asennuksen jälkeen `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md`:ään.
 - **Huom:** Esimerkin typografiassa käytä GDS-tyylejä (`textStyle="body"`, `GDSHeading size="xl" as="h2"`) — älä käytä fonttikoko-tokenien nimiä `textStyle`-propina.
 
-### 2.6 @gdesignsystem/cli
+### 2.6 @gds-vero/cli
 
 - **Rooli:** Valinnainen CLI (`gds`-bin) token-synkille ja teemaan liittyville työkaluille monorepon ulkopuolella.
 - **Suhde:** Päällekkäin juuren `scripts/`:n ja create-app -templaten synkin kanssa.
@@ -138,7 +138,7 @@ Yhteenveto: **Figma → MCP → merge + figma-mcp-to-tokens-raw → tokens.raw.j
 - **apps/docs:** Vite-dokumentaatio (komponentit, tokenit, Chakra v3, esimerkit kuten login). GitHub Pages. Workspace-paketit; Vite voi ladata `tokens.raw.json`:n levyltä.
 - **apps/demo:** Pieni GDS-demo (Vite).
 
-Molemmat riippuvat `@gdesignsystem/react`, `@gdesignsystem/theme`, `@gdesignsystem/icons`, Chakrasta ja Emotionista.
+Molemmat riippuvat `@gds-vero/react`, `@gds-vero/theme`, `@gds-vero/icons`, Chakrasta ja Emotionista.
 
 ---
 
@@ -160,12 +160,12 @@ Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; m
 
 | Paketti | Riippuu | npm (esimerkit) |
 |---------|---------|-----------------|
-| tokens | — | `@gdesignsystem/tokens@0.1.3` |
-| theme | tokens | `@gdesignsystem/theme@0.1.8` |
-| react | theme, tokens | `@gdesignsystem/react@0.1.10` |
-| icons | — | `@gdesignsystem/icons` |
-| create-app | — (template listaa deps) | `@gdesignsystem/create-app@0.1.9` |
-| cli | — | `@gdesignsystem/cli@0.1.0` |
+| tokens | — | `@gds-vero/tokens@0.1.3` |
+| theme | tokens | `@gds-vero/theme@0.1.8` |
+| react | theme, tokens | `@gds-vero/react@0.1.10` |
+| icons | — | `@gds-vero/icons` |
+| create-app | — (template listaa deps) | `@gds-vero/create-app@0.1.9` |
+| cli | — | `@gds-vero/cli@0.1.0` |
 
 - **Julkaisu:** Käytä **pnpm**:ää monorepon juuresta — **älä** `npm publish` hakemistossa `packages/*` (npm jättää `workspace:*` riippuvuuksiin ja asennus hajoaa). Esim. `pnpm gds:publish:react`, `pnpm gds:publish:theme`, `pnpm gds:publish:create-app`. `workspace:*` resolvautuu semveriksi pnpm-packauksessa. Pidä versionumerot linjassa julkaisun jälkeen.
 - **Ulkoiset:** React 18+, Chakra UI v3, Emotion. GDS toimittaa teeman, providerin ja ohuet wrapperit; suurin osa UI:sta on `@chakra-ui/react`.
@@ -193,10 +193,10 @@ GDS dokumentoi pinon säännöt, jotta koodausavustajat käyttävät Chakra v3:t
 | Konteksti | Tiedostot | Kanoninen ohje |
 |-----------|-----------|----------------|
 | **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (repojuuri; sisältää **Accessibility**-osion ja pakollisen tarkistuslistan) |
-| **npm-kuluttajat** | Bundlattu `@gdesignsystem/react`:iin | `node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md` |
+| **npm-kuluttajat** | Bundlattu `@gds-vero/react`:iin | `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` |
 | **create-app -scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, `eslint` + `jsx-a11y` | Viittaa bundlattuun ohjeeseen; `npm run lint` JSX-a11y-tarkistukseen |
 
-Laajentaessasi agenttisääntöjä, saavutettavuusmalleja tai UI-ohjeita päivitä **`GDS_FOR_LLM_AGENTS.md`** ja synkkaa kopio **`packages/react/GDS_FOR_LLM_AGENTS.md`**:ään ennen `@gdesignsystem/react` -julkaisua.
+Laajentaessasi agenttisääntöjä, saavutettavuusmalleja tai UI-ohjeita päivitä **`GDS_FOR_LLM_AGENTS.md`** ja synkkaa kopio **`packages/react/GDS_FOR_LLM_AGENTS.md`**:ään ennen `@gds-vero/react` -julkaisua.
 
 ---
 
@@ -210,10 +210,10 @@ Laajentaessasi agenttisääntöjä, saavutettavuusmalleja tai UI-ohjeita päivit
 | **react** | `GDSProvider` + wrapperit + agenttidokumentti |
 | **create-app** | Scaffold `my-project` GDS:llä, esimerkki-UI:lla ja agenttisäännöillä |
 | **code-connect** | Figma Dev Mode ↔ React/GDS-koodiesimerkit |
-| **Sovellus** | `GDSProvider` (tai scaffold: `ChakraProvider` + `gdsTheme`) + Chakra + `@gdesignsystem/icons` |
+| **Sovellus** | `GDSProvider` (tai scaffold: `ChakraProvider` + `gdsTheme`) + Chakra + `@gds-vero/icons` |
 
 **Token-virta:** Figma → MCP → `tokens.raw.json` → theme → `system` → provider → sovellus.
 
-**Uusi sovellus:** `pnpm create @gdesignsystem/app@latest` → asennus → dev (template: `ChakraProvider` + GDS-wrapperit + agenttisäännöt; npm-sovellukset voivat käyttää `GDSProvider`-ia). Vaihtoehto: `npx create-gds-app my-project`.
+**Uusi sovellus:** `pnpm create @gds-vero/app@latest` → asennus → dev (template: `ChakraProvider` + GDS-wrapperit + agenttisäännöt; npm-sovellukset voivat käyttää `GDSProvider`-ia). Vaihtoehto: `npx create-gds-vero-app my-project`.
 
 **Code Connect -virta:** Muokkaa `code-connect/*.figma.tsx` → `pnpm figma:connect:publish` → suunnittelijat näkevät esimerkit Figma Dev Modessa.

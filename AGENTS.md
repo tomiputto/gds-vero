@@ -7,7 +7,7 @@ All coding assistants and autonomous agents (Cursor, Claude Code, Copilot, ChatG
 That file is the **single source of truth** for:
 
 - Chakra UI **v3** APIs only (no v2 component names)
-- Correct **import paths** (`@gdesignsystem/react` vs `@chakra-ui/react` vs `@gdesignsystem/icons`)
+- Correct **import paths** (`@gds-vero/react` vs `@chakra-ui/react` vs `@gds-vero/icons`)
 - **Semantic tokens** and GDS theme usage
 - What **not** to mix in when the user wants GDS
 
@@ -15,9 +15,9 @@ That file is the **single source of truth** for:
 
 ## Projects that install GDS from npm (not this monorepo)
 
-The guide is bundled with **`@gdesignsystem/react`** at:
+The guide is bundled with **`@gds-vero/react`** at:
 
-`node_modules/@gdesignsystem/react/GDS_FOR_LLM_AGENTS.md`
+`node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md`
 
 Configure your assistant with a rule that **requires** following that file for all GDS UI work (see the copy-paste block under **“After install: make agents follow this file”** in `GDS_FOR_LLM_AGENTS.md`).
 

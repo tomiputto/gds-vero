@@ -28,14 +28,14 @@ Käyttäjän pyyntö: $ARGUMENTS
 2. **Jos argumentti on tekstikuvaus** (esim. "kirjautumislomake", "navigaatiopalkki"):
    - Toteuta komponentti GDS-ohjeiden mukaan
    - Käytä semanttisia värejä (`color="fg"`, `bg="bg.default"`, `colorPalette="brand"` jne.)
-   - Käytä `@gdesignsystem/icons`-pakettia ikoneille
+   - Käytä `@gds-vero/icons`-pakettia ikoneille
    - Käytä Chakra v3 API:a (Field.*, Card.Root, Separator, Table.* jne.)
 
 ### Muistilista ennen koodin kirjoittamista:
 - [ ] `GDSProvider` on juuressa
-- [ ] Kaikki komponentit tulevat `@chakra-ui/react`:sta (ei `@gdesignsystem/react`:sta, poislukien `GDSProvider` ja `GDSButton`)
+- [ ] Kaikki komponentit tulevat `@chakra-ui/react`:sta (ei `@gds-vero/react`:sta, poislukien `GDSProvider` ja `GDSButton`)
 - [ ] Värit ovat semanttisia tokeneita, ei kovakoodattuja hex-arvoja
 - [ ] Ei v2-nimiä: ei `FormControl`, `Divider`, `Modal`, `CardHeader` jne.
-- [ ] Ikonit `@gdesignsystem/icons`:sta
+- [ ] Ikonit `@gds-vero/icons`:sta
 
 Tuota valmis, toimiva TypeScript/TSX-koodi selityksineen.

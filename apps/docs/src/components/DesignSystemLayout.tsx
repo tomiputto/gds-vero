@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Box, CloseButton, Drawer, Flex, IconButton, VStack } from "@chakra-ui/react";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 const NAV_ITEMS: Array<{ path: string; label: string; section?: string; group?: string }> = [
   { path: "/", label: "Overview", section: "Guides" },
   { path: "/guides/start-using-gds", label: "Start using GDS", section: "Guides" },
@@ -13,6 +13,7 @@ const NAV_ITEMS: Array<{ path: string; label: string; section?: string; group?: 
   { path: "/guides/code-connect", label: "Figma Code Connect", section: "Guides" },
   { path: "/accessibility", label: "Accessibility", section: "Guides" },
   { path: "/examples/login", label: "Login screen", section: "Examples" },
+  { path: "/examples/vero-main-header", label: "Vero main header", section: "Examples" },
   { path: "/box", label: "Box", section: "Components", group: "Layout" },
   { path: "/flex", label: "Flex", section: "Components", group: "Layout" },
   { path: "/grid", label: "Grid", section: "Components", group: "Layout" },

@@ -1,47 +1,46 @@
 /**
- * Text styles use typography tokens from Figma (@gdesignsystem/tokens).
+ * Text styles use typography tokens from Figma (@gds-vero/tokens).
  * Font family uses the literal value from tokens so it updates after sync.
  */
 import { fonts as figmaFonts } from "./figma-tokens";
 
-const bodyFont = figmaFonts.body ?? "system-ui, sans-serif";
+const bodyFont = figmaFonts.body ?? "Arial, Helvetica, sans-serif";
+const headingFont = figmaFonts.heading ?? bodyFont;
 
 export const textStyles = {
-  /** Display – largest; Figma fontSizes 4xl */
+  /** h1 – vero.fi 42px / semibold / line-height 1.25 */
   display: {
-    fontFamily: bodyFont,
+    fontFamily: headingFont,
     fontSize: "4xl",
-    fontWeight: "700",
-    lineHeight: "1.1",
-    letterSpacing: "-0.01em",
+    fontWeight: "semibold",
+    lineHeight: "1.25",
   },
-  /** Headline; Figma fontSizes 3xl */
+  /** h2 – vero.fi 34px */
   headline: {
-    fontFamily: bodyFont,
+    fontFamily: headingFont,
     fontSize: "3xl",
-    fontWeight: "600",
-    lineHeight: "1.2",
-    letterSpacing: "-0.01em",
+    fontWeight: "semibold",
+    lineHeight: "1.25",
   },
-  /** Title; Figma fontSizes xl */
+  /** h3 – vero.fi 24px */
   title: {
-    fontFamily: bodyFont,
-    fontSize: "xl",
-    fontWeight: "600",
-    lineHeight: "1.3",
+    fontFamily: headingFont,
+    fontSize: "2xl",
+    fontWeight: "semibold",
+    lineHeight: "1.25",
   },
-  /** Body; Figma fontSizes md, fontWeights normal */
+  /** Body; vero.fi 18px / line-height 1.5 (all breakpoints) */
   body: {
     fontFamily: bodyFont,
     fontSize: "md",
     fontWeight: "normal",
     lineHeight: "1.5",
   },
-  /** Caption; Figma fontSizes sm */
+  /** Caption; vero.fi secondary text */
   caption: {
     fontFamily: bodyFont,
     fontSize: "sm",
     fontWeight: "normal",
-    lineHeight: "1.4",
+    lineHeight: "1.33",
   },
 } as const;

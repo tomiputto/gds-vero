@@ -1,6 +1,6 @@
 CANONICAL: The full rule set is in the repo file GDS_FOR_LLM_AGENTS.md — follow it for every GDS UI task. The text below is a short cheat sheet only; if anything conflicts, GDS_FOR_LLM_AGENTS.md wins.
 
-Imports: GDSProvider, GDSButton, GDSText, GDSHeading (and other documented wrappers) from @gdesignsystem/react. All other UI (Field, Card, Input, Button, Separator, Box, Text, etc.) from @chakra-ui/react. Never import Field or other Chakra components from @gdesignsystem/react.
+Imports: GDSProvider, GDSButton, GDSText, GDSHeading (and other documented wrappers) from @gds-vero/react. All other UI (Field, Card, Input, Button, Separator, Box, Text, etc.) from @chakra-ui/react. Never import Field or other Chakra components from @gds-vero/react.
 
 GDS uses Chakra UI v3 only. You MUST NOT import these from @chakra-ui/react (they do not exist in v3 and cause "doesn't provide an export named X"):
   Divider, Card, CardHeader, CardBody, CardFooter, FormControl, FormLabel, FormErrorMessage, FormHelperText, Table, Thead, Tbody, Tr, Th, Td, TableContainer, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, ModalCloseButton, Tab, TabList, TabPanel, TabPanels, Select, Alert, AlertIcon, AlertTitle, AlertDescription, Collapse

@@ -14,7 +14,7 @@ If you discover a security vulnerability in this repository, please report it re
 
 ## Where to send reports
 Please contact the maintainers via GitHub:
-- Open a **private security advisory**: https://github.com/renegademaster-droid/GDS/security/advisories/new
+- Open a **private security advisory**: https://github.com/tomiputto/gds-vero/security/advisories/new
 
 ## Confidentiality
 Reports should remain confidential until:

@@ -6,7 +6,7 @@ function isHexColor(value: string) {
   return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(value);
 }
 
-describe("@gdesignsystem/tokens smoke", () => {
+describe("@gds-vero/tokens smoke", () => {
   it("tokens.raw.json has expected semantic/brand keys and hex values", () => {
     const tokensPath = fileURLToPath(
       new URL("../figma/tokens.raw.json", import.meta.url),

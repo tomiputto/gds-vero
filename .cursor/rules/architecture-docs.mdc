@@ -17,7 +17,7 @@ Update the architecture docs when you add or materially change any of:
 - **Code Connect** — `code-connect/*.figma.tsx`, `figma.config.json`, publish commands, Figma file key
 - **AI agent docs** — `GDS_FOR_LLM_AGENTS.md` (incl. Accessibility sections), `AGENTS.md`, `.cursor/rules/`, create-app template agent files
 - **Scripts table** — root `package.json` scripts relevant to GDS workflows
-- **npm publish** — bump version examples in section 7 from `packages/*/package.json` or `npm view @gdesignsystem/<pkg> version`
+- **npm publish** — bump version examples in section 7 from `packages/*/package.json` or `npm view @gds-vero/<pkg> version`
 
 ## What to update in the docs
 

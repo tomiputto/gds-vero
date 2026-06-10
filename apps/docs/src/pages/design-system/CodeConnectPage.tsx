@@ -1,9 +1,9 @@
 import { Box, Code, Heading, Link, Table, VStack } from "@chakra-ui/react";
 import { Section } from "../../components/Section";
-import { GDSText as Text } from "@gdesignsystem/react";
+import { GDSText as Text } from "@gds-vero/react";
 
 const GITHUB_README =
-  "https://github.com/renegademaster-droid/GDS/blob/main/code-connect/README.md";
+  "https://github.com/tomiputto/gds-vero/blob/main/code-connect/README.md";
 
 const MAPPINGS = [
   { component: "Button", file: "Button.figma.tsx", nodeId: "148:1720" },
