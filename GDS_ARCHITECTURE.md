@@ -81,7 +81,7 @@ In practice: wrap the tree with `GDSProvider`, use Chakra compound APIs + GDS ic
 - **Role:** Scaffold new React + Vite apps with GDS pre-wired (`create-gds-vero-app` bin).
 - **Usage:** `pnpm create @gds-vero/app@latest my-project` (npm package is `@gds-vero/create-app`; do **not** use `create …/create-app` — npm resolves that to `create-create-app` and 404s)
 - **Contents:** Copies `template/` (Vite app with `ChakraProvider` + `gdsTheme` + optional `gds-theme-sync.generated.ts` from `gds:tokens:sync`, **`VeroMainHeader`** in the app shell, example card using `GDSButton` / `GDSHeading` / `GDSText`). Template pins `@gds-vero/theme`, `@gds-vero/react`, etc. For new apps that only use published packages, wrap with `GDSProvider` from `@gds-vero/react` instead.
-- **AI agent rules (automatic):** Each scaffold includes `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, and `.github/copilot-instructions.md` — all pointing to `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` after install.
+- **AI agent rules (automatic):** Each scaffold includes `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc`, and `.github/copilot-instructions.md` — all pointing to `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` after install.
 - **Note:** Example UI in the template should use GDS text styles (`textStyle="body"`, `GDSHeading size="xl" as="h2"`) — not Chakra font-size names as `textStyle`.
 
 ### 2.6 @gds-vero/cli
@@ -162,9 +162,9 @@ Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges se
 |---------|------------|----------------|
 | tokens | — | `@gds-vero/tokens@0.1.3` |
 | theme | tokens | `@gds-vero/theme@0.1.9` |
-| react | theme, tokens | `@gds-vero/react@0.1.11` |
+| react | theme, tokens | `@gds-vero/react@0.1.12` |
 | icons | — | `@gds-vero/icons` |
-| create-app | — (template lists deps) | `@gds-vero/create-app@0.1.11` |
+| create-app | — (template lists deps) | `@gds-vero/create-app@0.1.12` |
 | cli | — | `@gds-vero/cli@0.1.0` |
 
 - **Publishing:** Use **pnpm** from the monorepo root — **not** `npm publish` inside `packages/*` (npm leaves `workspace:*` in dependencies and breaks consumers). Examples: `pnpm gds:publish:react`, `pnpm gds:publish:theme`, `pnpm gds:publish:create-app`. `workspace:*` is resolved to semver when packing with pnpm. Keep version examples in this table aligned with `packages/*/package.json` or npm after each publish.
@@ -192,7 +192,7 @@ GDS documents stack rules so coding assistants use Chakra v3 + correct imports c
 
 | Context | Files | Canonical guide |
 |---------|-------|-----------------|
-| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (repo root; includes **Accessibility** + mandatory agent review checklist) |
+| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (repo root; includes **GDS-VERO compliance review** + **Accessibility review** checklists) |
 | **npm consumers** | Bundled in `@gds-vero/react` | `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` |
 | **create-app scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, `eslint` + `jsx-a11y` | Points to bundled guide after install; `npm run lint` for automated JSX a11y |
 

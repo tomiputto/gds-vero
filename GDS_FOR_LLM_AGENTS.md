@@ -56,7 +56,7 @@ The same guide is **published inside** `@gds-vero/react`. After install you have
 
 `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md`
 
-**`npm create @gds-vero/app@latest`** scaffolds `AGENTS.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-accessibility.mdc`, `CLAUDE.md`, `.github/copilot-instructions.md`, and ESLint + `jsx-a11y` (`npm run lint`) so agents follow GDS rules and catch common accessibility issues automatically.
+**`npm create @gds-vero/app@latest`** scaffolds `AGENTS.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc`, `CLAUDE.md`, `.github/copilot-instructions.md`, and ESLint + `jsx-a11y` (`npm run lint`) so agents follow GDS rules, verify design-system compliance, and catch common accessibility issues automatically.
 
 For other projects, agents do **not** read `node_modules` automatically. Add a **project rule** (Cursor, Claude Code, or your editor’s equivalent) so every UI task uses it. Example text to paste:
 
@@ -108,6 +108,20 @@ function App() {
 - **Tables:** Use Chakra v3 **Table** compound component: `Table.Root`, `Table.Header`, `Table.Row`, `Table.ColumnHeader`, `Table.Body`, `Table.Cell`. Do **not** use `Table`, `Thead`, `Tbody`, `Tr`, `Th`, `Td`, or `TableContainer` — they are not exported in Chakra v3 and will cause runtime errors. Use `Table.ScrollArea` for scrollable tables; use `textAlign="end"` instead of `isNumeric`.
 - **Cards:** Use `Card.Root`, `Card.Header`, `Card.Body`, `Card.Footer`, `Card.Title`, `Card.Description`. Do **not** use standalone `Card`, `CardHeader`, `CardBody`, or `CardFooter` — they are not exported in Chakra v3.
 - **Dividers:** Use `Separator`. Do **not** use `Divider` — it is not exported in Chakra v3.
+
+### Vero surfaces (GDS-VERO)
+
+Use **semantic tokens** — do not hardcode hex unless the user explicitly asks:
+
+| Surface | Token | Value |
+|---------|--------|--------|
+| Page / canvas background | `bg="bg.subtle"` | `#EFF4F0` |
+| Cards and white panels | `bg="bg.default"` via `Card.Root variant="outline"` | `#ffffff` |
+| Borders on cards and outlined components | `borderColor="border.emphasized"` (card recipe default) | `#C9E0CA` |
+
+- App shell: `Theme` or page wrapper with `bg="bg.subtle"`.
+- Cards: `Card.Root variant="outline"` — do **not** override with `bg="bg.muted"` or ad-hoc borders.
+- Site header on vero.fi-style apps: `VeroMainHeader` from `@gds-vero/react`.
 
 ---
 
@@ -425,6 +439,61 @@ GDS targets **WCAG 2.1 Level AA**. Chakra v3 components provide keyboard support
 - Don’t remove focus styles globally.
 - Don’t leave `IconButton` without `aria-label`.
 - Don’t use `h1`–`h6` via raw `Text` for page structure — use `GDSHeading as="h1"` etc.
+
+---
+
+## GDS-VERO compliance review (mandatory for agents)
+
+**After creating or materially changing any React UI**, complete this review **in addition to** the accessibility review below. Fix violations in code when practical; otherwise report them with concrete fix suggestions.
+
+### 1. Self-review checklist
+
+Verify every item against the files you created or changed:
+
+- [ ] **Stack:** UI uses only Chakra UI v3 + `@gds-vero/*` — no MUI, Ant Design, Tailwind UI kits, `react-icons`, or other component libraries
+- [ ] **Imports:** `GDSProvider`, `GDSButton`, `GDSText`, `GDSHeading`, `VeroMainHeader` from `@gds-vero/react`; Chakra compounds (`Field`, `Card`, `Dialog`, `Table`, `Box`, …) from `@chakra-ui/react`; icons from `@gds-vero/icons`
+- [ ] **Chakra v3 APIs:** no v2 names (`FormControl`, `Modal`, `Divider`, flat `Card`, `Table`/`Thead`/`Tbody`, etc.) — see mapping table below
+- [ ] **Theme:** app wrapped in `GDSProvider` or `ChakraProvider` with `gdsTheme` from `@gds-vero/theme`
+- [ ] **Semantic tokens:** colors/backgrounds use `fg`, `fg.muted`, `bg.default`, `bg.subtle`, `border.emphasized`, `colorPalette="brand"` — no ad-hoc hex
+- [ ] **Vero surfaces:** page/canvas `bg.subtle`; cards `Card.Root variant="outline"` (white + green border) — not `bg.muted` on cards
+- [ ] **Typography:** body copy on `GDSText` with `textStyle="body"` or `"caption"` (not `textStyle="sm"` / `"md"`); headings on `GDSHeading` with correct `as="h1"`…`h6"`
+- [ ] **Buttons:** primary actions use `GDSButton colorPalette="brand"` or Chakra `Button colorPalette="brand"`
+- [ ] **Layout:** `main` landmark for primary content; `header`/`nav` where appropriate
+
+### 2. Automated checks
+
+Search touched files for common violations (fix or report):
+
+- Imports from forbidden packages (`@mui/`, `antd`, `react-icons`, Chakra v2 component names)
+- Hardcoded hex colors (`#`, `rgb(`, `hsl(`) on UI elements
+- `textStyle="sm"` or `textStyle="md"` on `GDSText`
+- `Card.Root` with `bg="bg.muted"` or without `variant="outline"` when representing a content card
+
+Run lint when available:
+
+```bash
+npm run lint
+# or: pnpm lint
+```
+
+### 3. Report to the user (required format)
+
+**End every UI delivery** with a short summary that includes these sections (use the headings exactly):
+
+**Layout** — files created/changed and what each does (bullet list).
+
+**GDS compliance** — overall **Pass** or **Issues found**:
+
+- If pass: one line, e.g. `GDS compliance: pass — imports, Chakra v3 APIs, semantic tokens, vero surfaces, and typography match GDS-VERO.`
+- If issues: for **each** violation:
+  - **Violation:** what broke the rule (file/component + brief reason)
+  - **Fix:** specific change (import path, prop, token, or API to use)
+
+**Accessibility** — outcome of the accessibility checklist (see next section).
+
+**Lint:** `clean` or what was fixed.
+
+Do **not** skip the **GDS compliance** section when the user only asked for a layout or component — compliance review is part of the deliverable.
 
 ---
 

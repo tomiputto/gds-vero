@@ -13,4 +13,5 @@ Also see **`AGENTS.md`** in the project root. This file is only a short pointer;
 - Wrap the app in `GDSProvider` from `@gds-vero/react`
 - Import Chakra components from `@chakra-ui/react` (v3 compound APIs only)
 - Import icons from `@gds-vero/icons`
-- Use semantic tokens: `color="fg"`, `bg="bg.default"`, `colorPalette="brand"`
+- Use semantic tokens: `color="fg"`, `bg="bg.subtle"` (page), `bg="bg.default"` (cards), `colorPalette="brand"`
+- After UI work: report **Layout**, **GDS compliance**, **Accessibility**, and **Lint** (see compliance review in the agent guide)

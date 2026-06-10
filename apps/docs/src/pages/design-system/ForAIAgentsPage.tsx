@@ -129,7 +129,8 @@ function App() {
           <Text>
             <Code>npm create @gds-vero/app@latest my-project</Code> (or pnpm equivalent) copies{" "}
             <Code>AGENTS.md</Code>, <Code>CLAUDE.md</Code>, <Code>.cursor/rules/gds-llm-agents.mdc</Code>,{" "}
-            <Code>.cursor/rules/gds-accessibility.mdc</Code>, and <Code>.github/copilot-instructions.md</Code>.
+            <Code>.cursor/rules/gds-compliance-review.mdc</Code>, <Code>.cursor/rules/gds-accessibility.mdc</Code>, and{" "}
+            <Code>.github/copilot-instructions.md</Code>.
           </Text>
           <Text>
             After install, the canonical guide is at{" "}
@@ -141,6 +142,24 @@ function App() {
           </Text>
           <Text>
             See <RouterLink to="/guides/start-using-gds">Start using GDS</RouterLink> for the full flow.
+          </Text>
+        </VStack>
+      </Section>
+
+      <Section
+        title="GDS compliance (mandatory for agents)"
+        description="Design-system review — agents must report pass/fail after every UI delivery."
+      >
+        <VStack align="stretch" gap="2" color="fg.muted">
+          <Text>
+            The guide includes <strong>GDS-VERO compliance review (mandatory for agents)</strong> with a
+            checklist (imports, Chakra v3, semantic tokens, vero surfaces, typography) and a required
+            delivery summary.
+          </Text>
+          <Text>
+            End UI tasks with: <strong>Layout</strong>, <strong>GDS compliance</strong> (pass or{" "}
+            <strong>Violation</strong> / <strong>Fix</strong> pairs), <strong>Accessibility</strong>, and{" "}
+            <strong>Lint</strong>.
           </Text>
         </VStack>
       </Section>

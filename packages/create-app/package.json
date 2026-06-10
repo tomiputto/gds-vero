@@ -1,6 +1,6 @@
 {
   "name": "@gds-vero/create-app",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Create a new React app with GDS-VERO (vero.fi design system) and VeroMainHeader",
   "type": "module",
   "bin": {
