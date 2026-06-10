@@ -12,9 +12,12 @@ import {
   useBreakpointValue,
   VStack,
 } from "@chakra-ui/react";
+import { ChevronDownIcon, GlobeIcon, MenuIcon, SearchIcon } from "@gds-vero/icons";
 
 const HeaderActionButton = chakra("button");
-import { ChevronDownIcon, GlobeIcon, MenuIcon, SearchIcon } from "@gds-vero/icons";
+
+/** 8px green strip above active audience tab (vero.fi). */
+const TOP_BAR_TAB_OFFSET = "2";
 import { GDSButton } from "./GDSButton";
 import { GDSText } from "./GDSText";
 import type {
@@ -101,7 +104,7 @@ function TopUtilityLink({
       {icon}
       <GDSText
         fontWeight="bold"
-        fontSize="sm"
+        fontSize="md"
         display={{ base: "none", [showLabelFrom]: "inline" }}
       >
         {label}
@@ -159,9 +162,9 @@ function AudienceTab({ tab }: { tab: VeroAudienceTab }) {
       px="4"
       bg={isActive ? "bg.default" : "transparent"}
       color={isActive ? "fg" : "fg.inverted"}
-      borderTopRadius={isActive ? "xl" : undefined}
-      borderTopLeftRadius={isActive ? "xl" : undefined}
-      borderTopRightRadius={isActive ? "xl" : undefined}
+      borderTopRadius={isActive ? "lg" : undefined}
+      borderTopLeftRadius={isActive ? "lg" : undefined}
+      borderTopRightRadius={isActive ? "lg" : undefined}
     >
       <GDSText fontWeight="semibold" fontSize="md" whiteSpace="nowrap">
         {tab.label}
@@ -178,7 +181,7 @@ function BottomNavItem({ item }: { item: VeroNavItem }) {
     alignItems: "center",
     justifyContent: "center",
     gap: "1",
-    h: "12",
+    h: "14",
     px: "4",
     flexShrink: 0,
     bg: isActive ? "bg.subtle" : "transparent",
@@ -200,10 +203,10 @@ function BottomNavItem({ item }: { item: VeroNavItem }) {
             border="0"
             fontFamily="inherit"
           >
-            <GDSText fontWeight="semibold" fontSize="xs" whiteSpace="nowrap">
+            <GDSText fontWeight="semibold" fontSize="md" whiteSpace="nowrap">
               {item.label}
             </GDSText>
-            <ChevronDownIcon boxSize="3.5" aria-hidden />
+            <ChevronDownIcon boxSize="4" aria-hidden />
           </HeaderActionButton>
         </Menu.Trigger>
         <Portal>
@@ -226,7 +229,7 @@ function BottomNavItem({ item }: { item: VeroNavItem }) {
   return (
     <Link href={item.href} {...headerLinkProps} aria-current={isActive ? "page" : undefined}>
       <Box {...itemStyles}>
-        <GDSText fontWeight="semibold" fontSize="xs" whiteSpace="nowrap" textAlign="center">
+        <GDSText fontWeight="semibold" fontSize="md" whiteSpace="nowrap" textAlign="center">
           {item.label}
         </GDSText>
       </Box>
@@ -350,36 +353,44 @@ export function VeroMainHeader({
       <Flex
         bg="brand.solid"
         color="fg.inverted"
-        align="center"
+        align="flex-end"
         justify="space-between"
         gap="2"
         px={{ base: "4", md: "5" }}
-        h="14"
+        pt={TOP_BAR_TAB_OFFSET}
+        minH="16"
         flexWrap="nowrap"
       >
-        <HStack gap={{ base: "2", xl: "4" }} flexShrink={0} align="center" h="full">
-          <Link href={logoHref} {...headerLinkProps} _hover={{ ...headerLinkProps._hover, opacity: 0.9 }} flexShrink={0}>
-            <Flex h="full" align="center" px="2">
-              <GDSText fontWeight="bold" fontSize="md" color="fg.inverted">
-                {logoLabel}
-              </GDSText>
-            </Flex>
-          </Link>
+        <Link
+          href={logoHref}
+          {...headerLinkProps}
+          _hover={{ ...headerLinkProps._hover, opacity: 0.9 }}
+          flexShrink={0}
+          alignSelf="center"
+        >
+          <Flex h="14" align="center" px="2">
+            <GDSText fontWeight="bold" fontSize="md" color="fg.inverted">
+              {logoLabel}
+            </GDSText>
+          </Flex>
+        </Link>
 
-          <HStack
-            as="nav"
-            aria-label="Asiakasryhmät"
-            gap="0"
-            display={{ base: "none", xl: "flex" }}
-            flexShrink={0}
-          >
-            {audienceTabs.map((tab) => (
-              <AudienceTab key={tab.id} tab={tab} />
-            ))}
-          </HStack>
+        <HStack
+          as="nav"
+          aria-label="Asiakasryhmät"
+          gap="0"
+          display={{ base: "none", xl: "flex" }}
+          flexShrink={0}
+          ml={{ xl: "4" }}
+        >
+          {audienceTabs.map((tab) => (
+            <AudienceTab key={tab.id} tab={tab} />
+          ))}
         </HStack>
 
-        <HStack gap="0" flexShrink={0} align="center" h="full">
+        <Box flex="1" display={{ base: "none", xl: "block" }} />
+
+        <HStack gap="0" flexShrink={0} align="center" alignSelf="center" h="14">
           <TopUtilityLink
             href={onSearchClick ? undefined : searchHref}
             onClick={onSearchClick}
@@ -403,7 +414,7 @@ export function VeroMainHeader({
                   <GlobeIcon boxSize="6" color="fg.inverted" aria-hidden />
                   <GDSText
                     fontWeight="bold"
-                    fontSize="sm"
+                    fontSize="md"
                     display={{ base: "none", xl: "inline" }}
                   >
                     {activeLanguage?.label ?? languageLabel}
@@ -442,7 +453,7 @@ export function VeroMainHeader({
                   py="1.5"
                   h="8"
                   minH="8"
-                  fontSize="sm"
+                  fontSize="md"
                   aria-label={omaVeroLabel}
                   _hover={{ bg: "bg.muted" }}
                 >
