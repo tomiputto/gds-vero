@@ -8,7 +8,7 @@ export function AccessibilityPage() {
         <Heading size="3xl" mb="2">
           Accessibility
         </Heading>
-        <Text color="fg.muted" fontSize="lg">
+        <Text color="fg.muted">
           Guidance for meeting WCAG 2.1 Level AA. Use these practices with design system components.
         </Text>
       </Box>
@@ -24,7 +24,7 @@ export function AccessibilityPage() {
         <Heading size="md" mb="2">
           WCAG AA targets (verify these)
         </Heading>
-        <List.Root as="ul" gap="2" color="fg.muted" textStyle="sm" mb="6">
+        <List.Root as="ul" gap="2" color="fg.muted" mb="6">
           <List.Item>Contrast: normal text ≥ 4.5:1 and large text ≥ 3:1.</List.Item>
           <List.Item>Non-text content: icons/images that convey meaning have a text alternative.</List.Item>
           <List.Item>Keyboard: all actions work with Tab / Shift+Tab / Enter / Space.</List.Item>
@@ -214,7 +214,7 @@ import { InfoIcon } from "@gds-vero/icons";
         <Heading size="lg" mb="3" mt="8">
           Quick checklist
         </Heading>
-        <List.Root as="ul" gap="2" color="fg.muted" textStyle="sm">
+        <List.Root as="ul" gap="2" color="fg.muted">
           <List.Item>Always provide a visible label for buttons and inputs.</List.Item>
           <List.Item>Ensure text contrast ≥ 4.5:1 (normal) or ≥ 3:1 (large).</List.Item>
           <List.Item>Don’t remove or hide focus indicators.</List.Item>

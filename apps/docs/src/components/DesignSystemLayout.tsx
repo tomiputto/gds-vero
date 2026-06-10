@@ -257,7 +257,7 @@ export function DesignSystemLayout() {
           <NavLinks location={location} />
         </Box>
 
-        <Box flex="1" overflow="auto" minW="0">
+        <Box flex="1" overflow="auto" minW="0" fontSize="md" lineHeight="1.5">
           <Box maxW="4xl" px={{ base: 4, md: 8 }} py={{ base: 4, md: 8 }}>
             <Outlet />
           </Box>

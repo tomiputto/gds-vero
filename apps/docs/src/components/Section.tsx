@@ -18,7 +18,7 @@ export function Section({
         {title}
       </Heading>
       {description && (
-        <Text color="fg.muted" textStyle="sm" mb="4">
+        <Text color="fg.muted" mb="4">
           {description}
         </Text>
       )}

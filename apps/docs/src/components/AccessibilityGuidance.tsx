@@ -11,7 +11,7 @@ export function AccessibilityGuidance({ items }: { items: AccessibilityItem[] })
       <Heading size="lg" mb="2">
         Accessibility
       </Heading>
-      <Text color="fg.muted" textStyle="sm" mb="3">
+      <Text color="fg.muted" mb="3">
         See the{" "}
         <Link asChild color="brand.fg">
           <RouterLink to="/accessibility">Accessibility</RouterLink>
@@ -23,7 +23,6 @@ export function AccessibilityGuidance({ items }: { items: AccessibilityItem[] })
         variant="plain"
         gap="2"
         color="fg.muted"
-        textStyle="sm"
         listStyle="none"
         ps="0"
         pe="0"

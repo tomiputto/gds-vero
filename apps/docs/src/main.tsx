@@ -124,7 +124,7 @@ function App() {
   return (
     <>
       <ThemeClassSync />
-      <Theme appearance={appearance} minH="100vh" bg="bg.default" color="fg">
+      <Theme appearance={appearance} minH="100vh" bg="bg.default" color="fg" fontSize="md" lineHeight="1.5">
         <Flex direction="column" h="100vh" overflow="hidden">
           <Box
             as="header"

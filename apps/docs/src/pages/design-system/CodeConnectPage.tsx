@@ -31,7 +31,7 @@ export function CodeConnectPage() {
         title="Figma file"
         description="Production design system file used for mappings."
       >
-        <Text color="fg.muted" textStyle="sm">
+        <Text color="fg.muted">
           <strong>GDS-1.0 PROD</strong> — file key{" "}
           <Code>vtiyOtk3Ro41iNAH9l3yhp</Code>
         </Text>
@@ -90,7 +90,7 @@ FIGMA_ACCESS_TOKEN=<token> pnpm figma:connect:publish
 # Unpublish
 FIGMA_ACCESS_TOKEN=<token> pnpm figma:connect:unpublish`}
         </Box>
-        <Text mt="3" color="fg.muted" textStyle="sm">
+        <Text mt="3" color="fg.muted">
           Config: <Code>figma.config.json</Code> at repo root. Full contributor guide:{" "}
           <Link href={GITHUB_README} color="brand.solid" target="_blank" rel="noopener noreferrer">
             code-connect/README.md on GitHub
@@ -102,7 +102,7 @@ FIGMA_ACCESS_TOKEN=<token> pnpm figma:connect:unpublish`}
         title="Add a new mapping"
         description="Workflow for mapping additional Figma components."
       >
-        <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="2" color="fg.muted">
           <Text>1. In Figma, select the component → Copy link to selection.</Text>
           <Text>
             2. Run <Code>pnpm figma connect create "&lt;url&gt;" --token &lt;token&gt;</Code> in

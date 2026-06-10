@@ -18,7 +18,7 @@ export function TokensPage() {
         title="Where tokens live"
         description="Design tokens are stored in the repo and consumed by the theme at build time."
       >
-        <VStack align="stretch" gap="3" textStyle="sm">
+        <VStack align="stretch" gap="3">
           <Text color="fg.muted">
             <strong>Source file:</strong> <Code>packages/tokens/figma/tokens.raw.json</Code>
           </Text>
@@ -32,7 +32,7 @@ export function TokensPage() {
         title="Semantic tokens in the theme"
         description="The theme exposes Figma tokens as semantic props you use in components."
       >
-        <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="3" color="fg.muted">
           <Text>
             <strong>Colors:</strong> <Code>color="fg"</Code>, <Code>color="fg.muted"</Code>, <Code>bg="bg.default"</Code>, <Code>bg="bg.muted"</Code>, <Code>borderColor="border.muted"</Code>
           </Text>
@@ -52,7 +52,7 @@ export function TokensPage() {
         title="Sync from Figma"
         description="Update tokens.raw.json from Figma variables."
       >
-        <Text color="fg.muted" textStyle="sm">
+        <Text color="fg.muted">
           In the <strong>GDS monorepo</strong>, run <Code>pnpm gds:tokens:sync:from-mcp</Code> after
           exporting Figma MCP output. In apps created with{" "}
           <Code>npm create @gds-vero/app@latest</Code>, run <Code>pnpm gds:tokens:sync</Code>.

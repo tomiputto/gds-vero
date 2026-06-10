@@ -30,7 +30,7 @@ export function ExternalWebsitePage() {
         title="Recommended path (outside the monorepo)"
         description="Use create-app for the easiest setup and token sync workflow."
       >
-        <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="3" color="fg.muted">
           <Text>
             1. Create your app: <Code>npm create @gds-vero/app@latest my-project</Code> or{" "}
             <Code>pnpm create @gds-vero/app@latest my-project</Code> (includes agent rules and a11y lint)
@@ -51,7 +51,7 @@ export function ExternalWebsitePage() {
         title="Option: Parent workspace"
         description="Put your app at the same directory level as GDS (e.g. gds/demo next to gds/GDS) and use a parent pnpm workspace so your app can depend on GDS via workspace:*."
       >
-        <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="3" color="fg.muted">
           <Text fontWeight="semibold" color="fg">1. Create a parent workspace</Text>
           <Text>In the parent folder (e.g. <Code>gds/</Code>), add <Code>pnpm-workspace.yaml</Code>:</Text>
           <Box
@@ -104,7 +104,7 @@ export function ExternalWebsitePage() {
         title="Vite: tokens and fs access"
         description="If your app uses Vite, add the same GDS tokens plugin so tokens.raw.json is loaded and watched, and allow Vite to read the GDS directory."
       >
-        <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="3" color="fg.muted">
           <Text>Point the plugin at the GDS repo (e.g. <Code>resolve(__dirname, \"../GDS\")</Code>) for <Code>packages/tokens/figma/tokens.raw.json</Code>. Set <Code>server.fs.allow</Code> to the GDS root so Vite can resolve the linked packages. See the <Code>gds/demo</Code> app in the parent workspace for a full example.</Text>
         </VStack>
       </Section>
@@ -113,7 +113,7 @@ export function ExternalWebsitePage() {
         title="Summary"
         description="Quick reference."
       >
-        <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="2" color="fg.muted">
           <Text>• <strong>Best default:</strong> create app with <Code>pnpm create @gds-vero/app@latest</Code> and use <Code>pnpm gds:tokens:sync</Code> for local token sync.</Text>
           <Text>• <strong>No workspace needed:</strong> You can still install published GDS packages directly in any project.</Text>
           <Text>• <strong>With a workspace:</strong> Use <Code>workspace:*</Code> dependencies for live local package development against the GDS repo.</Text>

@@ -60,7 +60,7 @@ export function ChakraV3ApiPage() {
 
       <Box>
         <Heading size="md" mb="2">More details</Heading>
-        <Text color="fg.muted" textStyle="sm">
+        <Text color="fg.muted">
           For forms and tables, see the <ChakraLink asChild color="brand.solid"><RouterLink to="/field">Field</RouterLink></ChakraLink> and <ChakraLink asChild color="brand.solid"><RouterLink to="/table">Table</RouterLink></ChakraLink> component pages in this docs site. For the full Chakra v3 reference, see{" "}
           <ChakraLink href={CHAKRA_DOCS_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
             Chakra UI docs

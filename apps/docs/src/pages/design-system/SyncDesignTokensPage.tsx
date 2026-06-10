@@ -55,7 +55,7 @@ export function SyncDesignTokensPage() {
         title="GDS monorepo"
         description="Updates packages/tokens/figma/tokens.raw.json for @gds-vero/theme."
       >
-        <VStack align="stretch" gap="4" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="4" color="fg.muted">
           <Text>
             1. In Figma, select a frame that contains the variables you want to import (colors,
             typography, spacing, etc.).
@@ -111,7 +111,7 @@ export function SyncDesignTokensPage() {
         title="Scaffolded app (create-app)"
         description="Updates src/gds-tokens.raw.json and src/gds-theme-sync.generated.ts."
       >
-        <VStack align="stretch" gap="4" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="4" color="fg.muted">
           <Text>
             1. Open your project root (<Code>cd my-project</Code>).
           </Text>
@@ -185,7 +185,7 @@ export function SyncDesignTokensPage() {
         title="Troubleshooting"
         description="Most common sync issues."
       >
-        <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="2" color="fg.muted">
           <Text>
             <strong>Monorepo:</strong> if sync fails, ensure <Code>.tmp/figma.mcp_latest.json</Code>{" "}
             exists (or pass a path:{" "}

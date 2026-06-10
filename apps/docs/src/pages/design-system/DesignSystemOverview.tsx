@@ -8,7 +8,7 @@ export function DesignSystemOverview() {
         <Heading size="3xl" mb="2">
           GDS Design System
         </Heading>
-        <Text color="fg.muted" fontSize="lg">
+        <Text color="fg.muted">
           GDS is a React-based design system built on Chakra UI v3 with GDS theme and
           tokens controlled in Figma. Use brand primary colors and semantic tokens out of
           the box.
@@ -32,7 +32,7 @@ export function DesignSystemOverview() {
         <Heading size="md" mb="2">
           Guides
         </Heading>
-        <VStack align="stretch" gap="1" textStyle="sm" mb="4">
+        <VStack align="stretch" gap="1" mb="4">
           <Link to="/guides/start-using-gds">Start using GDS</Link>
           <Link to="/guides/for-ai-agents">For AI agents</Link>
           <Link to="/accessibility">Accessibility</Link>
@@ -70,7 +70,7 @@ export function DesignSystemOverview() {
   "react-dom": ">=18"
 }`}
         </Box>
-        <Text color="fg.muted" mt="2" textStyle="sm">
+        <Text color="fg.muted" mt="2">
           Or install from npm when published:{" "}
           <Code>pnpm add @gds-vero/react @gds-vero/theme @gds-vero/icons @chakra-ui/react @emotion/react react react-dom</Code>
         </Text>

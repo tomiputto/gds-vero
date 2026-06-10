@@ -47,7 +47,7 @@ export function ForAIAgentsPage() {
 
       <Box>
         <Heading size="lg" mb="1">When to use GDS</Heading>
-        <Text color="fg.muted" textStyle="sm">
+        <Text color="fg.muted">
           Use the GDS stack when the user says they want to build something with GDS, using GDS, GDS design system, gdesignsystem, or similar. Then use only the packages and rules below for the UI layer.
         </Text>
       </Box>
@@ -110,7 +110,7 @@ function App() {
         title="Rules for agents"
         description="Must follow when generating code for a GDS-based app."
       >
-        <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="2" color="fg.muted">
           <Text>• Use <strong>only</strong> Chakra UI v3 + <Code>@gds-vero/react</Code>, <Code>@gds-vero/theme</Code>, <Code>@gds-vero/icons</Code> for UI. Do not add MUI, Ant Design, Tailwind UI, or other component libraries.</Text>
           <Text>• <strong>Chakra v3 only</strong> — never import v2 names (<Code>FormControl</Code>, <Code>Modal</Code>, <Code>Divider</Code>, etc.). See <RouterLink to="/guides/chakra-v3-api">Chakra v3 API</RouterLink>.</Text>
           <Text>• <strong>Imports:</strong> <Code>GDSProvider</Code>, <Code>GDSButton</Code>, <Code>GDSText</Code>, <Code>GDSHeading</Code> from <Code>@gds-vero/react</Code>. <Code>Field</Code>, <Code>Card</Code>, <Code>Dialog</Code>, <Code>Button</Code>, etc. from <Code>@chakra-ui/react</Code>.</Text>
@@ -125,7 +125,7 @@ function App() {
         title="Scaffold with agent rules (recommended)"
         description="create-app ships Cursor, Claude, and Copilot configuration automatically."
       >
-        <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="2" color="fg.muted">
           <Text>
             <Code>npm create @gds-vero/app@latest my-project</Code> (or pnpm equivalent) copies{" "}
             <Code>AGENTS.md</Code>, <Code>CLAUDE.md</Code>, <Code>.cursor/rules/gds-llm-agents.mdc</Code>,{" "}
@@ -149,7 +149,7 @@ function App() {
         title="Accessibility (mandatory for agents)"
         description="WCAG 2.1 Level AA — complete the checklist after every UI change."
       >
-        <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="2" color="fg.muted">
           <Text>
             The full guide includes <strong>Accessibility</strong> and{" "}
             <strong>Accessibility review (mandatory for agents)</strong> sections with a checklist,
@@ -169,7 +169,7 @@ function App() {
         title="LLM examples"
         description="Copy/paste prompts for popular LLMs (includes Claude, ChatGPT etc)."
       >
-        <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+        <VStack align="stretch" gap="3" color="fg.muted">
           <Text>
             <strong>LLM example prompt:</strong>
           </Text>
@@ -202,7 +202,7 @@ Provide complete React + TSX code (no pseudocode) for the page.`}
       </Section>
 
       <Section title="Links" description="Repository, npm packages, and docs.">
-        <VStack align="stretch" gap="1" textStyle="sm">
+        <VStack align="stretch" gap="1">
           <Link href={GITHUB_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_FOR_LLM_AGENTS.md (GitHub)</Link>
           <Link href="https://github.com/tomiputto/gds-vero" color="brand.solid" target="_blank" rel="noopener noreferrer">Repository (GitHub)</Link>
           <Link href="https://www.npmjs.com/package/@gds-vero/react" color="brand.solid" target="_blank" rel="noopener noreferrer">@gds-vero/react</Link>

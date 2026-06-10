@@ -37,7 +37,7 @@ export function StartUsingGdsPage() {
             title="1. Create a project folder on your machine"
             description="Create or choose the folder where your new project will live."
           >
-            <Text color="fg.muted" textStyle="sm">
+            <Text color="fg.muted">
               Example: create a folder like <Code>my-app</Code> and open a terminal in it.
             </Text>
           </Section>
@@ -46,7 +46,7 @@ export function StartUsingGdsPage() {
             title="2. Install the React template"
             description="Choose one of these commands based on where you want the app."
           >
-            <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+            <VStack align="stretch" gap="3" color="fg.muted">
               <Text fontWeight="semibold" color="fg">
                 Into the current folder:
               </Text>
@@ -88,7 +88,7 @@ export function StartUsingGdsPage() {
             title="3. Clean up React default CSS"
             description='Prompt: "I will install my own design system next, so remove all unnecessary CSS."'
           >
-            <Text color="fg.muted" textStyle="sm">
+            <Text color="fg.muted">
               Remove template CSS (such as default Vite React styles) so UI starts from a clean
               base before adding GDS.
             </Text>
@@ -144,7 +144,7 @@ export function StartUsingGdsPage() {
             title="6. Create a permanent project rule"
             description='Prompt: "Create a permanent project rule that from now on all UI must be implemented exclusively using GDS components and styles."'
           >
-            <VStack align="stretch" gap="2" textStyle="sm" color="fg.muted">
+            <VStack align="stretch" gap="2" color="fg.muted">
               <Text>
                 In this repository, add a persistent AI/project rule so future tasks always use
                 GDS components and styles for UI implementation. Point agents to{" "}
@@ -164,7 +164,7 @@ export function StartUsingGdsPage() {
             title="1. Choose a folder for your project"
             description="Go to the location under which you want the project folder to be created."
           >
-            <Text color="fg.muted" textStyle="sm">
+            <Text color="fg.muted">
               Example: open a terminal in your desired parent folder (or do the same from Cursor/Claude).
             </Text>
           </Section>
@@ -173,7 +173,7 @@ export function StartUsingGdsPage() {
             title="2. Create the project automatically"
             description="Run one of these commands. Replace `my-project` with your project name."
           >
-            <VStack align="stretch" gap="3" textStyle="sm" color="fg.muted">
+            <VStack align="stretch" gap="3" color="fg.muted">
               <Text fontWeight="semibold" color="fg">
                 With npm:
               </Text>
@@ -211,25 +211,25 @@ export function StartUsingGdsPage() {
               </Box>
             </VStack>
 
-            <Text mt="3" color="fg.muted" textStyle="sm">
+            <Text mt="3" color="fg.muted">
               After the command finishes, follow the printed “Next steps” (including how to start
               your dev server). The scaffold also includes <Code>AGENTS.md</Code>,{" "}
               <Code>CLAUDE.md</Code>, <Code>.cursor/rules/gds-llm-agents.mdc</Code>,{" "}
               <Code>.cursor/rules/gds-accessibility.mdc</Code>, and{" "}
               <Code>.github/copilot-instructions.md</Code> so AI assistants follow GDS automatically.
             </Text>
-            <Text mt="2" color="fg.muted" textStyle="sm">
+            <Text mt="2" color="fg.muted">
               ESLint with <Code>eslint-plugin-jsx-a11y</Code> is included — run <Code>npm run lint</Code> or{" "}
               <Code>pnpm lint</Code> after UI changes. See <Code>For AI agents</Code> and{" "}
               <Code>Accessibility</Code> in the docs sidebar.
             </Text>
-            <Text mt="2" color="fg.muted" textStyle="sm">
+            <Text mt="2" color="fg.muted">
               Use <Code>@gds-vero/app</Code>, not <Code>@gds-vero/create-app</Code>: npm
               prepends <Code>create-</Code> and would look for a non-existent{" "}
               <Code>create-create-app</Code> package. Alternative:{" "}
               <Code>npx create-gds-vero-app my-project</Code>.
             </Text>
-            <Text mt="2" color="fg.muted" textStyle="sm">
+            <Text mt="2" color="fg.muted">
               Tip: adding <Code>@latest</Code> helps avoid cached older versions when using{" "}
               <Code>npm create</Code> / <Code>pnpm create</Code>.
             </Text>
@@ -252,10 +252,10 @@ export function StartUsingGdsPage() {
             >
               {`pnpm gds:tokens:sync`}
             </Box>
-            <Text mt="3" color="fg.muted" textStyle="sm">
+            <Text mt="3" color="fg.muted">
               This generates local sync files at <Code>src/gds-tokens.raw.json</Code> and <Code>src/gds-theme-sync.generated.ts</Code>.
             </Text>
-            <Text mt="2" color="fg.muted" textStyle="sm">
+            <Text mt="2" color="fg.muted">
               In Cursor, you can ask an agent to “sync tokens” — it uses Figma MCP and runs the sync
               script. See <Code>Sync design tokens</Code> in the docs sidebar for the full flow.
             </Text>
