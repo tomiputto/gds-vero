@@ -5,10 +5,17 @@ import { GDSText as Text } from "@gds-vero/react";
 import { InfoIcon } from "@gds-vero/icons";
 const GITHUB_GUIDE_URL =
   "https://github.com/tomiputto/gds-vero/blob/main/GDS_FOR_LLM_AGENTS.md";
+const RAW_GUIDE_URL =
+  "https://raw.githubusercontent.com/tomiputto/gds-vero/main/GDS_FOR_LLM_AGENTS.md";
 const GITHUB_RELEASE_NOTES_URL =
   "https://github.com/tomiputto/gds-vero/blob/main/GDS_NPM_RELEASE_NOTES.md";
+const RAW_RELEASE_NOTES_URL =
+  "https://raw.githubusercontent.com/tomiputto/gds-vero/main/GDS_NPM_RELEASE_NOTES.md";
 const GITHUB_COMPONENT_GUIDE_URL = `${GITHUB_GUIDE_URL}#component-selection-guide`;
 const PUBLISHED_DOCS_URL = "https://tomiputto.github.io/gds-vero/";
+/** Keep in sync with packages/react/package.json on publish */
+const REACT_NPM_VERSION = "0.1.16";
+const REACT_NPM_URL = "https://www.npmjs.com/package/@gds-vero/react";
 
 export function ForAIAgentsPage() {
   return (
@@ -68,6 +75,20 @@ export function ForAIAgentsPage() {
               npm release notes
             </Link>
           </HStack>
+          <Text mt="2" fontSize="sm" color="fg.muted">
+            Latest bundled in{" "}
+            <Link href={REACT_NPM_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              @gds-vero/react@{REACT_NPM_VERSION}
+            </Link>
+            {" · Custom GPT raw: "}
+            <Link href={RAW_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              GDS_FOR_LLM_AGENTS.md
+            </Link>
+            {" · "}
+            <Link href={RAW_RELEASE_NOTES_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              GDS_NPM_RELEASE_NOTES.md
+            </Link>
+          </Text>
         </Box>
       </Box>
 
@@ -167,8 +188,9 @@ function App() {
             — verified snippets for{" "}
             <RouterLink to="/accordion">Accordion</RouterLink>,{" "}
             <RouterLink to="/dialog">Dialog</RouterLink>,{" "}
-            <RouterLink to="/tabs">Tabs</RouterLink>, and{" "}
-            <RouterLink to="/field">Field</RouterLink>. <strong>Custom GPT Instructions</strong> must require docs lookup for other compounds before generating code.
+            <RouterLink to="/tabs">Tabs</RouterLink>,{" "}
+            <RouterLink to="/field">Field</RouterLink>, and{" "}
+            <RouterLink to="/examples/vero-main-header">VeroMainHeader</RouterLink>. <strong>Custom GPT Instructions</strong> must require docs lookup for other compounds before generating code.
           </Text>
         </VStack>
       </Section>
@@ -250,7 +272,7 @@ function App() {
           <Text>
             <strong>Custom GPT:</strong> upload both agent files as knowledge. In Instructions, require
             checking release notes for current versions (e.g. <Code>@gds-vero/theme@^0.1.18</Code>,{" "}
-            <Code>@gds-vero/react@^0.1.13</Code>) before generating UI.
+            <Code>@gds-vero/react@^{REACT_NPM_VERSION}</Code>) before generating UI.
           </Text>
         </VStack>
       </Section>
@@ -267,8 +289,10 @@ function App() {
             <Code>.github/copilot-instructions.md</Code>.
           </Text>
           <Text>
-            After install, the canonical guide is at{" "}
-            <Code>node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md</Code>.
+            After install, the canonical guides are at{" "}
+            <Code>node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md</Code> and{" "}
+            <Code>node_modules/@gds-vero/react/GDS_NPM_RELEASE_NOTES.md</Code> (
+            <Code>@gds-vero/react@^{REACT_NPM_VERSION}</Code> or newer).
           </Text>
           <Text>
             Scaffold includes ESLint + <Code>eslint-plugin-jsx-a11y</Code> — run <Code>npm run lint</Code> or{" "}
@@ -355,14 +379,53 @@ Provide complete React + TSX code (no pseudocode) for the page.`}
         </VStack>
       </Section>
 
+      <Section
+        title="Latest agent files (Custom GPT & npm)"
+        description="Direct links to the newest GDS_FOR_LLM_AGENTS.md and release notes."
+      >
+        <VStack align="stretch" gap="2" color="fg.muted">
+          <Text>
+            <strong>GitHub (main, always latest):</strong>{" "}
+            <Link href={GITHUB_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              GDS_FOR_LLM_AGENTS.md
+            </Link>
+            {" · "}
+            <Link href={GITHUB_RELEASE_NOTES_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              GDS_NPM_RELEASE_NOTES.md
+            </Link>
+          </Text>
+          <Text>
+            <strong>Raw URLs (Custom GPT knowledge / Actions):</strong>{" "}
+            <Link href={RAW_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              raw GDS_FOR_LLM_AGENTS.md
+            </Link>
+            {" · "}
+            <Link href={RAW_RELEASE_NOTES_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              raw GDS_NPM_RELEASE_NOTES.md
+            </Link>
+          </Text>
+          <Text>
+            <strong>npm bundle:</strong> install{" "}
+            <Link href={REACT_NPM_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              @gds-vero/react@{REACT_NPM_VERSION}
+            </Link>{" "}
+            (or newer) — agent files ship inside the package at{" "}
+            <Code>node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md</Code> and{" "}
+            <Code>GDS_NPM_RELEASE_NOTES.md</Code>.
+          </Text>
+        </VStack>
+      </Section>
+
       <Section title="Links" description="Repository, npm packages, and docs.">
         <VStack align="stretch" gap="1">
           <Link href={GITHUB_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_FOR_LLM_AGENTS.md (GitHub)</Link>
+          <Link href={RAW_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_FOR_LLM_AGENTS.md (raw — Custom GPT)</Link>
           <Link href={GITHUB_RELEASE_NOTES_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_NPM_RELEASE_NOTES.md (GitHub)</Link>
+          <Link href={RAW_RELEASE_NOTES_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_NPM_RELEASE_NOTES.md (raw — Custom GPT)</Link>
           <Link href={GITHUB_COMPONENT_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">Component selection guide (GitHub anchor)</Link>
           <Link href={PUBLISHED_DOCS_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">Published GDS docs</Link>
           <Link href="https://github.com/tomiputto/gds-vero" color="brand.solid" target="_blank" rel="noopener noreferrer">Repository (GitHub)</Link>
-          <Link href="https://www.npmjs.com/package/@gds-vero/react" color="brand.solid" target="_blank" rel="noopener noreferrer">@gds-vero/react</Link>
+          <Link href={REACT_NPM_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">@gds-vero/react@{REACT_NPM_VERSION}</Link>
           <Link href="https://www.npmjs.com/package/@gds-vero/theme" color="brand.solid" target="_blank" rel="noopener noreferrer">@gds-vero/theme</Link>
           <Link href="https://www.npmjs.com/package/@gds-vero/icons" color="brand.solid" target="_blank" rel="noopener noreferrer">@gds-vero/icons</Link>
           <RouterLink to="/guides/start-using-gds">Start using GDS</RouterLink>

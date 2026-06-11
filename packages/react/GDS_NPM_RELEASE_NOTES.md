@@ -13,7 +13,7 @@
 | Package | Version | npm |
 |---------|---------|-----|
 | `@gds-vero/theme` | **0.1.18** | https://www.npmjs.com/package/@gds-vero/theme |
-| `@gds-vero/react` | **0.1.15** | https://www.npmjs.com/package/@gds-vero/react |
+| `@gds-vero/react` | **0.1.16** | https://www.npmjs.com/package/@gds-vero/react |
 | `@gds-vero/create-app` | **0.1.13** | https://www.npmjs.com/package/@gds-vero/create-app |
 | `@gds-vero/tokens` | 0.1.3 | https://www.npmjs.com/package/@gds-vero/tokens |
 | `@gds-vero/icons` | 0.1.1 | https://www.npmjs.com/package/@gds-vero/icons |
@@ -32,7 +32,7 @@ npm view @gds-vero/react version
 ## Recommended minimum for new apps
 
 ```bash
-pnpm add @gds-vero/react@^0.1.15 @gds-vero/theme@^0.1.18 @gds-vero/icons@^0.1.1 @chakra-ui/react@^3.34.0 @emotion/react react react-dom
+pnpm add @gds-vero/react@^0.1.16 @gds-vero/theme@^0.1.18 @gds-vero/icons@^0.1.1 @chakra-ui/react@^3.34.0 @emotion/react react react-dom
 ```
 
 Or scaffold:
@@ -84,6 +84,19 @@ After npm install, copies may exist at:
 ---
 
 ## Release history (agent impact only)
+
+### 2026-06-11 — react@0.1.16
+
+#### @gds-vero/react@0.1.16
+
+- chore(react): bump to 0.1.15 for docs-verified compound API agent guide
+- docs(agents): require docs-verified compound APIs with reference snippets
+- chore(react): bump to 0.1.14 for npm release notes bundle
+- feat(agents): add npm release notes and automated sync on publish
+- chore: bump react and create-app versions for npm publish
+- feat(theme,agents): expand typography recipes and component selection guide
+
+---
 
 ### 2026-06-11 — react@0.1.15
 

@@ -497,6 +497,59 @@ import { Field, Input } from "@chakra-ui/react";
 
 Use **`Field.Root`**, **`Field.Label`**, **`Field.HelperText`**, **`Field.ErrorText`**, **`invalid`** on root. Do **not** use v2 **`FormControl`**, **`FormLabel`**, **`FormHelperText`**, **`FormErrorMessage`**.
 
+**VeroMainHeader — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/examples/vero-main-header):
+
+GDS **wrapper** from **`@gds-vero/react`** — not a Chakra compound. Use for **vero.fi-style site header**; do **not** rebuild the header from `Box` / `Flex` / `Menu` unless the user explicitly asks for a custom header.
+
+```tsx
+import { GDSProvider, VeroMainHeader } from "@gds-vero/react";
+
+<GDSProvider>
+  <VeroMainHeader />
+  <Box as="main">{/* page content */}</Box>
+</GDSProvider>
+```
+
+**Defaults:** Finnish vero.fi labels, audience tabs, language menu, OmaVero links, and sub-navigation — works with **no props**.
+
+**Customize via props** (types: `VeroMainHeaderProps` from `@gds-vero/react`):
+
+| Prop | Type | Purpose |
+|------|------|---------|
+| `logoHref`, `logoLabel` | `string` | Logo link and text (default `vero.fi`) |
+| `audienceTabs` | `VeroAudienceTab[]` | Top green bar tabs (`id`, `label`, `href`, optional `isActive`) |
+| `searchHref`, `searchLabel`, `onSearchClick` | `string`, `string`, `() => void` | Search link or in-app handler |
+| `languages`, `languageLabel` | `VeroLanguageOption[]`, `string` | Language menu |
+| `omaVeroLabel`, `omaVeroItems` | `string`, `VeroMainHeaderLink[]` | OmaVero dropdown |
+| `navItems` | `VeroNavItem[]` | Sub-nav links; optional `menuItems` for dropdown |
+| `topBarEnd` | `ReactNode` | Extra actions (e.g. theme toggle) at end of top bar |
+
+```tsx
+import { GDSProvider, VeroMainHeader } from "@gds-vero/react";
+import type { VeroNavItem } from "@gds-vero/react";
+
+const navItems: VeroNavItem[] = [
+  { id: "home", label: "Etusivu", href: "/", isActive: true },
+  {
+    id: "services",
+    label: "Palvelut",
+    menuItems: [
+      { id: "a", label: "Palvelu A", href: "/a" },
+      { id: "b", label: "Palvelu B", href: "/b" },
+    ],
+  },
+];
+
+<GDSProvider>
+  <VeroMainHeader
+    navItems={navItems}
+    onSearchClick={() => {/* open app search */}}
+  />
+</GDSProvider>
+```
+
+**Do not:** import `VeroMainHeader` from `@chakra-ui/react`; do not use a generic `Box as="header"` when the user wants the **vero.fi** header pattern.
+
 Other high-risk compounds (always open docs first — no verified snippet here): **Drawer**, **Menu**, **Table**, **Steps**, **Select**, **Combobox**, **Toast** (`createToaster` + `Toaster`).
 
 ### GDS docs (component reference)
@@ -878,6 +931,7 @@ Verify every item against the files you created or changed:
 - [ ] **Buttons:** primary actions use `GDSButton colorPalette="brand"` or Chakra `Button colorPalette="brand"`
 - [ ] **Component choice:** overlays, forms, and feedback use the right compound (`Dialog` vs `Drawer`, `Switch` vs `Toggle`, `Select` vs `Combobox`, `Alert` vs `Toast`) — see **Component selection guide** in this file
 - [ ] **Component API verified:** every compound used (`Accordion`, `Dialog`, `Tabs`, `Menu`, `Field`, …) matches **GDS docs “Basic” example** or Chakra MCP — slot names were **not** guessed from training data (see **Mandatory: verify component API before coding**)
+- [ ] **Vero.fi header:** use **`VeroMainHeader`** from `@gds-vero/react` — not a custom `Box`/`Flex` header (see verified pattern in **Component selection guide**)
 
 ### 2. Automated checks
 

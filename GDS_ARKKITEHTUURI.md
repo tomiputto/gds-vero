@@ -163,7 +163,7 @@ Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; m
 |---------|---------|-----------------|
 | tokens | — | `@gds-vero/tokens@0.1.3` |
 | theme | tokens | `@gds-vero/theme@0.1.18` |
-| react | theme, tokens | `@gds-vero/react@0.1.15` |
+| react | theme, tokens | `@gds-vero/react@0.1.16` |
 | icons | — | `@gds-vero/icons` |
 | create-app | — (template listaa deps) | `@gds-vero/create-app@0.1.13` |
 | cli | — | `@gds-vero/cli@0.1.0` |
