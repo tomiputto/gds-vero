@@ -5,6 +5,8 @@ import { GDSText as Text } from "@gds-vero/react";
 import { InfoIcon } from "@gds-vero/icons";
 const GITHUB_GUIDE_URL =
   "https://github.com/tomiputto/gds-vero/blob/main/GDS_FOR_LLM_AGENTS.md";
+const GITHUB_RELEASE_NOTES_URL =
+  "https://github.com/tomiputto/gds-vero/blob/main/GDS_NPM_RELEASE_NOTES.md";
 const GITHUB_COMPONENT_GUIDE_URL = `${GITHUB_GUIDE_URL}#component-selection-guide`;
 const PUBLISHED_DOCS_URL = "https://tomiputto.github.io/gds-vero/";
 
@@ -53,6 +55,17 @@ export function ForAIAgentsPage() {
               rel="noopener noreferrer"
             >
               Component selection guide
+            </Link>
+            {" · "}
+            <Link
+              href={GITHUB_RELEASE_NOTES_URL}
+              color="brand.solid"
+              fontWeight="semibold"
+              textDecoration="underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              npm release notes
             </Link>
           </HStack>
         </Box>
@@ -186,6 +199,37 @@ function App() {
       </Section>
 
       <Section
+        title="npm release notes (Custom GPT)"
+        description="Version-specific changes in published @gds-vero/* packages — what agents must know after each npm publish."
+      >
+        <VStack align="stretch" gap="2" color="fg.muted">
+          <Text>
+            <Code>GDS_NPM_RELEASE_NOTES.md</Code> lists current npm versions, upgrade guidance for older
+            installs, and agent-relevant changes per release (typography, new components, scaffold pins).
+            Use it together with <Code>GDS_FOR_LLM_AGENTS.md</Code> — rules in the guide, versions in release
+            notes.
+          </Text>
+          <Text>
+            <Link
+              href={GITHUB_RELEASE_NOTES_URL}
+              color="brand.solid"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GDS_NPM_RELEASE_NOTES.md on GitHub
+            </Link>
+            {" · bundled at "}
+            <Code>node_modules/@gds-vero/react/GDS_NPM_RELEASE_NOTES.md</Code> after install
+          </Text>
+          <Text>
+            <strong>Custom GPT:</strong> upload both agent files as knowledge. In Instructions, require
+            checking release notes for current versions (e.g. <Code>@gds-vero/theme@^0.1.18</Code>,{" "}
+            <Code>@gds-vero/react@^0.1.13</Code>) before generating UI.
+          </Text>
+        </VStack>
+      </Section>
+
+      <Section
         title="Scaffold with agent rules (recommended)"
         description="create-app ships Cursor, Claude, and Copilot configuration automatically."
       >
@@ -288,6 +332,7 @@ Provide complete React + TSX code (no pseudocode) for the page.`}
       <Section title="Links" description="Repository, npm packages, and docs.">
         <VStack align="stretch" gap="1">
           <Link href={GITHUB_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_FOR_LLM_AGENTS.md (GitHub)</Link>
+          <Link href={GITHUB_RELEASE_NOTES_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_NPM_RELEASE_NOTES.md (GitHub)</Link>
           <Link href={GITHUB_COMPONENT_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">Component selection guide (GitHub anchor)</Link>
           <Link href={PUBLISHED_DOCS_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">Published GDS docs</Link>
           <Link href="https://github.com/tomiputto/gds-vero" color="brand.solid" target="_blank" rel="noopener noreferrer">Repository (GitHub)</Link>

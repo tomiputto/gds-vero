@@ -15,11 +15,13 @@
     "gds:icons:generate": "node scripts/svg-to-gds-icons.mjs",
     "figma:connect:publish": "figma connect publish",
     "figma:connect:unpublish": "figma connect unpublish",
-    "gds:publish:react": "pnpm --filter @gds-vero/react publish --access public",
-    "gds:publish:theme": "pnpm --filter @gds-vero/theme publish --access public",
-    "gds:publish:icons": "pnpm --filter @gds-vero/icons publish --access public",
-    "gds:publish:tokens": "pnpm --filter @gds-vero/tokens publish --access public",
-    "gds:publish:create-app": "pnpm --filter @gds-vero/create-app publish --access public"
+    "gds:release-notes:sync": "node scripts/sync-release-notes.mjs",
+    "gds:release-notes:prepare": "node scripts/sync-release-notes.mjs --append",
+    "gds:publish:react": "node scripts/sync-release-notes.mjs --append && pnpm --filter @gds-vero/react publish --access public",
+    "gds:publish:theme": "node scripts/sync-release-notes.mjs --append && pnpm --filter @gds-vero/theme publish --access public",
+    "gds:publish:icons": "node scripts/sync-release-notes.mjs --append && pnpm --filter @gds-vero/icons publish --access public",
+    "gds:publish:tokens": "node scripts/sync-release-notes.mjs --append && pnpm --filter @gds-vero/tokens publish --access public",
+    "gds:publish:create-app": "node scripts/sync-release-notes.mjs --append && pnpm --filter @gds-vero/create-app publish --access public"
   },
   "devDependencies": {
     "@figma/code-connect": "^1",

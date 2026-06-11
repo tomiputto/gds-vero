@@ -149,8 +149,9 @@ Both depend on `@gds-vero/react`, `@gds-vero/theme`, `@gds-vero/icons`, Chakra, 
 | `figma-sync-with-mcp.mjs` | Merge MCP JSON → `tokens.raw.json` via `figma-mcp-to-tokens-raw.mjs` |
 | `figma-mcp-to-tokens-raw.mjs` | Flat variable defs → grouped `tokens.raw.json` |
 | `svg-to-gds-icons.mjs` | Generate icon components (`pnpm gds:icons:generate`) |
+| `sync-release-notes.mjs` | Update `GDS_NPM_RELEASE_NOTES.md` version table; optional `--append` for new release sections; copy to `packages/react/` |
 
-Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges selection). `pnpm gds:tokens:sync` reads `.tmp/figma.variable_defs.json` only (no merge).
+Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges selection). `pnpm gds:tokens:sync` reads `.tmp/figma.variable_defs.json` only (no merge). `pnpm gds:release-notes:prepare` / `pnpm gds:release-notes:sync`. All `pnpm gds:publish:*` scripts run prepare first.
 
 **Figma Code Connect (root):** `pnpm figma:connect:publish` / `pnpm figma:connect:unpublish` (requires `FIGMA_ACCESS_TOKEN`). See `code-connect/README.md`.
 
@@ -167,7 +168,7 @@ Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges se
 | create-app | — (template lists deps) | `@gds-vero/create-app@0.1.13` |
 | cli | — | `@gds-vero/cli@0.1.0` |
 
-- **Publishing:** Use **pnpm** from the monorepo root — **not** `npm publish` inside `packages/*` (npm leaves `workspace:*` in dependencies and breaks consumers). Examples: `pnpm gds:publish:react`, `pnpm gds:publish:theme`, `pnpm gds:publish:create-app`. `workspace:*` is resolved to semver when packing with pnpm. Keep version examples in this table aligned with `packages/*/package.json` or npm after each publish.
+- **Publishing:** Use **pnpm** from the monorepo root — **not** `npm publish` inside `packages/*`. Examples: `pnpm gds:publish:react`, `pnpm gds:publish:theme`. Each `gds:publish:*` script runs **`gds:release-notes:prepare`** first (appends release sections for bumped packages + syncs `GDS_NPM_RELEASE_NOTES.md` → `packages/react/`). Manual: `pnpm gds:release-notes:sync` (version table only). `@gds-vero/react` **prepublishOnly** also runs sync.
 - **External stack:** React 18+, Chakra UI v3, Emotion. GDS ships theme + provider + thin wrappers; most UI is `@chakra-ui/react`.
 
 ---
@@ -192,11 +193,11 @@ GDS documents stack rules so coding assistants use Chakra v3 + correct imports c
 
 | Context | Files | Canonical guide |
 |---------|-------|-----------------|
-| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (repo root; includes **GDS-VERO compliance review** + **Accessibility review** checklists) |
-| **npm consumers** | Bundled in `@gds-vero/react` | `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` |
+| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `GDS_NPM_RELEASE_NOTES.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (stack rules) + `GDS_NPM_RELEASE_NOTES.md` (npm version changes for Custom GPT / external agents) |
+| **npm consumers** | Bundled in `@gds-vero/react` | `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` · `GDS_NPM_RELEASE_NOTES.md` |
 | **create-app scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, `eslint` + `jsx-a11y` | Points to bundled guide after install; `npm run lint` for automated JSX a11y |
 
-When expanding agent rules, accessibility patterns, or UI guidance, update **`GDS_FOR_LLM_AGENTS.md`** and sync the copy in **`packages/react/GDS_FOR_LLM_AGENTS.md`** before publishing `@gds-vero/react`.
+When expanding agent rules, accessibility patterns, or UI guidance, update **`GDS_FOR_LLM_AGENTS.md`** and sync the copy in **`packages/react/GDS_FOR_LLM_AGENTS.md`** before publishing `@gds-vero/react`. On npm publish, **`pnpm gds:release-notes:prepare`** (or any **`pnpm gds:publish:*`**) updates **`GDS_NPM_RELEASE_NOTES.md`** and syncs to **`packages/react/`**.
 
 ---
 

@@ -149,8 +149,9 @@ Molemmat riippuvat `@gds-vero/react`, `@gds-vero/theme`, `@gds-vero/icons`, Chak
 | `figma-sync-with-mcp.mjs` | MCP JSON + merge → `tokens.raw.json` |
 | `figma-mcp-to-tokens-raw.mjs` | Flat variable defs → ryhmitelty `tokens.raw.json` |
 | `svg-to-gds-icons.mjs` | Ikonikomponentit (`pnpm gds:icons:generate`) |
+| `sync-release-notes.mjs` | Päivittää `GDS_NPM_RELEASE_NOTES.md` versiontaulukon; `--append` lisää release-osiot; kopio `packages/react/` |
 
-Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; merge valintaan). `pnpm gds:tokens:sync` lukee vain `.tmp/figma.variable_defs.json` (ei mergeä).
+Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; merge valintaan). `pnpm gds:tokens:sync` lukee vain `.tmp/figma.variable_defs.json` (ei mergeä). `pnpm gds:release-notes:prepare` / `pnpm gds:release-notes:sync`. Kaikki `pnpm gds:publish:*` ajaa prepare ensin.
 
 **Figma Code Connect (juuri):** `pnpm figma:connect:publish` / `pnpm figma:connect:unpublish` (vaatii `FIGMA_ACCESS_TOKEN`). Katso `code-connect/README.md`.
 
@@ -167,7 +168,7 @@ Juuri: `pnpm gds:tokens:sync:from-mcp` (valinnainen polku MCP JSON-tiedostoon; m
 | create-app | — (template listaa deps) | `@gds-vero/create-app@0.1.13` |
 | cli | — | `@gds-vero/cli@0.1.0` |
 
-- **Julkaisu:** Käytä **pnpm**:ää monorepon juuresta — **älä** `npm publish` hakemistossa `packages/*` (npm jättää `workspace:*` riippuvuuksiin ja asennus hajoaa). Esim. `pnpm gds:publish:react`, `pnpm gds:publish:theme`, `pnpm gds:publish:create-app`. `workspace:*` resolvautuu semveriksi pnpm-packauksessa. Pidä versionumerot linjassa julkaisun jälkeen.
+- **Julkaisu:** Käytä **pnpm**:ää monorepon juuresta — **älä** `npm publish` hakemistossa `packages/*`. Esim. `pnpm gds:publish:react`, `pnpm gds:publish:theme`. Jokainen `gds:publish:*` ajaa ensin **`gds:release-notes:prepare`** (täydentää release-osiot + synkkaa `GDS_NPM_RELEASE_NOTES.md` → `packages/react/`). Manuaalinen: `pnpm gds:release-notes:sync`. `@gds-vero/react` **prepublishOnly** synkkaa myös.
 - **Ulkoiset:** React 18+, Chakra UI v3, Emotion. GDS toimittaa teeman, providerin ja ohuet wrapperit; suurin osa UI:sta on `@chakra-ui/react`.
 
 ---
@@ -192,11 +193,11 @@ GDS dokumentoi pinon säännöt, jotta koodausavustajat käyttävät Chakra v3:t
 
 | Konteksti | Tiedostot | Kanoninen ohje |
 |-----------|-----------|----------------|
-| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (repojuuri; sisältää **GDS-VERO compliance review**- ja **Accessibility review** -tarkistuslistat) |
-| **npm-kuluttajat** | Bundlattu `@gds-vero/react`:iin | `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` |
+| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `GDS_NPM_RELEASE_NOTES.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (pinon säännöt) + `GDS_NPM_RELEASE_NOTES.md` (npm-version muutokset Custom GPT:lle / ulkoisille agenteille) |
+| **npm-kuluttajat** | Bundlattu `@gds-vero/react`:iin | `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` · `GDS_NPM_RELEASE_NOTES.md` |
 | **create-app -scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, `eslint` + `jsx-a11y` | Viittaa bundlattuun ohjeeseen; `npm run lint` JSX-a11y-tarkistukseen |
 
-Laajentaessasi agenttisääntöjä, saavutettavuusmalleja tai UI-ohjeita päivitä **`GDS_FOR_LLM_AGENTS.md`** ja synkkaa kopio **`packages/react/GDS_FOR_LLM_AGENTS.md`**:ään ennen `@gds-vero/react` -julkaisua.
+Laajentaessasi agenttisääntöjä, saavutettavuusmalleja tai UI-ohjeita päivitä **`GDS_FOR_LLM_AGENTS.md`** ja synkkaa kopio **`packages/react/GDS_FOR_LLM_AGENTS.md`**:ään ennen `@gds-vero/react` -julkaisua. npm-julkaisussa **`pnpm gds:release-notes:prepare`** (tai mikä tahansa **`pnpm gds:publish:*`**) päivittää **`GDS_NPM_RELEASE_NOTES.md`**:n ja synkkaa **`packages/react/`** -kopion.
 
 ---
 

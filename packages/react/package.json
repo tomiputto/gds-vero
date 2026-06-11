@@ -4,7 +4,7 @@
   "private": false,
   "type": "module",
   "scripts": {
-    "prepublishOnly": "node ../../scripts/assert-pnpm-publish.mjs"
+    "prepublishOnly": "node ../../scripts/assert-pnpm-publish.mjs && node ../../scripts/sync-release-notes.mjs"
   },
   "exports": {
     ".": "./src/index.ts"
@@ -45,6 +45,7 @@
   },
   "files": [
     "src",
-    "GDS_FOR_LLM_AGENTS.md"
+    "GDS_FOR_LLM_AGENTS.md",
+    "GDS_NPM_RELEASE_NOTES.md"
   ]
 }

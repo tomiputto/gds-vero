@@ -54,7 +54,13 @@ pnpm add @gds-vero/react @gds-vero/theme @gds-vero/icons @chakra-ui/react @emoti
 
 The same guide is **published inside** `@gds-vero/react`. After install you have:
 
-`node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md`
+- `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` — canonical stack rules
+- `node_modules/@gds-vero/react/GDS_NPM_RELEASE_NOTES.md` — **npm version changes** (for Custom GPT / external agents)
+
+**External agents (Custom GPT, etc.):** upload **both** files as knowledge. Check release notes for current `@gds-vero/*` versions before generating code. Raw URLs:
+
+- https://raw.githubusercontent.com/tomiputto/gds-vero/main/GDS_FOR_LLM_AGENTS.md
+- https://raw.githubusercontent.com/tomiputto/gds-vero/main/GDS_NPM_RELEASE_NOTES.md
 
 **`npm create @gds-vero/app@latest`** scaffolds `AGENTS.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc`, `CLAUDE.md`, `.github/copilot-instructions.md`, and ESLint + `jsx-a11y` (`npm run lint`) so agents follow GDS rules, verify design-system compliance, and catch common accessibility issues automatically.
 
@@ -905,6 +911,7 @@ That way the agent is nudged to output v3-compatible code even when it would oth
 
 ## Links
 
+- **npm release notes (for agents):** `GDS_NPM_RELEASE_NOTES.md` (repo root; bundled in `@gds-vero/react`) — version-specific changes for Custom GPT / external assistants  
 - **GDS docs (components, examples, a11y):** https://tomiputto.github.io/gds-vero/ — see **Component selection guide** in this file for path index  
 - **Repository:** https://github.com/tomiputto/gds-vero  
 - **npm:** [@gds-vero/react](https://www.npmjs.com/package/@gds-vero/react) · [@gds-vero/theme](https://www.npmjs.com/package/@gds-vero/theme) · [@gds-vero/tokens](https://www.npmjs.com/package/@gds-vero/tokens) · [@gds-vero/icons](https://www.npmjs.com/package/@gds-vero/icons)  
