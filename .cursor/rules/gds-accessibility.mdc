@@ -11,7 +11,7 @@ When you **create or materially change React UI** (`.tsx` / `.jsx`):
    - Monorepo docs: `pnpm --filter docs lint`
    - Scaffolded apps: `npm run lint` or `pnpm lint`
    Fix all `jsx-a11y/*` errors on touched files.
-4. **Tell the user** the a11y review result in one short sentence (what was checked/fixed).
+4. **Report accessibility** under **Accessibility** in the mandatory **Delivery audit report** (`GDS_FOR_LLM_AGENTS.md` §3) — do not skip the full audit report.
 
 Common fixes: `aria-label` on icon-only buttons, `Field.Label` + `Field.ErrorText`, `GDSHeading as="h*"`, `aria-hidden` on decorative icons, `role="alert"` on error banners, landmarks on layout.
 

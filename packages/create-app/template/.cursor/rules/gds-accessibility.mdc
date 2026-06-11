@@ -8,7 +8,7 @@ When you **create or materially change React UI** (`.tsx` / `.jsx`):
 1. **Follow the Accessibility section** in `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` (WCAG 2.1 AA).
 2. **Complete the “Accessibility review (mandatory for agents)” checklist** in that file before finishing. Fix violations in code.
 3. **Run `npm run lint` or `pnpm lint`** and fix all `jsx-a11y/*` errors on touched files.
-4. **Tell the user** the a11y review result briefly.
+4. **Report accessibility** under **Accessibility** in the mandatory **Delivery audit report** — do not skip the full audit report.
 
 Common fixes: `aria-label` on icon-only buttons, `Field.Label` + `Field.ErrorText`, `GDSHeading as="h*"`, `aria-hidden` on decorative icons.
 

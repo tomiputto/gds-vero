@@ -307,18 +307,23 @@ function App() {
 
       <Section
         title="GDS compliance (mandatory for agents)"
-        description="Design-system review — agents must report pass/fail after every UI delivery."
+        description="Every UI delivery must end with the full delivery audit report — all categories, PASS / WARNING / FAIL."
       >
         <VStack align="stretch" gap="2" color="fg.muted">
           <Text>
-            The guide includes <strong>GDS-VERO compliance review (mandatory for agents)</strong> with a
-            checklist (imports, Chakra v3, semantic tokens, vero surfaces, typography, component choice) and a
-            required delivery summary.
+            The guide includes <strong>GDS-VERO compliance review (mandatory for agents)</strong> with an internal
+            checklist and a required <strong>Delivery audit report</strong> at the end of every UI task.
           </Text>
           <Text>
-            End UI tasks with: <strong>Layout</strong>, <strong>GDS compliance</strong> (pass or{" "}
-            <strong>Violation</strong> / <strong>Fix</strong> pairs), <strong>Accessibility</strong>, and{" "}
-            <strong>Lint</strong>.
+            Agents must report: <strong>Preview URL</strong>, <strong>Implementation summary</strong>, then{" "}
+            <strong>GDS-VERO Compliance Review</strong> with status for each category —{" "}
+            <strong>Design System</strong>, <strong>Chakra v3 API</strong>, <strong>Surface tokens</strong>,{" "}
+            <strong>Typography</strong>, <strong>Accessibility</strong>, <strong>Responsive layout</strong> — plus{" "}
+            <strong>Deviations</strong>, overall <strong>Compliance Status</strong> (PASS / WARNING / FAIL),{" "}
+            <strong>Recommended follow-ups</strong>, and <strong>Lint</strong>.
+          </Text>
+          <Text>
+            Do not skip or shorten the audit report — even when the user only asked for a single component or layout.
           </Text>
         </VStack>
       </Section>
@@ -338,7 +343,8 @@ function App() {
           </Text>
           <Text>
             After UI work: complete the checklist in <Code>GDS_FOR_LLM_AGENTS.md</Code>, run lint if
-            available, fix all <Code>jsx-a11y/*</Code> errors, and report the outcome briefly.
+            available, fix all <Code>jsx-a11y/*</Code> errors, and report under <strong>Accessibility</strong> in
+            the mandatory Delivery audit report.
           </Text>
         </VStack>
       </Section>
@@ -375,7 +381,8 @@ Rules (must follow):
 - Pick components using GDS_FOR_LLM_AGENTS.md Component selection guide (Switch vs Toggle, Dialog vs Drawer, etc.).
 
 Output:
-Provide complete React + TSX code (no pseudocode) for the page.`}
+Provide complete React + TSX code (no pseudocode) for the page.
+End with the full Delivery audit report from GDS_FOR_LLM_AGENTS.md (Preview URL, Implementation summary, GDS-VERO Compliance Review with PASS/WARNING/FAIL per category, Deviations, Compliance Status, Recommended follow-ups, Lint).`}
           </Box>
         </VStack>
       </Section>

@@ -11,7 +11,7 @@ For **any** task that adds or changes **React UI**, **styling with Chakra**, **G
 3. Import **`GDSProvider`** and GDS wrappers (`GDSButton`, `GDSText`, `GDSHeading`, …) from **`@gds-vero/react`**. Import **Chakra** components from **`@chakra-ui/react`**. Import **icons** from **`@gds-vero/icons`**.
 4. Use **semantic tokens** (`fg`, `bg.default`, `colorPalette="brand"`, etc.), not ad-hoc hex colors, unless the user explicitly asks otherwise.
 5. Do **not** replace GDS with MUI, Ant Design, Tailwind UI kits, or other design systems when the user wants GDS.
-6. **GDS compliance:** follow the **GDS-VERO compliance review** section in `GDS_FOR_LLM_AGENTS.md`; end UI deliveries with **Layout**, **GDS compliance**, **Accessibility**, and **Lint** sections (see `.cursor/rules/gds-compliance-review.mdc`).
+6. **GDS compliance:** follow the **GDS-VERO compliance review** section; end **every** UI delivery with the full **Delivery audit report** (PASS / WARNING / FAIL per category) — see `.cursor/rules/gds-compliance-review.mdc`.
 7. **Accessibility:** follow the **Accessibility** and **Accessibility review** sections in `GDS_FOR_LLM_AGENTS.md`; complete the checklist after UI changes (see `.cursor/rules/gds-accessibility.mdc`).
 
 `CLAUDE.md` and `.github/copilot-instructions.md` are **short supplements** only; they do **not** override `GDS_FOR_LLM_AGENTS.md`.

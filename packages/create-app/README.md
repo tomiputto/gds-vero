@@ -34,7 +34,7 @@ Each scaffolded project includes:
 
 - `AGENTS.md` — canonical pointer for Claude Code and other agents
 - `.cursor/rules/gds-llm-agents.mdc` — always-on Cursor rule
-- `.cursor/rules/gds-compliance-review.mdc` — GDS-VERO compliance review + required delivery summary (**Layout**, **GDS compliance**, **Accessibility**, **Lint**)
+- `.cursor/rules/gds-compliance-review.mdc` — GDS-VERO compliance review + mandatory **Delivery audit report** (all categories, PASS / WARNING / FAIL)
 - `.cursor/rules/gds-accessibility.mdc` — WCAG review + lint after UI changes
 - `CLAUDE.md` — Claude Code supplement
 - `.github/copilot-instructions.md` — GitHub Copilot

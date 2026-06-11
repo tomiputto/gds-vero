@@ -14,4 +14,4 @@ Also see **`AGENTS.md`** in the project root. This file is only a short pointer;
 - Import Chakra components from `@chakra-ui/react` (v3 compound APIs only)
 - Import icons from `@gds-vero/icons`
 - Use semantic tokens: `color="fg"`, `bg="bg.subtle"` (page), `bg="bg.default"` (cards), `colorPalette="brand"`
-- After UI work: report **Layout**, **GDS compliance**, **Accessibility**, and **Lint** (see compliance review in the agent guide)
+- After UI work: end with the full **Delivery audit report** (see compliance review in the agent guide)

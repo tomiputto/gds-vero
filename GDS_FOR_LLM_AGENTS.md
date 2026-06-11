@@ -971,6 +971,7 @@ Verify every item against the files you created or changed:
 - [ ] **Component API verified:** every compound used (`Accordion`, `Dialog`, `Tabs`, `Menu`, `Field`, …) matches **GDS docs “Basic” example** or Chakra MCP — slot names were **not** guessed from training data (see **Mandatory: verify component API before coding**)
 - [ ] **Card titles:** use **`Card.Title`** / **`Card.Description`** — not `GDSText`/`Text`/`GDSHeading` as title; no `fontSize`/`textStyle` on `Card.Title` (theme → 20px)
 - [ ] **Vero.fi header:** use **`VeroMainHeader`** from `@gds-vero/react` — not a custom `Box`/`Flex` header (see verified pattern in **Component selection guide**)
+- [ ] **Responsive layout:** uses Chakra responsive props (`base` / `md` / `lg`), `Stack` / `SimpleGrid` / `Flex` with `direction` / `wrap` — not fixed pixel widths that break on small viewports; wide tables use `Table.ScrollArea`; touch targets remain usable on mobile
 
 ### 2. Automated checks
 
@@ -990,24 +991,64 @@ npm run lint
 # or: pnpm lint
 ```
 
-### 3. Report to the user (required format)
+### 3. Delivery audit report (required — every UI task)
 
-**End every UI delivery** with a short summary that includes these sections (use the headings exactly):
+**End every UI delivery** with the **full audit report below**. Use the **headings exactly**. Fill **every subsection** — do not omit categories, do not collapse into one line, do not skip because the user only asked for a layout or component.
 
-**Layout** — files created/changed and what each does (bullet list).
+**Compliance status rules:**
 
-**GDS compliance** — overall **Pass** or **Issues found**:
+| Status | When to use |
+|--------|-------------|
+| **PASS** | All categories below are compliant; no unfixed violations |
+| **WARNING** | Minor issues, intentional deviations (documented), or checks that could not be run (explain why) — deliverable is usable |
+| **FAIL** | Blocking GDS, a11y, or lint violations remain unfixed |
 
-- If pass: one line, e.g. `GDS compliance: pass — imports, Chakra v3 APIs, semantic tokens, vero surfaces, typography, and compound APIs match GDS docs.`
-- If issues: for **each** violation:
-  - **Violation:** what broke the rule (file/component + brief reason)
-  - **Fix:** specific change (import path, prop, token, or API to use)
+Overall **Compliance Status** = worst status among categories (any **FAIL** → overall **FAIL**; else any **WARNING** → overall **WARNING**; else **PASS**).
 
-**Accessibility** — outcome of the accessibility checklist (see next section).
+Copy this template and fill it in:
 
-**Lint:** `clean` or what was fixed.
+---
 
-Do **not** skip the **GDS compliance** section when the user only asked for a layout or component — compliance review is part of the deliverable.
+**Preview URL**
+
+- Local dev URL, Canvas/preview link, or docs example route — e.g. `http://localhost:5173/...` or `https://tomiputto.github.io/gds-vero/...`
+- If no preview exists: `Not available — dev server not started` (still include this line)
+
+**Implementation summary**
+
+- Bullet list of files created/changed and what each does (2–5 bullets).
+
+**GDS-VERO Compliance Review**
+
+Report **PASS**, **WARNING**, or **FAIL** for **each** category. One line minimum per category; add **Violation** / **Fix** pairs when not PASS.
+
+**Design System** — stack and imports only `@gds-vero/*` + Chakra v3; `GDSProvider` / wrappers from `@gds-vero/react`; Chakra compounds from `@chakra-ui/react`; icons from `@gds-vero/icons`; no MUI / Ant Design / Tailwind UI kits / `react-icons`.
+
+**Chakra v3 API** — compound slot names match GDS docs “Basic” example (not v2: `Modal`, `FormControl`, flat `Card`, `Table`/`Thead`, …); component choice correct (`Dialog` vs `Drawer`, `Field` vs raw inputs, etc.); APIs verified against docs — not guessed from training data.
+
+**Surface tokens** — semantic tokens (`fg`, `bg.default`, `bg.subtle`, `border.emphasized`, `colorPalette="brand"`); page/canvas `bg.subtle`; content cards `Card.Root variant="outline"` — not `bg.muted` on cards; no ad-hoc hex on UI.
+
+**Typography** — page/section headings on `GDSHeading` with correct `as`; card titles on `Card.Title` / `Card.Description` (not `GDSText` bold); body on `GDSText textStyle="body"` or `"caption"` (not `textStyle="sm"` / `"md"`); no unnecessary manual `fontSize` on themed Chakra slots.
+
+**Accessibility** — labels, errors, `aria-label` on icon buttons, heading hierarchy, landmarks, dialog titles, keyboard/focus, contrast via tokens — per **Accessibility review** checklist below.
+
+**Responsive layout** — layout adapts across breakpoints; no horizontal overflow on narrow viewports unless intentionally scroll-wrapped (`Table.ScrollArea`, etc.).
+
+**Deviations**
+
+- `None` — or list each intentional deviation with brief justification.
+
+**Compliance Status:** **PASS** | **WARNING** | **FAIL** — one-line summary (e.g. `PASS — all categories compliant; lint clean`).
+
+**Recommended follow-ups**
+
+- Bullet list of optional next steps (tests, edge cases, missing routes, i18n, etc.) — use `None` if nothing to suggest.
+
+**Lint:** `clean` | `not run (<reason>)` | `fixed: …`
+
+---
+
+Do **not** skip this audit report for any UI deliverable. Custom GPT and external agents must include it in every response that ships or changes React UI.
 
 ---
 
@@ -1047,7 +1088,9 @@ npm run lint
 
 ### 3. Report to the user
 
-Briefly state accessibility review outcome, e.g. “A11y review: labels, dialog close button, and alert role added; lint clean.” If something was skipped (no lint in project), say what you verified manually.
+Include **Accessibility** results inside the **Delivery audit report** (category **Accessibility** under **GDS-VERO Compliance Review**) — see previous section. Do not report accessibility in a separate ad-hoc format.
+
+If lint was run, also reflect outcome under **Lint** in that same audit report.
 
 ---
 

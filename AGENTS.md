@@ -27,7 +27,7 @@ Configure your assistant with a rule that **requires** following that file for a
 - **`GDS_NPM_RELEASE_NOTES.md`** — npm version changes for Custom GPT / external agents (bundled in `@gds-vero/react`).
 - **`CLAUDE.md`** — monorepo layout and package roles (supplementary only).
 - **`.cursor/rules/gds-llm-agents.mdc`** — Cursor: always apply GDS agent rules.
-- **`.cursor/rules/gds-compliance-review.mdc`** — Cursor: mandatory GDS-VERO design-system compliance review + delivery summary after UI changes.
+- **`.cursor/rules/gds-compliance-review.mdc`** — Cursor: mandatory GDS-VERO compliance review + **Delivery audit report** after every UI change.
 - **`.cursor/rules/gds-accessibility.mdc`** — Cursor: mandatory WCAG 2.1 AA review + lint after UI changes.
 - **`.cursor/rules/figma-tokens.mdc`** — only the Figma → `tokens.raw.json` sync workflow.
 - **`.cursor/rules/architecture-docs.mdc`** — keep architecture docs in sync when structure, packages, Code Connect, create-app, or publish workflow changes.
