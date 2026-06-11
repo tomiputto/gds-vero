@@ -162,9 +162,9 @@ Root: `pnpm gds:tokens:sync:from-mcp` (optional path to MCP JSON file; merges se
 |---------|------------|----------------|
 | tokens | — | `@gds-vero/tokens@0.1.3` |
 | theme | tokens | `@gds-vero/theme@0.1.18` |
-| react | theme, tokens | `@gds-vero/react@0.1.12` |
+| react | theme, tokens | `@gds-vero/react@0.1.13` |
 | icons | — | `@gds-vero/icons` |
-| create-app | — (template lists deps) | `@gds-vero/create-app@0.1.12` |
+| create-app | — (template lists deps) | `@gds-vero/create-app@0.1.13` |
 | cli | — | `@gds-vero/cli@0.1.0` |
 
 - **Publishing:** Use **pnpm** from the monorepo root — **not** `npm publish` inside `packages/*` (npm leaves `workspace:*` in dependencies and breaks consumers). Examples: `pnpm gds:publish:react`, `pnpm gds:publish:theme`, `pnpm gds:publish:create-app`. `workspace:*` is resolved to semver when packing with pnpm. Keep version examples in this table aligned with `packages/*/package.json` or npm after each publish.
