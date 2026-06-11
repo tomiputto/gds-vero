@@ -47,9 +47,10 @@ npm create @gds-vero/app@latest my-project
 
 1. Read **`GDS_FOR_LLM_AGENTS.md`** (rules, Chakra v3 mapping, component selection guide).
 2. Read **this file** for version-specific changes below.
-3. If the user’s `package.json` pins **older** versions, apply **Upgrade guidance** and recommend bumping dependencies.
-4. Assume **`GDSProvider`** wraps the app; use **semantic tokens** (`fg`, `bg.subtle`, `colorPalette="brand"`), not ad-hoc hex.
-5. Docs with examples: https://tomiputto.github.io/gds-vero/
+3. **Before any compound component JSX:** open the matching **GDS docs page** (e.g. `/accordion`) and match the **Basic** example — **never** use Chakra slot names from training data without verification.
+4. If the user’s `package.json` pins **older** versions, apply **Upgrade guidance** and recommend bumping dependencies.
+5. Assume **`GDSProvider`** wraps the app; use **semantic tokens** (`fg`, `bg.subtle`, `colorPalette="brand"`), not ad-hoc hex.
+6. Docs with examples: https://tomiputto.github.io/gds-vero/
 
 ### Custom GPT / external assistants
 
@@ -58,7 +59,7 @@ Upload both files as **knowledge**:
 - `GDS_FOR_LLM_AGENTS.md`
 - `GDS_NPM_RELEASE_NOTES.md` (this file)
 
-In **Instructions**, require checking this file for current versions. After each npm publish, replace the knowledge copy or fetch:
+In **Instructions**, require checking release notes for current versions **and** opening GDS docs for each compound component before coding (Accordion → `/accordion`, Dialog → `/dialog`, …). Training-data Chakra APIs are not trusted.
 
 `https://raw.githubusercontent.com/tomiputto/gds-vero/main/GDS_NPM_RELEASE_NOTES.md`
 

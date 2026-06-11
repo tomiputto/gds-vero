@@ -376,6 +376,129 @@ function AppHeader() {
 
 When generating UI, pick the component from the tables below. **Do not duplicate full APIs here** — use GDS docs, Chakra MCP, or Chakra docs for props and edge cases.
 
+### Mandatory: verify component API before coding (never from memory)
+
+**GDS-VERO compound components use Chakra UI v3 slot names that often differ from Chakra v2 and from generic LLM training data.** Selecting the right component (Accordion vs Collapsible) is **not enough** — you must **confirm the exact slot/subcomponent names** from documentation **before** writing JSX.
+
+**Required workflow for every compound component** (`Accordion`, `Dialog`, `Drawer`, `Tabs`, `Table`, `Menu`, `Field`, `Select`, `Combobox`, `Steps`, `Pagination`, …):
+
+1. **Open the GDS docs page** for that component (see [component index](#component-index-compact)) — e.g. https://tomiputto.github.io/gds-vero/accordion  
+2. **Copy the structure from the “Basic” example** on that page (slot names, nesting, required children).  
+3. **Generate code** to match that structure — do not substitute names from memory.  
+4. **Self-check:** every compound slot in your JSX appears in the docs example or Chakra MCP `get_component_example` output for that component.
+
+**If you cannot verify the API** (no docs page, no MCP, no example in context): **stop and say so** — do not guess slot names.
+
+| Context | How to verify |
+|---------|----------------|
+| **Cursor / Claude in monorepo** | Read `apps/docs/src/pages/design-system/*Page.tsx` for the component, or GDS docs URL, or **Chakra MCP** `get_component_example` |
+| **Custom GPT / external agent** | GDS docs URL (`https://tomiputto.github.io/gds-vero/<path>`) is **source of truth** — training-data Chakra examples are **wrong until verified** |
+| **npm consumer with agent rules** | `GDS_FOR_LLM_AGENTS.md` + docs URL; bundled guide does **not** replace per-component pages |
+
+**Do not:**
+
+- Invent slot names (`Accordion.Trigger` when docs use `Accordion.ItemTrigger`; `Modal.*`; `FormControl`; flat `Select`).
+- Ship a “close enough” Chakra compound from training data without matching GDS docs.
+- Report **GDS compliance: pass** if compound slot names were not verified against docs.
+
+**Accordion — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/accordion — use this, not memory):
+
+```tsx
+import { Accordion, Span } from "@chakra-ui/react";
+import { ChevronDownIcon } from "@gds-vero/icons";
+
+<Accordion.Root collapsible defaultValue={["b"]}>
+  <Accordion.Item value="a">
+    <Accordion.ItemTrigger>
+      <Span flex="1">First item</Span>
+      <Accordion.ItemIndicator>
+        <ChevronDownIcon boxSize="4" />
+      </Accordion.ItemIndicator>
+    </Accordion.ItemTrigger>
+    <Accordion.ItemContent>
+      <Accordion.ItemBody>Content for the first section.</Accordion.ItemBody>
+    </Accordion.ItemContent>
+  </Accordion.Item>
+</Accordion.Root>
+```
+
+Required slots: **`ItemTrigger`**, **`ItemIndicator`** (chevron), **`ItemContent`**, **`ItemBody`**. Do **not** use v2 names (`AccordionButton`, `AccordionIcon`, `AccordionPanel`) or unverified v3 aliases without checking docs.
+
+**Dialog — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/dialog):
+
+```tsx
+import { Dialog, Button, IconButton, Portal } from "@chakra-ui/react";
+import { XIcon } from "@gds-vero/icons";
+
+<Dialog.Root>
+  <Dialog.Trigger asChild>
+    <Button variant="outline">Open Dialog</Button>
+  </Dialog.Trigger>
+  <Portal>
+    <Dialog.Backdrop />
+    <Dialog.Positioner>
+      <Dialog.Content>
+        <Dialog.Header>
+          <Dialog.Title>Dialog Title</Dialog.Title>
+        </Dialog.Header>
+        <Dialog.Body>Content here.</Dialog.Body>
+        <Dialog.Footer>
+          <Dialog.ActionTrigger asChild>
+            <Button variant="outline">Cancel</Button>
+          </Dialog.ActionTrigger>
+          <Button colorPalette="brand">Save</Button>
+        </Dialog.Footer>
+        <Dialog.CloseTrigger asChild>
+          <IconButton size="sm" variant="ghost" aria-label="Close dialog">
+            <XIcon />
+          </IconButton>
+        </Dialog.CloseTrigger>
+      </Dialog.Content>
+    </Dialog.Positioner>
+  </Portal>
+</Dialog.Root>
+```
+
+Required: **`Portal`** wrapper, **`Backdrop`**, **`Positioner`**, **`Content`**, **`Title`**, **`CloseTrigger`** with `aria-label`. Do **not** use v2 **`Modal`**, **`ModalOverlay`**, **`ModalContent`**, **`ModalCloseButton`**.
+
+**Tabs — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/tabs):
+
+```tsx
+import { Tabs, Box } from "@chakra-ui/react";
+
+<Tabs.Root colorPalette="brand" defaultValue="one" variant="line">
+  <Tabs.List>
+    <Tabs.Trigger value="one">Tab one</Tabs.Trigger>
+    <Tabs.Trigger value="two">Tab two</Tabs.Trigger>
+  </Tabs.List>
+  <Tabs.Content value="one">
+    <Box py="4">Content for tab one.</Box>
+  </Tabs.Content>
+  <Tabs.Content value="two">
+    <Box py="4">Content for tab two.</Box>
+  </Tabs.Content>
+</Tabs.Root>
+```
+
+Use **`Tabs.Root`**, **`Tabs.List`**, **`Tabs.Trigger`**, **`Tabs.Content`** with matching **`value`**. Do **not** use v2 **`TabList`**, **`Tab`**, **`TabPanel`**, **`TabPanels`**.
+
+**Field — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/field):
+
+```tsx
+import { Field, Input } from "@chakra-ui/react";
+
+<Field.Root invalid={!!error}>
+  <Field.Label>Email</Field.Label>
+  <Input type="email" placeholder="you@example.com" />
+  <Field.HelperText>We'll never share your email.</Field.HelperText>
+  <Field.ErrorText>{error}</Field.ErrorText>
+</Field.Root>
+```
+
+Use **`Field.Root`**, **`Field.Label`**, **`Field.HelperText`**, **`Field.ErrorText`**, **`invalid`** on root. Do **not** use v2 **`FormControl`**, **`FormLabel`**, **`FormHelperText`**, **`FormErrorMessage`**.
+
+Other high-risk compounds (always open docs first — no verified snippet here): **Drawer**, **Menu**, **Table**, **Steps**, **Select**, **Combobox**, **Toast** (`createToaster` + `Toaster`).
+
 ### GDS docs (component reference)
 
 **Published docs base URL:** https://tomiputto.github.io/gds-vero/
@@ -754,12 +877,14 @@ Verify every item against the files you created or changed:
 - [ ] **Theme typography:** `@gds-vero/theme` **≥ 0.1.17** (Chakra compounds get 18px body from theme — no manual `fontSize` on `Dialog.Body`, `Menu.Item`, etc. unless overriding); Pagination uses `ButtonGroup size="md"`
 - [ ] **Buttons:** primary actions use `GDSButton colorPalette="brand"` or Chakra `Button colorPalette="brand"`
 - [ ] **Component choice:** overlays, forms, and feedback use the right compound (`Dialog` vs `Drawer`, `Switch` vs `Toggle`, `Select` vs `Combobox`, `Alert` vs `Toast`) — see **Component selection guide** in this file
+- [ ] **Component API verified:** every compound used (`Accordion`, `Dialog`, `Tabs`, `Menu`, `Field`, …) matches **GDS docs “Basic” example** or Chakra MCP — slot names were **not** guessed from training data (see **Mandatory: verify component API before coding**)
 
 ### 2. Automated checks
 
 Search touched files for common violations (fix or report):
 
 - Imports from forbidden packages (`@mui/`, `antd`, `react-icons`, Chakra v2 component names)
+- Compound slot names that do not match GDS docs (e.g. `Accordion.Trigger` instead of `Accordion.ItemTrigger`; `Modal.*` instead of `Dialog.*`; `TabList`/`TabPanel` instead of `Tabs.List`/`Tabs.Content`; `FormControl` instead of `Field.Root`)
 - Hardcoded hex colors (`#`, `rgb(`, `hsl(`) on UI elements
 - `textStyle="sm"` or `textStyle="md"` on `GDSText`
 - Manual `fontSize="sm"` / `textStyle="sm"` on Chakra compounds that are already themed (`Dialog`, `Menu`, `Field`, `Table`, …) without a documented reason
@@ -780,7 +905,7 @@ npm run lint
 
 **GDS compliance** — overall **Pass** or **Issues found**:
 
-- If pass: one line, e.g. `GDS compliance: pass — imports, Chakra v3 APIs, semantic tokens, vero surfaces, and typography match GDS-VERO.`
+- If pass: one line, e.g. `GDS compliance: pass — imports, Chakra v3 APIs, semantic tokens, vero surfaces, typography, and compound APIs match GDS docs.`
 - If issues: for **each** violation:
   - **Violation:** what broke the rule (file/component + brief reason)
   - **Fix:** specific change (import path, prop, token, or API to use)

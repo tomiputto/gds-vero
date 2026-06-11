@@ -5,9 +5,10 @@ alwaysApply: true
 
 When you **create or materially change React UI** (`.tsx` / `.jsx`):
 
-1. **Follow** the **GDS-VERO compliance review** section in `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` (stack, imports, Chakra v3, semantic tokens, vero surfaces, typography).
-2. **Complete the checklist** in that section before finishing. Fix violations in code when you can.
-3. **Run `npm run lint` or `pnpm lint`** and fix errors on touched files.
-4. **End your reply** with the required summary sections: **Layout**, **GDS compliance**, **Accessibility**, **Lint** — including **Violation** / **Fix** pairs for any compliance issues.
+1. **Follow** the **GDS-VERO compliance review** section in `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` (stack, imports, Chakra v3, semantic tokens, vero surfaces, typography, **component API verified against GDS docs**).
+2. **Before writing compound components** (`Accordion`, `Dialog`, `Tabs`, `Menu`, `Field`, …): open the GDS docs page (https://tomiputto.github.io/gds-vero/) — do **not** guess slot names from memory.
+3. **Complete the checklist** in that section before finishing. Fix violations in code when you can.
+4. **Run `npm run lint` or `pnpm lint`** and fix errors on touched files.
+5. **End your reply** with the required summary sections: **Layout**, **GDS compliance**, **Accessibility**, **Lint** — including **Violation** / **Fix** pairs for any compliance issues.
 
-Common fixes: import `Card` from `@chakra-ui/react` not `@gds-vero/react`; use `Card.Root variant="outline"` not `bg="bg.muted"`; use `GDSText textStyle="body"` not `textStyle="sm"`; page `bg="bg.subtle"`; Chakra compounds inherit 18px body from `@gds-vero/theme` ≥ 0.1.17 — no manual `fontSize="sm"` on themed components unless overriding.
+Common fixes: import `Card` from `@chakra-ui/react` not `@gds-vero/react`; use `Card.Root variant="outline"` not `bg="bg.muted"`; use `GDSText textStyle="body"` not `textStyle="sm"`; page `bg="bg.subtle"`; verified patterns in agent guide: **Accordion**, **Dialog** (not `Modal`), **Tabs** (not `TabList`), **Field** (not `FormControl`).

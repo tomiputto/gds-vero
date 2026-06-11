@@ -148,6 +148,32 @@ function App() {
       </Section>
 
       <Section
+        title="Verify component API (mandatory)"
+        description="Do not implement compound components from memory — match GDS docs Basic examples."
+      >
+        <VStack align="stretch" gap="2" color="fg.muted">
+          <Text>
+            Selecting the right component (e.g. <RouterLink to="/accordion">Accordion</RouterLink> vs{" "}
+            <RouterLink to="/collapsible">Collapsible</RouterLink>) is not enough. Agents must{" "}
+            <strong>open the GDS docs page</strong> and copy slot names from the <strong>Basic</strong> example
+            before writing JSX. Training-data Chakra APIs are often wrong (v2 names, missing{" "}
+            <Code>ItemIndicator</Code>, etc.).
+          </Text>
+          <Text>
+            See <strong>Mandatory: verify component API before coding</strong> in{" "}
+            <Link href={GITHUB_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              GDS_FOR_LLM_AGENTS.md
+            </Link>
+            — verified snippets for{" "}
+            <RouterLink to="/accordion">Accordion</RouterLink>,{" "}
+            <RouterLink to="/dialog">Dialog</RouterLink>,{" "}
+            <RouterLink to="/tabs">Tabs</RouterLink>, and{" "}
+            <RouterLink to="/field">Field</RouterLink>. <strong>Custom GPT Instructions</strong> must require docs lookup for other compounds before generating code.
+          </Text>
+        </VStack>
+      </Section>
+
+      <Section
         title="Component selection guide"
         description="Which Chakra/GDS component to use — without duplicating full APIs in the agent file."
       >
