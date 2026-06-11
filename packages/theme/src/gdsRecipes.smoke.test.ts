@@ -36,6 +36,23 @@ describe("@gds-vero/theme recipes (smoke)", () => {
     expect(cardRecipe.variants?.variant?.outline?.root?.borderColor).toBe("border.emphasized");
   });
 
+  it("uses 18px body text on dialog and alert slots (not Chakra sm)", () => {
+    const dialog = system.getSlotRecipe("dialog");
+    const alert = system.getSlotRecipe("alert");
+
+    expect(dialog.base?.content).toMatchObject({ textStyle: "body", fontSize: "md" });
+    expect(dialog.base?.body).toMatchObject({ textStyle: "body", fontSize: "md" });
+    expect(dialog.base?.title?.fontSize).toBe("xl");
+    expect(dialog.base?.title?.textStyle).toBe("none");
+
+    expect(alert.base?.root).toMatchObject({ textStyle: "body", fontSize: "md" });
+    expect(alert.base?.title).toMatchObject({ textStyle: "body", fontSize: "md" });
+    expect(alert.variants?.size?.md?.root).toMatchObject({ textStyle: "body", fontSize: "md" });
+
+    const alertMdJson = JSON.stringify(alert.variants?.size?.md ?? {});
+    expect(alertMdJson).not.toContain('"textStyle":"sm"');
+  });
+
   it("uses 18px body text on card description and body slots (not Chakra sm)", () => {
     const cardRecipe = system.getSlotRecipe("card");
     expect(cardRecipe.base?.description).toMatchObject({

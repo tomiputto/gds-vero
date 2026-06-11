@@ -1,5 +1,6 @@
 import { BODY_TEXT_STYLE, bodyTextSizeVariants } from "./vero-body-text";
 import { veroFormSlotRecipes } from "./vero-form-slot-recipes";
+import { veroOverlaySlotRecipes } from "./vero-overlay-slot-recipes";
 
 /**
  * Chakra recipe overrides aligned with vero.fi (Verohallinto) visual patterns.
@@ -285,4 +286,5 @@ export const veroSlotRecipes = {
     },
   },
   ...veroFormSlotRecipes,
+  ...veroOverlaySlotRecipes,
 } as const;
