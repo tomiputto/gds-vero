@@ -5,6 +5,8 @@ import { GDSText as Text } from "@gds-vero/react";
 import { InfoIcon } from "@gds-vero/icons";
 const GITHUB_GUIDE_URL =
   "https://github.com/tomiputto/gds-vero/blob/main/GDS_FOR_LLM_AGENTS.md";
+const GITHUB_COMPONENT_GUIDE_URL = `${GITHUB_GUIDE_URL}#component-selection-guide`;
+const PUBLISHED_DOCS_URL = "https://tomiputto.github.io/gds-vero/";
 
 export function ForAIAgentsPage() {
   return (
@@ -40,6 +42,17 @@ export function ForAIAgentsPage() {
               rel="noopener noreferrer"
             >
               GDS_FOR_LLM_AGENTS.md on GitHub
+            </Link>
+            {" · "}
+            <Link
+              href={GITHUB_COMPONENT_GUIDE_URL}
+              color="brand.solid"
+              fontWeight="semibold"
+              textDecoration="underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Component selection guide
             </Link>
           </HStack>
         </Box>
@@ -122,6 +135,57 @@ function App() {
       </Section>
 
       <Section
+        title="Component selection guide"
+        description="Which Chakra/GDS component to use — without duplicating full APIs in the agent file."
+      >
+        <VStack align="stretch" gap="2" color="fg.muted">
+          <Text>
+            <Code>GDS_FOR_LLM_AGENTS.md</Code> includes a{" "}
+            <Link
+              href={GITHUB_COMPONENT_GUIDE_URL}
+              color="brand.solid"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Component selection guide
+            </Link>{" "}
+            with:
+          </Text>
+          <Text as="ul" ps="4">
+            <li>
+              <strong>Choose X, not Y</strong> — e.g.{" "}
+              <RouterLink to="/switch">Switch</RouterLink> for form settings vs{" "}
+              <RouterLink to="/toggle">Toggle</RouterLink> for toolbar pressed state;{" "}
+              <RouterLink to="/dialog">Dialog</RouterLink> vs{" "}
+              <RouterLink to="/drawer">Drawer</RouterLink>;{" "}
+              <RouterLink to="/select">Select</RouterLink> vs{" "}
+              <RouterLink to="/combobox">Combobox</RouterLink>;{" "}
+              <RouterLink to="/alert">Alert</RouterLink> vs{" "}
+              <RouterLink to="/toast">Toast</RouterLink>.
+            </li>
+            <li>
+              <strong>Task → component</strong> — common UI tasks mapped to imports and docs paths.
+            </li>
+            <li>
+              <strong>Component index</strong> — compact list of all documented components by category.
+            </li>
+          </Text>
+          <Text>
+            For examples and accessibility notes per component, use this docs site (
+            <Link href={PUBLISHED_DOCS_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              {PUBLISHED_DOCS_URL}
+            </Link>
+            ) or browse from the sidebar — paths match the guide (e.g. <Code>/dialog</Code>,{" "}
+            <Code>/field</Code>).
+          </Text>
+          <Text>
+            Components without a GDS docs page yet (e.g. DatePicker, Tag): Chakra v3 docs or Chakra MCP — still
+            follow compound APIs in the guide.
+          </Text>
+        </VStack>
+      </Section>
+
+      <Section
         title="Scaffold with agent rules (recommended)"
         description="create-app ships Cursor, Claude, and Copilot configuration automatically."
       >
@@ -153,8 +217,8 @@ function App() {
         <VStack align="stretch" gap="2" color="fg.muted">
           <Text>
             The guide includes <strong>GDS-VERO compliance review (mandatory for agents)</strong> with a
-            checklist (imports, Chakra v3, semantic tokens, vero surfaces, typography) and a required
-            delivery summary.
+            checklist (imports, Chakra v3, semantic tokens, vero surfaces, typography, component choice) and a
+            required delivery summary.
           </Text>
           <Text>
             End UI tasks with: <strong>Layout</strong>, <strong>GDS compliance</strong> (pass or{" "}
@@ -213,6 +277,7 @@ Rules (must follow):
 - Use @gds-vero/icons for icons (e.g. CheckIcon, XIcon).
 - Use semantic tokens (color="fg", fg.muted, bg.default/bg.subtle, colorPalette="brand") wherever applicable.
 - Wrap the React root in GDSProvider.
+- Pick components using GDS_FOR_LLM_AGENTS.md Component selection guide (Switch vs Toggle, Dialog vs Drawer, etc.).
 
 Output:
 Provide complete React + TSX code (no pseudocode) for the page.`}
@@ -223,6 +288,8 @@ Provide complete React + TSX code (no pseudocode) for the page.`}
       <Section title="Links" description="Repository, npm packages, and docs.">
         <VStack align="stretch" gap="1">
           <Link href={GITHUB_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_FOR_LLM_AGENTS.md (GitHub)</Link>
+          <Link href={GITHUB_COMPONENT_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">Component selection guide (GitHub anchor)</Link>
+          <Link href={PUBLISHED_DOCS_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">Published GDS docs</Link>
           <Link href="https://github.com/tomiputto/gds-vero" color="brand.solid" target="_blank" rel="noopener noreferrer">Repository (GitHub)</Link>
           <Link href="https://www.npmjs.com/package/@gds-vero/react" color="brand.solid" target="_blank" rel="noopener noreferrer">@gds-vero/react</Link>
           <Link href="https://www.npmjs.com/package/@gds-vero/theme" color="brand.solid" target="_blank" rel="noopener noreferrer">@gds-vero/theme</Link>

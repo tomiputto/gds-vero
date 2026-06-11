@@ -1,5 +1,11 @@
 import { BODY_TEXT_STYLE, bodyTextSizeVariants } from "./vero-body-text";
+import { veroTextRecipes, veroTextSlotRecipes } from "./vero-text-recipes";
+import { veroContentSlotRecipes } from "./vero-content-slot-recipes";
+import { veroFeedbackSlotRecipes } from "./vero-feedback-slot-recipes";
 import { veroFormSlotRecipes } from "./vero-form-slot-recipes";
+import { veroMiscSlotRecipes } from "./vero-misc-slot-recipes";
+import { veroNavSlotRecipes } from "./vero-nav-slot-recipes";
+import { veroPickerSlotRecipes } from "./vero-picker-slot-recipes";
 import { veroOverlaySlotRecipes } from "./vero-overlay-slot-recipes";
 
 /**
@@ -91,6 +97,7 @@ export const veroRecipes = {
   },
   link: {
     base: {
+      ...BODY_TEXT_STYLE,
       fontWeight: "normal",
       transitionDuration: "200ms",
     },
@@ -130,40 +137,48 @@ export const veroRecipes = {
       size: {
         /** h1 – 42px / 4.2rem */
         "4xl": {
+          textStyle: "none",
           fontSize: "4xl",
           lineHeight: "1.25",
         },
         /** h2 – 34px / 3.4rem */
         "3xl": {
+          textStyle: "none",
           fontSize: "3xl",
           lineHeight: "1.25",
         },
         /** h3 – 24px / 2.4rem */
         "2xl": {
+          textStyle: "none",
           fontSize: "2xl",
           lineHeight: "1.25",
         },
         /** h4 – 20px */
         xl: {
+          textStyle: "none",
           fontSize: "xl",
           lineHeight: "1.25",
         },
         /** h5 – 16px */
         lg: {
+          textStyle: "none",
           fontSize: "lg",
           lineHeight: "1.25",
         },
         /** h6 – 14px (body token md is 18px) */
         md: {
+          textStyle: "none",
           fontSize: "14px",
           lineHeight: "1.25",
         },
         sm: {
-          fontSize: "sm",
+          textStyle: "none",
+          fontSize: "lg",
           lineHeight: "1.25",
         },
         xs: {
-          fontSize: "xs",
+          textStyle: "none",
+          fontSize: "md",
           lineHeight: "1.25",
         },
       },
@@ -209,8 +224,14 @@ export const veroRecipes = {
     base: {
       borderRadius: "sm",
       fontWeight: "normal",
+      ...veroTextRecipes.badge.base,
+    },
+    variants: {
+      size: veroTextRecipes.badge.variants.size,
     },
   },
+  kbd: veroTextRecipes.kbd,
+  code: veroTextRecipes.code,
 } as const;
 
 /** Slot recipes (Card, CheckboxCard, NativeSelect, …) — must live in theme.slotRecipes, not recipes. */
@@ -287,4 +308,10 @@ export const veroSlotRecipes = {
   },
   ...veroFormSlotRecipes,
   ...veroOverlaySlotRecipes,
+  ...veroNavSlotRecipes,
+  ...veroFeedbackSlotRecipes,
+  ...veroPickerSlotRecipes,
+  ...veroContentSlotRecipes,
+  ...veroTextSlotRecipes,
+  ...veroMiscSlotRecipes,
 } as const;

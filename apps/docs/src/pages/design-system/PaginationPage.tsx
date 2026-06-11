@@ -21,7 +21,7 @@ export function PaginationPage() {
         code={`import { ButtonGroup, IconButton, Pagination } from "@chakra-ui/react";
 
 <Pagination.Root count={20} pageSize={2} defaultPage={1} colorPalette="brand">
-  <ButtonGroup variant="ghost" size="sm">
+  <ButtonGroup variant="ghost" size="md">
 <Pagination.PrevTrigger asChild>
               <IconButton aria-label="Previous page" colorPalette="brand">
                 <ChevronLeftIcon />
@@ -43,7 +43,7 @@ export function PaginationPage() {
 </Pagination.Root>`}
       >
         <Pagination.Root count={20} pageSize={2} defaultPage={1} colorPalette="brand">
-          <ButtonGroup variant="ghost" size="sm">
+          <ButtonGroup variant="ghost" size="md">
             <Pagination.PrevTrigger asChild>
               <IconButton aria-label="Previous page" colorPalette="brand">
                 <ChevronLeftIcon />

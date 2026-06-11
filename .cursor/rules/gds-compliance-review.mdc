@@ -10,6 +10,6 @@ When you **create or materially change React UI** (`.tsx` / `.jsx`):
 3. **Run lint** when available (`pnpm --filter docs lint` in monorepo; `npm run lint` / `pnpm lint` in scaffolded apps).
 4. **End your reply** with the required summary sections: **Layout**, **GDS compliance**, **Accessibility**, **Lint** — including **Violation** / **Fix** pairs for any compliance issues.
 
-Common fixes: import `Card` from `@chakra-ui/react` not `@gds-vero/react`; use `Card.Root variant="outline"` not `bg="bg.muted"`; use `GDSText textStyle="body"` not `textStyle="sm"`; page `bg="bg.subtle"`.
+Common fixes: import `Card` from `@chakra-ui/react` not `@gds-vero/react`; use `Card.Root variant="outline"` not `bg="bg.muted"`; use `GDSText textStyle="body"` not `textStyle="sm"`; page `bg="bg.subtle"`; Chakra compounds (`Dialog`, `Menu`, `Field`, …) inherit 18px body from `@gds-vero/theme` ≥ 0.1.17 — do not add manual `fontSize="sm"` unless overriding.
 
 Canonical guide: `GDS_FOR_LLM_AGENTS.md` (monorepo root) or `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` (scaffolded apps).

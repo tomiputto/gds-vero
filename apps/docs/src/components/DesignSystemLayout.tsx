@@ -24,6 +24,7 @@ const NAV_ITEMS: Array<{ path: string; label: string; section?: string; group?: 
   { path: "/link", label: "Link", section: "Components", group: "Typography" },
   { path: "/button", label: "Button", section: "Components", group: "Buttons" },
   { path: "/icon-button", label: "Icon Button", section: "Components", group: "Buttons" },
+  { path: "/toggle", label: "Toggle", section: "Components", group: "Buttons" },
   { path: "/checkbox", label: "Checkbox", section: "Components", group: "Forms" },
   { path: "/checkbox-card", label: "Checkbox Card", section: "Components", group: "Forms" },
   { path: "/field", label: "Field", section: "Components", group: "Forms" },

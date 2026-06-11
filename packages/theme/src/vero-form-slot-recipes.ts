@@ -1,11 +1,15 @@
 import {
   BODY_TEXT_STYLE,
+  bodyTextEditableSizes,
+  bodyTextNativeSelectSizes,
+  bodyTextNumberInputSizes,
+  bodyTextPinInputSizes,
   bodyTextRootSizes,
+  bodyTextSegmentItemSizes,
+  bodyTextSelectSlotSizes,
   bodyTextSlotSizes,
-  bodyTextSlotsPerSize,
+  bodyTextTagsInputSizes,
 } from "./vero-body-text";
-
-const FORM_SIZES = ["sm", "md", "lg", "xl", "2xl"] as const;
 
 /**
  * Form-related slot recipe typography overrides (vero.fi body = 18px).
@@ -46,19 +50,17 @@ export const veroFormSlotRecipes = {
   },
   numberInput: {
     variants: {
-      size: bodyTextSlotSizes("input"),
+      size: bodyTextNumberInputSizes(),
     },
   },
   pinInput: {
     variants: {
-      size: bodyTextSlotSizes("input"),
+      size: bodyTextPinInputSizes(),
     },
   },
   nativeSelect: {
     variants: {
-      size: {
-        ...bodyTextSlotSizes("field"),
-      },
+      size: bodyTextNativeSelectSizes(),
       variant: {
         outline: {
           field: {
@@ -78,7 +80,7 @@ export const veroFormSlotRecipes = {
       label: BODY_TEXT_STYLE,
     },
     variants: {
-      size: bodyTextSlotsPerSize(["trigger", "content"]),
+      size: bodyTextSelectSlotSizes(["trigger", "content"]),
     },
   },
   combobox: {
@@ -86,9 +88,7 @@ export const veroFormSlotRecipes = {
       label: BODY_TEXT_STYLE,
     },
     variants: {
-      size: {
-        ...bodyTextSlotsPerSize(["input", "content", "trigger"]),
-      },
+      size: bodyTextSelectSlotSizes(["input", "content", "trigger"]),
     },
   },
   tagsInput: {
@@ -97,16 +97,7 @@ export const veroFormSlotRecipes = {
       input: BODY_TEXT_STYLE,
     },
     variants: {
-      size: Object.fromEntries(
-        FORM_SIZES.map((size) => [
-          size,
-          {
-            root: { ...BODY_TEXT_STYLE },
-            input: { ...BODY_TEXT_STYLE },
-            itemPreview: { ...BODY_TEXT_STYLE },
-          },
-        ]),
-      ),
+      size: bodyTextTagsInputSizes(),
     },
   },
   listbox: {
@@ -121,10 +112,21 @@ export const veroFormSlotRecipes = {
       input: BODY_TEXT_STYLE,
       textarea: BODY_TEXT_STYLE,
     },
+    variants: {
+      size: bodyTextEditableSizes(),
+    },
   },
   segmentGroup: {
+    base: {
+      item: {
+        ...BODY_TEXT_STYLE,
+      },
+      itemText: {
+        ...BODY_TEXT_STYLE,
+      },
+    },
     variants: {
-      size: bodyTextSlotSizes("item"),
+      size: bodyTextSegmentItemSizes(),
     },
   },
   checkboxCard: {

@@ -1,6 +1,6 @@
 {
   "name": "@gds-vero/theme",
-  "version": "0.1.10",
+  "version": "0.1.18",
   "private": false,
   "type": "module",
   "scripts": {
@@ -10,7 +10,7 @@
     ".": "./src/index.ts"
   },
   "dependencies": {
-    "@chakra-ui/react": "^3.0.0",
+    "@chakra-ui/react": "^3.34.0",
     "@emotion/react": "^11.0.0",
     "@gds-vero/tokens": "workspace:*"
   },

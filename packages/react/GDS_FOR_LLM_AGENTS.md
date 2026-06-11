@@ -134,6 +134,59 @@ GDS defines **named text styles** in the theme (`@gds-vero/theme`): `display`, `
 - Hierarchy example: card title `GDSHeading size="xl" as="h2"`; lead copy `GDSText textStyle="body"`; secondary copy `GDSText textStyle="caption" color="fg.muted"`.
 - Optional: `fontSize="md"` on `GDSText` uses the Figma **type scale** (`xs`–`4xl`) when you need a specific step, separate from `textStyle`.
 
+### Theme typography — Chakra components (automatic)
+
+**`@gds-vero/theme` (≥ `0.1.17`)** overrides Chakra **recipes** and **slot recipes** so compound components use **vero.fi body typography (18px / `textStyle: "body"`)** instead of Chakra defaults (`textStyle: "sm"` ≈ 12px, `textStyle: "xs"` ≈ 10–12px). Apps wrapped in **`GDSProvider`** get this without per-component `fontSize` props.
+
+**Agents do not need to patch theme typography in app code** when using standard Chakra compounds (`Dialog`, `Menu`, `Field`, `Table`, `Tabs`, `Toast`, `Select`, …). Upgrade the theme package and restart the dev server if typography looks like 12px.
+
+**Agents must still:**
+
+- Use **`GDSText`** / **`GDSHeading`** for page and card copy (see rules above) — do not rely on theme alone for arbitrary `Text` / `Heading` in app layouts.
+- Avoid **`textStyle="sm"`** or **`textStyle="md"`** on **`GDSText`** (those are Chakra size names, not GDS text styles).
+- **Pagination:** use **`ButtonGroup size="md"`** with `IconButton` — star/page buttons take typography from the **button** recipe; `size="sm"` stays 12px.
+- **DatePicker:** requires **`@chakra-ui/react` ≥ 3.34** (component + theme slot recipe).
+
+**Global defaults** (from theme `globalCss`): `html` / `body` use **`fontSize: "md"`** (18px) and **`bg.subtle`** page background.
+
+#### Coverage (theme slot/recipe batches)
+
+| Area | Components | Notes |
+|------|------------|--------|
+| Overlays | `Dialog`, `Drawer`, `Alert`, `Menu`, `Popover`, `Tooltip`, `HoverCard`, `FloatingPanel` | Dialog/drawer/floating-panel titles → **20px (`xl`)** |
+| Navigation / data | `Tabs`, `Table`, `Breadcrumb`, `Pagination` (slots), `DataList` | Pagination triggers often `asChild` → use button **md** |
+| Feedback | `Toast`, `Progress`, `ProgressCircle`, `EmptyState`, `Status` | EmptyState titles scale by size; stat **values** stay large |
+| Pickers / tags | `DatePicker`, `ColorPicker`, `Tag` | DatePicker needs Chakra ≥ 3.34 |
+| Content | `Accordion`, `Collapsible`, `Steps`, `Timeline`, `Stat`, `Card` | Stat **`valueText`** keeps xl/2xl/3xl for numbers |
+| Inline / text | `Badge`, `Kbd`, `Code`, `Blockquote`, `List`, `Avatar`, `SegmentGroup`, `Link`, `Heading` | Avatar **2xs–sm** initials use **caption** (fits circle) |
+| Forms | `Field`, `Input`, `Textarea`, `Select`, `Combobox`, `Checkbox`, … incl. **xs** sizes | See `vero-form-slot-recipes.ts` |
+| Misc | `FileUpload`, `Slider`, `ActionBar`, `RatingGroup` (xs stars only), `Toggle` | Rating **md/lg** star size unchanged; Toggle often uses `asChild` + `Button` **md** |
+
+#### Intentional exceptions (do not “fix” in app code)
+
+- **`Stat.ValueText`** — large numeric display (xl / 2xl / 3xl by size).
+- **`RatingGroup`** **md/lg** — `textStyle` controls star **icon** em-size, not body copy.
+- **`Avatar`** **2xs / xs / sm** — caption-scale initials so letters fit the circle.
+- **`GDSButton` / `Button`** — vero button sizes use their own scale (md → `textStyle: "lg"`, etc.); not 18px body on every button size.
+- **`Slider` markers** — caption-scale tick labels.
+
+#### Maintainer map (`packages/theme/src/`)
+
+| File | Role |
+|------|------|
+| `vero-body-text.ts` | `BODY_TEXT_STYLE`, helpers (`bodyTextSlotSizes`, …) |
+| `vero-overlay-slot-recipes.ts` | Dialog, drawer, menu, popover, tooltip, alert |
+| `vero-nav-slot-recipes.ts` | Tabs, table, breadcrumb, pagination |
+| `vero-feedback-slot-recipes.ts` | Toast, progress, empty state, status |
+| `vero-picker-slot-recipes.ts` | DatePicker, color picker, tag |
+| `vero-content-slot-recipes.ts` | Accordion, steps, timeline, stat labels, data list |
+| `vero-text-recipes.ts` | Badge, kbd, code, blockquote, list, avatar |
+| `vero-misc-slot-recipes.ts` | File upload, slider, hover card, action bar, rating xs, **toggle** |
+| `vero-form-slot-recipes.ts` | Field, select, combobox, checkbox, … |
+| `vero-recipes.ts` | Button, link, heading, input, card, … |
+
+Smoke tests: `packages/theme/src/gdsRecipes.smoke.test.ts`.
+
 ---
 
 ## Forms (Field API)
@@ -315,24 +368,258 @@ function AppHeader() {
 
 ## Component selection guide
 
-When generating code for common UI tasks, use these patterns:
+When generating UI, pick the component from the tables below. **Do not duplicate full APIs here** — use GDS docs, Chakra MCP, or Chakra docs for props and edge cases.
 
-| Task | Use |
-|------|-----|
-| App root | `GDSProvider` from `@gds-vero/react` |
-| Body text | `GDSText` (`textStyle="body"` / `"caption"`) from `@gds-vero/react` |
-| Headings | `GDSHeading` (`size="xl"` etc.) from `@gds-vero/react` |
-| Primary button | `Button colorPalette="brand"` from `@chakra-ui/react` |
-| Form field with label | `Field.Root` + `Field.Label` + `Input` from `@chakra-ui/react` |
-| Card layout | `Card.Root` + `Card.Header` + `Card.Body` + `Card.Footer` from `@chakra-ui/react` |
-| Modal / dialog | `Dialog.Root` (+ Portal, Backdrop, Positioner, Content) from `@chakra-ui/react` |
-| Feedback banner | `Alert.Root` + `Alert.Indicator` + `Alert.Content` from `@chakra-ui/react` |
-| Data table | `Table.Root` + `Table.Header` + `Table.Body` + `Table.Row` + `Table.Cell` from `@chakra-ui/react` |
-| Horizontal rule | `Separator` from `@chakra-ui/react` |
-| Icons | `<CheckIcon />`, `<XIcon />` etc. from `@gds-vero/icons` |
-| Tabs | `Tabs.Root` + `Tabs.List` + `Tabs.Trigger` + `Tabs.Content` from `@chakra-ui/react` |
-| Dropdown menu | `Menu.Root` + `Menu.Trigger` + `Menu.Positioner` + `Menu.Content` + `Menu.Item` from `@chakra-ui/react` |
-| Toast notifications | `Toaster` + `createToaster` from `@chakra-ui/react` |
+### GDS docs (component reference)
+
+**Published docs base URL:** https://tomiputto.github.io/gds-vero/
+
+Append a path from the [component index](#component-index-compact) (e.g. `/dialog`, `/field`, `/toggle`). Pages include examples and accessibility notes.
+
+**When a component has no GDS docs page** (see index footnotes): use [Chakra UI v3 docs](https://chakra-ui.com/docs) or the **Chakra MCP** tool `get_component_example` — still follow **Chakra v3 compound APIs** and import rules from this file.
+
+**In this monorepo:** same content lives in `apps/docs` (`DesignSystemLayout.tsx` nav paths match the URLs above).
+
+### Choose X, not Y
+
+| Need | Use | Do not use |
+|------|-----|------------|
+| Form on/off setting (preferences, settings) | `Switch.Root` + `Switch.Label` | `Toggle`, lone `Checkbox` for a single boolean preference |
+| Toolbar / formatting pressed state (bold, italic, align) | `Toggle.Root asChild` + `Button` or `IconButton` | `Switch`, plain `Button` without `Toggle` semantics |
+| Single option in a multi-select list | `Checkbox` | `Switch` |
+| Mutually exclusive options (few, all visible) | `RadioGroup` or `SegmentGroup` | `Select`, `Menu` |
+| Pick one from a list (no search) | `Select` | `Combobox`, `Menu` |
+| Searchable or async dropdown | `Combobox` | `Select`, `Menu` |
+| Styled native `<select>` | `NativeSelect.Root` + `NativeSelect.Field` | v2 flat `Select` import (see mapping table) |
+| Focused modal task (confirm, form) | `Dialog` | `Drawer`, full-screen `Popover` |
+| Side panel (filters, mobile nav, details) | `Drawer` | `Dialog` as a side sheet hack |
+| Anchored panel with actions / form | `Popover` | `Dialog` for lightweight context |
+| Rich preview on hover (card summary) | `HoverCard` | `Tooltip` with long content |
+| Short hint on hover/focus | `Tooltip` | `Popover` for one line of text |
+| Persistent page/section message | `Alert` | `Toast` |
+| Transient feedback after an action | `Toast` (`createToaster` + `Toaster`) | disappearing inline `Alert` |
+| Compact status in table/list (dot + label) | `Status` | `Badge` alone without status semantics |
+| Body copy and hierarchy | `GDSText`, `GDSHeading` | Chakra `Text` / `Heading` for main page content |
+| Primary / secondary actions | `GDSButton` or `Button` | `Box` / `div` with `onClick` |
+| Navigation between routes | Chakra `Link` or router `Link` + GDS tokens | `Button` pretending to be a link |
+| Section divider | `Separator` | `Divider` (Chakra v2 — not exported) |
+| One expandable block | `Collapsible` | custom show/hide without ARIA |
+| FAQ / multiple expandable sections | `Accordion` | stacked `Collapsible` without group semantics |
+| Multi-step flow (wizard, checkout) | `Steps` | manual numbered boxes |
+| Tabular data with column headers | `Table` | CSS `Grid` mimicking a table |
+| Label–value pairs (profile, summary) | `DataList` | unstyled `Stack` of `Text` |
+| File picker with drag-and-drop UI | `FileUpload` | bare `<input type="file">` without `Field` |
+| vero.fi site header | `VeroMainHeader` (`@gds-vero/react`) | one-off header unless user asks |
+| Page numbers / prev–next | `Pagination` + **`ButtonGroup size="md"`** | `ButtonGroup size="sm"` (12px triggers) |
+| Loading placeholder for layout | `Skeleton` | empty `Box` |
+| Loading in button or small area | `Spinner` | text-only “Loading…” |
+| No results / empty list | `EmptyState` | lone muted `Text` |
+| OTP / verification code | `PinInput` | several separate `Input`s |
+| Password with show/hide | `PasswordInput` | plain `Input type="password"` without accessible toggle |
+| Star rating input | `RatingGroup` | manual icon `Button`s |
+| Date picking (calendar UI) | `DatePicker` (Chakra ≥ 3.34) | plain `Input type="date"` unless native is intentional |
+| Charts / graphs | `@chakra-ui/charts` (separate npm package) | invent chart markup with `Box` |
+
+### Task → component (extended)
+
+| Task | Component | Import from | GDS docs |
+|------|-----------|-------------|----------|
+| App root + theme | `GDSProvider` | `@gds-vero/react` | `/guides/start-using-gds` |
+| Body text | `GDSText` (`textStyle="body"` / `"caption"`) | `@gds-vero/react` | `/styles/text` |
+| Headings | `GDSHeading` (`size="xl"`, `as="h2"`, …) | `@gds-vero/react` | `/styles/text` |
+| Primary button | `GDSButton` or `Button colorPalette="brand"` | `@gds-vero/react` / `@chakra-ui/react` | `/button` |
+| Icon-only action | `IconButton` + `aria-label` | `@chakra-ui/react` | `/icon-button` |
+| Toolbar toggle | `Toggle.Root asChild` + `Button` / `IconButton` | `@chakra-ui/react` | `/toggle` |
+| Form field (label, help, error) | `Field.Root` + `Field.Label` + control + `Field.ErrorText` | `@chakra-ui/react` | `/field` |
+| Group of related fields | `Fieldset.Root` + `Fieldset.Legend` | `@chakra-ui/react` | `/fieldset` |
+| Text input | `Input` inside `Field` | `@chakra-ui/react` | `/input` |
+| Multiline text | `Textarea` inside `Field` | `@chakra-ui/react` | `/textarea` |
+| Input with prefix/suffix icon | `InputGroup` | `@chakra-ui/react` | `/input-group` |
+| Number with steppers | `NumberInput` | `@chakra-ui/react` | `/number-input` |
+| Dropdown (no search) | `Select` | `@chakra-ui/react` | `/select` |
+| Searchable dropdown | `Combobox` | `@chakra-ui/react` | `/combobox` |
+| Listbox (custom list picker) | `Listbox` | `@chakra-ui/react` | `/listbox` |
+| Tree hierarchy | `TreeView` | `@chakra-ui/react` | `/tree-view` |
+| Tags / chips entry | `TagsInput` | `@chakra-ui/react` | `/tags-input` |
+| On/off setting | `Switch` | `@chakra-ui/react` | `/switch` |
+| Checkbox | `Checkbox` / `CheckboxCard` | `@chakra-ui/react` | `/checkbox`, `/checkbox-card` |
+| Radio set | `RadioGroup` / `RadioCard` | `@chakra-ui/react` | `/radio`, `/radio-card` |
+| Segmented control | `SegmentGroup` | `@chakra-ui/react` | `/segment-group` |
+| Range value | `Slider` | `@chakra-ui/react` | `/slider` |
+| File upload | `FileUpload` | `@chakra-ui/react` | `/file-upload` |
+| Card layout | `Card.Root variant="outline"` + sections | `@chakra-ui/react` | `/card` |
+| Modal dialog | `Dialog` (+ `Portal`, `Backdrop`, …) | `@chakra-ui/react` | `/dialog` |
+| Side drawer | `Drawer` | `@chakra-ui/react` | `/drawer` |
+| Dropdown commands | `Menu` | `@chakra-ui/react` | `/menu` |
+| Anchored popover | `Popover` | `@chakra-ui/react` | `/popover` |
+| Hover preview | `HoverCard` | `@chakra-ui/react` | `/hover-card` |
+| Tooltip | `Tooltip` | `@chakra-ui/react` | `/tooltip` |
+| Toast | `Toaster` + `createToaster` | `@chakra-ui/react` | `/toast` |
+| Bottom / selection action bar | `ActionBar` | `@chakra-ui/react` | `/action-bar` |
+| Inline alert banner | `Alert` | `@chakra-ui/react` | `/alert` |
+| Empty state | `EmptyState` | `@chakra-ui/react` | `/empty-state` |
+| Progress bar / circle | `Progress` / `ProgressCircle` | `@chakra-ui/react` | `/progress`, `/progress-circle` |
+| Data table | `Table` (+ `Table.ScrollArea` if needed) | `@chakra-ui/react` | `/table` |
+| Key–value list | `DataList` | `@chakra-ui/react` | `/data-list` |
+| Stat / KPI block | `Stat` | `@chakra-ui/react` | `/stat` |
+| Tabs | `Tabs` | `@chakra-ui/react` | `/tabs` |
+| Accordion | `Accordion` | `@chakra-ui/react` | `/accordion` |
+| Breadcrumb | `Breadcrumb` | `@chakra-ui/react` | `/breadcrumb` |
+| Pagination | `Pagination` + `ButtonGroup size="md"` | `@chakra-ui/react` | `/pagination` |
+| Step indicator | `Steps` | `@chakra-ui/react` | `/steps` |
+| Timeline | `Timeline` | `@chakra-ui/react` | `/timeline` |
+| Avatar | `Avatar` | `@chakra-ui/react` | `/avatar` |
+| Badge / tag label | `Badge` | `@chakra-ui/react` | `/badge` |
+| Copy to clipboard control | `Clipboard` | `@chakra-ui/react` | `/clipboard` |
+| Horizontal rule | `Separator` | `@chakra-ui/react` | `/separator` |
+| Page layout regions | `Box`, `Flex`, `Grid`, `Stack` | `@chakra-ui/react` | `/box`, `/flex`, `/grid`, `/layout` |
+| Scrollable region | `ScrollArea` | `@chakra-ui/react` | `/scroll-area` |
+| Split panes | `Splitter` | `@chakra-ui/react` | `/splitter` |
+| Carousel | `Carousel` | `@chakra-ui/react` | `/carousel` |
+| Icons in UI | `@gds-vero/icons` (+ optional Chakra `Icon`) | `@gds-vero/icons` | `/styles/icons` |
+| Semantic colors / spacing | token props (`fg`, `bg.subtle`, `p="4"`) | theme via `GDSProvider` | `/styles/colors`, `/styles/spacing` |
+| vero.fi main header | `VeroMainHeader` | `@gds-vero/react` | `/examples/vero-main-header` |
+
+Docs paths are relative to https://tomiputto.github.io/gds-vero/ .
+
+### Component index (compact)
+
+One-line map: **name → purpose → docs path**. Import Chakra compounds from `@chakra-ui/react` unless noted.
+
+#### GDS wrappers (`@gds-vero/react`)
+
+| Component | Use for | Docs |
+|-----------|---------|------|
+| `GDSProvider` | App root, theme | `/guides/start-using-gds` |
+| `GDSText` | Body/caption copy (`textStyle="body"`) | `/styles/text` |
+| `GDSHeading` | Headings (`as="h1"`…`h6"`) | `/styles/text` |
+| `GDSButton` | Branded buttons | `/button` |
+| `VeroMainHeader` | vero.fi site header | `/examples/vero-main-header` |
+
+#### Layout
+
+| Component | Use for | Docs |
+|-----------|---------|------|
+| `Box` | Generic container / landmarks | `/box` |
+| `Flex` / `Stack` / `HStack` / `VStack` | Flex layouts | `/flex` |
+| `Grid` | CSS grid layouts | `/grid` |
+| `Layout`-style patterns | Page shell, regions | `/layout` |
+| `ScrollArea` | Custom scroll container | `/scroll-area` |
+| `Separator` | Horizontal/vertical divider | `/separator` |
+| `Splitter` | Resizable split panes | `/splitter` |
+
+#### Buttons
+
+| Component | Use for | Docs |
+|-----------|---------|------|
+| `Button` | Actions, submits | `/button` |
+| `IconButton` | Icon-only actions (`aria-label` required) | `/icon-button` |
+| `Toggle` | Pressed/on state in toolbars | `/toggle` |
+
+#### Forms
+
+| Component | Use for | Docs |
+|-----------|---------|------|
+| `Field` | Label, helper, error wrapper | `/field` |
+| `Fieldset` | Group of fields with legend | `/fieldset` |
+| `Input` | Single-line text | `/input` |
+| `InputGroup` | Input + icon/button addon | `/input-group` |
+| `Textarea` | Multiline text | `/textarea` |
+| `NumberInput` | Numeric input with controls | `/number-input` |
+| `PasswordInput` | Password + show/hide | `/password-input` |
+| `PinInput` | OTP / PIN codes | `/pin-input` |
+| `Select` | Dropdown selection | `/select` |
+| `Combobox` | Searchable/async select | `/combobox` |
+| `Switch` | Boolean setting | `/switch` |
+| `Checkbox` | Boolean in a list | `/checkbox` |
+| `CheckboxCard` | Large selectable card | `/checkbox-card` |
+| `RadioGroup` | Single choice from few options | `/radio` |
+| `RadioCard` | Choice as cards | `/radio-card` |
+| `SegmentGroup` | Segmented single choice | `/segment-group` |
+| `Slider` | Range on a track | `/slider` |
+| `RatingGroup` | Star rating | `/rating` |
+| `TagsInput` | Multiple tags/chips | `/tags-input` |
+| `FileUpload` | File picker UI | `/file-upload` |
+| `NativeSelect` | Styled native `<select>` | Chakra docs† |
+| `DatePicker` | Calendar date input | Chakra docs† |
+
+#### Collections
+
+| Component | Use for | Docs |
+|-----------|---------|------|
+| `Listbox` | Custom list selection | `/listbox` |
+| `TreeView` | Hierarchical list/tree | `/tree-view` |
+
+#### Overlays
+
+| Component | Use for | Docs |
+|-----------|---------|------|
+| `Dialog` | Modal tasks | `/dialog` |
+| `Drawer` | Side panel | `/drawer` |
+| `Menu` | Dropdown menu / commands | `/menu` |
+| `Popover` | Anchored floating panel | `/popover` |
+| `HoverCard` | Rich hover preview | `/hover-card` |
+| `Tooltip` | Short hint | `/tooltip` |
+| `Toast` | Transient notifications | `/toast` |
+| `ActionBar` | Contextual bottom/side bar | `/action-bar` |
+
+#### Disclosure & navigation
+
+| Component | Use for | Docs |
+|-----------|---------|------|
+| `Accordion` | Expand/collapse sections | `/accordion` |
+| `Collapsible` | Single expand/collapse | `/collapsible` |
+| `Tabs` | Tabbed views | `/tabs` |
+| `Breadcrumb` | Hierarchy trail | `/breadcrumb` |
+| `Pagination` | Page navigation | `/pagination` |
+| `Steps` | Multi-step progress | `/steps` |
+| `Carousel` | Slide carousel | `/carousel` |
+
+#### Feedback
+
+| Component | Use for | Docs |
+|-----------|---------|------|
+| `Alert` | Inline status banner | `/alert` |
+| `EmptyState` | No data / empty search | `/empty-state` |
+| `Progress` | Linear progress | `/progress` |
+| `ProgressCircle` | Circular progress | `/progress-circle` |
+| `Skeleton` | Loading placeholder | `/skeleton` |
+| `Spinner` | Loading indicator | `/spinner` |
+| `Status` | Dot + status label | `/status` |
+
+#### Data display
+
+| Component | Use for | Docs |
+|-----------|---------|------|
+| `Table` | Tabular data | `/table` |
+| `DataList` | Key–value rows | `/data-list` |
+| `Stat` | Metric / KPI | `/stat` |
+| `Timeline` | Event timeline | `/timeline` |
+| `Card` | Grouped content panel | `/card` |
+| `Avatar` | User/image avatar | `/avatar` |
+| `Badge` | Label, count, status chip | `/badge` |
+| `Image` | Responsive image | `/image` |
+| `Icon` | Wrapper for icon SVGs | `/icon` |
+| `Clipboard` | Copy button/input | `/clipboard` |
+| `QrCode` | QR display | `/qr-code` |
+| `Marquee` | Scrolling text strip | `/marquee` |
+
+#### Chakra components without a GDS docs page yet
+
+Use **Chakra docs / MCP**; theme may still style them via `@gds-vero/theme`:
+
+| Component | Use for |
+|-----------|---------|
+| `Tag` | Removable/filter tags |
+| `ColorPicker` | Color selection UI |
+| `Blockquote` | Quoted text |
+| `Kbd` | Keyboard shortcut display |
+| `List` | Semantic ul/ol |
+| `FloatingPanel` | Detachable floating panel |
+| `Code` / `CodeBlock` | Inline/block code |
+| `@chakra-ui/charts` | Charts (separate package) |
+
+† **`NativeSelect`**, **`DatePicker`**: no dedicated GDS docs page; require Chakra v3 compound API. **DatePicker** needs `@chakra-ui/react` ≥ 3.34.
 
 ---
 
@@ -429,7 +716,8 @@ GDS targets **WCAG 2.1 Level AA**. Chakra v3 components provide keyboard support
 ### Switches, checkboxes, radio groups
 
 - Every control has a **visible label** (wrapping label or `aria-labelledby`).
-- **Switch:** `role="switch"` + `aria-checked` (Chakra default).
+- **Switch:** form on/off settings — `Switch.Root` with `Switch.Label`. A11y: `role="switch"` + `aria-checked` (Chakra default).
+- **Toggle:** toolbar / formatting two-state **button** (`pressed` / `onPressedChange`) — `Toggle.Root asChild` + `Button` or `IconButton` with `variant={{ base: "ghost", _pressed: "outline" }}` and `size="md"`. Icon toggles need `aria-label`. Do **not** use Toggle for form settings; use Switch instead.
 - **RadioGroup:** use `RadioGroup.Label` for the group name.
 
 ### What not to do
@@ -457,8 +745,9 @@ Verify every item against the files you created or changed:
 - [ ] **Semantic tokens:** colors/backgrounds use `fg`, `fg.muted`, `bg.default`, `bg.subtle`, `border.emphasized`, `colorPalette="brand"` — no ad-hoc hex
 - [ ] **Vero surfaces:** page/canvas `bg.subtle`; cards `Card.Root variant="outline"` (white + green border) — not `bg.muted` on cards
 - [ ] **Typography:** body copy on `GDSText` with `textStyle="body"` or `"caption"` (not `textStyle="sm"` / `"md"`); headings on `GDSHeading` with correct `as="h1"`…`h6"`
+- [ ] **Theme typography:** `@gds-vero/theme` **≥ 0.1.17** (Chakra compounds get 18px body from theme — no manual `fontSize` on `Dialog.Body`, `Menu.Item`, etc. unless overriding); Pagination uses `ButtonGroup size="md"`
 - [ ] **Buttons:** primary actions use `GDSButton colorPalette="brand"` or Chakra `Button colorPalette="brand"`
-- [ ] **Layout:** `main` landmark for primary content; `header`/`nav` where appropriate
+- [ ] **Component choice:** overlays, forms, and feedback use the right compound (`Dialog` vs `Drawer`, `Switch` vs `Toggle`, `Select` vs `Combobox`, `Alert` vs `Toast`) — see **Component selection guide** in this file
 
 ### 2. Automated checks
 
@@ -467,6 +756,7 @@ Search touched files for common violations (fix or report):
 - Imports from forbidden packages (`@mui/`, `antd`, `react-icons`, Chakra v2 component names)
 - Hardcoded hex colors (`#`, `rgb(`, `hsl(`) on UI elements
 - `textStyle="sm"` or `textStyle="md"` on `GDSText`
+- Manual `fontSize="sm"` / `textStyle="sm"` on Chakra compounds that are already themed (`Dialog`, `Menu`, `Field`, `Table`, …) without a documented reason
 - `Card.Root` with `bg="bg.muted"` or without `variant="outline"` when representing a content card
 
 Run lint when available:
@@ -615,7 +905,7 @@ That way the agent is nudged to output v3-compatible code even when it would oth
 
 ## Links
 
+- **GDS docs (components, examples, a11y):** https://tomiputto.github.io/gds-vero/ — see **Component selection guide** in this file for path index  
 - **Repository:** https://github.com/tomiputto/gds-vero  
 - **npm:** [@gds-vero/react](https://www.npmjs.com/package/@gds-vero/react) · [@gds-vero/theme](https://www.npmjs.com/package/@gds-vero/theme) · [@gds-vero/tokens](https://www.npmjs.com/package/@gds-vero/tokens) · [@gds-vero/icons](https://www.npmjs.com/package/@gds-vero/icons)  
-- **Docs (component reference):** https://github.com/tomiputto/gds-vero#readme  
 - **Icons (full list, 1500+):** https://github.com/tomiputto/gds-vero#readmestyles/icons

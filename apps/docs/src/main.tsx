@@ -79,6 +79,7 @@ import { ClipboardPage } from "./pages/design-system/ClipboardPage";
 import { DataListPage } from "./pages/design-system/DataListPage";
 import { IconPage } from "./pages/design-system/IconPage";
 import { IconButtonPage } from "./pages/design-system/IconButtonPage";
+import { TogglePage } from "./pages/design-system/TogglePage";
 import { MarqueePage } from "./pages/design-system/MarqueePage";
 import { QrCodePage } from "./pages/design-system/QrCodePage";
 import { StatPage } from "./pages/design-system/StatPage";
@@ -219,6 +220,7 @@ function App() {
           <Route path="data-list" element={<DataListPage />} />
           <Route path="icon" element={<IconPage />} />
           <Route path="icon-button" element={<IconButtonPage />} />
+          <Route path="toggle" element={<TogglePage />} />
           <Route path="marquee" element={<MarqueePage />} />
           <Route path="qr-code" element={<QrCodePage />} />
           <Route path="stat" element={<StatPage />} />

@@ -1,19 +1,15 @@
-import { BODY_TEXT_STYLE } from "./vero-body-text";
-
-/** Dialog title — vero.fi card-title scale (20px / xl), not Chakra textStyle lg (16px). */
-const DIALOG_TITLE_STYLE = {
-  textStyle: "none",
-  fontFamily: "heading",
-  fontSize: "xl",
-  fontWeight: "semibold",
-  lineHeight: "1.25",
-} as const;
+import {
+  BODY_TEXT_STYLE,
+  CAPTION_TEXT_STYLE,
+  OVERLAY_TITLE_STYLE,
+  bodyTextMenuItemSizes,
+} from "./vero-body-text";
 
 const ALERT_SIZE_KEYS = ["sm", "md", "lg"] as const;
 
 /**
- * Dialog + Alert typography (vero.fi 18px body).
- * Chakra defaults use textStyle "sm" (12px) on dialog content and alert root.
+ * Overlay slot recipes — vero.fi 18px body typography.
+ * Chakra defaults use textStyle "sm" (12px) or "xs" on content/items.
  */
 export const veroOverlaySlotRecipes = {
   dialog: {
@@ -21,12 +17,74 @@ export const veroOverlaySlotRecipes = {
       content: {
         ...BODY_TEXT_STYLE,
       },
-      title: DIALOG_TITLE_STYLE,
+      title: OVERLAY_TITLE_STYLE,
       description: {
         ...BODY_TEXT_STYLE,
         color: "fg.muted",
       },
       body: {
+        ...BODY_TEXT_STYLE,
+      },
+    },
+  },
+  drawer: {
+    base: {
+      content: {
+        ...BODY_TEXT_STYLE,
+      },
+      title: OVERLAY_TITLE_STYLE,
+      description: {
+        ...BODY_TEXT_STYLE,
+        color: "fg.muted",
+      },
+      body: {
+        ...BODY_TEXT_STYLE,
+      },
+    },
+  },
+  popover: {
+    base: {
+      content: {
+        ...BODY_TEXT_STYLE,
+      },
+      header: {
+        ...BODY_TEXT_STYLE,
+      },
+      body: {
+        ...BODY_TEXT_STYLE,
+      },
+      footer: {
+        ...BODY_TEXT_STYLE,
+      },
+    },
+  },
+  menu: {
+    base: {
+      content: {
+        ...BODY_TEXT_STYLE,
+      },
+      item: {
+        ...BODY_TEXT_STYLE,
+      },
+      itemText: {
+        ...BODY_TEXT_STYLE,
+      },
+      itemGroupLabel: {
+        ...BODY_TEXT_STYLE,
+        fontWeight: "semibold",
+      },
+      itemCommand: {
+        ...CAPTION_TEXT_STYLE,
+        color: "fg.muted",
+      },
+    },
+    variants: {
+      size: bodyTextMenuItemSizes(),
+    },
+  },
+  tooltip: {
+    base: {
+      content: {
         ...BODY_TEXT_STYLE,
       },
     },
