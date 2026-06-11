@@ -136,8 +136,9 @@ Use **semantic tokens** — do not hardcode hex unless the user explicitly asks:
 GDS defines **named text styles** in the theme (`@gds-vero/theme`): `display`, `headline`, `title`, `body`, `caption`. Use them on **`GDSText`** via `textStyle="body"` etc.
 
 - **Do not** use `textStyle="md"` or `textStyle="sm"` on `GDSText` — those are **font size token names**, not GDS text styles, and sizing will look inconsistent.
-- **`GDSHeading`** wraps Chakra `Heading`. Its `size` prop is Chakra’s **heading scale** (`xs`–`4xl`), not the GDS text-style names. For a card title / `h2`, use e.g. `size="xl"` or `size="2xl"` with `as="h2"`. **`size="sm"` is a small heading**, not “semantic h2”.
-- Hierarchy example: card title `GDSHeading size="xl" as="h2"`; lead copy `GDSText textStyle="body"`; secondary copy `GDSText textStyle="caption" color="fg.muted"`.
+- **`GDSHeading`** wraps Chakra `Heading`. Its `size` prop is Chakra’s **heading scale** (`xs`–`4xl`), not the GDS text-style names. For **page/section** headings use `GDSHeading` with correct `as` (`h1`–`h6`). **`size="sm"` is a small heading**, not “semantic h2”.
+- **Inside `Card`:** use **`Card.Title`** and **`Card.Description`** for the card heading and subtitle — the theme sets title to **20px (`fontSize: "xl"`)** automatically. Do **not** replace the title with `GDSText`, `Text`, or `GDSHeading` (they render ~18px body size and look wrong). See **Card — verified pattern** in Component selection guide.
+- Hierarchy example (non-card layout): page title `GDSHeading size="xl" as="h1"`; section `GDSHeading size="lg" as="h2"`; body `GDSText textStyle="body"`; secondary `GDSText textStyle="caption" color="fg.muted"`.
 - Optional: `fontSize="md"` on `GDSText` uses the Figma **type scale** (`xs`–`4xl`) when you need a specific step, separate from `textStyle`.
 
 ### Theme typography — Chakra components (automatic)
@@ -148,7 +149,7 @@ GDS defines **named text styles** in the theme (`@gds-vero/theme`): `display`, `
 
 **Agents must still:**
 
-- Use **`GDSText`** / **`GDSHeading`** for page and card copy (see rules above) — do not rely on theme alone for arbitrary `Text` / `Heading` in app layouts.
+- Use **`GDSText`** / **`GDSHeading`** for **page layout** copy — for **`Card`**, use **`Card.Title`** / **`Card.Description`** (theme sizes the title); use **`GDSText`** only inside **`Card.Body`** for extra body text.
 - Avoid **`textStyle="sm"`** or **`textStyle="md"`** on **`GDSText`** (those are Chakra size names, not GDS text styles).
 - **Pagination:** use **`ButtonGroup size="md"`** with `IconButton` — star/page buttons take typography from the **button** recipe; `size="sm"` stays 12px.
 - **DatePicker:** requires **`@chakra-ui/react` ≥ 3.34** (component + theme slot recipe).
@@ -496,6 +497,43 @@ import { Field, Input } from "@chakra-ui/react";
 ```
 
 Use **`Field.Root`**, **`Field.Label`**, **`Field.HelperText`**, **`Field.ErrorText`**, **`invalid`** on root. Do **not** use v2 **`FormControl`**, **`FormLabel`**, **`FormHelperText`**, **`FormErrorMessage`**.
+
+**Card — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/card):
+
+Card **title size (20px)** comes from **`@gds-vero/theme`** on the **`Card.Title`** slot — only when wrapped in **`GDSProvider`**. Do **not** set `fontSize` / `textStyle` on `Card.Title`. Do **not** use `GDSText` / `Text` / `GDSHeading` as the card title.
+
+```tsx
+import { GDSProvider, GDSText as Text } from "@gds-vero/react";
+import { Card, Button } from "@chakra-ui/react";
+
+<GDSProvider>
+  <Card.Root variant="outline" maxW="md">
+    <Card.Header>
+      <Card.Title>Anna Virtanen</Card.Title>
+      <Card.Description>
+        Käyttäjäprofiilin lyhyt kuvaus ja yhteystiedot.
+      </Card.Description>
+    </Card.Header>
+    <Card.Body>
+      <Text color="fg.muted" textStyle="body">
+        Optional extra body content in the card.
+      </Text>
+    </Card.Body>
+    <Card.Footer>
+      <Button size="sm" colorPalette="brand">Action</Button>
+    </Card.Footer>
+  </Card.Root>
+</GDSProvider>
+```
+
+| Slot | Component | Typography (theme) |
+|------|-----------|-------------------|
+| Title | **`Card.Title`** | **20px** (`fontSize: "xl"`, semibold) — no props needed |
+| Subtitle | **`Card.Description`** | 18px body, muted |
+| Extra body | **`GDSText`** in **`Card.Body`** | `textStyle="body"` |
+| Surface | **`Card.Root variant="outline"`** | white + vero green border (`bg.default`) |
+
+**Do not:** `GDSText fontWeight="bold"` as title; `Card.Title fontSize="md"`; `Card.Title textStyle="body"`; `bg="bg.muted"` on content cards.
 
 **VeroMainHeader — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/examples/vero-main-header):
 
@@ -931,6 +969,7 @@ Verify every item against the files you created or changed:
 - [ ] **Buttons:** primary actions use `GDSButton colorPalette="brand"` or Chakra `Button colorPalette="brand"`
 - [ ] **Component choice:** overlays, forms, and feedback use the right compound (`Dialog` vs `Drawer`, `Switch` vs `Toggle`, `Select` vs `Combobox`, `Alert` vs `Toast`) — see **Component selection guide** in this file
 - [ ] **Component API verified:** every compound used (`Accordion`, `Dialog`, `Tabs`, `Menu`, `Field`, …) matches **GDS docs “Basic” example** or Chakra MCP — slot names were **not** guessed from training data (see **Mandatory: verify component API before coding**)
+- [ ] **Card titles:** use **`Card.Title`** / **`Card.Description`** — not `GDSText`/`Text`/`GDSHeading` as title; no `fontSize`/`textStyle` on `Card.Title` (theme → 20px)
 - [ ] **Vero.fi header:** use **`VeroMainHeader`** from `@gds-vero/react` — not a custom `Box`/`Flex` header (see verified pattern in **Component selection guide**)
 
 ### 2. Automated checks
@@ -938,7 +977,7 @@ Verify every item against the files you created or changed:
 Search touched files for common violations (fix or report):
 
 - Imports from forbidden packages (`@mui/`, `antd`, `react-icons`, Chakra v2 component names)
-- Compound slot names that do not match GDS docs (e.g. `Accordion.Trigger` instead of `Accordion.ItemTrigger`; `Modal.*` instead of `Dialog.*`; `TabList`/`TabPanel` instead of `Tabs.List`/`Tabs.Content`; `FormControl` instead of `Field.Root`)
+- Compound slot names that do not match GDS docs (e.g. `Accordion.Trigger` instead of `Accordion.ItemTrigger`; `Modal.*` instead of `Dialog.*`; card title as `GDSText`/`Text` instead of `Card.Title`)
 - Hardcoded hex colors (`#`, `rgb(`, `hsl(`) on UI elements
 - `textStyle="sm"` or `textStyle="md"` on `GDSText`
 - Manual `fontSize="sm"` / `textStyle="sm"` on Chakra compounds that are already themed (`Dialog`, `Menu`, `Field`, `Table`, …) without a documented reason

@@ -11,4 +11,4 @@ When you **create or materially change React UI** (`.tsx` / `.jsx`):
 4. **Run `npm run lint` or `pnpm lint`** and fix errors on touched files.
 5. **End your reply** with the required summary sections: **Layout**, **GDS compliance**, **Accessibility**, **Lint** — including **Violation** / **Fix** pairs for any compliance issues.
 
-Common fixes: import `Card` from `@chakra-ui/react` not `@gds-vero/react`; use `Card.Root variant="outline"` not `bg="bg.muted"`; use `GDSText textStyle="body"` not `textStyle="sm"`; page `bg="bg.subtle"`; verified patterns in agent guide: **Accordion**, **Dialog** (not `Modal`), **Tabs** (not `TabList`), **Field** (not `FormControl`), **VeroMainHeader** (not custom header).
+Common fixes: import `Card` from `@chakra-ui/react` not `@gds-vero/react`; use `Card.Root variant="outline"` not `bg="bg.muted"`; use `GDSText textStyle="body"` not `textStyle="sm"`; page `bg="bg.subtle"`; verified patterns in agent guide: **Accordion**, **Dialog**, **Tabs**, **Field**, **Card** (`Card.Title`), **VeroMainHeader**.
