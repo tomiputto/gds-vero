@@ -164,7 +164,7 @@ function App() {
           <Text>• Use <strong>semantic tokens</strong>: <Code>fg</Code>, <Code>fg.muted</Code>, <Code>bg.default</Code>, <Code>bg.subtle</Code>, <Code>colorPalette="brand"</Code>, etc.</Text>
           <Text>• Use <Code>@gds-vero/icons</Code> for icons (e.g. CheckIcon, StarIcon, XIcon). Do not use react-icons for GDS UI.</Text>
           <Text>• Wrap the React root in <Code>GDSProvider</Code> from <Code>@gds-vero/react</Code>.</Text>
-          <Text>• Use <Code>GDSHeading size="xl" as="h2"</Code> for page/section titles; <Code>GDSText textStyle="body"</Code> for body copy.</Text>
+          <Text>• Page title: <Code>GDSHeading as="h1"</Code> (42px from theme); section <Code>as="h2"</Code> (34px). Do not use <Code>size="xl"</Code> or <Code>size="2xl"</Code> on <Code>h1</Code>. <Code>GDSText textStyle="body"</Code> for body copy.</Text>
         </VStack>
       </Section>
 

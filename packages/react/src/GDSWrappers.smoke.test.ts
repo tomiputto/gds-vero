@@ -14,6 +14,14 @@ describe("@gds-vero/react wrappers (smoke)", () => {
     expect(html).toContain("Hello");
   });
 
+  it("GDSHeading defaults h1 to vero 42px scale when size omitted", () => {
+    const html = renderToStaticMarkup(
+      React.createElement(GDSProvider, null, React.createElement(GDSHeading, { as: "h1" }, "Page"))
+    );
+    expect(html).toContain("<h1");
+    expect(html).toMatch(/42px|4\.2rem|fontSizes-4xl|4xl/);
+  });
+
   it("GDSHeading renders semantic heading tag through React render path", () => {
     const html = renderToStaticMarkup(
       React.createElement(GDSProvider, null, React.createElement(GDSHeading, { as: "h2" }, "Title"))

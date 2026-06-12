@@ -136,9 +136,21 @@ Use **semantic tokens** — do not hardcode hex unless the user explicitly asks:
 GDS defines **named text styles** in the theme (`@gds-vero/theme`): `display`, `headline`, `title`, `body`, `caption`. Use them on **`GDSText`** via `textStyle="body"` etc.
 
 - **Do not** use `textStyle="md"` or `textStyle="sm"` on `GDSText` — those are **font size token names**, not GDS text styles, and sizing will look inconsistent.
-- **`GDSHeading`** wraps Chakra `Heading`. Its `size` prop is Chakra’s **heading scale** (`xs`–`4xl`), not the GDS text-style names. For **page/section** headings use `GDSHeading` with correct `as` (`h1`–`h6`). **`size="sm"` is a small heading**, not “semantic h2”.
-- **Inside `Card`:** use **`Card.Title`** and **`Card.Description`** for the card heading and subtitle — the theme sets title to **20px (`fontSize: "xl"`)** automatically. Do **not** replace the title with `GDSText`, `Text`, or `GDSHeading` (they render ~18px body size and look wrong). See **Card — verified pattern** in Component selection guide.
-- Hierarchy example (non-card layout): page title `GDSHeading size="xl" as="h1"`; section `GDSHeading size="lg" as="h2"`; body `GDSText textStyle="body"`; secondary `GDSText textStyle="caption" color="fg.muted"`.
+- **`GDSHeading`** wraps Chakra `Heading`. **`as`** sets semantics (`h1`–`h6`); **`size`** sets visual scale from the **vero.fi heading recipe** in `@gds-vero/theme`. They are independent unless you omit `size` — then `GDSHeading` defaults `size` from `as` (see table). Do **not** use `textStyle` on `GDSHeading`.
+- **vero.fi heading scale** (`packages/theme` → `heading` recipe):
+
+| `GDSHeading` `size` | px | Match with `as` |
+|---------------------|-----|-----------------|
+| `4xl` | **42px** | **`h1`** — page title |
+| `3xl` | **34px** | **`h2`** — major section |
+| `2xl` | **24px** | **`h3`** — subsection |
+| `xl` | **20px** | **`h4`** — same as **`Card.Title`** |
+| `lg` | 16px | `h5` |
+| `md` | 14px | `h6` |
+
+- **Page title:** `<GDSHeading as="h1">` (defaults to **42px**) or explicit `size="4xl"`. Do **not** use `size="xl"` or `size="2xl"` for `h1` — those are h4/h3 sizes and look too small next to content.
+- **Inside `Card`:** use **`Card.Title`** / **`Card.Description`** — not `GDSHeading` (see **Card — verified pattern**).
+- Hierarchy example: page `<GDSHeading as="h1">`; section `<GDSHeading as="h2">`; subsection `<GDSHeading as="h3">`; body `GDSText textStyle="body"`; secondary `GDSText textStyle="caption" color="fg.muted"`.
 - Optional: `fontSize="md"` on `GDSText` uses the Figma **type scale** (`xs`–`4xl`) when you need a specific step, separate from `textStyle`.
 
 ### Theme typography — Chakra components (automatic)
@@ -964,7 +976,7 @@ Verify every item against the files you created or changed:
 - [ ] **Theme:** app wrapped in `GDSProvider` or `ChakraProvider` with `gdsTheme` from `@gds-vero/theme`
 - [ ] **Semantic tokens:** colors/backgrounds use `fg`, `fg.muted`, `bg.default`, `bg.subtle`, `border.emphasized`, `colorPalette="brand"` — no ad-hoc hex
 - [ ] **Vero surfaces:** page/canvas `bg.subtle`; cards `Card.Root variant="outline"` (white + green border) — not `bg.muted` on cards
-- [ ] **Typography:** body copy on `GDSText` with `textStyle="body"` or `"caption"` (not `textStyle="sm"` / `"md"`); headings on `GDSHeading` with correct `as="h1"`…`h6"`
+- [ ] **Typography:** page `h1` on `GDSHeading as="h1"` (42px / `size="4xl"` — omit `size` to auto-default); sections `as="h2"`/`h3`; body on `GDSText textStyle="body"` or `"caption"` (not `textStyle="sm"` / `"md"`); do not use `size="2xl"` or `size="xl"` on `h1`
 - [ ] **Theme typography:** `@gds-vero/theme` **≥ 0.1.17** (Chakra compounds get 18px body from theme — no manual `fontSize` on `Dialog.Body`, `Menu.Item`, etc. unless overriding); Pagination uses `ButtonGroup size="md"`
 - [ ] **Buttons:** primary actions use `GDSButton colorPalette="brand"` or Chakra `Button colorPalette="brand"`
 - [ ] **Component choice:** overlays, forms, and feedback use the right compound (`Dialog` vs `Drawer`, `Switch` vs `Toggle`, `Select` vs `Combobox`, `Alert` vs `Toast`) — see **Component selection guide** in this file
@@ -1028,7 +1040,7 @@ Report **PASS**, **WARNING**, or **FAIL** for **each** category. One line minimu
 
 **Surface tokens** — semantic tokens (`fg`, `bg.default`, `bg.subtle`, `border.emphasized`, `colorPalette="brand"`); page/canvas `bg.subtle`; content cards `Card.Root variant="outline"` — not `bg.muted` on cards; no ad-hoc hex on UI.
 
-**Typography** — page/section headings on `GDSHeading` with correct `as`; card titles on `Card.Title` / `Card.Description` (not `GDSText` bold); body on `GDSText textStyle="body"` or `"caption"` (not `textStyle="sm"` / `"md"`); no unnecessary manual `fontSize` on themed Chakra slots.
+**Typography** — page `h1` uses `GDSHeading as="h1"` (42px, not `size="xl"`/`"2xl"`); card titles on `Card.Title`; body on `GDSText textStyle="body"`; no unnecessary manual `fontSize` on themed Chakra slots.
 
 **Accessibility** — labels, errors, `aria-label` on icon buttons, heading hierarchy, landmarks, dialog titles, keyboard/focus, contrast via tokens — per **Accessibility review** checklist below.
 

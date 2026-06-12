@@ -56,16 +56,20 @@ export function TextPage() {
         description="Use GDSHeading for document outline — separate from GDSText textStyle names."
         code={`import { GDSHeading, GDSText as Text } from "@gds-vero/react";
 
-<GDSHeading size="2xl" as="h1">Page title</GDSHeading>
-<GDSHeading size="xl" as="h2">Section title</GDSHeading>
+<GDSHeading as="h1">Page title</GDSHeading>
+<GDSHeading as="h2">Section title</GDSHeading>
+<GDSHeading as="h3">Subsection</GDSHeading>
 <GDSText textStyle="body">Body copy uses textStyle, not heading levels.</GDSText>`}
       >
         <VStack align="stretch" gap="2">
-          <GDSHeading size="2xl" as="h2">
-            Page title (GDSHeading size=&quot;2xl&quot;)
+          <GDSHeading as="h1">
+            Page title (h1 → 42px)
           </GDSHeading>
-          <GDSHeading size="xl" as="h3">
-            Section title (size=&quot;xl&quot;)
+          <GDSHeading as="h2">
+            Section title (h2 → 34px)
+          </GDSHeading>
+          <GDSHeading as="h3">
+            Subsection (h3 → 24px)
           </GDSHeading>
           <Text textStyle="body" color="fg.muted">
             Body copy — use GDSText textStyle=&quot;body&quot;, not GDSHeading for paragraphs.
