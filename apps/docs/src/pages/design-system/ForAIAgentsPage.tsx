@@ -14,7 +14,7 @@ const RAW_RELEASE_NOTES_URL =
 const GITHUB_COMPONENT_GUIDE_URL = `${GITHUB_GUIDE_URL}#component-selection-guide`;
 const PUBLISHED_DOCS_URL = "https://tomiputto.github.io/gds-vero/";
 /** Keep in sync with packages/react/package.json on publish */
-const REACT_NPM_VERSION = "0.1.22";
+const REACT_NPM_VERSION = "0.1.23";
 const REACT_NPM_URL = "https://www.npmjs.com/package/@gds-vero/react";
 
 export function ForAIAgentsPage() {
