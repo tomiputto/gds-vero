@@ -67,7 +67,7 @@ Teema laajentaa Chakran oletuskonfiguraatiota; se ei korvaa kaikkia Chakra-token
 - **Rooli:** React-sovelluksen entry: provider ja ohuet wrapperit Chakra-primitiivien päällä.
 - **Riippuvuudet:** `@chakra-ui/react`, `@gds-vero/theme`, `@gds-vero/tokens`.
 - **GDSProvider:** Käärii sovelluksen `ChakraProvider`:lla ja välittää `system` (GDS-teema). Ei exporttaa `Field`-, `Card`-, `Input`- jne. komponentteja — ne tulevat `@chakra-ui/react`:istä.
-- **Exportit:** `GDSProvider`, `GDSButton`, `GDSHeading`, `GDSText`, `VeroMainHeader` (+ prop-tyypit). Riippuu `@gds-vero/icons`:sta header-ikoneille. Sisältää **`GDS_FOR_LLM_AGENTS.md`** agenttisäännöille.
+- **Exportit:** `GDSProvider`, `GDSButton`, `GDSHeading`, `GDSText`, `VeroMainHeader`, `VeroAppShell`, `VeroPageLayout`, layout-tokenit (`VERO_CONTENT_WIDTH`, …) (+ prop-tyypit). Riippuu `@gds-vero/icons`:sta header-ikoneille. Sisältää **`GDS_FOR_LLM_AGENTS.md`** agenttisäännöille.
 
 Käytännössä: puu `GDSProvider`:lla, Chakra compound API + GDS-ikonit; värit ja typografia teemasta.
 
@@ -80,7 +80,7 @@ Käytännössä: puu `GDSProvider`:lla, Chakra compound API + GDS-ikonit; värit
 
 - **Rooli:** Luo uusia React + Vite -sovelluksia GDS valmiiksi kytkettynä (`create-gds-vero-app` -bin).
 - **Käyttö:** `pnpm create @gds-vero/app@latest my-project` (npm-paketti: `@gds-vero/create-app`; älä käytä `create …/create-app` → npm hakee `create-create-app` ja 404)
-- **Sisältö:** Kopioi `template/`-kansion (Vite, `ChakraProvider` + `gdsTheme` + valinnainen `gds-theme-sync.generated.ts` synkin jälkeen, **`VeroMainHeader`** sovelluskuoressa, esimerkkikortti `GDSButton` / `GDSHeading` / `GDSText`). Template viittaa `@gds-vero/theme`, `@gds-vero/react` jne. Julkaistuja paketteja käyttävissä sovelluksissa käytä `GDSProvider`-ia `@gds-vero/react`:stä.
+- **Sisältö:** Kopioi `template/`-kansion (Vite, `ChakraProvider` + `gdsTheme` + valinnainen `gds-theme-sync.generated.ts` synkin jälkeen, **`VeroAppShell`** + **`VeroPageLayout`** sivupohja, esimerkkikortti `GDSButton` / `GDSText`). Template viittaa `@gds-vero/theme`, `@gds-vero/react` jne. Julkaistuja paketteja käyttävissä sovelluksissa käytä `GDSProvider`-ia `@gds-vero/react`:stä.
 - **AI-agenttisäännöt (automaattisesti):** Jokainen scaffold sisältää `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` ja `.github/copilot-instructions.md` — kaikki viittaavat asennuksen jälkeen `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md`:ään.
 - **Huom:** Esimerkin typografiassa käytä GDS-tyylejä (`textStyle="body"`, `GDSHeading size="xl" as="h2"`) — älä käytä fonttikoko-tokenien nimiä `textStyle`-propina.
 

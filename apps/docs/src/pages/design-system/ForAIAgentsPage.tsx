@@ -190,7 +190,8 @@ function App() {
             <RouterLink to="/dialog">Dialog</RouterLink>,{" "}
             <RouterLink to="/tabs">Tabs</RouterLink>,{" "}
             <RouterLink to="/field">Field</RouterLink>,{" "}
-            <RouterLink to="/card">Card</RouterLink>, and{" "}
+            <RouterLink to="/card">Card</RouterLink>,{" "}
+            <RouterLink to="/guides/page-layout">Page layout</RouterLink>, and{" "}
             <RouterLink to="/examples/vero-main-header">VeroMainHeader</RouterLink>. <strong>Custom GPT Instructions</strong> must require docs lookup for other compounds before generating code.
           </Text>
         </VStack>
@@ -318,7 +319,7 @@ function App() {
             Agents must report: <strong>Preview URL</strong>, <strong>Implementation summary</strong>, then{" "}
             <strong>GDS-VERO Compliance Review</strong> with status for each category —{" "}
             <strong>Design System</strong>, <strong>Chakra v3 API</strong>, <strong>Surface tokens</strong>,{" "}
-            <strong>Typography</strong>, <strong>Accessibility</strong>, <strong>Responsive layout</strong> — plus{" "}
+            <strong>Typography</strong>, <strong>Page layout</strong>, <strong>Accessibility</strong>, <strong>Responsive layout</strong> — plus{" "}
             <strong>Deviations</strong>, overall <strong>Compliance Status</strong> (PASS / WARNING / FAIL),{" "}
             <strong>Recommended follow-ups</strong>, and <strong>Lint</strong>.
           </Text>

@@ -8,6 +8,7 @@ const NAV_ITEMS: Array<{ path: string; label: string; section?: string; group?: 
   { path: "/guides/sync-design-tokens", label: "Sync design tokens", section: "Guides" },
   { path: "/guides/tokens", label: "Tokens", section: "Guides" },
   { path: "/guides/external-website", label: "Using GDS outside the repo", section: "Guides" },
+  { path: "/guides/page-layout", label: "Page layout", section: "Guides" },
   { path: "/guides/for-ai-agents", label: "For AI agents", section: "Guides" },
   { path: "/guides/chakra-v3-api", label: "Chakra v3 API", section: "Guides" },
   { path: "/guides/code-connect", label: "Figma Code Connect", section: "Guides" },

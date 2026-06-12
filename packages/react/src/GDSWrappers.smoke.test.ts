@@ -5,6 +5,8 @@ import { GDSProvider } from "./GDSProvider";
 import { GDSHeading } from "./components/GDSHeading";
 import { GDSText } from "./components/GDSText";
 import { VeroMainHeader } from "./components/VeroMainHeader";
+import { VeroAppShell } from "./components/VeroAppShell";
+import { VeroPageLayout } from "./components/VeroPageLayout";
 
 describe("@gds-vero/react wrappers (smoke)", () => {
   it("GDSText renders content through React render path", () => {
@@ -28,6 +30,34 @@ describe("@gds-vero/react wrappers (smoke)", () => {
     );
     expect(html).toContain("<h2");
     expect(html).toContain("Title");
+  });
+
+  it("VeroPageLayout renders main landmark", () => {
+    const html = renderToStaticMarkup(
+      React.createElement(
+        GDSProvider,
+        null,
+        React.createElement(VeroPageLayout, null, "Content")
+      )
+    );
+    expect(html).toContain("<main");
+    expect(html).toContain("Content");
+  });
+
+  it("VeroAppShell renders header and children", () => {
+    const html = renderToStaticMarkup(
+      React.createElement(
+        GDSProvider,
+        null,
+        React.createElement(
+          VeroAppShell,
+          { topBarEnd: null },
+          React.createElement(VeroPageLayout, null, "Body")
+        )
+      )
+    );
+    expect(html).toContain("<header");
+    expect(html).toContain("Body");
   });
 
   it("VeroMainHeader renders landmark header through React render path", () => {

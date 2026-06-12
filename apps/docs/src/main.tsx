@@ -29,6 +29,7 @@ import { CardPage } from "./pages/design-system/CardPage";
 import { CheckboxSwitchPage } from "./pages/design-system/CheckboxSwitchPage";
 import { DialogPage } from "./pages/design-system/DialogPage";
 import { InputPage } from "./pages/design-system/InputPage";
+import { PageLayoutPage } from "./pages/design-system/PageLayoutPage";
 import { LayoutPage } from "./pages/design-system/LayoutPage";
 import { MenuPage } from "./pages/design-system/MenuPage";
 import { SpinnerPage } from "./pages/design-system/SpinnerPage";
@@ -152,6 +153,7 @@ function App() {
           <Route path="guides/sync-design-tokens" element={<SyncDesignTokensPage />} />
           <Route path="guides/tokens" element={<TokensPage />} />
           <Route path="guides/external-website" element={<ExternalWebsitePage />} />
+          <Route path="guides/page-layout" element={<PageLayoutPage />} />
           <Route path="guides/for-ai-agents" element={<ForAIAgentsPage />} />
           <Route path="guides/chakra-v3-api" element={<ChakraV3ApiPage />} />
           <Route path="guides/code-connect" element={<CodeConnectPage />} />

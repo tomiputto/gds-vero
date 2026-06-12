@@ -79,7 +79,7 @@ You can copy that file into your repo (e.g. `docs/GDS_FOR_LLM_AGENTS.md`) and po
 3. Use semantic token props: `color="fg"`, `color="fg.muted"`, `bg="bg.default"`, `bg="bg.subtle"`, `colorPalette="brand"` on components that support it (Button, Badge, etc.).
 4. Use icons from `@gds-vero/icons` (e.g. `CheckIcon`, `XIcon`) with `color` set to a token (e.g. `color="fg.muted"`) or let them inherit.
 
-**Import rule:** `GDSProvider`, `GDSButton`, `GDSText`, `GDSHeading`, `VeroMainHeader`, and any other documented wrappers come from `@gds-vero/react`. All Chakra UI compound components (`Field`, `Card`, `Input`, `Button`, `Separator`, `Box`, `Text`, etc.) must be imported from `@chakra-ui/react`. Importing `Field` or other Chakra components from `@gds-vero/react` will cause "doesn't provide an export named X" errors.
+**Import rule:** `GDSProvider`, `GDSButton`, `GDSText`, `GDSHeading`, `VeroMainHeader`, `VeroAppShell`, `VeroPageLayout` come from `@gds-vero/react`. All Chakra UI compound components (`Field`, `Card`, `Input`, `Button`, `Separator`, `Box`, `Text`, etc.) must be imported from `@chakra-ui/react`. Importing `Field` or other Chakra components from `@gds-vero/react` will cause "doesn't provide an export named X" errors.
 
 **Minimal example:**
 
@@ -551,18 +551,21 @@ import { Card, Button } from "@chakra-ui/react";
 
 GDS **wrapper** from **`@gds-vero/react`** — not a Chakra compound. Use for **vero.fi-style site header**; do **not** rebuild the header from `Box` / `Flex` / `Menu` unless the user explicitly asks for a custom header.
 
+Prefer **`VeroAppShell`** (includes `VeroMainHeader`) + **`VeroPageLayout`** for full pages — see **Page layout** below.
+
 ```tsx
-import { GDSProvider, VeroMainHeader } from "@gds-vero/react";
+import { GDSProvider, VeroAppShell, VeroPageLayout } from "@gds-vero/react";
 
 <GDSProvider>
-  <VeroMainHeader />
-  <Box as="main">{/* page content */}</Box>
+  <VeroAppShell>
+    <VeroPageLayout>{/* page content */}</VeroPageLayout>
+  </VeroAppShell>
 </GDSProvider>
 ```
 
 **Defaults:** Finnish vero.fi labels, audience tabs, language menu, OmaVero links, and sub-navigation — works with **no props**.
 
-**Customize via props** (types: `VeroMainHeaderProps` from `@gds-vero/react`):
+**Customize via props** (types: `VeroMainHeaderProps` on `VeroAppShell` / `VeroMainHeader` from `@gds-vero/react`):
 
 | Prop | Type | Purpose |
 |------|------|---------|
@@ -599,6 +602,61 @@ const navItems: VeroNavItem[] = [
 ```
 
 **Do not:** import `VeroMainHeader` from `@chakra-ui/react`; do not use a generic `Box as="header"` when the user wants the **vero.fi** header pattern.
+
+**Page layout — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/guides/page-layout):
+
+Use **`VeroAppShell`** + **`VeroPageLayout`** for **every vero.fi-style service page**. This fixes max-width, padding, and column behavior so layouts do **not** drift between LLM runs.
+
+```tsx
+import { Card } from "@chakra-ui/react";
+import { GDSProvider, GDSHeading, GDSText, VeroAppShell, VeroPageLayout } from "@gds-vero/react";
+
+<GDSProvider>
+  <VeroAppShell>
+    <VeroPageLayout>
+      <GDSHeading as="h1">Team directory</GDSHeading>
+      <GDSText textStyle="body" mt="4">
+        Main content column — default max-width 1152px.
+      </GDSText>
+    </VeroPageLayout>
+  </VeroAppShell>
+</GDSProvider>
+```
+
+**`contentWidth` presets** — pick one; **do not** invent `maxW="xl"`, `maxW="4xl"`, `Container`, or random pixel widths:
+
+| Preset | Chakra `maxW` | Width | When |
+|--------|---------------|-------|------|
+| **`default`** | `6xl` | **1152px** | **Standard service page — use unless you have a reason not to** |
+| `narrow` | `2xl` | 672px | Login, forms, centered narrow flows |
+| `wide` | `7xl` | 1280px | Directories, wide tables |
+| `full` | `full` | 100% + padding | Rare edge-to-edge content |
+
+**Fixed layout tokens** (exported from `@gds-vero/react` — do not duplicate in app CSS):
+
+| Token | Value | Meaning |
+|-------|-------|---------|
+| `VERO_PAGE_PADDING_X` | `base: 4`, `md: 6`, `lg: 8` | 16px → 24px → 32px horizontal inset |
+| `VERO_PAGE_PADDING_Y` | `base: 6`, `md: 8` | 24px → 32px vertical main padding |
+| `VERO_SIDEBAR_WIDTH` | `72` | 288px sidebar column |
+| `VERO_COLUMN_GAP` | `base: 6`, `lg: 8` | Main ↔ sidebar gap |
+
+**Sidebar (`sidebar` prop):** below **`lg` (992px)** sidebar stacks **under** main; at **`lg+`** main + 288px sidebar side by side.
+
+```tsx
+<VeroPageLayout
+  sidebar={
+    <Card.Root variant="outline">
+      <Card.Header><Card.Title>Filters</Card.Title></Card.Header>
+      <Card.Body>...</Card.Body>
+    </Card.Root>
+  }
+>
+  {/* main column */}
+</VeroPageLayout>
+```
+
+**Do not:** `Box as="main" maxW="xl"`; `Flex` page shell without `VeroAppShell`; different padding per page; full-width content without `contentWidth="full"`; custom sidebar width.
 
 Other high-risk compounds (always open docs first — no verified snippet here): **Drawer**, **Menu**, **Table**, **Steps**, **Select**, **Combobox**, **Toast** (`createToaster` + `Toaster`).
 
@@ -704,7 +762,8 @@ Append a path from the [component index](#component-index-compact) (e.g. `/dialo
 | Badge / tag label | `Badge` | `@chakra-ui/react` | `/badge` |
 | Copy to clipboard control | `Clipboard` | `@chakra-ui/react` | `/clipboard` |
 | Horizontal rule | `Separator` | `@chakra-ui/react` | `/separator` |
-| Page layout regions | `Box`, `Flex`, `Grid`, `Stack` | `@chakra-ui/react` | `/box`, `/flex`, `/grid`, `/layout` |
+| Page layout regions | `VeroAppShell`, `VeroPageLayout` | `@gds-vero/react` | `/guides/page-layout` |
+| Low-level layout primitives | `Box`, `Flex`, `Grid`, `Stack` | `@chakra-ui/react` | `/box`, `/flex`, `/grid`, `/layout` |
 | Scrollable region | `ScrollArea` | `@chakra-ui/react` | `/scroll-area` |
 | Split panes | `Splitter` | `@chakra-ui/react` | `/splitter` |
 | Carousel | `Carousel` | `@chakra-ui/react` | `/carousel` |
@@ -726,7 +785,9 @@ One-line map: **name → purpose → docs path**. Import Chakra compounds from `
 | `GDSText` | Body/caption copy (`textStyle="body"`) | `/styles/text` |
 | `GDSHeading` | Headings (`as="h1"`…`h6"`) | `/styles/text` |
 | `GDSButton` | Branded buttons | `/button` |
-| `VeroMainHeader` | vero.fi site header | `/examples/vero-main-header` |
+| `VeroAppShell` | Full page shell (header + `bg.subtle`) | `/guides/page-layout` |
+| `VeroPageLayout` | Centered content column + optional sidebar | `/guides/page-layout` |
+| `VeroMainHeader` | vero.fi site header (usually via `VeroAppShell`) | `/examples/vero-main-header` |
 
 #### Layout
 
@@ -983,6 +1044,7 @@ Verify every item against the files you created or changed:
 - [ ] **Component API verified:** every compound used (`Accordion`, `Dialog`, `Tabs`, `Menu`, `Field`, …) matches **GDS docs “Basic” example** or Chakra MCP — slot names were **not** guessed from training data (see **Mandatory: verify component API before coding**)
 - [ ] **Card titles:** use **`Card.Title`** / **`Card.Description`** — not `GDSText`/`Text`/`GDSHeading` as title; no `fontSize`/`textStyle` on `Card.Title` (theme → 20px)
 - [ ] **Vero.fi header:** use **`VeroMainHeader`** from `@gds-vero/react` — not a custom `Box`/`Flex` header (see verified pattern in **Component selection guide**)
+- [ ] **Page layout:** vero.fi service pages use **`VeroAppShell`** + **`VeroPageLayout`** with `contentWidth="default"` (1152px) unless narrow form or wide table — **no ad-hoc `maxW`**
 - [ ] **Responsive layout:** uses Chakra responsive props (`base` / `md` / `lg`), `Stack` / `SimpleGrid` / `Flex` with `direction` / `wrap` — not fixed pixel widths that break on small viewports; wide tables use `Table.ScrollArea`; touch targets remain usable on mobile
 
 ### 2. Automated checks
@@ -1038,7 +1100,9 @@ Report **PASS**, **WARNING**, or **FAIL** for **each** category. One line minimu
 
 **Chakra v3 API** — compound slot names match GDS docs “Basic” example (not v2: `Modal`, `FormControl`, flat `Card`, `Table`/`Thead`, …); component choice correct (`Dialog` vs `Drawer`, `Field` vs raw inputs, etc.); APIs verified against docs — not guessed from training data.
 
-**Surface tokens** — semantic tokens (`fg`, `bg.default`, `bg.subtle`, `border.emphasized`, `colorPalette="brand"`); page/canvas `bg.subtle`; content cards `Card.Root variant="outline"` — not `bg.muted` on cards; no ad-hoc hex on UI.
+**Surface tokens** — semantic tokens (`fg`, `bg.default`, `bg.subtle`, `border.emphasized`, `colorPalette="brand"`); page shell `bg.subtle` via `VeroAppShell`; content cards `Card.Root variant="outline"` — not `bg.muted` on cards; no ad-hoc hex on UI.
+
+**Page layout** — `VeroAppShell` + `VeroPageLayout`; `contentWidth="default"` (1152px) unless documented preset; sidebar via `sidebar` prop only; no random `maxW` / padding.
 
 **Typography** — page `h1` uses `GDSHeading as="h1"` (42px, not `size="xl"`/`"2xl"`); card titles on `Card.Title`; body on `GDSText textStyle="body"`; no unnecessary manual `fontSize` on themed Chakra slots.
 

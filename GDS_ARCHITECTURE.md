@@ -67,7 +67,7 @@ The theme extends Chakra’s default config; it does not replace all Chakra toke
 - **Role:** React entry point: provider and thin wrappers around Chakra primitives.
 - **Dependencies:** `@chakra-ui/react`, `@gds-vero/theme`, `@gds-vero/tokens`.
 - **GDSProvider:** Wraps the app with `ChakraProvider` and passes `system` (GDS theme). Does **not** export `Field`, `Card`, `Input`, etc. — those come from `@chakra-ui/react`.
-- **Exports:** `GDSProvider`, `GDSButton`, `GDSHeading`, `GDSText`, `VeroMainHeader` (+ prop types). Depends on `@gds-vero/icons` for header icons. Ships **`GDS_FOR_LLM_AGENTS.md`** for AI/agent rules.
+- **Exports:** `GDSProvider`, `GDSButton`, `GDSHeading`, `GDSText`, `VeroMainHeader`, `VeroAppShell`, `VeroPageLayout`, layout tokens (`VERO_CONTENT_WIDTH`, …) (+ prop types). Depends on `@gds-vero/icons` for header icons. Ships **`GDS_FOR_LLM_AGENTS.md`** for AI/agent rules.
 
 In practice: wrap the tree with `GDSProvider`, use Chakra compound APIs + GDS icons; colors and typography come from the theme.
 
@@ -80,7 +80,7 @@ In practice: wrap the tree with `GDSProvider`, use Chakra compound APIs + GDS ic
 
 - **Role:** Scaffold new React + Vite apps with GDS pre-wired (`create-gds-vero-app` bin).
 - **Usage:** `pnpm create @gds-vero/app@latest my-project` (npm package is `@gds-vero/create-app`; do **not** use `create …/create-app` — npm resolves that to `create-create-app` and 404s)
-- **Contents:** Copies `template/` (Vite app with `ChakraProvider` + `gdsTheme` + optional `gds-theme-sync.generated.ts` from `gds:tokens:sync`, **`VeroMainHeader`** in the app shell, example card using `GDSButton` / `GDSHeading` / `GDSText`). Template pins `@gds-vero/theme`, `@gds-vero/react`, etc. For new apps that only use published packages, wrap with `GDSProvider` from `@gds-vero/react` instead.
+- **Contents:** Copies `template/` (Vite app with `ChakraProvider` + `gdsTheme` + optional `gds-theme-sync.generated.ts` from `gds:tokens:sync`, **`VeroAppShell`** + **`VeroPageLayout`** page shell, example card using `GDSButton` / `GDSText`). Template pins `@gds-vero/theme`, `@gds-vero/react`, etc. For new apps that only use published packages, wrap with `GDSProvider` from `@gds-vero/react` instead.
 - **AI agent rules (automatic):** Each scaffold includes `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc`, and `.github/copilot-instructions.md` — all pointing to `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` after install.
 - **Note:** Example UI in the template should use GDS text styles (`textStyle="body"`, `GDSHeading size="xl" as="h2"`) — not Chakra font-size names as `textStyle`.
 

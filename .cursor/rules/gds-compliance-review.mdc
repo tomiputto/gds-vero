@@ -11,6 +11,6 @@ When you **create or materially change React UI** (`.tsx` / `.jsx`):
 4. **Run lint** when available (`pnpm --filter docs lint` in monorepo; `npm run lint` / `pnpm lint` in scaffolded apps).
 5. **End every UI delivery** with the full **Delivery audit report** from `GDS_FOR_LLM_AGENTS.md` §3 — all headings, all categories (**Design System**, **Chakra v3 API**, **Surface tokens**, **Typography**, **Accessibility**, **Responsive layout**), **Compliance Status** (PASS / WARNING / FAIL), **Deviations**, **Recommended follow-ups**, **Lint**. Do **not** skip or shorten.
 
-Common fixes: import `Card` from `@chakra-ui/react` not `@gds-vero/react`; use `Card.Root variant="outline"` not `bg="bg.muted"`; use `GDSText textStyle="body"` not `textStyle="sm"`; page `bg="bg.subtle"`; Chakra compounds inherit 18px body from `@gds-vero/theme` ≥ 0.1.17 — do not add manual `fontSize="sm"` unless overriding; verified patterns in agent guide: **Accordion**, **Dialog** (not `Modal`), **Tabs** (not `TabList`), **Field** (not `FormControl`), **Card** (`Card.Title` not `GDSText` bold), **VeroMainHeader** (not custom header `Box`).
+Common fixes: import `Card` from `@chakra-ui/react` not `@gds-vero/react`; use `VeroAppShell` + `VeroPageLayout` (not ad-hoc `maxW`); use `Card.Root variant="outline"` not `bg="bg.muted"`; verified patterns: **Accordion**, **Dialog**, **Tabs**, **Field**, **Card** (`Card.Title`), **Page layout**, **VeroMainHeader**.
 
 Canonical guide: `GDS_FOR_LLM_AGENTS.md` (monorepo root) or `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` (scaffolded apps).

@@ -37,6 +37,14 @@ const ALLOWED_GDS_REACT_IMPORTS = new Set([
   "GDSText",
   "GDSHeading",
   "VeroMainHeader",
+  "VeroAppShell",
+  "VeroPageLayout",
+  "VERO_COLUMN_GAP",
+  "VERO_CONTENT_WIDTH",
+  "VERO_PAGE_PADDING_X",
+  "VERO_PAGE_PADDING_Y",
+  "VERO_SIDEBAR_BREAKPOINT",
+  "VERO_SIDEBAR_WIDTH",
 ]);
 
 export const gdsChakraV3ImportsRule = {
