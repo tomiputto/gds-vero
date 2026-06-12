@@ -186,7 +186,7 @@ GDS defines **named text styles** in the theme (`@gds-vero/theme`): `display`, `
 - **`Stat.ValueText`** — large numeric display (xl / 2xl / 3xl by size).
 - **`RatingGroup`** **md/lg** — `textStyle` controls star **icon** em-size, not body copy.
 - **`Avatar`** **2xs / xs / sm** — caption-scale initials so letters fit the circle.
-- **`GDSButton` / `Button`** — vero button sizes use their own scale (md → `textStyle: "lg"`, etc.); not 18px body on every button size.
+- **`GDSButton` / `Button`** — vero.fi buttons are **pill-shaped** (`borderRadius: "full"` from theme). Use **`GDSButton`** inside **`GDSProvider`** for CTAs; **never** override `borderRadius` or use raw `<button>`. Without `GDSProvider`, buttons look **square** (Chakra default).
 - **`Slider` markers** — caption-scale tick labels.
 
 #### Maintainer map (`packages/theme/src/`)
@@ -515,8 +515,8 @@ Use **`Field.Root`**, **`Field.Label`**, **`Field.HelperText`**, **`Field.ErrorT
 Card **title size (20px)** comes from **`@gds-vero/theme`** on the **`Card.Title`** slot — only when wrapped in **`GDSProvider`**. Do **not** set `fontSize` / `textStyle` on `Card.Title`. Do **not** use `GDSText` / `Text` / `GDSHeading` as the card title.
 
 ```tsx
-import { GDSProvider, GDSText as Text } from "@gds-vero/react";
-import { Card, Button } from "@chakra-ui/react";
+import { GDSProvider, GDSButton, GDSText as Text } from "@gds-vero/react";
+import { Card } from "@chakra-ui/react";
 
 <GDSProvider>
   <Card.Root variant="outline" maxW="md">
@@ -532,7 +532,7 @@ import { Card, Button } from "@chakra-ui/react";
       </Text>
     </Card.Body>
     <Card.Footer>
-      <Button size="sm" colorPalette="brand">Action</Button>
+      <GDSButton colorPalette="brand">Action</GDSButton>
     </Card.Footer>
   </Card.Root>
 </GDSProvider>
@@ -546,6 +546,30 @@ import { Card, Button } from "@chakra-ui/react";
 | Surface | **`Card.Root variant="outline"`** | white + vero green border (`bg.default`) |
 
 **Do not:** `GDSText fontWeight="bold"` as title; `Card.Title fontSize="md"`; `Card.Title textStyle="body"`; `bg="bg.muted"` on content cards.
+
+**Button — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/button):
+
+vero.fi buttons are **pill-shaped** (`borderRadius: "full"`) and **brand green** for primary actions. Shape comes from **`@gds-vero/theme`** on the **button recipe** when wrapped in **`GDSProvider`**. Prefer **`GDSButton`** (sets `colorPalette="brand"`, `variant="solid"`, `size="md"`, `borderRadius="full"` by default).
+
+```tsx
+import { GDSProvider, GDSButton } from "@gds-vero/react";
+import { HStack } from "@chakra-ui/react";
+
+<GDSProvider>
+  <HStack gap="3">
+    <GDSButton colorPalette="brand">Ota yhteyttä</GDSButton>
+    <GDSButton variant="outline">Peruuta</GDSButton>
+  </HStack>
+</GDSProvider>
+```
+
+| Use | Component | Notes |
+|-----|-----------|--------|
+| Primary CTA | **`GDSButton colorPalette="brand"`** | Pill shape — **do not** set `borderRadius` |
+| Secondary | **`GDSButton variant="outline"`** | Green border, pill shape |
+| In dialogs / toolbars | Chakra **`Button colorPalette="brand"`** inside **`GDSProvider`** | Same theme recipe — still pill |
+
+**Do not:** raw `<button>` or `Box as="button"`; `borderRadius="md"` / `"sm"` / `"lg"` on buttons; hex `bg="#..."`; `Button` **outside** `GDSProvider` (renders Chakra default = **square corners**); MUI/Ant Design buttons.
 
 **VeroMainHeader — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/examples/vero-main-header):
 
@@ -735,7 +759,7 @@ Append a path from the [component index](#component-index-compact) (e.g. `/dialo
 | Transient feedback after an action | `Toast` (`createToaster` + `Toaster`) | disappearing inline `Alert` |
 | Compact status in table/list (dot + label) | `Status` | `Badge` alone without status semantics |
 | Body copy and hierarchy | `GDSText`, `GDSHeading` | Chakra `Text` / `Heading` for main page content |
-| Primary / secondary actions | `GDSButton` or `Button` | `Box` / `div` with `onClick` |
+| Primary / secondary actions | **`GDSButton`** (preferred) or `Button colorPalette="brand"` in **`GDSProvider`** | raw `<button>`, `Box onClick`, `borderRadius="md"` |
 | Navigation between routes | Chakra `Link` or router `Link` + GDS tokens | `Button` pretending to be a link |
 | Section divider | `Separator` | `Divider` (Chakra v2 — not exported) |
 | One expandable block | `Collapsible` | custom show/hide without ARIA |
@@ -1084,7 +1108,7 @@ Verify every item against the files you created or changed:
 - [ ] **Vero surfaces:** page/canvas `bg.subtle`; cards `Card.Root variant="outline"` (white + green border) — not `bg.muted` on cards
 - [ ] **Typography:** page `h1` on `GDSHeading as="h1"` (42px / `size="4xl"` — omit `size` to auto-default); sections `as="h2"`/`h3`; body on `GDSText textStyle="body"` or `"caption"` (not `textStyle="sm"` / `"md"`); do not use `size="2xl"` or `size="xl"` on `h1`
 - [ ] **Theme typography:** `@gds-vero/theme` **≥ 0.1.17** (Chakra compounds get 18px body from theme — no manual `fontSize` on `Dialog.Body`, `Menu.Item`, etc. unless overriding); Pagination uses `ButtonGroup size="md"`
-- [ ] **Buttons:** primary actions use `GDSButton colorPalette="brand"` or Chakra `Button colorPalette="brand"`
+- [ ] **Buttons:** primary CTAs use **`GDSButton colorPalette="brand"`** (or Chakra `Button colorPalette="brand"` inside **`GDSProvider`**); **pill shape** from theme — **no** `borderRadius` override; **no** raw `<button>`
 - [ ] **Component choice:** overlays, forms, and feedback use the right compound (`Dialog` vs `Drawer`, `Switch` vs `Toggle`, `Select` vs `Combobox`, `Alert` vs `Toast`) — see **Component selection guide** in this file
 - [ ] **Component API verified:** every compound used (`Accordion`, `Dialog`, `Tabs`, `Menu`, `Field`, …) matches **GDS docs “Basic” example** or Chakra MCP — slot names were **not** guessed from training data (see **Mandatory: verify component API before coding**)
 - [ ] **Card titles:** use **`Card.Title`** / **`Card.Description`** — not `GDSText`/`Text`/`GDSHeading` as title; no `fontSize`/`textStyle` on `Card.Title` (theme → 20px)
@@ -1143,6 +1167,8 @@ Copy this template and fill it in:
 Report **PASS**, **WARNING**, or **FAIL** for **each** category. One line minimum per category; add **Violation** / **Fix** pairs when not PASS.
 
 **Design System** — stack and imports only `@gds-vero/*` + Chakra v3; `GDSProvider` / wrappers from `@gds-vero/react`; Chakra compounds from `@chakra-ui/react`; icons from `@gds-vero/icons`; no MUI / Ant Design / Tailwind UI kits / `react-icons`.
+
+**Buttons** — **`GDSButton`** or Chakra **`Button`** only inside **`GDSProvider`**; primary `colorPalette="brand"`; **pill shape** (`borderRadius: full`) — no override; no raw `<button>`.
 
 **Chakra v3 API** — compound slot names match GDS docs “Basic” example (not v2: `Modal`, `FormControl`, flat `Card`, `Table`/`Thead`, …); component choice correct (`Dialog` vs `Drawer`, `Field` vs raw inputs, etc.); APIs verified against docs — not guessed from training data.
 

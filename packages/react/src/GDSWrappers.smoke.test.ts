@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { GDSProvider } from "./GDSProvider";
-import { GDSHeading } from "./components/GDSHeading";
+import { GDSButton } from "./components/GDSButton";
 import { GDSText } from "./components/GDSText";
 import { VeroMainHeader } from "./components/VeroMainHeader";
 import { VeroAppShell } from "./components/VeroAppShell";
@@ -30,6 +30,18 @@ describe("@gds-vero/react wrappers (smoke)", () => {
     );
     expect(html).toContain("<h2");
     expect(html).toContain("Title");
+  });
+
+  it("GDSButton renders with pill borderRadius through GDSProvider", () => {
+    const html = renderToStaticMarkup(
+      React.createElement(
+        GDSProvider,
+        null,
+        React.createElement(GDSButton, null, "Ota yhteyttä")
+      )
+    );
+    expect(html).toContain("Ota yhteyttä");
+    expect(html).toMatch(/border-radius:\s*9999px|radii-full|borderRadius.*full|rounded-full/i);
   });
 
   it("VeroPageLayout renders main landmark", () => {

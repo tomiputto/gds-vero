@@ -2,7 +2,7 @@ import { Box, Button, HStack, Heading, VStack } from "@chakra-ui/react";
 import { CheckIcon, PlusIcon } from "@gds-vero/icons";
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
-import { GDSText as Text } from "@gds-vero/react";
+import { GDSButton, GDSText as Text } from "@gds-vero/react";
 export function ButtonPage() {
   return (
     <VStack align="stretch" gap="10">
@@ -11,9 +11,27 @@ export function ButtonPage() {
           Button
         </Heading>
         <Text color="fg.muted">
-          Buttons in different variants, sizes, and color palettes.
+          Buttons in different variants, sizes, and color palettes. vero.fi buttons are{" "}
+          <strong>pill-shaped</strong> (<code>borderRadius: full</code> from <code>@gds-vero/theme</code>) when
+          wrapped in <code>GDSProvider</code>. Prefer <code>GDSButton</code> from <code>@gds-vero/react</code>.
         </Text>
       </Box>
+
+      <Section
+        title="GDSButton (recommended)"
+        description="Wrapper with brand, solid, md, and pill shape defaults — use for CTAs in apps and agent-generated UI."
+        code={`import { GDSProvider, GDSButton } from "@gds-vero/react";
+
+<GDSProvider>
+  <GDSButton>Ota yhteyttä</GDSButton>
+  <GDSButton variant="outline">Peruuta</GDSButton>
+</GDSProvider>`}
+      >
+        <HStack wrap="wrap" gap="3">
+          <GDSButton colorPalette="brand">Ota yhteyttä</GDSButton>
+          <GDSButton variant="outline">Peruuta</GDSButton>
+        </HStack>
+      </Section>
 
       <Section
         title="Variants"
