@@ -11,4 +11,4 @@ When you **create or materially change React UI** (`.tsx` / `.jsx`):
 4. **Run `npm run lint` or `pnpm lint`** and fix errors on touched files.
 5. **End every UI delivery** with the full **Delivery audit report** from the agent guide §3 — all categories and **Compliance Status** (PASS / WARNING / FAIL). Do **not** skip or shorten.
 
-Common fixes: **`GDSButton`** in **`GDSProvider`** (pill — no `borderRadius` override); `VeroAppShell` + `VeroPageLayout`; `Breadcrumb` above `h1`; verified: **Accordion**, **Dialog**, **Tabs**, **Field**, **Card**, **Button**, **Page layout**, **Breadcrumb**, **VeroMainHeader**.
+Common fixes: **`GDSButton`** in **`GDSProvider`**; card CTA inline (no `width="full"` except login); `VeroAppShell` + `VeroPageLayout`; `Breadcrumb` above `h1`; verified: **Accordion**, **Dialog**, **Tabs**, **Field**, **Card**, **Button**, **Page layout**, **Breadcrumb**, **VeroMainHeader**.

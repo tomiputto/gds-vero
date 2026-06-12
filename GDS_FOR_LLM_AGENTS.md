@@ -229,7 +229,9 @@ Do not import `FormControl`, `FormLabel`, `FormHelperText`, or `FormErrorMessage
 
 ## Example: Login card (Chakra v3)
 
-Use this pattern for login cards or any form-in-card. **Imports must be** `Card`, `Field`, `Input`, `Button`, `Separator` (not `Divider`), `Stack`/`VStack`/`Box`/`Text`/`Heading` from `@chakra-ui/react`. **Never** import `FormControl`, `FormLabel`, `FormErrorMessage`, `Divider`, `CardHeader`, `CardBody`, `CardFooter`.
+Use this pattern for login cards or any form-in-card. **`width="full"` on the submit button applies only here** (narrow form card) — **not** on directory/profile/content cards (see **Card — verified pattern**).
+
+**Imports must be** `Card`, `Field`, `Input`, `Button`, `Separator` (not `Divider`), `Stack`/`VStack`/`Box`/`Text`/`Heading` from `@chakra-ui/react`. **Never** import `FormControl`, `FormLabel`, `FormErrorMessage`, `Divider`, `CardHeader`, `CardBody`, `CardFooter`.
 
 ```tsx
 import * as React from "react";
@@ -268,6 +270,7 @@ export function LoginCard() {
         </VStack>
       </Card.Body>
       <Card.Footer>
+        {/* width="full" — login/form submit only; not for directory or profile cards */}
         <Button colorPalette="brand" width="full">Sign in</Button>
       </Card.Footer>
     </Card.Root>
@@ -544,8 +547,18 @@ import { Card } from "@chakra-ui/react";
 | Subtitle | **`Card.Description`** | 18px body, muted |
 | Extra body | **`GDSText`** in **`Card.Body`** | `textStyle="body"` |
 | Surface | **`Card.Root variant="outline"`** | white + vero green border (`bg.default`) |
+| Footer CTA | **`GDSButton`** in **`Card.Footer`** | **Inline width** (content-sized pill) — **no** `width="full"` / `w="full"` |
 
-**Do not:** `GDSText fontWeight="bold"` as title; `Card.Title fontSize="md"`; `Card.Title textStyle="body"`; `bg="bg.muted"` on content cards.
+**Card footer buttons:** use **`GDSButton colorPalette="brand"`** with **default inline width** — the pill button is only as wide as its label. **`width="full"` / `w="full"`** is **only** for **login / form submit** cards (see Login card example above), **not** for team directory, profile, or content cards.
+
+```tsx
+{/* Team directory / profile card — inline CTA */}
+<Card.Footer>
+  <GDSButton colorPalette="brand">Ota yhteyttä</GDSButton>
+</Card.Footer>
+```
+
+**Do not:** `GDSText fontWeight="bold"` as title; `Card.Title fontSize="md"`; `Card.Title textStyle="body"`; `bg="bg.muted"` on content cards; **`GDSButton width="full"`** on directory/profile cards; `Card.Footer flexDirection="column" align="stretch"` unless user asks for stacked full-width actions.
 
 **Button — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/button):
 
@@ -566,10 +579,12 @@ import { HStack } from "@chakra-ui/react";
 | Use | Component | Notes |
 |-----|-----------|--------|
 | Primary CTA | **`GDSButton colorPalette="brand"`** | Pill shape — **do not** set `borderRadius` |
+| Card footer (directory, profile, content) | **`GDSButton`** in **`Card.Footer`** | **Inline width** — no `width="full"` |
+| Login / form submit in card | **`GDSButton width="full"`** | **Only** narrow form cards (sign in, send, etc.) |
 | Secondary | **`GDSButton variant="outline"`** | Green border, pill shape |
 | In dialogs / toolbars | Chakra **`Button colorPalette="brand"`** inside **`GDSProvider`** | Same theme recipe — still pill |
 
-**Do not:** raw `<button>` or `Box as="button"`; `borderRadius="md"` / `"sm"` / `"lg"` on buttons; hex `bg="#..."`; `Button` **outside** `GDSProvider` (renders Chakra default = **square corners**); MUI/Ant Design buttons.
+**Do not:** raw `<button>` or `Box as="button"`; `borderRadius="md"` / `"sm"` / `"lg"` on buttons; hex `bg="#..."`; `Button` **outside** `GDSProvider` (renders Chakra default = **square corners**); **`width="full"`** on card CTAs except login/form submit; MUI/Ant Design buttons.
 
 **VeroMainHeader — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/examples/vero-main-header):
 
@@ -1112,6 +1127,7 @@ Verify every item against the files you created or changed:
 - [ ] **Component choice:** overlays, forms, and feedback use the right compound (`Dialog` vs `Drawer`, `Switch` vs `Toggle`, `Select` vs `Combobox`, `Alert` vs `Toast`) — see **Component selection guide** in this file
 - [ ] **Component API verified:** every compound used (`Accordion`, `Dialog`, `Tabs`, `Menu`, `Field`, …) matches **GDS docs “Basic” example** or Chakra MCP — slot names were **not** guessed from training data (see **Mandatory: verify component API before coding**)
 - [ ] **Card titles:** use **`Card.Title`** / **`Card.Description`** — not `GDSText`/`Text`/`GDSHeading` as title; no `fontSize`/`textStyle` on `Card.Title` (theme → 20px)
+- [ ] **Card footer CTA:** **`GDSButton`** inline width in **`Card.Footer`** — **`width="full"`** only on login/form submit cards, not directory/profile cards
 - [ ] **Vero.fi header:** use **`VeroMainHeader`** from `@gds-vero/react` — not a custom `Box`/`Flex` header (see verified pattern in **Component selection guide**)
 - [ ] **Page layout:** vero.fi service pages use **`VeroAppShell`** + **`VeroPageLayout`** with `contentWidth="default"` (1152px) unless narrow form or wide table — **no ad-hoc `maxW`**
 - [ ] **Breadcrumb:** service/content pages have **`Breadcrumb`** above **`h1`** (inferred hierarchy OK) — omit only when user says so or view is landing/login/modal
@@ -1127,6 +1143,7 @@ Search touched files for common violations (fix or report):
 - `textStyle="sm"` or `textStyle="md"` on `GDSText`
 - Manual `fontSize="sm"` / `textStyle="sm"` on Chakra compounds that are already themed (`Dialog`, `Menu`, `Field`, `Table`, …) without a documented reason
 - `Card.Root` with `bg="bg.muted"` or without `variant="outline"` when representing a content card
+- `GDSButton` / `Button` with `width="full"` or `w="full"` in directory/profile/content card footers (login form cards only)
 
 Run lint when available:
 

@@ -11,6 +11,6 @@ When you **create or materially change React UI** (`.tsx` / `.jsx`):
 4. **Run lint** when available (`pnpm --filter docs lint` in monorepo; `npm run lint` / `pnpm lint` in scaffolded apps).
 5. **End every UI delivery** with the full **Delivery audit report** from `GDS_FOR_LLM_AGENTS.md` §3 — all headings, all categories (**Design System**, **Buttons**, **Chakra v3 API**, **Surface tokens**, **Page layout**, **Typography**, **Accessibility**, **Responsive layout**), **Compliance Status** (PASS / WARNING / FAIL), **Deviations**, **Recommended follow-ups**, **Lint**. Do **not** skip or shorten.
 
-Common fixes: **`GDSButton`** inside **`GDSProvider`** (pill shape — no `borderRadius` override); `VeroAppShell` + `VeroPageLayout`; **`Breadcrumb` above `h1`**; verified patterns: **Accordion**, **Dialog**, **Tabs**, **Field**, **Card**, **Button**, **Page layout**, **Breadcrumb**, **VeroMainHeader**.
+Common fixes: **`GDSButton`** in **`GDSProvider`** (pill — no `borderRadius`); card footer CTA **inline** (no `width="full"` except login); `VeroAppShell` + `VeroPageLayout`; **`Breadcrumb` above `h1`**; verified patterns: **Accordion**, **Dialog**, **Tabs**, **Field**, **Card**, **Button**, **Page layout**, **Breadcrumb**, **VeroMainHeader**.
 
 Canonical guide: `GDS_FOR_LLM_AGENTS.md` (monorepo root) or `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` (scaffolded apps).
