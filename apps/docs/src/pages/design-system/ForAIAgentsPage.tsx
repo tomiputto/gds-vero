@@ -191,7 +191,8 @@ function App() {
             <RouterLink to="/tabs">Tabs</RouterLink>,{" "}
             <RouterLink to="/field">Field</RouterLink>,{" "}
             <RouterLink to="/card">Card</RouterLink>,{" "}
-            <RouterLink to="/guides/page-layout">Page layout</RouterLink>, and{" "}
+            <RouterLink to="/guides/page-layout">Page layout</RouterLink>,{" "}
+            <RouterLink to="/breadcrumb">Breadcrumb</RouterLink>, and{" "}
             <RouterLink to="/examples/vero-main-header">VeroMainHeader</RouterLink>. <strong>Custom GPT Instructions</strong> must require docs lookup for other compounds before generating code.
           </Text>
         </VStack>

@@ -14,16 +14,31 @@ import {
 import { Section } from "../../components/Section";
 import { AccessibilityGuidance } from "../../components/AccessibilityGuidance";
 
-const SHELL_CODE = `import { GDSProvider, GDSHeading, GDSText, VeroAppShell, VeroPageLayout } from "@gds-vero/react";
+const SHELL_CODE = `import { Breadcrumb } from "@chakra-ui/react";
+import { ChevronRightIcon } from "@gds-vero/icons";
+import { GDSProvider, GDSHeading, GDSText, VeroAppShell, VeroPageLayout } from "@gds-vero/react";
 
 export function ServicePage() {
   return (
     <GDSProvider>
       <VeroAppShell>
         <VeroPageLayout>
+          <Breadcrumb.Root aria-label="Breadcrumb" mb="4">
+            <Breadcrumb.List>
+              <Breadcrumb.Item>
+                <Breadcrumb.Link href="/">Etusivu</Breadcrumb.Link>
+              </Breadcrumb.Item>
+              <Breadcrumb.Separator>
+                <ChevronRightIcon boxSize="4" color="fg.muted" aria-hidden />
+              </Breadcrumb.Separator>
+              <Breadcrumb.Item>
+                <Breadcrumb.CurrentLink>Palvelun otsikko</Breadcrumb.CurrentLink>
+              </Breadcrumb.Item>
+            </Breadcrumb.List>
+          </Breadcrumb.Root>
           <GDSHeading as="h1">Palvelun otsikko</GDSHeading>
           <GDSText textStyle="body" mt="4">
-            Page content uses a fixed max-width and padding — agents must not invent other maxW values.
+            Breadcrumb → h1 → content — required order on vero.fi service pages.
           </GDSText>
         </VeroPageLayout>
       </VeroAppShell>
@@ -174,6 +189,52 @@ export function PageLayoutPage() {
                 Below <code>{VERO_SIDEBAR_BREAKPOINT}</code> (992px): sidebar stacks <strong>below</strong> main.
                 At <code>{VERO_SIDEBAR_BREAKPOINT}+</code>: main + sidebar side by side.
               </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table.Root>
+      </Section>
+
+      <Section
+        title="Service page anatomy"
+        description="Required content order inside VeroPageLayout — agents must not skip breadcrumb because hierarchy was not in the user prompt."
+      >
+        <Table.Root size="sm" variant="outline">
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeader>Order</Table.ColumnHeader>
+              <Table.ColumnHeader>Element</Table.ColumnHeader>
+              <Table.ColumnHeader>Notes</Table.ColumnHeader>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>1</Table.Cell>
+              <Table.Cell>
+                <code>Breadcrumb</code>
+              </Table.Cell>
+              <Table.Cell>
+                Default on service pages. Infer parent links (e.g. Etusivu → section → current). See{" "}
+                <code>/breadcrumb</code>.
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>2</Table.Cell>
+              <Table.Cell>
+                <code>GDSHeading as="h1"</code>
+              </Table.Cell>
+              <Table.Cell>Page title — one per view.</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>3</Table.Cell>
+              <Table.Cell>Optional lead</Table.Cell>
+              <Table.Cell>
+                <code>GDSText</code> caption or muted body.
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>4</Table.Cell>
+              <Table.Cell>Main content</Table.Cell>
+              <Table.Cell>Cards, tables, forms, etc.</Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table.Root>

@@ -607,17 +607,47 @@ const navItems: VeroNavItem[] = [
 
 Use **`VeroAppShell`** + **`VeroPageLayout`** for **every vero.fi-style service page**. This fixes max-width, padding, and column behavior so layouts do **not** drift between LLM runs.
 
+**Service page anatomy (required order inside `VeroPageLayout`):**
+
+1. **`Breadcrumb`** — hierarchy trail **above** the page title (see **Breadcrumb — verified pattern** below). **Include by default** on every service/content page — do **not** skip because the user did not spell out parent links; **infer** a plausible 2–4 level trail from the page title and context (Finnish labels, e.g. `Etusivu` → section → current page).
+2. **`GDSHeading as="h1"`** — page title (one per view).
+3. Optional lead — `GDSText textStyle="body" color="fg.muted"` or `textStyle="caption"`.
+4. Main content — cards, tables, forms, etc.
+
+**Omit breadcrumb only when:** user explicitly says no breadcrumb; or the view is a **top-level landing** / login / modal / full-screen flow with no parent in the site hierarchy.
+
 ```tsx
-import { Card } from "@chakra-ui/react";
+import { Breadcrumb } from "@chakra-ui/react";
+import { ChevronRightIcon } from "@gds-vero/icons";
 import { GDSProvider, GDSHeading, GDSText, VeroAppShell, VeroPageLayout } from "@gds-vero/react";
 
 <GDSProvider>
   <VeroAppShell>
-    <VeroPageLayout>
+    <VeroPageLayout contentWidth="wide">
+      <Breadcrumb.Root aria-label="Breadcrumb" mb="4">
+        <Breadcrumb.List>
+          <Breadcrumb.Item>
+            <Breadcrumb.Link href="/">Etusivu</Breadcrumb.Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Separator>
+            <ChevronRightIcon boxSize="4" color="fg.muted" aria-hidden />
+          </Breadcrumb.Separator>
+          <Breadcrumb.Item>
+            <Breadcrumb.Link href="/organisaatio">Organisaatio</Breadcrumb.Link>
+          </Breadcrumb.Item>
+          <Breadcrumb.Separator>
+            <ChevronRightIcon boxSize="4" color="fg.muted" aria-hidden />
+          </Breadcrumb.Separator>
+          <Breadcrumb.Item>
+            <Breadcrumb.CurrentLink>Team directory</Breadcrumb.CurrentLink>
+          </Breadcrumb.Item>
+        </Breadcrumb.List>
+      </Breadcrumb.Root>
       <GDSHeading as="h1">Team directory</GDSHeading>
-      <GDSText textStyle="body" mt="4">
-        Main content column — default max-width 1152px.
+      <GDSText textStyle="body" color="fg.muted" mt="2">
+        Henkilöstöhakemisto
       </GDSText>
+      {/* cards, table, etc. */}
     </VeroPageLayout>
   </VeroAppShell>
 </GDSProvider>
@@ -656,7 +686,22 @@ import { GDSProvider, GDSHeading, GDSText, VeroAppShell, VeroPageLayout } from "
 </VeroPageLayout>
 ```
 
-**Do not:** `Box as="main" maxW="xl"`; `Flex` page shell without `VeroAppShell`; different padding per page; full-width content without `contentWidth="full"`; custom sidebar width.
+**Do not:** `Box as="main" maxW="xl"`; `Flex` page shell without `VeroAppShell`; different padding per page; full-width content without `contentWidth="full"`; custom sidebar width; **service page without `Breadcrumb`** above `h1` (unless user opted out).
+
+**Breadcrumb — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/breadcrumb):
+
+Use Chakra **`Breadcrumb`** compound from **`@chakra-ui/react`**. **`ChevronRightIcon`** from **`@gds-vero/icons`** as separator. Theme sets **18px body** typography on the list automatically.
+
+| Slot | Use |
+|------|-----|
+| `Breadcrumb.Root` | Wrap trail; `aria-label="Breadcrumb"` |
+| `Breadcrumb.List` | Ordered list container |
+| `Breadcrumb.Item` | One crumb |
+| `Breadcrumb.Link` | Parent segments (links) |
+| `Breadcrumb.CurrentLink` | **Current page** — not a link |
+| `Breadcrumb.Separator` | Between items — `ChevronRightIcon` with `aria-hidden` |
+
+**Do not:** plain `Link` / `HStack` chains; v2 `Breadcrumb` / `BreadcrumbItem`; skip breadcrumb on service pages because hierarchy was not in the prompt — **infer** parent segments.
 
 Other high-risk compounds (always open docs first — no verified snippet here): **Drawer**, **Menu**, **Table**, **Steps**, **Select**, **Combobox**, **Toast** (`createToaster` + `Toaster`).
 
@@ -684,7 +729,7 @@ Append a path from the [component index](#component-index-compact) (e.g. `/dialo
 | Focused modal task (confirm, form) | `Dialog` | `Drawer`, full-screen `Popover` |
 | Side panel (filters, mobile nav, details) | `Drawer` | `Dialog` as a side sheet hack |
 | Anchored panel with actions / form | `Popover` | `Dialog` for lightweight context |
-| Rich preview on hover (card summary) | `HoverCard` | `Tooltip` with long content |
+| Hierarchy trail (parent → current page) | `Breadcrumb` | plain `Link` chains, skipping breadcrumb on service pages |
 | Short hint on hover/focus | `Tooltip` | `Popover` for one line of text |
 | Persistent page/section message | `Alert` | `Toast` |
 | Transient feedback after an action | `Toast` (`createToaster` + `Toaster`) | disappearing inline `Alert` |
@@ -1045,6 +1090,7 @@ Verify every item against the files you created or changed:
 - [ ] **Card titles:** use **`Card.Title`** / **`Card.Description`** — not `GDSText`/`Text`/`GDSHeading` as title; no `fontSize`/`textStyle` on `Card.Title` (theme → 20px)
 - [ ] **Vero.fi header:** use **`VeroMainHeader`** from `@gds-vero/react` — not a custom `Box`/`Flex` header (see verified pattern in **Component selection guide**)
 - [ ] **Page layout:** vero.fi service pages use **`VeroAppShell`** + **`VeroPageLayout`** with `contentWidth="default"` (1152px) unless narrow form or wide table — **no ad-hoc `maxW`**
+- [ ] **Breadcrumb:** service/content pages have **`Breadcrumb`** above **`h1`** (inferred hierarchy OK) — omit only when user says so or view is landing/login/modal
 - [ ] **Responsive layout:** uses Chakra responsive props (`base` / `md` / `lg`), `Stack` / `SimpleGrid` / `Flex` with `direction` / `wrap` — not fixed pixel widths that break on small viewports; wide tables use `Table.ScrollArea`; touch targets remain usable on mobile
 
 ### 2. Automated checks
@@ -1102,7 +1148,7 @@ Report **PASS**, **WARNING**, or **FAIL** for **each** category. One line minimu
 
 **Surface tokens** — semantic tokens (`fg`, `bg.default`, `bg.subtle`, `border.emphasized`, `colorPalette="brand"`); page shell `bg.subtle` via `VeroAppShell`; content cards `Card.Root variant="outline"` — not `bg.muted` on cards; no ad-hoc hex on UI.
 
-**Page layout** — `VeroAppShell` + `VeroPageLayout`; `contentWidth="default"` (1152px) unless documented preset; sidebar via `sidebar` prop only; no random `maxW` / padding.
+**Page layout** — `VeroAppShell` + `VeroPageLayout`; `contentWidth` preset; **`Breadcrumb` above `h1`** on service pages; sidebar via `sidebar` prop only; no random `maxW` / padding.
 
 **Typography** — page `h1` uses `GDSHeading as="h1"` (42px, not `size="xl"`/`"2xl"`); card titles on `Card.Title`; body on `GDSText textStyle="body"`; no unnecessary manual `fontSize` on themed Chakra slots.
 

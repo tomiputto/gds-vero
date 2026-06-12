@@ -20,7 +20,7 @@ export function BreadcrumbPage() {
         description="List of links with separators"
         code={`import { Breadcrumb } from "@chakra-ui/react";
 
-<Breadcrumb.Root>
+<Breadcrumb.Root aria-label="Breadcrumb">
   <Breadcrumb.List>
     <Breadcrumb.Item>
       <Breadcrumb.Link href="#">Docs</Breadcrumb.Link>
@@ -36,7 +36,7 @@ export function BreadcrumbPage() {
   </Breadcrumb.List>
 </Breadcrumb.Root>`}
       >
-        <Breadcrumb.Root>
+        <Breadcrumb.Root aria-label="Breadcrumb">
           <Breadcrumb.List>
             <Breadcrumb.Item>
               <Breadcrumb.Link href="#">Docs</Breadcrumb.Link>
