@@ -510,10 +510,24 @@ export function VeroMainHeader({
       >
         <Drawer.Root open={drawerOpen} onOpenChange={(e) => setDrawerOpen(e.open)} placement="start">
           <Drawer.Trigger asChild>
-            <GDSButton variant="ghost" size="sm" colorPalette="brand">
-              <MenuIcon aria-hidden />
-              Valikko
-            </GDSButton>
+            <HeaderActionButton
+              type="button"
+              display="inline-flex"
+              alignItems="center"
+              gap="2"
+              py="2"
+              bg="transparent"
+              border="0"
+              cursor="pointer"
+              color="brand.solid"
+              _hover={{ opacity: 0.85 }}
+              aria-label="Avaa valikko"
+            >
+              <MenuIcon boxSize="5" aria-hidden />
+              <GDSText textStyle="body" fontWeight="semibold">
+                Valikko
+              </GDSText>
+            </HeaderActionButton>
           </Drawer.Trigger>
           <Drawer.Backdrop />
           <Drawer.Positioner>
