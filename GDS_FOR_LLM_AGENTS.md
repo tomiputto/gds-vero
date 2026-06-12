@@ -57,10 +57,11 @@ The same guide is **published inside** `@gds-vero/react`. After install you have
 - `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` — canonical stack rules
 - `node_modules/@gds-vero/react/GDS_NPM_RELEASE_NOTES.md` — **npm version changes** (for Custom GPT / external agents)
 
-**External agents (Custom GPT, etc.):** upload **both** files as knowledge. Check release notes for current `@gds-vero/*` versions before generating code. Raw URLs:
+**External agents (Custom GPT, etc.):** upload **both** files as knowledge. Paste **Instructions** from **`GDS_CUSTOM_GPT_INSTRUCTIONS.md`** (repo root) — knowledge alone does not reliably enforce the Delivery audit report. Check release notes for current `@gds-vero/*` versions before generating code. Raw URLs:
 
 - https://raw.githubusercontent.com/tomiputto/gds-vero/main/GDS_FOR_LLM_AGENTS.md
 - https://raw.githubusercontent.com/tomiputto/gds-vero/main/GDS_NPM_RELEASE_NOTES.md
+- https://github.com/tomiputto/gds-vero/blob/main/GDS_CUSTOM_GPT_INSTRUCTIONS.md (Custom GPT Instructions — copy step 2)
 
 **`npm create @gds-vero/app@latest`** scaffolds `AGENTS.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc`, `CLAUDE.md`, `.github/copilot-instructions.md`, and ESLint + `jsx-a11y` (`npm run lint`) so agents follow GDS rules, verify design-system compliance, and catch common accessibility issues automatically.
 
@@ -1337,6 +1338,7 @@ That way the agent is nudged to output v3-compatible code even when it would oth
 
 ## Links
 
+- **Custom GPT Instructions:** `GDS_CUSTOM_GPT_INSTRUCTIONS.md` (repo root) — copy-paste block for ChatGPT Instructions + knowledge setup  
 - **npm release notes (for agents):** `GDS_NPM_RELEASE_NOTES.md` (repo root; bundled in `@gds-vero/react`) — version-specific changes for Custom GPT / external assistants  
 - **GDS docs (components, examples, a11y):** https://tomiputto.github.io/gds-vero/ — see **Component selection guide** in this file for path index  
 - **Repository:** https://github.com/tomiputto/gds-vero  

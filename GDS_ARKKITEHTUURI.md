@@ -193,7 +193,7 @@ GDS dokumentoi pinon säännöt, jotta koodausavustajat käyttävät Chakra v3:t
 
 | Konteksti | Tiedostot | Kanoninen ohje |
 |-----------|-----------|----------------|
-| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `GDS_NPM_RELEASE_NOTES.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (pinon säännöt) + `GDS_NPM_RELEASE_NOTES.md` (npm-version muutokset Custom GPT:lle / ulkoisille agenteille) |
+| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `GDS_NPM_RELEASE_NOTES.md`, `GDS_CUSTOM_GPT_INSTRUCTIONS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (pinon säännöt) + `GDS_NPM_RELEASE_NOTES.md` (npm-versionit) + `GDS_CUSTOM_GPT_INSTRUCTIONS.md` (ChatGPT Instructions -kopio) |
 | **npm-kuluttajat** | Bundlattu `@gds-vero/react`:iin | `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` · `GDS_NPM_RELEASE_NOTES.md` |
 | **create-app -scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, `eslint` + `jsx-a11y` | Viittaa bundlattuun ohjeeseen; `npm run lint` JSX-a11y-tarkistukseen |
 

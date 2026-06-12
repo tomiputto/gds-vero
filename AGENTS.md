@@ -25,6 +25,7 @@ Configure your assistant with a rule that **requires** following that file for a
 
 - **`GDS_ARCHITECTURE.md`** / **`GDS_ARKKITEHTUURI.md`** — monorepo architecture (EN/FI pair).
 - **`GDS_NPM_RELEASE_NOTES.md`** — npm version changes for Custom GPT / external agents (bundled in `@gds-vero/react`).
+- **`GDS_CUSTOM_GPT_INSTRUCTIONS.md`** — copy-paste Custom GPT Instructions (Delivery audit report + preview workflow).
 - **`CLAUDE.md`** — monorepo layout and package roles (supplementary only).
 - **`.cursor/rules/gds-llm-agents.mdc`** — Cursor: always apply GDS agent rules.
 - **`.cursor/rules/gds-compliance-review.mdc`** — Cursor: mandatory GDS-VERO compliance review + **Delivery audit report** after every UI change.

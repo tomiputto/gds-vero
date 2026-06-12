@@ -193,7 +193,7 @@ GDS documents stack rules so coding assistants use Chakra v3 + correct imports c
 
 | Context | Files | Canonical guide |
 |---------|-------|-----------------|
-| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `GDS_NPM_RELEASE_NOTES.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (stack rules) + `GDS_NPM_RELEASE_NOTES.md` (npm version changes for Custom GPT / external agents) |
+| **Monorepo** | `GDS_FOR_LLM_AGENTS.md`, `GDS_NPM_RELEASE_NOTES.md`, `GDS_CUSTOM_GPT_INSTRUCTIONS.md`, `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/gds-llm-agents.mdc`, `.cursor/rules/gds-compliance-review.mdc`, `.cursor/rules/gds-accessibility.mdc` | `GDS_FOR_LLM_AGENTS.md` (stack rules) + `GDS_NPM_RELEASE_NOTES.md` (npm versions) + `GDS_CUSTOM_GPT_INSTRUCTIONS.md` (ChatGPT Instructions copy-paste) |
 | **npm consumers** | Bundled in `@gds-vero/react` | `node_modules/@gds-vero/react/GDS_FOR_LLM_AGENTS.md` · `GDS_NPM_RELEASE_NOTES.md` |
 | **create-app scaffold** | `AGENTS.md`, `CLAUDE.md`, `.cursor/rules/`, `.github/copilot-instructions.md`, `eslint` + `jsx-a11y` | Points to bundled guide after install; `npm run lint` for automated JSX a11y |
 

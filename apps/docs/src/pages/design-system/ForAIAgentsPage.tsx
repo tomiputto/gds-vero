@@ -11,6 +11,8 @@ const GITHUB_RELEASE_NOTES_URL =
   "https://github.com/tomiputto/gds-vero/blob/main/GDS_NPM_RELEASE_NOTES.md";
 const RAW_RELEASE_NOTES_URL =
   "https://raw.githubusercontent.com/tomiputto/gds-vero/main/GDS_NPM_RELEASE_NOTES.md";
+const GITHUB_CUSTOM_GPT_INSTRUCTIONS_URL =
+  "https://github.com/tomiputto/gds-vero/blob/main/GDS_CUSTOM_GPT_INSTRUCTIONS.md";
 const GITHUB_COMPONENT_GUIDE_URL = `${GITHUB_GUIDE_URL}#component-selection-guide`;
 const PUBLISHED_DOCS_URL = "https://tomiputto.github.io/gds-vero/";
 /** Keep in sync with packages/react/package.json on publish */
@@ -251,6 +253,39 @@ function App() {
       </Section>
 
       <Section
+        title="Custom GPT Instructions"
+        description="Copy-paste block for ChatGPT Instructions — enforces Delivery audit report after every preview."
+      >
+        <VStack align="stretch" gap="2" color="fg.muted">
+          <Text>
+            <Code>GDS_CUSTOM_GPT_INSTRUCTIONS.md</Code> is the maintained Custom GPT setup: knowledge file URLs,
+            the full <strong>Instructions</strong> field (5-step workflow + audit template), and common mistakes
+            (e.g. audit text inside a code fence).
+          </Text>
+          <Text>
+            <strong>Knowledge:</strong> upload raw{" "}
+            <Link href={RAW_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              GDS_FOR_LLM_AGENTS.md
+            </Link>
+            {" and "}
+            <Link href={RAW_RELEASE_NOTES_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">
+              GDS_NPM_RELEASE_NOTES.md
+            </Link>
+            . <strong>Instructions:</strong> copy section 2 from{" "}
+            <Link
+              href={GITHUB_CUSTOM_GPT_INSTRUCTIONS_URL}
+              color="brand.solid"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GDS_CUSTOM_GPT_INSTRUCTIONS.md
+            </Link>
+            .
+          </Text>
+        </VStack>
+      </Section>
+
+      <Section
         title="npm release notes (Custom GPT)"
         description="Version-specific changes in published @gds-vero/* packages — what agents must know after each npm publish."
       >
@@ -433,6 +468,7 @@ End with the full Delivery audit report from GDS_FOR_LLM_AGENTS.md (Preview URL,
           <Link href={RAW_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_FOR_LLM_AGENTS.md (raw — Custom GPT)</Link>
           <Link href={GITHUB_RELEASE_NOTES_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_NPM_RELEASE_NOTES.md (GitHub)</Link>
           <Link href={RAW_RELEASE_NOTES_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_NPM_RELEASE_NOTES.md (raw — Custom GPT)</Link>
+          <Link href={GITHUB_CUSTOM_GPT_INSTRUCTIONS_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">GDS_CUSTOM_GPT_INSTRUCTIONS.md (Custom GPT Instructions)</Link>
           <Link href={GITHUB_COMPONENT_GUIDE_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">Component selection guide (GitHub anchor)</Link>
           <Link href={PUBLISHED_DOCS_URL} color="brand.solid" target="_blank" rel="noopener noreferrer">Published GDS docs</Link>
           <Link href="https://github.com/tomiputto/gds-vero" color="brand.solid" target="_blank" rel="noopener noreferrer">Repository (GitHub)</Link>
