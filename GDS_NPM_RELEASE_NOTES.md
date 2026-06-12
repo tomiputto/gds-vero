@@ -12,8 +12,8 @@
 
 | Package | Version | npm |
 |---------|---------|-----|
-| `@gds-vero/theme` | **0.1.18** | https://www.npmjs.com/package/@gds-vero/theme |
-| `@gds-vero/react` | **0.1.24** | https://www.npmjs.com/package/@gds-vero/react |
+| `@gds-vero/theme` | **0.1.19** | https://www.npmjs.com/package/@gds-vero/theme |
+| `@gds-vero/react` | **0.1.25** | https://www.npmjs.com/package/@gds-vero/react |
 | `@gds-vero/create-app` | **0.1.13** | https://www.npmjs.com/package/@gds-vero/create-app |
 | `@gds-vero/tokens` | 0.1.3 | https://www.npmjs.com/package/@gds-vero/tokens |
 | `@gds-vero/icons` | 0.1.1 | https://www.npmjs.com/package/@gds-vero/icons |
@@ -32,7 +32,7 @@ npm view @gds-vero/react version
 ## Recommended minimum for new apps
 
 ```bash
-pnpm add @gds-vero/react@^0.1.24 @gds-vero/theme@^0.1.18 @gds-vero/icons@^0.1.1 @chakra-ui/react@^3.34.0 @emotion/react react react-dom
+pnpm add @gds-vero/react@^0.1.25 @gds-vero/theme@^0.1.19 @gds-vero/icons@^0.1.1 @chakra-ui/react@^3.34.0 @emotion/react react react-dom
 ```
 
 Or scaffold:
@@ -84,6 +84,25 @@ After npm install, copies may exist at:
 ---
 
 ## Release history (agent impact only)
+
+### 2026-06-12 — theme@0.1.19, react@0.1.25
+
+#### @gds-vero/theme@0.1.19
+
+- fix(theme): semibold Field.Label and mandate Field.Label in agent guide
+
+#### @gds-vero/react@0.1.25
+
+- fix(theme): semibold Field.Label and mandate Field.Label in agent guide
+- docs: add GDS_CUSTOM_GPT_INSTRUCTIONS for ChatGPT setup
+- chore(react): bump to 0.1.24 for card footer CTA agent guide
+- docs(react): card footer CTA inline width — full only on login
+- chore(react): bump to 0.1.23 for pill button agent guide
+- fix(react): enforce pill GDSButton defaults and document button pattern
+- chore(react): bump to 0.1.22 for mobile Valikko typography fix
+- fix(react): use 18px body text for mobile Valikko menu trigger
+
+---
 
 ### 2026-06-12 — react@0.1.24
 

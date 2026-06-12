@@ -16,7 +16,7 @@ const GITHUB_CUSTOM_GPT_INSTRUCTIONS_URL =
 const GITHUB_COMPONENT_GUIDE_URL = `${GITHUB_GUIDE_URL}#component-selection-guide`;
 const PUBLISHED_DOCS_URL = "https://tomiputto.github.io/gds-vero/";
 /** Keep in sync with packages/react/package.json on publish */
-const REACT_NPM_VERSION = "0.1.24";
+const REACT_NPM_VERSION = "0.1.25";
 const REACT_NPM_URL = "https://www.npmjs.com/package/@gds-vero/react";
 
 export function ForAIAgentsPage() {
@@ -310,7 +310,7 @@ function App() {
           </Text>
           <Text>
             <strong>Custom GPT:</strong> upload both agent files as knowledge. In Instructions, require
-            checking release notes for current versions (e.g. <Code>@gds-vero/theme@^0.1.18</Code>,{" "}
+            checking release notes for current versions (e.g. <Code>@gds-vero/theme@^0.1.19</Code>,{" "}
             <Code>@gds-vero/react@^{REACT_NPM_VERSION}</Code>) before generating UI.
           </Text>
         </VStack>
