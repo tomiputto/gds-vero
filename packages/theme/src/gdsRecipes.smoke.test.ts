@@ -16,7 +16,11 @@ describe("@gds-vero/theme recipes (smoke)", () => {
     const checkbox = system.getSlotRecipe("checkbox");
     const select = system.getSlotRecipe("select");
 
-    expect(field.base?.label).toMatchObject({ textStyle: "body", fontSize: "md" });
+    expect(field.base?.label).toMatchObject({
+      textStyle: "body",
+      fontSize: "md",
+      fontWeight: "semibold",
+    });
     expect(checkbox.variants?.size?.md?.label).toMatchObject({ textStyle: "body", fontSize: "md" });
     expect(select.base?.label).toMatchObject({ textStyle: "body", fontSize: "md" });
     expect(select.variants?.size?.md?.trigger).toMatchObject({ textStyle: "body", fontSize: "md" });

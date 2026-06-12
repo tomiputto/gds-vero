@@ -7,6 +7,12 @@ export const BODY_TEXT_STYLE = {
   lineHeight: "1.5",
 } as const;
 
+/** Visible form field labels — 18px body scale, semibold (theme `Field.Label` slot). */
+export const FIELD_LABEL_STYLE = {
+  ...BODY_TEXT_STYLE,
+  fontWeight: "semibold",
+} as const;
+
 /** Secondary/meta copy in overlays (shortcuts, hints) — caption scale, not 12px Chakra sm on controls. */
 export const CAPTION_TEXT_STYLE = {
   textStyle: "caption",
@@ -152,6 +158,13 @@ export function bodyTextSizeVariants() {
 export function bodyTextSlotSizes(slot: string) {
   return Object.fromEntries(
     FORM_SIZES.map((size) => [size, { [slot]: { ...BODY_TEXT_STYLE } }]),
+  );
+}
+
+/** Form label slots (checkbox label, etc.) — semibold field label typography. */
+export function bodyTextLabelSlotSizes(slot: string) {
+  return Object.fromEntries(
+    FORM_SIZES.map((size) => [size, { [slot]: { ...FIELD_LABEL_STYLE } }]),
   );
 }
 

@@ -1,5 +1,6 @@
 import {
   BODY_TEXT_STYLE,
+  FIELD_LABEL_STYLE,
   CAPTION_TEXT_STYLE,
   bodyTextColorPickerInputSizes,
   bodyTextTagLabelSizes,
@@ -7,8 +8,7 @@ import {
 
 const DATE_PICKER_TEXT_BASE = {
   label: {
-    ...BODY_TEXT_STYLE,
-    fontWeight: "medium",
+    ...FIELD_LABEL_STYLE,
   },
   input: {
     ...BODY_TEXT_STYLE,

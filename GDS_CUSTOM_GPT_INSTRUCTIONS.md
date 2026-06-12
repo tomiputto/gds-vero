@@ -106,6 +106,11 @@ export default function App() {
 - Title: `Card.Title` / `Card.Description` — not `GDSHeading` as card title.
 - Footer CTA: `GDSButton` **inline width** in `Card.Footer` — **no** `width="full"` except login / form submit cards.
 
+## Forms
+
+- Visible labels: **`Field.Label`** inside **`Field.Root`** — never `GDSText` / `Text` above an input.
+- Helper / error: **`Field.HelperText`**, **`Field.ErrorText`** — do not set `fontSize` / `textStyle` on `Field.Label` (theme styles the slot).
+
 ## Typography
 
 - `GDSHeading` with `as="h1"`–`h6`, `size="xs"`–`4xl`

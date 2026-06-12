@@ -1,6 +1,8 @@
 import {
   BODY_TEXT_STYLE,
+  FIELD_LABEL_STYLE,
   bodyTextEditableSizes,
+  bodyTextLabelSlotSizes,
   bodyTextNativeSelectSizes,
   bodyTextNumberInputSizes,
   bodyTextPinInputSizes,
@@ -18,7 +20,7 @@ import {
 export const veroFormSlotRecipes = {
   field: {
     base: {
-      label: { ...BODY_TEXT_STYLE, fontWeight: "medium" },
+      label: { ...FIELD_LABEL_STYLE },
       helperText: { ...BODY_TEXT_STYLE, color: "fg.muted" },
       errorText: { ...BODY_TEXT_STYLE, color: "fg.error", fontWeight: "medium" },
     },
@@ -32,12 +34,12 @@ export const veroFormSlotRecipes = {
   },
   checkbox: {
     variants: {
-      size: bodyTextSlotSizes("label"),
+      size: bodyTextLabelSlotSizes("label"),
     },
   },
   radioGroup: {
     base: {
-      label: BODY_TEXT_STYLE,
+      label: FIELD_LABEL_STYLE,
     },
     variants: {
       size: bodyTextSlotSizes("item"),
@@ -45,7 +47,7 @@ export const veroFormSlotRecipes = {
   },
   switch: {
     base: {
-      label: { ...BODY_TEXT_STYLE, lineHeight: "1" },
+      label: { ...FIELD_LABEL_STYLE, lineHeight: "1" },
     },
   },
   numberInput: {
@@ -77,7 +79,7 @@ export const veroFormSlotRecipes = {
   },
   select: {
     base: {
-      label: BODY_TEXT_STYLE,
+      label: FIELD_LABEL_STYLE,
     },
     variants: {
       size: bodyTextSelectSlotSizes(["trigger", "content"]),
@@ -85,7 +87,7 @@ export const veroFormSlotRecipes = {
   },
   combobox: {
     base: {
-      label: BODY_TEXT_STYLE,
+      label: FIELD_LABEL_STYLE,
     },
     variants: {
       size: bodyTextSelectSlotSizes(["input", "content", "trigger"]),
@@ -93,7 +95,7 @@ export const veroFormSlotRecipes = {
   },
   tagsInput: {
     base: {
-      label: BODY_TEXT_STYLE,
+      label: FIELD_LABEL_STYLE,
       input: BODY_TEXT_STYLE,
     },
     variants: {
@@ -102,7 +104,7 @@ export const veroFormSlotRecipes = {
   },
   listbox: {
     base: {
-      label: BODY_TEXT_STYLE,
+      label: FIELD_LABEL_STYLE,
       content: BODY_TEXT_STYLE,
     },
   },

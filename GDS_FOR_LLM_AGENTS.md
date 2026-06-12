@@ -501,6 +501,8 @@ Use **`Tabs.Root`**, **`Tabs.List`**, **`Tabs.Trigger`**, **`Tabs.Content`** wit
 
 **Field — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/field):
 
+Field **label typography** (18px, semibold) comes from **`@gds-vero/theme`** on the **`Field.Label`** slot — only when wrapped in **`GDSProvider`**. Do **not** set `fontSize` / `textStyle` / `fontWeight` on `Field.Label`. Do **not** use **`GDSText`**, **`Text`**, or **`GDSHeading`** as the visible field label — always **`Field.Label`** inside **`Field.Root`**. If label styling looks wrong, fix the theme — do not substitute body text wrappers.
+
 ```tsx
 import { Field, Input } from "@chakra-ui/react";
 
@@ -512,7 +514,15 @@ import { Field, Input } from "@chakra-ui/react";
 </Field.Root>
 ```
 
+| Slot | Component | Notes |
+|------|-----------|--------|
+| Label | **`Field.Label`** | 18px body scale, **semibold** — no props needed |
+| Helper | **`Field.HelperText`** | 18px, `fg.muted` |
+| Error | **`Field.ErrorText`** | 18px, `fg.error` |
+
 Use **`Field.Root`**, **`Field.Label`**, **`Field.HelperText`**, **`Field.ErrorText`**, **`invalid`** on root. Do **not** use v2 **`FormControl`**, **`FormLabel`**, **`FormHelperText`**, **`FormErrorMessage`**.
+
+**Do not:** `<GDSText textStyle="body">Nimi</GDSText>` above an input; `Field.Label fontWeight="bold"`; placeholder-only labels without `Field.Label`.
 
 **Card — verified GDS-VERO pattern** (from https://tomiputto.github.io/gds-vero/card):
 
@@ -1127,6 +1137,7 @@ Verify every item against the files you created or changed:
 - [ ] **Buttons:** primary CTAs use **`GDSButton colorPalette="brand"`** (or Chakra `Button colorPalette="brand"` inside **`GDSProvider`**); **pill shape** from theme — **no** `borderRadius` override; **no** raw `<button>`
 - [ ] **Component choice:** overlays, forms, and feedback use the right compound (`Dialog` vs `Drawer`, `Switch` vs `Toggle`, `Select` vs `Combobox`, `Alert` vs `Toast`) — see **Component selection guide** in this file
 - [ ] **Component API verified:** every compound used (`Accordion`, `Dialog`, `Tabs`, `Menu`, `Field`, …) matches **GDS docs “Basic” example** or Chakra MCP — slot names were **not** guessed from training data (see **Mandatory: verify component API before coding**)
+- [ ] **Field labels:** visible labels use **`Field.Label`** inside **`Field.Root`** — not `GDSText`/`Text`/`GDSHeading`; no `fontSize`/`textStyle`/`fontWeight` on `Field.Label` (theme → 18px semibold)
 - [ ] **Card titles:** use **`Card.Title`** / **`Card.Description`** — not `GDSText`/`Text`/`GDSHeading` as title; no `fontSize`/`textStyle` on `Card.Title` (theme → 20px)
 - [ ] **Card footer CTA:** **`GDSButton`** inline width in **`Card.Footer`** — **`width="full"`** only on login/form submit cards, not directory/profile cards
 - [ ] **Vero.fi header:** use **`VeroMainHeader`** from `@gds-vero/react` — not a custom `Box`/`Flex` header (see verified pattern in **Component selection guide**)
@@ -1139,7 +1150,7 @@ Verify every item against the files you created or changed:
 Search touched files for common violations (fix or report):
 
 - Imports from forbidden packages (`@mui/`, `antd`, `react-icons`, Chakra v2 component names)
-- Compound slot names that do not match GDS docs (e.g. `Accordion.Trigger` instead of `Accordion.ItemTrigger`; `Modal.*` instead of `Dialog.*`; card title as `GDSText`/`Text` instead of `Card.Title`)
+- Compound slot names that do not match GDS docs (e.g. `Accordion.Trigger` instead of `Accordion.ItemTrigger`; `Modal.*` instead of `Dialog.*`; card title as `GDSText`/`Text` instead of `Card.Title`; field label as `GDSText`/`Text` instead of `Field.Label`)
 - Hardcoded hex colors (`#`, `rgb(`, `hsl(`) on UI elements
 - `textStyle="sm"` or `textStyle="md"` on `GDSText`
 - Manual `fontSize="sm"` / `textStyle="sm"` on Chakra compounds that are already themed (`Dialog`, `Menu`, `Field`, `Table`, …) without a documented reason
@@ -1194,7 +1205,7 @@ Report **PASS**, **WARNING**, or **FAIL** for **each** category. One line minimu
 
 **Page layout** — `VeroAppShell` + `VeroPageLayout`; `contentWidth` preset; **`Breadcrumb` above `h1`** on service pages; sidebar via `sidebar` prop only; no random `maxW` / padding.
 
-**Typography** — page `h1` uses `GDSHeading as="h1"` (42px, not `size="xl"`/`"2xl"`); card titles on `Card.Title`; body on `GDSText textStyle="body"`; no unnecessary manual `fontSize` on themed Chakra slots.
+**Typography** — page `h1` uses `GDSHeading as="h1"` (42px, not `size="xl"`/`"2xl"`); **form labels on `Field.Label`** (not `GDSText`); card titles on `Card.Title`; body on `GDSText textStyle="body"`; no unnecessary manual `fontSize` on themed Chakra slots.
 
 **Accessibility** — labels, errors, `aria-label` on icon buttons, heading hierarchy, landmarks, dialog titles, keyboard/focus, contrast via tokens — per **Accessibility review** checklist below.
 

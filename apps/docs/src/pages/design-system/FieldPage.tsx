@@ -10,7 +10,9 @@ export function FieldPage() {
           Field
         </Heading>
         <Text color="fg.muted">
-          Wrapper for form controls with label, helper text, and error state.
+          Wrapper for form controls with label, helper text, and error state. Label typography
+          (18px, semibold) comes from <Code>@gds-vero/theme</Code> on the <Code>Field.Label</Code> slot
+          — use <Code>Field.Label</Code>, not <Code>GDSText</Code>, for visible labels.
         </Text>
         <Box
           mt="4"
